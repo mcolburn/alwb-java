@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/net.ages.workbench.templates.dsl/src-gen" editDirectory="/net.ages.workbench.templates.dsl.edit/src"
+    editorDirectory="/net.ages.workbench.templates.dsl.editor/src" modelPluginID="net.ages.workbench.templates.dsl"
+    forceOverwrite="true" modelName="Atem" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    complianceLevel="5.0" copyrightFields="false" editPluginID="net.ages.workbench.templates.dsl.edit"
+    editorPluginID="net.ages.workbench.templates.dsl.editor" runtimeVersion="2.9"
+    usedGenPackages="../../../../../../../net.ages.workbench.resources.dsl/src-gen/net/ages/workbench/resources/dsl/Ares.genmodel#//ares">
+  <genPackages prefix="Atem" basePackage="net.ages.workbench.templates.dsl" disposableProviderFactory="true"
+      ecorePackage="Atem.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Atem.ecore#//VersionSwitchType">
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//VersionSwitchType/L1"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//VersionSwitchType/L2"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//VersionSwitchType/Both"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Atem.ecore#//Language">
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//Language/L1"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//Language/L2"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Atem.ecore#//BreakType">
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//BreakType/line"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//BreakType/page"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Atem.ecore#//TemplateStatuses">
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//TemplateStatuses/NA"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//TemplateStatuses/Draft"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//TemplateStatuses/Review"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//TemplateStatuses/Final"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Atem.ecore#//Null">
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//Null/null"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Atem.ecore#//ModeTypes">
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//ModeTypes/M1"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//ModeTypes/M2"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//ModeTypes/M3"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//ModeTypes/M4"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//ModeTypes/M5"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//ModeTypes/M6"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//ModeTypes/M7"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//ModeTypes/M8"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Atem.ecore#//DowTypes">
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//DowTypes/D1"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//DowTypes/D2"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//DowTypes/D3"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//DowTypes/D4"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//DowTypes/D5"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//DowTypes/D6"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//DowTypes/D7"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Atem.ecore#//BookTypes">
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//BookTypes/Octochechos"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//BookTypes/Menaion"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//BookTypes/Euchologion"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//BookTypes/Pentecostarion"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//BookTypes/Triodion"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//BookTypes/Horologion"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//BookTypes/Eothina"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//BookTypes/Heirmologion"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//BookTypes/Katavasias"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//BookTypes/Psalter"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//BookTypes/Lectionary"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//BookTypes/Other"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Atem.ecore#//Seasons">
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//Seasons/Triodion"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//Seasons/Pentecostarion"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//Seasons/Nativity_Fast"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//Seasons/Apostles_Fast"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//Seasons/Dormition_Fast"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Atem.ecore#//DayOfMonthTypes">
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//DayOfMonthTypes/D01"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//DayOfMonthTypes/D02"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//DayOfMonthTypes/D03"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//DayOfMonthTypes/D04"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//DayOfMonthTypes/D05"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//DayOfMonthTypes/D06"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//DayOfMonthTypes/D07"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//DayOfMonthTypes/D08"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//DayOfMonthTypes/D09"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//DayOfMonthTypes/D10"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//DayOfMonthTypes/D11"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//DayOfMonthTypes/D12"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//DayOfMonthTypes/D13"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//DayOfMonthTypes/D14"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//DayOfMonthTypes/D15"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//DayOfMonthTypes/D16"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//DayOfMonthTypes/D17"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//DayOfMonthTypes/D18"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//DayOfMonthTypes/D19"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//DayOfMonthTypes/D20"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//DayOfMonthTypes/D21"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//DayOfMonthTypes/D22"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//DayOfMonthTypes/D23"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//DayOfMonthTypes/D24"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//DayOfMonthTypes/D25"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//DayOfMonthTypes/D26"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//DayOfMonthTypes/D27"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//DayOfMonthTypes/D28"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//DayOfMonthTypes/D29"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//DayOfMonthTypes/D30"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//DayOfMonthTypes/D31"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Atem.ecore#//PeriodType">
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//PeriodType/pascha"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//PeriodType/pentecostarion"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//PeriodType/triodion"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Atem.ecore#//DayOfWeek">
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//DayOfWeek/Sunday"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//DayOfWeek/Monday"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//DayOfWeek/Tuesday"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//DayOfWeek/Wednesday"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//DayOfWeek/Thursday"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//DayOfWeek/Friday"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//DayOfWeek/Saturday"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Atem.ecore#//MonthName">
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//MonthName/Jan"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//MonthName/Feb"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//MonthName/Mar"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//MonthName/Apr"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//MonthName/May"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//MonthName/Jun"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//MonthName/Jul"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//MonthName/Aug"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//MonthName/Sep"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//MonthName/Oct"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//MonthName/Nov"/>
+      <genEnumLiterals ecoreEnumLiteral="Atem.ecore#//MonthName/Dec"/>
+    </genEnums>
+    <genClasses ecoreClass="Atem.ecore#//AtemModel">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//AtemModel/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//AtemModel/dsl_Template_Status"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//AtemModel/imports"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//AtemModel/dsl_Template_Driver"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//AtemModel/dsl_Template_head"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//AtemModel/dsl_Template_preface"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//AtemModel/dsl_Template_components"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//Head">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//Head/dsl_Head_components"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//HeadComponent"/>
+    <genClasses ecoreClass="Atem.ecore#//Driver">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//Driver/dsl_Driver_RegEx"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//Driver/dsl_Driver_Status"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//TemplateTitle">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//TemplateTitle/dsl_TemplateTitle_Elements"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//PageKeepWithNext">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//PageKeepWithNext/dsl_PageKeepWithNext_value"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//PageHeaderEven">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//PageHeaderEven/dsl_PageHeader_columns"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//PageHeaderOdd">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//PageHeaderOdd/dsl_PageHeader_columns"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//PageFooterEven">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//PageFooterEven/dsl_PageHeader_columns"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//PageFooterOdd">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//PageFooterOdd/dsl_PageHeader_columns"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//HeaderFooterColumn">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//HeaderFooterColumn/dsl_HeaderFooterColumn_fragments"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//HeaderFooterColumnLeft"/>
+    <genClasses ecoreClass="Atem.ecore#//HeaderFooterColumnCenter"/>
+    <genClasses ecoreClass="Atem.ecore#//HeaderFooterColumnRight"/>
+    <genClasses ecoreClass="Atem.ecore#//HeaderFooterFragment"/>
+    <genClasses ecoreClass="Atem.ecore#//HeaderFooterText">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//HeaderFooterText/dsl_HeaderFooterText"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//HeaderFooterDate">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//HeaderFooterDate/dsl_HeaderFooterDate"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//HeaderFooterDate/dsl_HeaderFooterDate_Language"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//HeaderFooterPageNumber">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//HeaderFooterPageNumber/dsl_HeaderFooterPageNumber"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//HeaderFooterLookup">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//HeaderFooterLookup/dsl_HeaderFooterLookup_Elements"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//HeaderFooterLookup/dsl_HeaderFooterLookup_Language"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//HeaderFooterTitle">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//HeaderFooterTitle/dsl_HeaderFooterTitle"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//HeaderFooterCommemoration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//HeaderFooterCommemoration/dsl_HeaderFooterCommemoration"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//Commemoration">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//Commemoration/dsl_Commemoration_Elements"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//TemplateStatus">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//TemplateStatus/dsl_TemplateStatus"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//AbstractComponent"/>
+    <genClasses ecoreClass="Atem.ecore#//Import">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//Import/importedNamespace"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//VersionSwitch">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//VersionSwitch/dsl_VersionSwitch_flag"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//ResourceText">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Atem.ecore#//ResourceText/dsl_ResourceTextRef"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//ResourceText/dsl_ResourceText_Media_Off"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//Lookup">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Atem.ecore#//Lookup/dsl_ResourceTextRef"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//Lookup/dsl_Lookup_Media_Off"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//Lookup/dsl_Lookup_Override_Mode_Set"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//Lookup/dsl_Lookup_OverrideMode"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//Lookup/dsl_Lookup_Override__Day_Set"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//Lookup/dsl_Lookup_OverrideDay"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//LDP">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//LDP/dsl_LDP"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//TaggedText">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Atem.ecore#//TaggedText/dsl_TaggedText_tag"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//TaggedText/dsl_TaggedText"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//Info">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//Info/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//Info/dsl_Info_Elements"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//InfoElementType"/>
+    <genClasses ecoreClass="Atem.ecore#//Date">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//Date/dsl_Date_month"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//Date/dsl_Date_day"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//Date/dsl_Date_year"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//Preface">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//Preface/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//Preface/dsl_Preface_Elements"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//PrefaceElementType"/>
+    <genClasses ecoreClass="Atem.ecore#//Section">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//Section/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Atem.ecore#//Section/dsl_Section_Role"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//Section/dsl_Section_Elements"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//SectionElementType"/>
+    <genClasses ecoreClass="Atem.ecore#//LdpType"/>
+    <genClasses ecoreClass="Atem.ecore#//All">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//All/dsl_Display_LiturgicalDayProperties"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//GenDate">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//GenDate/dsl_Display_Date"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//GenYear">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//GenYear/dsl_Display_Year"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//MCD">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//MCD/dsl_MCD_value"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//MOW">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//MOW/dsl_Display_Mode"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//NOP">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//NOP/dsl_Display_Mode"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//DOM">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//DOM/dsl_Display_Mode"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//DOP">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//DOP/dsl_Display_Mode"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//DOWN">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//DOWN/dsl_Display_Mode"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//DOWT">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//DOWT/dsl_Display_Mode"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//EOW">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//EOW/dsl_Display_Eothinon"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//SAEC">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//SAEC/dsl_Display_SundayAfterElevationCross"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//SOL">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//SOL/dsl_Display_StartLukan"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//DOL">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//DOL/dsl_Display_DayLukan"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//WOLC">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//WOLC/dsl_Display_DayLukan"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//WDOLC">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//WDOLC/dsl_Display_DayLukan"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//SBT">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//SBT/dsl_Display_SundaysBeforeTriodion"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//TemplateFragment">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Atem.ecore#//TemplateFragment/name"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//PrefaceFragment">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Atem.ecore#//PrefaceFragment/name"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//SectionFragment">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Atem.ecore#//SectionFragment/name"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//Break">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//Break/dsl_break_type"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//PageNumber">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//PageNumber/dsl_PageNumber_value"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//PassThroughHtml">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//PassThroughHtml/dsl_Passthrough_html_text"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//PassThroughPdf">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//PassThroughPdf/dsl_Passthrough_pdf_text"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//Title">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Atem.ecore#//Title/dsl_Title_Role"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//Title/dsl_Elements"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//SubTitle">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Atem.ecore#//SubTitle/dsl_SubTitle_Role"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//SubTitle/dsl_Elements"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//Paragraph">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Atem.ecore#//Paragraph/dsl_Para_Role"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//Paragraph/dsl_Elements"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//Block">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Atem.ecore#//Block/dsl_Block_Role"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//Block/dsl_Elements"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//Hymn">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//Hymn/dsl_Elements"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//Media">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//Media/dsl_Elements"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//Verse">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//Verse/dsl_Elements"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//Actor">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//Actor/dsl_Elements"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//Rubric">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//Rubric/dsl_Elements"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//Dialog">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//Dialog/dsl_Elements"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//Reading">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//Reading/dsl_Elements"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//Heading1">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//Heading1/dsl_Elements"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//Heading2">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//Heading2/dsl_Elements"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//Heading3">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//Heading3/dsl_Elements"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//ElementType"/>
+    <genClasses ecoreClass="Atem.ecore#//Aid">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//Aid/name"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//Version">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//Version/name"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//LitBook">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//LitBook/name"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//SetLocale">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//SetLocale/dsl_SetLocale_V1"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//SetLocale/dsl_SetLocale_V2"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//RestoreLocale">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//RestoreLocale/dsl_RestoreLocale"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//WhenDate">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//WhenDate/dsl_WhenDate_Cases"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//WhenDate/dsl_WhenDate_Other"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//WhenDateCase">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//WhenDateCase/dsl_WhenDate_Case_Month"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//WhenDateCase/dsl_WhenDateCase_Days"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//WhenDateCase/dsl_WhenDateCase_True_actions"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//AbstractDateCase"/>
+    <genClasses ecoreClass="Atem.ecore#//DateRange">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//DateRange/dsl_DateRange_from"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//DateRange/dsl_DateRange_To"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//DateSet">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//DateSet/dslDateSet_Values"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//WhenDayName">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//WhenDayName/dsl_WhenDayName_Cases"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//WhenDayName/dsl_WhenDayName_Other"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//WhenDayNameCase">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//WhenDayNameCase/dsl_WhenDayNameCase_Days"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//WhenDayNameCase/dsl_WhenDayNameCase_True_actions"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//AbstractDayNameCase"/>
+    <genClasses ecoreClass="Atem.ecore#//DayNameRange">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//DayNameRange/dsl_DayNameRange_from"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//DayNameRange/dsl_DayNameRange_To"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//DayNameSet">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//DayNameSet/dslDayNameSet_Values"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//WhenPentecostarionDay">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//WhenPentecostarionDay/dsl_WhenPentecostarionDay_Cases"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//WhenPentecostarionDay/dsl_WhenPentecostarionDay_Other"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//WhenTriodionDay">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//WhenTriodionDay/dsl_WhenTriodionDay_Cases"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//WhenTriodionDay/dsl_WhenTriodionDay_Other"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//WhenMovableCycleDay">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//WhenMovableCycleDay/dsl_WhenMovableCycleDay_Cases"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//WhenMovableCycleDay/dsl_WhenMovableCycleDay_Other"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//WhenSundayAfterElevationOfCrossDay">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//WhenSundayAfterElevationOfCrossDay/dsl_WhenSundayAfterElevationOfCrossDay_Cases"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//WhenSundayAfterElevationOfCrossDay/dsl_WhenSundayAfterElevationOfCrossDay_Other"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//WhenLukanCycleDay">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//WhenLukanCycleDay/dsl_WhenLukanCycleDay_Cases"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//WhenLukanCycleDay/dsl_WhenLukanCycleDay_Other"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//WhenPascha">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//WhenPascha/dsl_WhenPascha_true_actions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//WhenPascha/dsl_WhenPascha_Other_actions"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//WhenOther">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//WhenOther/dsl_WhenCase_Other_actions"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//WhenPeriodCase">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//WhenPeriodCase/dsl_WhenPeriodCase_Days"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//WhenPeriodCase/dsl_WhenPeriodCase_True_actions"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//AbstractDayCase"/>
+    <genClasses ecoreClass="Atem.ecore#//DayRange">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//DayRange/dsl_DayRange_from"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//DayRange/dsl_Range_To"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//DaySet">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//DaySet/dslSetValue_Days"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//WhenModeOfWeek">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//WhenModeOfWeek/dsl_WhenModeOfWeek_Cases"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//WhenModeOfWeek/dsl_WhenModeOfWeek_Other"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//WhenModeOfWeekCase">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//WhenModeOfWeekCase/dsl_WhenModeOfWeekCase_Days"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//WhenModeOfWeekCase/dsl_WhenModeOfWeekCase_True_actions"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//ModeOfWeekSet">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//ModeOfWeekSet/dsl_ModeOfWeekSet_MOWs"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//WhenSundaysBeforeTriodion">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//WhenSundaysBeforeTriodion/dsl_WhenSundaysBeforeTriodion_Cases"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//WhenSundaysBeforeTriodion/dsl_SundaysBeforeTriodion_Other"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//SundaysBeforeTriodionCase">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//SundaysBeforeTriodionCase/dsl_SundaysBeforeTriodionCase_Days"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//SundaysBeforeTriodionCase/dsl_SundaysBeforeTriodionCase_True_actions"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//WhenExists">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//WhenExists/dsl_WhenExists_Cases"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//WhenExists/dsl_WhenExists_Other"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//WhenExistsCase">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Atem.ecore#//WhenExistsCase/dsl_WhenExistsCase_Ref"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Atem.ecore#//WhenExistsCase/dsl_WhenExistsCase_True_actions"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

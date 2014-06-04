@@ -1,0 +1,18 @@
+grammar net.ages.workbench.resources.dsl.Ares with org.eclipse.xtext.common.Terminals
+
+generate ares "http://www.ages.net/workbench/resources/dsl/Ares"
+
+AresModel: 'A_Resource_Whose_Name = ' name = QualifiedName
+	dsl_Model_definitions+=Definition*
+;
+
+QualifiedName: ID('.'ID)*;
+
+Definition : name=QualifiedName '=' 
+	(dsl_Definition_Text=STRING ('\\')*)? 
+	(dsl_Definition_Ref=[Definition | QualifiedName])?
+;
+
+// ('\\')* is present in the rule above due to a bug in the ResourceBundle editor
+// that inserts slashes when it saves.
+

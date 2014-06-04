@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Utils
+Bundle-SymbolicName: net.ages.workbench.utils
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: net.ages.workbench.utils.Activator
+Require-Bundle: org.eclipse.core.runtime,
+ net.ages.workbench.resources.lib;bundle-version="1.0.0"
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Import-Package: javax.inject,
+ org.apache.log4j
+Export-Package: net.ages.workbench.utils
