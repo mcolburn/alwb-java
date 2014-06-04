@@ -1,0 +1,469 @@
+grammar net.ages.workbench.templates.dsl.Atem with org.eclipse.xtext.common.Terminals
+
+generate atem "http://www.ages.net/workbench/templates/dsl/Atem"
+
+import "http://www.ages.net/workbench/resources/dsl/Ares" as def
+
+/*
+ * Note: there is a limit to the number of rules you can have.  If you add new ones
+ * and suddenly get errors you can't explain, it might be that you added too many rules.
+ */
+
+AtemModel: 'Template' name = QualifiedName 
+	(dsl_Template_Status=TemplateStatus)?
+	imports+=Import*
+	(dsl_Template_Driver=Driver)?
+	(dsl_Template_head=Head)?
+	(dsl_Template_preface=Preface)?
+	(dsl_Template_components+=AbstractComponent)*
+	'End-Template'
+;
+
+Head: 'Head' dsl_Head_components+=HeadComponent+ 'End_Head'
+;
+HeadComponent:
+	Commemoration
+	| Date
+	| PageHeaderEven
+	| PageHeaderOdd
+	| PageFooterEven
+	| PageFooterOdd
+	| PageKeepWithNext
+	| PageNumber
+	| TemplateTitle
+;
+Driver: 'Generation_Driver'
+		'Service_Regular_Expression' dsl_Driver_RegEx=STRING
+		('Service_Status' dsl_Driver_Status=TemplateStatuses)? 
+	'End_Generation_Driver';
+TemplateTitle: 'Template_Title' dsl_TemplateTitle_Elements+=HeaderFooterFragment+ 'End_Title';
+PageKeepWithNext: 'Page_Keep_With_Next' dsl_PageKeepWithNext_value=STRING 'End_Page_Keep_With_Next';
+PageHeaderEven: 'Page_Header_Even' dsl_PageHeader_columns+=(HeaderFooterColumn)+ 'End_Page_Header_Even';
+PageHeaderOdd: 'Page_Header_Odd'  dsl_PageHeader_columns+=(HeaderFooterColumn)+ 'End_Page_Header_Odd';
+PageFooterEven: 'Page_Footer_Even'  dsl_PageHeader_columns+=(HeaderFooterColumn)+ 'End_Page_Footer_Even';
+PageFooterOdd: 'Page_Footer_Odd'  dsl_PageHeader_columns+=(HeaderFooterColumn)+ 'End_Page_Footer_Odd';
+
+HeaderFooterColumn: HeaderFooterColumnLeft | HeaderFooterColumnCenter | HeaderFooterColumnRight;
+HeaderFooterColumnLeft: 'left' dsl_HeaderFooterColumn_fragments+=HeaderFooterFragment+;
+HeaderFooterColumnCenter: 'center' dsl_HeaderFooterColumn_fragments+=HeaderFooterFragment+ ;
+HeaderFooterColumnRight: 'right' dsl_HeaderFooterColumn_fragments+=HeaderFooterFragment+ ;
+HeaderFooterFragment: 
+	HeaderFooterText 
+	| HeaderFooterDate 
+	| HeaderFooterPageNumber 
+	| HeaderFooterLookup
+	| HeaderFooterTitle
+	| HeaderFooterCommemoration
+;
+HeaderFooterText: '@text' dsl_HeaderFooterText=STRING;
+HeaderFooterDate: dsl_HeaderFooterDate ?= '@date'  ('lang' dsl_HeaderFooterDate_Language=Language)? ;
+HeaderFooterPageNumber: dsl_HeaderFooterPageNumber ?= '@pageNbr';
+HeaderFooterLookup: '@lookup' dsl_HeaderFooterLookup_Elements+=ElementType* 'lang' dsl_HeaderFooterLookup_Language=Language;
+HeaderFooterTitle: dsl_HeaderFooterTitle ?= '@title';
+HeaderFooterCommemoration: dsl_HeaderFooterCommemoration ?= '@commemoration';
+Commemoration: 'Template_Commemoration' dsl_Commemoration_Elements+=HeaderFooterFragment+ 'End_Template_Commemoration';
+TemplateStatus: 'Status' dsl_TemplateStatus = TemplateStatuses;
+
+AbstractComponent: 
+	  Actor
+	| Aid
+	| Block
+	| Break
+//	| Condition
+	| Dialog
+	| Title 
+	| Heading1
+	| Heading2
+	| Heading3
+	| Hymn 
+	| Media
+//	| IfStatement
+	| Info
+	| LitBook
+	| Paragraph
+	| PassThroughHtml
+	| PassThroughPdf
+	| Reading 
+	| RestoreLocale
+	| Rubric 
+	| Section 
+	| SectionFragment
+	| SetLocale
+	| TemplateFragment
+	| SubTitle
+	| Verse
+	| Version
+	| VersionSwitch
+//	| WhenCondition
+	| WhenDate 
+	| WhenDayName 
+	| WhenExists 
+	| WhenLukanCycleDay
+	| WhenModeOfWeek
+	| WhenPascha
+	| WhenMovableCycleDay
+	| WhenPentecostarionDay
+	| WhenSundayAfterElevationOfCrossDay
+	| WhenTriodionDay
+	| WhenSundaysBeforeTriodion
+;
+
+QualifiedName: ID('.'ID)*;
+
+QualifiedNameWithWildCard: QualifiedName '.*'?;
+
+Import: 'import' importedNamespace = QualifiedNameWithWildCard;
+
+VersionSwitch: "Switch-Version" dsl_VersionSwitch_flag=VersionSwitchType "End-Switch-Version";
+enum VersionSwitchType: L1 | L2 | Both;
+enum Language: L1 | L2;
+ResourceText:  'sid' dsl_ResourceTextRef=[def::Definition | QualifiedName]
+	( dsl_ResourceText_Media_Off ?='media-off')? 
+;
+Lookup:        'rid'dsl_ResourceTextRef=[def::Definition | QualifiedName] 
+	 			( dsl_Lookup_Media_Off ?='media-off')?  
+				(dsl_Lookup_Override_Mode_Set?='@mode' dsl_Lookup_OverrideMode=ModeTypes)? 
+				(dsl_Lookup_Override__Day_Set?='@day' dsl_Lookup_OverrideDay=DowTypes)?;
+LDP:           'ldp' dsl_LDP+=LdpType*;
+
+TaggedText: 
+  '<' dsl_TaggedText_tag=[def::Definition | QualifiedName] '>'
+     dsl_TaggedText+=ElementType*
+  '</>'	
+;
+Info: 'Info' name=ID dsl_Info_Elements+=InfoElementType* 'End-Info';
+InfoElementType: 
+	  VersionSwitch
+	| Block
+	| Paragraph
+	| SubTitle
+	| Title 
+;
+Date: 'Set_Date' 'month' dsl_Date_month=INT  'day' dsl_Date_day=INT  ('year' dsl_Date_year=INT)? 'End_Date';
+Preface: 'Preface' name=ID dsl_Preface_Elements+=PrefaceElementType* 'End-Preface';
+PrefaceElementType: 
+	  VersionSwitch
+	| Block
+	| Paragraph
+	| Section 
+	| SectionFragment 
+	| SubTitle
+	| TemplateFragment
+	|  Title 
+;
+
+Section: 'Section' name=ID ('role' dsl_Section_Role=[def::Definition | QualifiedName])? dsl_Section_Elements+=SectionElementType* 'End-Section';
+SectionElementType: 
+	  Actor
+	| Block
+	| Break
+//	| Condition
+	| Date
+	| Dialog
+	| Heading1
+	| Heading2
+	| Heading3
+	| Hymn 
+	| Media
+	| Paragraph
+	| PassThroughHtml
+	| PassThroughPdf
+	| Reading 
+	| RestoreLocale
+	| Rubric 
+//	| Rule 
+	| Section 
+	| SectionFragment 
+	| SetLocale
+	| TemplateFragment 
+	| Title 
+	| SubTitle
+	| Verse
+//	| WhenCondition
+	| WhenDate 
+	| WhenDayName 
+	| WhenExists 
+	| WhenLukanCycleDay
+	| WhenModeOfWeek
+	| WhenMovableCycleDay
+	| WhenPascha
+	| WhenPentecostarionDay
+	| WhenSundayAfterElevationOfCrossDay
+	| WhenTriodionDay
+	| WhenSundaysBeforeTriodion
+;
+LdpType: DOM | DOWN | DOWT| EOW | All 
+	| GenDate | GenYear | MCD | MOW | NOP | DOP | SAEC | SOL | DOL
+	| WOLC | WDOLC |SBT;
+
+All: dsl_Display_LiturgicalDayProperties?='@All_Liturgical_Day_Properties';
+GenDate: dsl_Display_Date?='@Service_Date'; 
+GenYear: dsl_Display_Year?='@Service_Year'; 
+MCD: dsl_MCD_value?='@Day_of_Movable_Cycle'; 
+MOW: dsl_Display_Mode?='@Mode_of_Week'; 
+NOP: dsl_Display_Mode?='@Name_of_Period'; 
+DOM: dsl_Display_Mode?='@Day_of_Month'; 
+DOP: dsl_Display_Mode?='@Day_of_Period'; 
+DOWN: dsl_Display_Mode?='@Day_of_Week_As_Number';  
+DOWT: dsl_Display_Mode?='@Day_of_Week_As_Text';
+EOW: dsl_Display_Eothinon?='@Eothinon';
+SAEC: dsl_Display_SundayAfterElevationCross?='@Sunday_After_Elevation_Cross_Date';
+SOL: dsl_Display_StartLukan?='@Lukan_Cycle_Start_Date';
+DOL: dsl_Display_DayLukan?='@Lukan_Cycle_Elapsed_Days';
+WOLC: dsl_Display_DayLukan?='@Lukan_Cycle_Week';
+WDOLC: dsl_Display_DayLukan?='@Lukan_Cycle_Week_Day';
+SBT: dsl_Display_SundaysBeforeTriodion?='@Sundays_Before_Triodion';
+     
+TemplateFragment: "Insert_template" name = [AtemModel | QualifiedName] 'End-Insert';
+PrefaceFragment: "Insert_preface" name = [Preface | QualifiedName] 'End-Insert';
+SectionFragment: "Insert_section" name = [Section | QualifiedName] 'End-Insert';
+
+Break: 'Break' dsl_break_type=BreakType 'End_Break';
+enum BreakType: line | page;
+
+PageNumber: 'Set_Page_Number' dsl_PageNumber_value=INT 'End_Set_Page_Number';
+PassThroughHtml: 'Passthrough-Html' dsl_Passthrough_html_text=STRING 'END-Passthrough-Html';
+PassThroughPdf: 'Passthrough-Html' dsl_Passthrough_pdf_text=STRING 'END-Passthrough-Pdf';
+
+Title: 'Title' ('role' dsl_Title_Role=[def::Definition | QualifiedName])? dsl_Elements+=ElementType* 'End-Title';
+SubTitle: 'Sub-Title' ('role' dsl_SubTitle_Role=[def::Definition | QualifiedName])? dsl_Elements+=ElementType* 'End-Sub-Title';
+Paragraph: 'Para' ('role' dsl_Para_Role=[def::Definition | QualifiedName])? dsl_Elements+=ElementType* 'End-Para';
+Block: 'bTag' dsl_Block_Role=[def::Definition | QualifiedName] dsl_Elements+=ElementType* 'End-bTag';
+Hymn: 'Hymn' dsl_Elements+=ElementType* 'End-Hymn';
+Media: 'Media' dsl_Elements+=ElementType* 'End-Media';
+Verse: 'Verse' dsl_Elements+=ElementType* 'End-Verse';
+Actor: 'Actor' dsl_Elements+=ElementType* 'End-Actor';
+Rubric: 'Rubric' dsl_Elements+=ElementType* 'End-Rubric';
+Dialog: 'Dialog' dsl_Elements+=ElementType* 'End-Dialog';
+Reading: 'Reading' dsl_Elements+=ElementType* 'End-Reading';
+Heading1: 'Heading_1' dsl_Elements+=ElementType* 'End_Heading_1';
+Heading2: 'Heading_2' dsl_Elements+=ElementType* 'End_Heading_2';
+Heading3: 'Heading_3' dsl_Elements+=ElementType* 'End_Heading_3';
+
+ElementType: ResourceText | TaggedText | Lookup | LDP ;
+Aid: 'AGES_ID' name=QualifiedName;
+Version: 'Version' name=QualifiedName;
+LitBook: 'LiturgicalBook' name=QualifiedName;
+SetLocale: 'Set_Locale' 'locale_1' dsl_SetLocale_V1=STRING  'locale_2' dsl_SetLocale_V2=STRING 'End_Set_Locale';
+RestoreLocale: dsl_RestoreLocale?="@restoreLocale";
+enum TemplateStatuses: 
+	NA | Draft | Review | Final
+;
+enum Null: null;
+
+ /* 
+WhenCondition:
+'when-condition'
+(dsl_WhenCondition_Cases+=WhenConditionCase)+
+(dsl_WhenCondition_Other=WhenOther)?
+'end-when'
+;
+
+WhenConditionCase: dsl_WhenConditionCase=[Condition | QualifiedName] 'use:';
+
+Condition: 'Condition' name=QualifiedName  
+	dsl_Condition_Cases+=AbstractCases*
+'End-Condition'
+;
+AbstractCases: CaseAnyTrue | CaseAllTrue | CaseNoneTrue;
+CaseAnyTrue: 'AnyCaseTrue' '(' anyCases+=Case (',' anyCases+=Case)* ')';
+CaseAllTrue: 'AllCasesTrue' '(' allCases+=Case (',' allCases+=Case)* ')';
+CaseNoneTrue: 'NoCaseTrue' '(' noCases+=Case (',' noCases+=Case)* ')';
+
+Case: 
+	CaseDayOfMonth
+	| Case_Pointer
+	| CaseDaysAfterFeast 
+	| CaseDaysBeforeFeast 
+	| CaseExists
+	| CaseFeastOf
+	| CaseMonth
+	| CaseModeOfWeek 
+	| CaseDayOfSeason 
+	| CaseSeason 
+	| CaseWeekday
+;
+
+Case_Pointer: name=[Condition | QualifiedName] ;
+CaseSeason: "The_Season_is" dsl_CaseSeason=Seasons;
+CaseDayOfMonth: 'Day_of_Month_is' dsl_CaseDayOfMonth=INT;
+CaseDaysAfterFeast: 'Today_is' dsl_CaseDaysAfter_Count=INT 'days_after_feast' dsl_CaseDaysAfter_Event=[def::Definition | QualifiedName] ;
+CaseDaysBeforeFeast: 'Today_is' dsl_CaseDaysBefore_Count=INT 'days_before_feast' dsl_CaseDaysBefore_Event=[def::Definition | QualifiedName] ;
+CaseExists: 'Exists_rid' dsl_CaseExists_Ref=[def::Definition | QualifiedName];
+CaseFeastOf: 'Today_is_feast_of' dsl_CaseDayOf_Event=[def::Definition | QualifiedName] ;
+CaseModeOfWeek: 'Mode_of_the_week_is' dsl_CaseModeOfWeek_Mode=ModeTypes;
+CaseDayOfSeason: 'Day_of_Season_is' dsl_CaseDayOfSeason_Season=INT;
+CaseMonth: 'Month_is' dsl_CaseMonth=MonthName;
+CaseWeekday: 'Day_of_Week_is' dsl_CaseDayOfWeek=DayOfWeek ;
+* 
+*/
+/*
+IfStatement: 
+'if ' dsl_IF_Condition+=[Rule | QualifiedName] ( ',' dsl_IF_Condition+=[Rule | QualifiedName])* 'then' 
+	(dsl_IF_True_Actions+=AbstractComponent)*
+('else' 
+	(dsl_IF_False_Actions+=AbstractComponent)*
+)? 
+'end-if'
+;
+
+*/
+enum ModeTypes: M1 | M2 | M3 | M4 | M5 | M6 | M7 | M8;
+enum DowTypes: D1 | D2 | D3 | D4 | D5 | D6 | D7;
+
+enum BookTypes: 
+	Octochechos
+	| Menaion
+	| Euchologion
+	| Pentecostarion
+	| Triodion
+	| Horologion
+	| Eothina
+	| Heirmologion
+	| Katavasias
+	| Psalter
+	| Lectionary
+	| Other;
+enum Seasons: Triodion | Pentecostarion | Nativity_Fast | Apostles_Fast | Dormition_Fast;
+/** 
+enum DayOfSeasonTypes: 
+	  D01 | D02 | D03 | D04 | D05 | D06 | D07 | D08 | D09
+	| D10 | D11 | D12 | D13 | D14 | D15 | D16 | D17 | D18 | D19
+	| D20 | D21 | D22 | D23 | D24 | D25 | D26 | D27 | D28 | D29
+	| D30 | D31 | D32 | D33 | D34 | D35 | D36 | D37 | D38 | D39
+	| D40 | D41 | D42 | D43 | D44 | D45 | D46 | D47 | D48 | D49
+	| D50 | D51 | D52 | D53 | D54 | D55 | D56 | D57 | D58| D59 
+	| D60 | D61 | D62 | D63 | D64 | D65 | D66 | D67 | D68 | D69 
+	| D70 
+	;
+**/	
+enum DayOfMonthTypes: 
+	  D01 | D02 | D03 | D04 | D05 | D06 | D07 | D08 | D09
+	| D10 | D11 | D12 | D13 | D14 | D15 | D16 | D17 | D18 | D19
+	| D20 | D21 | D22 | D23 | D24 | D25 | D26 | D27 | D28 | D29
+	| D30 | D31;
+
+
+WhenDate:
+       'when-date-is'
+      (dsl_WhenDate_Cases+=WhenDateCase)+
+      (dsl_WhenDate_Other=WhenOther)?
+       'end-when'
+;
+WhenDateCase:   
+      dsl_WhenDate_Case_Month=MonthName dsl_WhenDateCase_Days=AbstractDateCase 'use:'
+      dsl_WhenDateCase_True_actions+=AbstractComponent*
+;
+AbstractDateCase: DateRange | DateSet;
+DateRange: dsl_DateRange_from=INT 'thru' dsl_DateRange_To=INT;
+DateSet: dslDateSet_Values+=INT (',' dslDateSet_Values+=INT)*;
+
+WhenDayName:
+       'when-name-of-day-is'
+      (dsl_WhenDayName_Cases+=WhenDayNameCase)+
+      (dsl_WhenDayName_Other=WhenOther)?
+       'end-when'
+;
+
+
+WhenDayNameCase:   
+      dsl_WhenDayNameCase_Days=AbstractDayNameCase 'use:'
+      dsl_WhenDayNameCase_True_actions+=AbstractComponent*
+;
+AbstractDayNameCase: DayNameRange | DayNameSet;
+DayNameRange: dsl_DayNameRange_from=DayOfWeek 'thru' dsl_DayNameRange_To=DayOfWeek;
+DayNameSet: dslDayNameSet_Values+=DayOfWeek ( ',' dslDayNameSet_Values+=DayOfWeek)*;
+
+enum PeriodType: pascha | pentecostarion | triodion;
+
+WhenPentecostarionDay:
+'when-pentecostarion-day-is'
+(dsl_WhenPentecostarionDay_Cases+=WhenPeriodCase)+
+(dsl_WhenPentecostarionDay_Other=WhenOther)?
+'end-when'
+;
+
+ WhenTriodionDay:
+'when-triodion-day-is'
+(dsl_WhenTriodionDay_Cases+=WhenPeriodCase)+
+(dsl_WhenTriodionDay_Other=WhenOther)?
+'end-when'
+;
+
+ WhenMovableCycleDay:
+'when-movable-cycle-day-is'
+(dsl_WhenMovableCycleDay_Cases+=WhenPeriodCase)+
+(dsl_WhenMovableCycleDay_Other=WhenOther)?
+'end-when'
+;
+
+
+WhenSundayAfterElevationOfCrossDay:
+   'when-Sunday-after-Elevation-of-Cross-is'
+  (dsl_WhenSundayAfterElevationOfCrossDay_Cases+=WhenDateCase)+
+  (dsl_WhenSundayAfterElevationOfCrossDay_Other=WhenOther)?
+   'end-when'
+;
+
+
+ WhenLukanCycleDay:
+'when-Lukan-Cycle-Day-is'
+(dsl_WhenLukanCycleDay_Cases+=WhenPeriodCase)+
+(dsl_WhenLukanCycleDay_Other=WhenOther)?
+'end-when'
+;
+
+WhenPascha:
+'when-pascha use:'
+	dsl_WhenPascha_true_actions+=AbstractComponent*
+	('otherwise use:' dsl_WhenPascha_Other_actions+=AbstractComponent*)?
+'end-when'
+;
+
+WhenOther: 'otherwise use:' dsl_WhenCase_Other_actions+=AbstractComponent*;
+
+WhenPeriodCase:   
+      dsl_WhenPeriodCase_Days=AbstractDayCase 'use:'
+      dsl_WhenPeriodCase_True_actions+=AbstractComponent*
+;
+AbstractDayCase: DayRange | DaySet;
+DayRange: dsl_DayRange_from=INT 'thru' dsl_Range_To=INT;
+DaySet: dslSetValue_Days+=INT ( ',' dslSetValue_Days+=INT)*;
+
+ WhenModeOfWeek:
+'when-mode-of-week-is'
+(dsl_WhenModeOfWeek_Cases+=WhenModeOfWeekCase)+
+(dsl_WhenModeOfWeek_Other=WhenOther)?
+'end-when'
+;
+WhenModeOfWeekCase:   
+      dsl_WhenModeOfWeekCase_Days=ModeOfWeekSet 'use:'
+      dsl_WhenModeOfWeekCase_True_actions+=AbstractComponent*
+;
+ModeOfWeekSet: dsl_ModeOfWeekSet_MOWs+=ModeTypes ( ',' dsl_ModeOfWeekSet_MOWs+=ModeTypes)*;
+
+ WhenSundaysBeforeTriodion:
+'when-sundays-before-triodion-is'
+(dsl_WhenSundaysBeforeTriodion_Cases+=SundaysBeforeTriodionCase)+
+(dsl_SundaysBeforeTriodion_Other=WhenOther)?
+'end-when'
+;
+ 
+SundaysBeforeTriodionCase:   
+      dsl_SundaysBeforeTriodionCase_Days=INT 'use:'
+      dsl_SundaysBeforeTriodionCase_True_actions+=AbstractComponent*
+;
+
+enum DayOfWeek: Sunday | Monday | Tuesday | Wednesday | Thursday | Friday | Saturday;
+enum MonthName: Jan | Feb | Mar | Apr | May | Jun | Jul | Aug | Sep | Oct | Nov | Dec;
+
+WhenExists:
+	'when-exists'
+	(dsl_WhenExists_Cases+=WhenExistsCase)+
+	(dsl_WhenExists_Other=WhenOther)?
+	'end-when'
+;
+WhenExistsCase:
+      'rid' dsl_WhenExistsCase_Ref=[def::Definition | QualifiedName] 'use:'
+      dsl_WhenExistsCase_True_actions+=AbstractComponent*
+;

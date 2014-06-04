@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<plugin>
+
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://www.ages.net/workbench/templates/dsl/Atem" 
+       class = "net.ages.workbench.templates.dsl.atem.AtemPackage"
+       genModel = "net/ages/workbench/templates/dsl/Atem.genmodel" /> 
+	
+  </extension>
+
+
+
+
+</plugin>
