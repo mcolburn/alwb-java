@@ -435,7 +435,7 @@ public class ModelAccessor {
 				} else if (filename.endsWith(this.getLanguage2ProphetologionPreferredFile())) {
 					version = getLanguage2ProphetologionDefaultFile();
 				}
-			} else if (filename.startsWith("ps.")) { // Psalms
+			} else if (filename.startsWith("ps")) { // Psalms
 				if (filename.endsWith(this.getLanguage1PsalterPreferredFile())) {
 					version = getLanguage1PsalterDefaultFile();
 				} else if (filename.endsWith(this.getLanguage2PsalterPreferredFile())) {
@@ -1297,6 +1297,7 @@ public class ModelAccessor {
 		String defFile = d.eResource().getURI().lastSegment();
 		String lang1Id = getPreferredVersion1Id(defFile);
 		String lang1File = getPreferredVersion1File(defFile);
+		String lang1DefaultId = getDefaultVersion1Id(defFile);
 		try {
 			if (defFile.endsWith(lang1File) // actual language is the requested one
 					|| (!defFile.endsWith(getTemplateLanguageFile()))) { // user set template to a non-default
@@ -1321,7 +1322,7 @@ public class ModelAccessor {
 		// if we failed to retrieve the text using the preferred version, try again using the default version
 		try {
 			if (theResult == null || theResult.startsWith("null") || theResult == "") { // see if by using the default version we can retrieve the text
-				defFile = convertFilename(d.eResource().getURI().lastSegment(),getLanguage1DefaultId());
+				defFile = convertFilename(d.eResource().getURI().lastSegment(),lang1DefaultId);
 				theResult =  getDefinitionValueById(defFile,
 						d.getName()) + source(defFile,d.getName());
 				if (theResult == null || theResult.contains("null")) {
@@ -1471,6 +1472,7 @@ public class ModelAccessor {
 		String defFile = d.eResource().getURI().lastSegment();
 		String lang2Id = getPreferredVersion2Id(defFile);
 		String lang2File = getPreferredVersion2File(defFile);
+		String lang2DefaultId = getDefaultVersion2Id(defFile);
 		try {
 			if (defFile.endsWith(lang2File) // actual language is the requested one
 					|| (!defFile.endsWith(getTemplateLanguageFile()))) { // user set template to a non-default
@@ -1482,7 +1484,7 @@ public class ModelAccessor {
 						d.getName()); // ID of resource, e.g. Headings.GREAT_VESPERS
 			}
 			if (theResult == null || theResult.startsWith("null")) {
-				defFile = convertFilename(d.eResource().getURI().lastSegment(),getLanguage2DefaultId());
+				defFile = convertFilename(d.eResource().getURI().lastSegment(),lang2DefaultId);
 				theResult =  getDefinitionValueById(defFile,
 						d.getName()) + source(defFile,d.getName());
 				if (theResult == null) { // this really is NOT dead code
