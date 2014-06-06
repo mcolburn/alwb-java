@@ -740,7 +740,7 @@ public class ModelAccessor {
 			result = getLanguage1GospelDefaultFile();
 		} else if (bookAcronymn.toLowerCase().startsWith("le.ep")) {
 			result = getLanguage1EpistleDefaultFile();
-		} else if (bookAcronymn.toLowerCase().startsWith("le.ps")) { 
+		} else if (bookAcronymn.toLowerCase().startsWith("ps")) { 
 			result = getLanguage1PsalterDefaultFile();
 		} else if (bookAcronymn.toLowerCase().startsWith("le.pr")) {	
 			result = getLanguage1ProphetologionDefaultFile();
@@ -761,7 +761,7 @@ public class ModelAccessor {
 			result = getLanguage1GospelDefault();
 		} else if (bookAcronymn.toLowerCase().startsWith("le.ep")) {
 			result = getLanguage1EpistleDefault();
-		} else if (bookAcronymn.toLowerCase().startsWith("le.ps")) { 
+		} else if (bookAcronymn.toLowerCase().startsWith("ps")) { 
 			result = getLanguage1PsalterDefault();
 		} else if (bookAcronymn.toLowerCase().startsWith("le.pr")) {	
 			result = getLanguage1ProphetologionDefault();
@@ -782,7 +782,7 @@ public class ModelAccessor {
 			result = getLanguage2GospelDefaultFile();
 		} else if (bookAcronymn.toLowerCase().startsWith("le.ep")) {
 			result = getLanguage2EpistleDefaultFile();
-		} else if (bookAcronymn.toLowerCase().startsWith("le.ps")) { 
+		} else if (bookAcronymn.toLowerCase().startsWith("ps")) { 
 			result = getLanguage2PsalterDefaultFile();
 		} else if (bookAcronymn.toLowerCase().startsWith("le.pr")) {	
 			result = getLanguage1ProphetologionDefaultFile();
@@ -803,7 +803,7 @@ public class ModelAccessor {
 			result = getLanguage2GospelDefault();
 		} else if (bookAcronymn.toLowerCase().startsWith("le.ep")) {
 			result = getLanguage2EpistleDefault();
-		} else if (bookAcronymn.toLowerCase().startsWith("le.ps")) { 
+		} else if (bookAcronymn.toLowerCase().startsWith("ps")) { 
 			result = getLanguage2PsalterDefault();
 		} else if (bookAcronymn.toLowerCase().startsWith("le.pr")) {	
 			result = getLanguage2ProphetologionDefault();
