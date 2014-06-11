@@ -286,8 +286,9 @@ public class LiturgicalDayProperties {
 		
 		public void setLiturgicalPropertiesByDate(int year)
 		{	
-			paschaDateLastYear = computeDayOfPascha(theDay.get(GregorianCalendar.YEAR)-1, true);
-			paschaDateThisYear = computeDayOfPascha(year, true);
+			boolean useGregorianCalendar = true; // vs Orthodox Old Calendar
+			paschaDateLastYear = computeDayOfPascha(theDay.get(GregorianCalendar.YEAR)-1, useGregorianCalendar);
+			paschaDateThisYear = computeDayOfPascha(year, useGregorianCalendar);
 			paschaDateLast = lastPaschaDate();
 			paschaDateNext = nextPaschaDate();
 			// 10 weeks before Pascha (inclusive), Starts with the Sunday of Publican and Pharisee
