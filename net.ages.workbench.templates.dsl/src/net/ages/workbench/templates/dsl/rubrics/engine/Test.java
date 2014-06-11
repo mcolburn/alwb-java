@@ -53,6 +53,8 @@ public class Test {
 		LiturgicalDayProperties theDay = new LiturgicalDayProperties("2014","1","3");
 		String temp = theDay.getDisplayDate("yyyy/mm/dd");
 		System.out.println(temp);
+		
+		// In 2014 the old calendar Pascha was on April 7. For us on April 20.
 	}
 	
 	private static void showSundaysUntilStartOfTriodion(String year, String month, int day) {
@@ -64,6 +66,7 @@ public class Test {
 				+ " Sundays until: "
 				+ theDay.getNumberOfSundaysBeforeStartOfTriodion()
 				);
+		System.out.println("Pascha 2014: " + theDay.formattedDate(theDay.getPaschaDate()));
 	}
 	
 	private static void showSundayAfterElevation(String year, String month, int day) {

@@ -1502,26 +1502,6 @@ public class ModelAccessor {
 				theResult = "";
 			}
 		}
-		try {
-			if (theResult == null || theResult.startsWith("null") || theResult == "") { // see if by using the default version we can retrieve the text
-				defFile = convertFilename(d.eResource().getURI().lastSegment(),getLanguage2DefaultId());
-				theResult =  getDefinitionValueById(defFile,
-						d.getName()) + source(defFile,d.getName());
-				if (theResult == null || theResult.contains("null")) {
-					theResult = "";
-				}
-			}
-		} catch (Exception e) {
-			logger.catching(e);
-			if (debug) {
-				theResult = reportIssue("getLanguage2Text",
-						defFile,
-						d.getName(),
-						"null. " + (lang2File == null ? " Missing name of Version 2 in Preferences." : ""));
-			} else {
-				theResult = "";
-			}
-		}		
 		theResult = convertFormatCodes(theResult);
 		logger.exit(theResult);
 		return theResult;
