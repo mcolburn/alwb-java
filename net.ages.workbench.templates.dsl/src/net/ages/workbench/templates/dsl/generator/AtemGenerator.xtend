@@ -1626,7 +1626,7 @@ class AtemGenerator implements IGenerator {
 			<span class='index-books-language'>«file.serviceLanguages»</span>
 		</td>
 		<td class='index-books-file-link-td'>
-			<a class='index-books-file-link' href="«file.getRelativePath»" target="«aresAccessor.getTargetForFileType(file.fileType)»">«file.filename»</a>
+			<a class='index-books-file-link' href="«file.getRelativePath»" target="«aresAccessor.getTargetForFileType(file.fileType)»">«file.getTitle(file.filename)»</a>
 		</td>
 		<td class='index-books-file-type-td'>
 			«aresAccessor.getLocaleNameForFileType(file.fileType)»

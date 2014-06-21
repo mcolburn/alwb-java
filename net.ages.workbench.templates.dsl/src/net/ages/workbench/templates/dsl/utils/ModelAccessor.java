@@ -766,7 +766,7 @@ public class ModelAccessor {
 		} else if (bookAcronymn.toLowerCase().startsWith("le.pr")) {	
 			result = getLanguage1ProphetologionDefault();
 		} else {
-			result = getLanguage1Id();
+			result = language1DefaultId;
 		}
 		return result;
 	}
@@ -1307,6 +1307,14 @@ public class ModelAccessor {
 				theResult =  getDefinitionValueById(defFile,
 						d.getName()) + source(defFile,d.getName());
 			}
+			if (theResult == null || theResult.startsWith("null")) {
+				defFile = convertFilename(d.eResource().getURI().lastSegment(),lang1DefaultId);
+				theResult =  getDefinitionValueById(defFile,
+						d.getName()) + source(defFile,d.getName());
+				if (theResult == null) { // this really is NOT dead code
+					theResult = "";
+				}
+			}
 		} catch (Exception e) {
 			logger.catching(e);
 			if (debug) {
@@ -1318,27 +1326,6 @@ public class ModelAccessor {
 				theResult = "";
 			}
 			
-		}
-		// if we failed to retrieve the text using the preferred version, try again using the default version
-		try {
-			if (theResult == null || theResult.startsWith("null") || theResult == "") { // see if by using the default version we can retrieve the text
-				defFile = convertFilename(d.eResource().getURI().lastSegment(),lang1DefaultId);
-				theResult =  getDefinitionValueById(defFile,
-						d.getName()) + source(defFile,d.getName());
-				if (theResult == null || theResult.contains("null")) {
-					theResult = "";
-				}
-			}
-		} catch (Exception e) { 
-			logger.catching(e);
-			if (debug) {
-				theResult = reportIssue("getLanguage1Text",
-						defFile,
-						d.getName(),
-						"null. " + (language1File == null ? " Missing name of Version 1 in Preferences." : ""));
-			} else {
-				theResult = "";
-			}
 		}
 		theResult = convertFormatCodes(theResult);
 		logger.exit(theResult);
@@ -3001,15 +2988,15 @@ public class ModelAccessor {
 				logger.catching(e);
 				mediaL1 = null;
 				logger.info("No media.ares file found for " + preferences.language1MediaPreferred + ".");
-			}
-			try {
-				mediaL1d = new Media(getResource(
-						prefix + preferences.language1MediaDefault + suffix),
-						loadOptions,1,preferences);
-			} catch (Exception e) {
-				logger.catching(e);
-				mediaL1d = null;
-				logger.info("No media.ares file found for " + preferences.language1MediaDefault + ".");
+				try {
+					mediaL1d = new Media(getResource(
+							prefix + preferences.language1MediaDefault + suffix),
+							loadOptions,1,preferences);
+				} catch (Exception ee) {
+					logger.catching(ee);
+					mediaL1d = null;
+					logger.info("No media.ares file found for " + preferences.language1MediaDefault + ".");
+				}
 			}
 			try {
 				mediaL2 = new Media(getResource(
@@ -3019,15 +3006,15 @@ public class ModelAccessor {
 				logger.catching(e);
 				mediaL2 = null;
 				logger.info("No media.ares file found for " + preferences.language2MediaPreferred + ".");
-			}
-			try {
-				mediaL2d = new Media(getResource(
-						prefix + preferences.language2MediaDefault + suffix),
-						loadOptions,2,preferences);
-			} catch (Exception e) {
-				logger.catching(e);
-				mediaL2d = null;
-				logger.info("No media.ares file found for " + preferences.language2MediaDefault + ".");
+				try {
+					mediaL2d = new Media(getResource(
+							prefix + preferences.language2MediaDefault + suffix),
+							loadOptions,2,preferences);
+				} catch (Exception ee) {
+					logger.catching(ee);
+					mediaL2d = null;
+					logger.info("No media.ares file found for " + preferences.language2MediaDefault + ".");
+				}
 			}
 		logger.exit();
 	}

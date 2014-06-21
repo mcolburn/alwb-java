@@ -93,7 +93,10 @@ public class ServiceDayTypeVersionFormat implements Comparable<ServiceDayTypeVer
 	public String getTitle(String description) {
 		String title = description;
 		try {
-			title = doc.select("title").text().split(":")[1];
+			title = doc.select("title").text();
+			if (title.contains(":")) {
+				title = title.split(":")[1];
+			}
 		} catch (Exception e) {
 			title = description;
 		}
