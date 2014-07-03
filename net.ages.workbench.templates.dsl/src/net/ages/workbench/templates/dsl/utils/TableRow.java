@@ -5,13 +5,15 @@ public class TableRow {
 	private String key;
 	private String lang1Value;
 	private String lang2Value;
+	private String htmlTagClass;
 	private String q = "\"";
 	
-	public TableRow(String filename, String key, String value) {
+	public TableRow(String filename, String key, String value, String htmlTagClass) {
 		this.filename = filename;
 		this.key = key;
 		
 		lang1Value = value;
+		this.htmlTagClass = htmlTagClass;
 	}
 	
 	public void putLang2Value(String value) {
@@ -34,6 +36,14 @@ public class TableRow {
 		return filename+delimiter+key;
 	}
 	
+	public void setHtmlTagClass(String tagClass) {
+		htmlTagClass = tagClass;
+	}
+	
+	public String getHtmlTagClass() {
+		return htmlTagClass;
+	}
+	
 	public String getLang1DelimitedString(String delimiter) {
 		return getFilenameAndKey(delimiter) + delimiter + lang1Value;
 	}
@@ -48,12 +58,16 @@ public class TableRow {
 		return filename + "_" + key + "=" + lang2Value;
 	}
 	public String getLang1AsJson() {
-		return wrapJson(jsonKey(q) + jsonValue(q,lang1Value));
+		return wrapJson(jsonKey(q) + jsonValue(q,lang1Value) + getHtmlTagClassAsJson(q));
 	}
 	public String getLang2AsJson() {
-		return wrapJson(jsonKey(q) + jsonValue(q,lang2Value));
+		return wrapJson(jsonKey(q) + jsonValue(q,lang2Value) + getHtmlTagClassAsJson(q));
 	}
 	
+	public String getHtmlTagClassAsJson(String q) {
+		return ", " + q+"class"+q +": " + q + htmlTagClass + q;
+	}
+
 	/**
 	 * 
 	 * @return Javascript friendly json formatted key
@@ -96,6 +110,6 @@ public class TableRow {
 	public String wrapJson(String key_value) {
 		return "{" + key_value + "}";
 	}
-
+	
 
 }
