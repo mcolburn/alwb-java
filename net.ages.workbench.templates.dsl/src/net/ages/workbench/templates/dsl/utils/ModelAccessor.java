@@ -853,7 +853,10 @@ public class ModelAccessor {
 		}		
 		if (! (theFinalKey.startsWith("pref") || theFinalKey.startsWith("website"))) {
 
-			tableManager.add(theFinalKey, resolvedDefinition.getDsl_Definition_Text());
+			// save key-value to generate delimited file if requested
+			if (this.generateDelimitedFile) {
+				tableManager.add(theFinalKey, resolvedDefinition.getDsl_Definition_Text());
+			}
 			
 			if (includeMediaLinks && (hrefKey.endsWith("text"))) {
 				setHrefsRow(hrefKey); // the stored HREFs will be used by AtemGenerator
@@ -1020,7 +1023,7 @@ public class ModelAccessor {
 	}
 	public String getHrefs(String key) {
 		logger.entry(key);
-		String result = "";
+		String result = null;
 
 		try {
 			String compositionNbr = "1";
@@ -1031,20 +1034,28 @@ public class ModelAccessor {
 
 			if (language.equals(language1Id) || language.equals(language1DefaultId)) {
 				// despite the language requested, first try and get the preferred version
-				result = mediaL1.getMediaSpan(keyRoot, compositionNbr, audioNbr);
+				if (mediaL1 != null) {
+					result = mediaL1.getMediaSpan(keyRoot, compositionNbr, audioNbr);
+				}
 				// if not found, see if the default (fallback) version has this key
 				if (result == null || result.length() == 0) {
-					result = mediaL1d.getMediaSpan(keyRoot, compositionNbr, audioNbr);
+					if (mediaL1d != null) {
+						result = mediaL1d.getMediaSpan(keyRoot, compositionNbr, audioNbr);
+					}
 				}
 				if (result == null) {
 					result = mediaL1.getEmptyMediaDiv();
 				}
 			} else if (language.equals(language2Id) || language.equals(language2DefaultId)) {
-				// despite the language requested, first try and get the preferred version
-				result = mediaL2.getMediaSpan(keyRoot, compositionNbr, audioNbr);
+				if (mediaL2 != null) {
+					// despite the language requested, first try and get the preferred version
+					result = mediaL2.getMediaSpan(keyRoot, compositionNbr, audioNbr);
+				}
 				// if not found, see if the default (fallback) version has this key
 				if (result == null || result.length() == 0) {
-					result = mediaL2d.getMediaSpan(keyRoot, compositionNbr, audioNbr);
+					if (mediaL2d != null) {
+						result = mediaL2d.getMediaSpan(keyRoot, compositionNbr, audioNbr);
+					}
 				}
 				if (result == null) {
 					result = mediaL2.getEmptyMediaDiv();
@@ -1311,7 +1322,7 @@ public class ModelAccessor {
 				defFile = convertFilename(d.eResource().getURI().lastSegment(),lang1DefaultId);
 				theResult =  getDefinitionValueById(defFile,
 						d.getName()) + source(defFile,d.getName());
-				if (theResult == null) { // this really is NOT dead code
+				if (theResult == null || theResult.startsWith("null")) { // this really is NOT dead code
 					theResult = "";
 				}
 			}
@@ -1474,7 +1485,7 @@ public class ModelAccessor {
 				defFile = convertFilename(d.eResource().getURI().lastSegment(),lang2DefaultId);
 				theResult =  getDefinitionValueById(defFile,
 						d.getName()) + source(defFile,d.getName());
-				if (theResult == null) { // this really is NOT dead code
+				if (theResult == null || theResult.startsWith("null")) { // this really is NOT dead code
 					theResult = "";
 				}
 			}
@@ -2185,7 +2196,7 @@ public class ModelAccessor {
 	 * @param toggle - true (yes, include the key), false (do not include the key)
 	 */
 	public void includeKey(boolean toggle) {
-		includeKey = toggle;
+			includeKey = generateDelimitedFile;
 	}
 
 	public boolean includeMediaAudioLinks() {
@@ -2475,6 +2486,9 @@ public class ModelAccessor {
 	}
 	public void setGenerateDelimitedFile(boolean generate) {
 		generateDelimitedFile = generate;
+		if (generateDelimitedFile) {
+			includeKey = true;
+		}
 	}
 
 	public void setGenerateDocbookFile(boolean generate) {
@@ -2980,6 +2994,12 @@ public class ModelAccessor {
 		logger.entry();
 		String prefix = "media_";
 		String suffix = "." + resourceFileExtension;
+		/**
+		 * 	media.v1.preferred = "gr_GR_snc"
+			media.v1.fallback = "gr_GR_cog"
+			media.v2.preferred = "en_US_snc"
+			media.v2.fallback = "en_US_dedes" 
+		 */
 			try {
 				mediaL1 = new Media(getResource(
 								prefix + preferences.language1MediaPreferred + suffix),
@@ -2988,15 +3008,15 @@ public class ModelAccessor {
 				logger.catching(e);
 				mediaL1 = null;
 				logger.info("No media.ares file found for " + preferences.language1MediaPreferred + ".");
-				try {
-					mediaL1d = new Media(getResource(
-							prefix + preferences.language1MediaDefault + suffix),
-							loadOptions,1,preferences);
-				} catch (Exception ee) {
-					logger.catching(ee);
-					mediaL1d = null;
-					logger.info("No media.ares file found for " + preferences.language1MediaDefault + ".");
-				}
+			}
+			try {
+				mediaL1d = new Media(getResource(
+						prefix + preferences.language1MediaDefault + suffix),
+						loadOptions,1,preferences);
+			} catch (Exception ee) {
+				logger.catching(ee);
+				mediaL1d = null;
+				logger.info("No media.ares file found for " + preferences.language1MediaDefault + ".");
 			}
 			try {
 				mediaL2 = new Media(getResource(
@@ -3006,15 +3026,15 @@ public class ModelAccessor {
 				logger.catching(e);
 				mediaL2 = null;
 				logger.info("No media.ares file found for " + preferences.language2MediaPreferred + ".");
-				try {
-					mediaL2d = new Media(getResource(
-							prefix + preferences.language2MediaDefault + suffix),
-							loadOptions,2,preferences);
-				} catch (Exception ee) {
-					logger.catching(ee);
-					mediaL2d = null;
-					logger.info("No media.ares file found for " + preferences.language2MediaDefault + ".");
-				}
+			}
+			try {
+				mediaL2d = new Media(getResource(
+						prefix + preferences.language2MediaDefault + suffix),
+						loadOptions,2,preferences);
+			} catch (Exception ee) {
+				logger.catching(ee);
+				mediaL2d = null;
+				logger.info("No media.ares file found for " + preferences.language2MediaDefault + ".");
 			}
 		logger.exit();
 	}
@@ -3226,7 +3246,13 @@ public class ModelAccessor {
 		return useLanguage2;
 	}
 
+	/**
+	 * Add an invisible span that includes the key used to retrieve the text.
+	 * @param key
+	 * @param text
+	 * @return
+	 */
 	private String wrapAnchor(String key, String text) {
-		return text; // + "<span class='key' data-key='" + key + "'</span>";
+		return text + "<span class='key' data-key='" + key + "'</span>";
 	}
 }
