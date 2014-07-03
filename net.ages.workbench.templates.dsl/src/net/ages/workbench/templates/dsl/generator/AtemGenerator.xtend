@@ -137,7 +137,6 @@ import java.util.ArrayList
 import net.ages.workbench.utils.AlwbGeneralUtils
 
 class AtemGenerator implements IGenerator {
-	
 	val debugDummyPrint = false
 	val trace = false
 	var logger = AlwbLogger.getLogger(this.class.name)
@@ -170,8 +169,8 @@ class AtemGenerator implements IGenerator {
 	var foFolder = AlwbConstants.FO_FOLDER + "/"
 	var pdfExtension = AlwbConstants.PDF_EXTENSION
 
-	var delimitedTextExtension = ".txt"
-	var txtFolderRoot = "txt"
+	var delimitedTextExtension = ".json"
+	var txtFolderRoot = "json"
 	
 	var htmlExtension = AlwbConstants.HTML_EXTENSION
 	var htmlSiteRoot = ""
@@ -809,7 +808,9 @@ class AtemGenerator implements IGenerator {
 							}
 						}			
 			
-						// Generate Html for this template
+						// Generate Html for this template.  Note that in order
+						// to generate a delimited file, we must first generate
+						// an html file.  
 						if (aresAccessor.generateHtmlFile) {
 							logState(fsa,"Generating HTML file")			
 							if (aresAccessor.generateHtmlVersion1) {
@@ -2296,9 +2297,11 @@ class AtemGenerator implements IGenerator {
 		«IF (v1 && l1_On)»«IF inTable»«entryLeftOpen»«ENDIF»«compileParaRoleActor»«actor.dsl_Elements.compile»«paraClose»«IF inTable»«entryClose»«ENDIF»«ENDIF»
 		«IF (v2 && l2_On)»«IF inTable»«entryRightOpen»«ENDIF»«compileParaRoleActor»«actor.dsl_Elements.compileV2»«paraClose»«IF inTable»«entryClose»«ENDIF»«ENDIF»
 		«IF inTable»«rowClose»«ENDIF»
+		«resetClassForDelimitedFileRow»
 	'''
 	
 	def compileParaRoleActor() {
+		setClassForDelimitedFileRow(paraRoleActor)
 		if (aresAccessor.outputType == AlwbConstants.PDF) {
 			return foParaRoleOpenKeepWithNext  + XmlFoFormatManager.getStyleFor(roleActor) + foRoleClose
 		} else {
@@ -2318,10 +2321,23 @@ class AtemGenerator implements IGenerator {
 	'''
 
 	def compileParaRoleDialog() {
+		setClassForDelimitedFileRow(paraRoleDialog)
 		if (aresAccessor.outputType == AlwbConstants.PDF) {
 			return foParaRoleOpen  + XmlFoFormatManager.getStyleFor(roleDialog) + foRoleClose
 		} else {
 			return paraRoleDialog
+		}
+	}
+	
+	def void setClassForDelimitedFileRow(String htmlTagClass) {
+		if (aresAccessor.generateDelimitedFile) {
+			aresAccessor.tableManager.setHtmlClassForNextAdd(htmlTagClass)
+		}
+	}
+
+	def void resetClassForDelimitedFileRow() {
+		if (aresAccessor.generateDelimitedFile) {
+			aresAccessor.tableManager.setHtmlClassForNextAdd("")
 		}
 	}
 
@@ -2415,6 +2431,7 @@ class AtemGenerator implements IGenerator {
 					«entryLeftOpen»
 				«ENDIF»
 				«IF (generatingEpub && roleIsDesignation(title))»«getTitleLink»«ELSE»«compileTitleRoleOpen(title)»«compileTitleRole(title)»«roleClose»«ENDIF»«title.dsl_Elements.compile»«IF (generatingEpub)»«ePubTitleClose»«ELSE»«paraClose»«ENDIF»
+				«resetClassForDelimitedFileRow»
 				«IF inTable»
 					«entryClose»
 				«ENDIF»
@@ -2424,6 +2441,7 @@ class AtemGenerator implements IGenerator {
 					«entryRightOpen»
 				«ENDIF»
 				«IF (generatingEpub)»«getTitleLink»«ELSE»«compileTitleRoleOpen(title)»«compileTitleRole(title)»«roleClose»«ENDIF»«title.dsl_Elements.compileV2»«IF (generatingEpub)»«ePubTitleClose»«ELSE»«paraClose»«ENDIF»
+				«resetClassForDelimitedFileRow»
 				«IF inTable»
 					«entryClose»
 				«ENDIF»
@@ -2462,6 +2480,7 @@ class AtemGenerator implements IGenerator {
 		} else {
 			result = r
 		}
+		setClassForDelimitedFileRow(r)
 		return result
 	}
 	
@@ -2487,10 +2506,12 @@ class AtemGenerator implements IGenerator {
 		«IF (v2 && l2_On)»«IF inTable»«entryRightOpen»«ENDIF»«aresAccessor.includeKey(true)»«compileParaRoleHymn»«hymn.dsl_Elements.compileV2»«paraClose»«IF inTable»«entryClose»«ENDIF»«ENDIF»
 		«IF inTable»«rowClose»«ENDIF»
 		«ENDIF»
+		«resetClassForDelimitedFileRow»
 		«aresAccessor.includeKey(false)»
 	'''
 
 	def compileParaRoleHymn() {
+		setClassForDelimitedFileRow(paraRoleHymn)
 		if (aresAccessor.outputType == AlwbConstants.PDF) {
 			return foParaRoleOpen  + XmlFoFormatManager.getStyleFor(roleHymn) + foRoleClose
 		} else {
@@ -2593,9 +2614,11 @@ class AtemGenerator implements IGenerator {
 		«IF asTable»«IF inTable»«rowOpen»«setRowPrintFlag(true)»«ENDIF»«ENDIF»
 		«IF (v1 && l1_On)»«IF asTable»«IF inTable»«entryLeftOpen»«ENDIF»«ENDIF»«paraRoleOpen»«compileRole(paragraph.dsl_Para_Role?.
 			dsl_Definition_Text)»«roleClose»«paragraph.dsl_Elements.compile»«paraClose»«IF asTable»«IF inTable»«entryClose»«ENDIF»«ENDIF»«ENDIF»
+			«resetClassForDelimitedFileRow»
 		«IF asTable»
 			«IF (v2 && l2_On)»«IF inTable»«entryRightOpen»«ENDIF»«paraRoleOpen»«compileRole(paragraph.dsl_Para_Role?.dsl_Definition_Text)»«roleClose»«paragraph.
 			dsl_Elements.compileV2»«paraClose»«IF inTable»«entryClose»«ENDIF»«ENDIF»
+			«resetClassForDelimitedFileRow»
 			«IF inTable»«rowClose»«ENDIF»
 		«ENDIF»
 	'''
@@ -2610,6 +2633,7 @@ class AtemGenerator implements IGenerator {
 			dsl_Elements.compileV2»</«endTag(compileRole(block.dsl_Block_Role.dsl_Definition_Text))»>«ENDIF»«IF inTable»«entryClose»«ENDIF»«ENDIF»
 			«IF inTable»«rowClose»«ENDIF»
 		«ENDIF»
+		«resetClassForDelimitedFileRow»
 	'''
 	
 	def compile(Break b)'''
@@ -2706,8 +2730,10 @@ class AtemGenerator implements IGenerator {
 	«IF inTable»«rowOpen»«setRowPrintFlag(true)»«ENDIF»
 	«IF (v1 && l1_On)»«IF inTable»«entryLeftOpen»«ENDIF»<subtitle «roleOpen»«compileRole(title.dsl_SubTitle_Role?.dsl_Definition_Text)»«roleClose»«title.
 		dsl_Elements.compile»</subtitle>«IF inTable»«entryClose»«ENDIF»«ENDIF»
+		«resetClassForDelimitedFileRow»
 	«IF (v2 && l2_On)»«IF inTable»«entryRightOpen»«ENDIF»<subtitle «roleOpen»«compileRole(title.dsl_SubTitle_Role?.dsl_Definition_Text)»«roleClose»«title.
 		dsl_Elements.compileV2»</subtitle>«IF inTable»«entryClose»«ENDIF»«ENDIF»
+		«resetClassForDelimitedFileRow»
 	«IF inTable»«rowClose»«ENDIF»'''
 
 	def compile(LDP p) '''«FOR t : p.dsl_LDP»«t.compile»«ENDFOR»'''
@@ -2905,7 +2931,7 @@ class AtemGenerator implements IGenerator {
 
 	def startTag(String itag) '''«IF itag.contains(",")»«compileRole(itag.split(",").get(0).replaceFirst(docEmphasis,emphasis))»«roleOpen»«compileRole(itag.split(",").get(1))»«emphasisTypeClose»«ELSE»«itag»«ENDIF»'''
 
-	def endTag(String itag) '''«IF itag.contains(",")»«compileRole(itag.split(",").get(0).replaceFirst(docEmphasis,emphasis))»«ELSE»«compileRole(itag)»«ENDIF»'''
+	def endTag(String itag) '''«IF itag.contains(",")»«compileRole(itag.split(",").get(0).replaceFirst(docEmphasis,emphasis))»«ELSE»«compileRole(itag)»«resetClassForDelimitedFileRow»«ENDIF»'''
 
 	/**
 	 * Lookups (rid) compute a resource name based on the
