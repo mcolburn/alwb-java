@@ -9,10 +9,15 @@ public class TableManager {
 	private String lang1Id;
 	private String lang2Id;
 	private String delimiter = "~";
+	private String htmlTagClassForNextAdd;
 	
 	public TableManager(String lang1Id, String lang2Id) {
 		this.lang1Id = lang1Id;
 		this.lang2Id = lang2Id;
+	}
+	
+	public void setHtmlClassForNextAdd(String htmlTagClass) {
+		htmlTagClassForNextAdd = htmlTagClass;
 	}
 	
 	public void add(String key, String value) {
@@ -20,7 +25,7 @@ public class TableManager {
 		String theKey = key.split("ares\\.")[1];
 		String hashKey = filename + "_" + theKey;
 		if (! tableRows.containsKey(hashKey)) {
-			tableRows.put(hashKey,new TableRow(filename,theKey,value));
+			tableRows.put(hashKey,new TableRow(filename,theKey,value,htmlTagClassForNextAdd));
 		} else {
 			TableRow row = tableRows.get(hashKey);
 			row.putLang2Value(value);
@@ -91,8 +96,8 @@ public class TableManager {
 		Set<String> keys = tableRows.keySet();
 		Iterator<String> it = keys.iterator();
 		String id = (lang == 1 ? lang1Id : lang2Id);
-		sb.append("var " + id + " = {};\n");
-		sb.append(id + ".textblocks = [\n");
+		sb.append("{\n");
+		sb.append("\"" + id + ".textblocks\" : [\n");
 		while (it.hasNext()) {
 			if (lang == 1) {
 				sb.append("\t"+ tableRows.get(it.next()).getLang1AsJson());
@@ -104,7 +109,7 @@ public class TableManager {
 			}
 			sb.append("\n");
 		}
-		sb.append("];");
+		sb.append("\n]\n}");
 		return sb.toString();		
 	}
 
