@@ -21,7 +21,8 @@ public class ServiceDayTypeVersionFormat implements Comparable<ServiceDayTypeVer
 	
 	private File theFile;
 	private String fileType = "";
-	public String filename = "";
+	public String fileTitle = "";
+	private String fileName = "";
 	private String description;
 	private String commemoration = "";
 	private String relativePath;
@@ -46,7 +47,8 @@ public class ServiceDayTypeVersionFormat implements Comparable<ServiceDayTypeVer
 		if (fileType == null) {
 			fileType = "unknown";
 		}
-		filename = parser.getHtmlLinkTitle();
+		fileTitle = parser.getHtmlLinkTitle();
+		fileName = parser.getFilename();
 		this.relativePath = parser.relativePath;
 		combinedPdfHref = parser.getCombinedPdfHref();
 		this.serviceLanguages = parser.languageLocalNames();
@@ -135,8 +137,8 @@ public class ServiceDayTypeVersionFormat implements Comparable<ServiceDayTypeVer
 	 */
 	public String getJsonRelativePath() {
 		String result = relativePath;
-		if (fileType.startsWith("p") && filename != null) {
-			result = relativePath.replace("index.html", filename);
+		if (fileType.startsWith("p") && fileName != null) {
+			result = relativePath.replace("index.html", fileName);
 		}
 		return result;
 	}
