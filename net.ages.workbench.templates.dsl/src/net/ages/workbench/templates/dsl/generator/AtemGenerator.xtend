@@ -1627,7 +1627,7 @@ class AtemGenerator implements IGenerator {
 			<span class='index-books-language'>«file.serviceLanguages»</span>
 		</td>
 		<td class='index-books-file-link-td'>
-			<a class='index-books-file-link' href="«file.getRelativePath»" target="«aresAccessor.getTargetForFileType(file.fileType)»">«file.getTitle(file.filename)»</a>
+			<a class='index-books-file-link' href="«file.getRelativePath»" target="«aresAccessor.getTargetForFileType(file.fileType)»">«file.getTitle(file.fileTitle)»</a>
 		</td>
 		<td class='index-books-file-type-td'>
 			«aresAccessor.getLocaleNameForFileType(file.fileType)»
@@ -1646,7 +1646,7 @@ class AtemGenerator implements IGenerator {
 			<span class='index-custom-language'>«file.serviceLanguages»</span>
 		</td>
 		<td class='index-custom-file-link-td'>
-			<a class='index-custom-file-link' href="«file.getRelativePath»" target="«aresAccessor.getTargetForFileType(file.fileType)»">«file.filename»</a>
+			<a class='index-custom-file-link' href="«file.getRelativePath»" target="«aresAccessor.getTargetForFileType(file.fileType)»">«file.fileTitle»</a>
 		</td>
 		<td class='index-custom-file-type-td'>
 			«aresAccessor.getLocaleNameForFileType(file.fileType)»
