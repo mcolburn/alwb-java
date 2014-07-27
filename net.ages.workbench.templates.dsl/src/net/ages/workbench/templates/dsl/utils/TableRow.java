@@ -1,19 +1,62 @@
 package net.ages.workbench.templates.dsl.utils;
 
+import java.util.ArrayList;
+import net.ages.workbench.templates.dsl.preferences.Preferences;
+
 public class TableRow {
 	private String filename;
+	private String rowId;
 	private String key;
 	private String lang1Value;
 	private String lang2Value;
+	private String htmlTag;
 	private String htmlTagClass;
 	private String q = "\"";
+	private String rowIdPrefix = "T";
+	private static final ArrayList<String> inlineTags = new ArrayList<String>() {{
+		add("b");
+		add("big");
+		add("i");
+		add("small");
+		add("tt");
+		add("abbr");
+		add("acronym");
+		add("cite");
+		add("code");
+		add("dfn");
+		add("em");
+		add("kbd");
+		add("strong");
+		add("samp");
+		add("var");
+		add("a");
+		add("bdo");
+		add("br");
+		add("img");
+		add("map");
+		add("object");
+		add("q");
+		add("script");
+		add("span");
+		add("sub");
+		add("sup");
+		add("button");
+		add("input");
+		add("label");
+		add("select");
+		add("textarea");
+	}};
 	
-	public TableRow(String filename, String key, String value, String htmlTagClass) {
+	public TableRow(String filename, String rowNumber, String key, String value, 
+			String htmlTag,
+			String htmlTagClass) {
 		this.filename = filename;
+		this.rowId = rowIdPrefix + rowNumber;
 		this.key = key;
 		
 		lang1Value = value;
 		this.htmlTagClass = htmlTagClass;
+		this.htmlTag = htmlTag;
 	}
 	
 	public void putLang2Value(String value) {
@@ -44,6 +87,14 @@ public class TableRow {
 		return htmlTagClass;
 	}
 	
+	public String getHtmlTag() {
+		return htmlTag;
+	}
+	
+	public boolean isBlock(String tag) {
+		return inlineTags.contains(tag);
+	}
+	
 	public String getLang1DelimitedString(String delimiter) {
 		return getFilenameAndKey(delimiter) + delimiter + lang1Value;
 	}
@@ -58,14 +109,32 @@ public class TableRow {
 		return filename + "_" + key + "=" + lang2Value;
 	}
 	public String getLang1AsJson() {
-		return wrapJson(jsonKey(q) + jsonValue(q,lang1Value) + getHtmlTagClassAsJson(q));
+		return getLangAsJason(lang1Value);
 	}
 	public String getLang2AsJson() {
-		return wrapJson(jsonKey(q) + jsonValue(q,lang2Value) + getHtmlTagClassAsJson(q));
+		return getLangAsJason(lang2Value);
 	}
 	
-	public String getHtmlTagClassAsJson(String q) {
-		return ", " + q+"class"+q +": " + q + htmlTagClass + q;
+	public String getLangAsJason(String value) {
+		return wrapJson(
+				getRowNumberAsJson()
+				+ (Preferences.tmsJsonFileFormatSetIncludeTag ? getHtmlTagAsJson() : "") 
+				+ (Preferences.tmsJsonFileFormatSetIncludeClass ? getHtmlTagClassAsJson() : "")
+				+ (Preferences.tmsJsonFileFormatSetIncludeKey ? getKeyAsJson() : "") 
+				+ (Preferences.tmsJsonFileFormatSetIncludeText ? jsonValue(value) : "") 
+				);
+	}
+	
+	public String getHtmlTagClassAsJson() {
+		return ", " + q +"class"+q +": " + q + htmlTagClass + q;
+	}
+
+	public String getHtmlTagAsJson() {
+		return ", " + q+"tag"+q +": " + q + htmlTag + q;
+	}
+
+	public String getRowNumberAsJson() {
+		return q + "_id" + q + ": " + q + rowId + q;
 	}
 
 	/**
@@ -81,8 +150,8 @@ public class TableRow {
 	 * @param q quote character
 	 * @return
 	 */
-	public String jsonKey(String q) {
-		return q+"_id"+q+": " + "\"" + jsonKey() + "\", ";
+	public String getKeyAsJson() {
+		return ", " + q+"key"+q+": " + "\"" + jsonKey() + "\"";
 	}
 
 	/**
@@ -91,18 +160,9 @@ public class TableRow {
 	 * @return e.g. "I am a \"value\""
 	 */
 	public String jsonValue(String value) {
-		return q + value.replaceAll("\"", "\\\\\"") + q;
+		return ", " + q + "value" + q +": " + "\""  + value.replaceAll("\"", "\\\\\"") + q;
 	}
-	
-	/**
-	 * 
-	 * @param q quote character
-	 * @param value of text
-	 * @return
-	 */
-	public String jsonValue(String q, String value) {
-		return q+"text"+q +": " + "\"" + value.replaceAll("\"", "\\\\\"") + "\"";
-	}
+
 
 	public String jsonKeyValue(String value) {
 		return jsonKey() + ": " + jsonValue(value);

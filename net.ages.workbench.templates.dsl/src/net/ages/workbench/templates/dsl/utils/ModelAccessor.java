@@ -136,7 +136,6 @@ public class ModelAccessor {
 	private String htmlBookFolderRoot = "";
 	private String htmlCustomFolderRoot = "";
 
-	private boolean includeKey = false;
 	private boolean includeMediaAudioLinks = false;
 	private boolean includeMediaDocumentLinks = false;
 	private boolean includeMediaLinks = false;
@@ -211,7 +210,6 @@ public class ModelAccessor {
 	private Media mediaL1d; // default for L1
 
 	private Media mediaL2; // preferred for L2
-
 	private Media mediaL2d; // default for L2
 	
 	private boolean mediaOnly = false;
@@ -233,12 +231,13 @@ public class ModelAccessor {
 	private boolean showSource = false;
 	private boolean showDomain = false;
 	private boolean suppressMedia = false;
-	private TableManager tableManager;
+	private TableManager tableManagerL1;
 	private String templateLanguageId = "gr_GR_cog";
 	private String templateLanguageFile = addAresFileExtension(templateLanguageId);
 	public LiturgicalDayProperties theDay;
 	private boolean useLanguage1 = true;
 	private boolean useLanguage2 = true;
+	private boolean processingLanguage1 = false;
 	public MessageBoard messageBoard = new MessageBoard("ModelAccessor");
 	
 	/*
@@ -270,7 +269,7 @@ public class ModelAccessor {
 			if (includeMediaLinks) {
 				setMedia();
 			}
-			tableManager = new TableManager(language1Id,language2Id);
+			tableManagerL1 = new TableManager(language1Id,language2Id);
 			
 			// experimental
 			//setVersionBlocks();
@@ -854,8 +853,8 @@ public class ModelAccessor {
 		if (! (theFinalKey.startsWith("pref") || theFinalKey.startsWith("website"))) {
 
 			// save key-value to generate delimited file if requested
-			if (this.generateDelimitedFile) {
-				tableManager.add(theFinalKey, resolvedDefinition.getDsl_Definition_Text());
+			if (this.generateDelimitedFile && processingLanguage1 && outputType == AlwbConstants.HTML) {
+				tableManagerL1.add(theFinalKey, resolvedDefinition.getDsl_Definition_Text());
 			}
 			
 			if (includeMediaLinks && (hrefKey.endsWith("text"))) {
@@ -871,7 +870,13 @@ public class ModelAccessor {
 				result = getHrefsRow();
 			}
 			
-			if (includeKey) {
+			// check to see if preference set to include keys in generated html
+			// If so, the keys will show up using the data-key meta-tag.
+			if (preferences.genHtmlFileIncludeKeyOriginal && preferences.genHtmlFileIncludeKeyDerived) {
+				result = wrapAnchor(theOriginalKey+"~"+theFinalKey,result);
+			} else if (preferences.genHtmlFileIncludeKeyOriginal) {
+				result = wrapAnchor(theOriginalKey,result);
+			} else if (preferences.genHtmlFileIncludeKeyDerived) {
 				result = wrapAnchor(theFinalKey,result);
 			}
 		}
@@ -1304,6 +1309,8 @@ public class ModelAccessor {
 	 */
 	public String getLanguage1Text(Definition d) {
 		logger.entry(d);
+		processingLanguage1 = true;
+		String theKey = d.getName();
 		String theResult = null;
 		String defFile = d.eResource().getURI().lastSegment();
 		String lang1Id = getPreferredVersion1Id(defFile);
@@ -1316,12 +1323,12 @@ public class ModelAccessor {
 			} else {
 				defFile = convertFilename(d.eResource().getURI().lastSegment(),lang1Id);
 				theResult =  getDefinitionValueById(defFile,
-						d.getName()) + source(defFile,d.getName());
+						theKey) + source(defFile,theKey);
 			}
 			if (theResult == null || theResult.startsWith("null")) {
 				defFile = convertFilename(d.eResource().getURI().lastSegment(),lang1DefaultId);
 				theResult =  getDefinitionValueById(defFile,
-						d.getName()) + source(defFile,d.getName());
+						theKey) + source(defFile,theKey);
 				if (theResult == null || theResult.startsWith("null")) { // this really is NOT dead code
 					theResult = "";
 				}
@@ -1331,7 +1338,7 @@ public class ModelAccessor {
 			if (debug) {
 				theResult = reportIssue("getLanguage1Text",
 						defFile,
-						d.getName(),
+						theKey,
 						"null. " + (lang1File == null ? " Missing name of Version 1 in Preferences." : ""));
 			} else {
 				theResult = "";
@@ -1339,11 +1346,13 @@ public class ModelAccessor {
 			
 		}
 		theResult = convertFormatCodes(theResult);
+		processingLanguage1 = false;
 		logger.exit(theResult);
 		return theResult;
 	}
 
 	public String getLanguage1VariableText(Definition d) {
+		processingLanguage1 = true;
 		String defFile = d.eResource().getURI().lastSegment();
 		String lang1IdPreferred = getPreferredVersion1Id(defFile);
 		String lang1IdDefault = getDefaultVersion1Id(defFile);
@@ -1351,6 +1360,7 @@ public class ModelAccessor {
 		if (result == null || result == "") {
 			result = getLanguageVariableText(d, lang1IdDefault);
 		}
+		processingLanguage1 = false;
 		return result;
 	}
 
@@ -1466,6 +1476,7 @@ public class ModelAccessor {
 
 	public String getLanguage2Text(Definition d) {
 		logger.entry(d);
+		processingLanguage1 = false;
 		String theResult = null;
 		String defFile = d.eResource().getURI().lastSegment();
 		String lang2Id = getPreferredVersion2Id(defFile);
@@ -1506,6 +1517,7 @@ public class ModelAccessor {
 	}
 
 	public String getLanguage2VariableText(Definition d) {
+		processingLanguage1 = false;
 		String defFile = d.eResource().getURI().lastSegment();
 		String langIdPreferred = getPreferredVersion2Id(defFile);
 		String langIdDefault = getDefaultVersion2Id(defFile);
@@ -1860,8 +1872,8 @@ public class ModelAccessor {
 		return serviceDate;
 	}
 
-	public TableManager getTableManager() {
-		return tableManager;
+	public TableManager getTableManagerL1() {
+		return tableManagerL1;
 	}
 
 	/**
@@ -2191,14 +2203,6 @@ public class ModelAccessor {
 		return result;
 	}
 
-	/**
-	 * Used to control whether or not the key will be included when the text is returned.  It is initialized to false
-	 * @param toggle - true (yes, include the key), false (do not include the key)
-	 */
-	public void includeKey(boolean toggle) {
-			includeKey = generateDelimitedFile;
-	}
-
 	public boolean includeMediaAudioLinks() {
 		return includeMediaAudioLinks;
 	}
@@ -2486,9 +2490,6 @@ public class ModelAccessor {
 	}
 	public void setGenerateDelimitedFile(boolean generate) {
 		generateDelimitedFile = generate;
-		if (generateDelimitedFile) {
-			includeKey = true;
-		}
 	}
 
 	public void setGenerateDocbookFile(boolean generate) {
@@ -3057,7 +3058,7 @@ public class ModelAccessor {
 	}
 
 	public void setOutputTypes() {
-		setGenerateDelimitedFile(preferences.genDelimitedFile);
+		setGenerateDelimitedFile(preferences.genTmsJsonFile);
 		setGenerateHtmlFile(preferences.genHtmlFile);
 		setGeneratePdfFile(preferences.genPdfFile);
 	}

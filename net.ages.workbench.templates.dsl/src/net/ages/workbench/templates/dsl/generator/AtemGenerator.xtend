@@ -169,8 +169,8 @@ class AtemGenerator implements IGenerator {
 	var foFolder = AlwbConstants.FO_FOLDER + "/"
 	var pdfExtension = AlwbConstants.PDF_EXTENSION
 
-	var delimitedTextExtension = ".json"
-	var txtFolderRoot = "json"
+	var tmsJsonExtension = ".json"
+	var tmsJsonFolderRoot = "tms_json"
 	
 	var htmlExtension = AlwbConstants.HTML_EXTENSION
 	var htmlSiteRoot = ""
@@ -850,17 +850,18 @@ class AtemGenerator implements IGenerator {
 						// generate a delimited file if user asked for it
 						if (aresAccessor.generateDelimitedFile) {
 							logState(fsa,"Generating Delimited File")
-							fileroot = fileroot.replaceAll("_",".")
+							fileroot = fileroot.replaceAll("\\.","_")
+							var varName = fileroot.replaceFirst("/","")
 							
-							var delimitedFile = txtFolderRoot + fileroot + "_" + aresAccessor.language1Id + delimitedTextExtension
+							var delimitedFile = tmsJsonFolderRoot + fileroot + "_" + aresAccessor.language1Id + tmsJsonExtension
 							// delimited file 1
 //							fsa.generateFile(delimitedFile,aresAccessor.tableManager.lang1ValuesAsPropertyLines)
-							fsa.generateFile(delimitedFile,aresAccessor.tableManager.valuesAsJson(1))
-							delimitedFile = txtFolderRoot + fileroot + "_" + aresAccessor.language2Id + delimitedTextExtension
+							fsa.generateFile(delimitedFile,aresAccessor.getTableManagerL1.valuesAsJson(1,varName))
+							delimitedFile = tmsJsonFolderRoot + fileroot + "_" + aresAccessor.language2Id + tmsJsonExtension
 							// delimited file 2
-							fsa.generateFile(delimitedFile,aresAccessor.tableManager.valuesAsJson(2))
+//							fsa.generateFile(delimitedFile,aresAccessor.tableManager.valuesAsJson(2))
 //							fsa.generateFile(delimitedFile,aresAccessor.tableManager.lang2ValuesAsPropertyLines)
-							delimitedFile = txtFolderRoot + "resourceMap" + delimitedTextExtension
+							delimitedFile = tmsJsonFolderRoot + "resourceMap" + tmsJsonExtension
 							// file name map
 							fsa.generateFile(delimitedFile,aresAccessor.getFileNameToUriString("~"))
 						}
@@ -2301,7 +2302,7 @@ class AtemGenerator implements IGenerator {
 	'''
 	
 	def compileParaRoleActor() {
-		setClassForDelimitedFileRow(paraRoleActor)
+		setClassForDelimitedFileRow(htmlParaTagName, roleActor)
 		if (aresAccessor.outputType == AlwbConstants.PDF) {
 			return foParaRoleOpenKeepWithNext  + XmlFoFormatManager.getStyleFor(roleActor) + foRoleClose
 		} else {
@@ -2321,7 +2322,7 @@ class AtemGenerator implements IGenerator {
 	'''
 
 	def compileParaRoleDialog() {
-		setClassForDelimitedFileRow(paraRoleDialog)
+		setClassForDelimitedFileRow(htmlParaTagName, roleDialog)
 		if (aresAccessor.outputType == AlwbConstants.PDF) {
 			return foParaRoleOpen  + XmlFoFormatManager.getStyleFor(roleDialog) + foRoleClose
 		} else {
@@ -2329,15 +2330,27 @@ class AtemGenerator implements IGenerator {
 		}
 	}
 	
-	def void setClassForDelimitedFileRow(String htmlTagClass) {
+	/**
+	 * This is used when generating a delimited file. It is the mechanism to 
+	 * tell the TableManager what the HTML tag and class is for the next key
+	 * that will be added.  
+	 */
+	def void setClassForDelimitedFileRow(String htmlTag, String htmlTagClass) {
 		if (aresAccessor.generateDelimitedFile) {
-			aresAccessor.tableManager.setHtmlClassForNextAdd(htmlTagClass)
+			aresAccessor.getTableManagerL1.setHtmlTagForNextAdd(htmlTag)
+			aresAccessor.getTableManagerL1.setHtmlClassForNextAdd(htmlTagClass)
 		}
 	}
 
+	/**
+	 * Tells the TableManager to set the Tag and Class for the next add to be 
+	 * an empty string.  This is used so that the next add does not erroneously use a
+	 * prior value.
+	 */
 	def void resetClassForDelimitedFileRow() {
 		if (aresAccessor.generateDelimitedFile) {
-			aresAccessor.tableManager.setHtmlClassForNextAdd("")
+			aresAccessor.getTableManagerL1.setHtmlClassForNextAdd("")
+			aresAccessor.getTableManagerL1.setHtmlTagForNextAdd("")
 		}
 	}
 
@@ -2463,6 +2476,7 @@ class AtemGenerator implements IGenerator {
 
 	def compileRole(String r) {
 		var result = ""
+		var htmlTag = htmlParaTagName
 		if (aresAccessor.outputType == AlwbConstants.PDF) {
 			if (r!= null) {
 				if (r.contains("fo:block")) {
@@ -2480,7 +2494,7 @@ class AtemGenerator implements IGenerator {
 		} else {
 			result = r
 		}
-		setClassForDelimitedFileRow(r)
+		setClassForDelimitedFileRow(htmlTag,r)
 		return result
 	}
 	
@@ -2502,16 +2516,15 @@ class AtemGenerator implements IGenerator {
 		«compileWithHref(hymn)»
 		«ELSE»
 		«IF inTable»«rowOpen»«setRowPrintFlag(true)»«ENDIF»
-		«IF (v1 && l1_On)»«IF inTable»«entryLeftOpen»«ENDIF»«aresAccessor.includeKey(true)»«compileParaRoleHymn»«hymn.dsl_Elements.compile»«paraClose»«IF inTable»«entryClose»«ENDIF»«ENDIF»
-		«IF (v2 && l2_On)»«IF inTable»«entryRightOpen»«ENDIF»«aresAccessor.includeKey(true)»«compileParaRoleHymn»«hymn.dsl_Elements.compileV2»«paraClose»«IF inTable»«entryClose»«ENDIF»«ENDIF»
+		«IF (v1 && l1_On)»«IF inTable»«entryLeftOpen»«ENDIF»«compileParaRoleHymn»«hymn.dsl_Elements.compile»«paraClose»«IF inTable»«entryClose»«ENDIF»«ENDIF»
+		«IF (v2 && l2_On)»«IF inTable»«entryRightOpen»«ENDIF»«compileParaRoleHymn»«hymn.dsl_Elements.compileV2»«paraClose»«IF inTable»«entryClose»«ENDIF»«ENDIF»
 		«IF inTable»«rowClose»«ENDIF»
 		«ENDIF»
 		«resetClassForDelimitedFileRow»
-		«aresAccessor.includeKey(false)»
 	'''
 
 	def compileParaRoleHymn() {
-		setClassForDelimitedFileRow(paraRoleHymn)
+		setClassForDelimitedFileRow(htmlParaTagName, paraRoleHymn)
 		if (aresAccessor.outputType == AlwbConstants.PDF) {
 			return foParaRoleOpen  + XmlFoFormatManager.getStyleFor(roleHymn) + foRoleClose
 		} else {
@@ -2530,13 +2543,13 @@ class AtemGenerator implements IGenerator {
 		var hrefRowOpen = '''«IF inTable»«rowOpen»«setRowPrintFlag(true)»«ENDIF»'''
 		var l1TdOpen = '''«IF (v1 && l1_On)»«IF inTable»«entryLeftOpen»«ENDIF»«ENDIF»'''
 		var l1TdClose = '''«IF (v1 && l1_On)»«IF inTable»«entryClose»«ENDIF»«ENDIF»'''
-		var l1Para = '''«IF (v1 && l1_On)»«aresAccessor.includeKey(true)»«paraRoleHymn»«hymn.dsl_Elements.compile»«paraClose»«ENDIF»'''
+		var l1Para = '''«IF (v1 && l1_On)»«paraRoleHymn»«hymn.dsl_Elements.compile»«paraClose»«ENDIF»'''
 		var l1MediaHrefs = aresAccessor.hrefsRow
 		aresAccessor.resetHrefsRow();
 		
 		var l2TdOpen = '''«IF (v2 && l2_On)»«IF inTable»«entryRightOpen»«ENDIF»«ENDIF»'''
 		var l2TdClose = '''«IF (v2 && l2_On)»«IF inTable»«entryClose»«ENDIF»«ENDIF»'''
-		var l2Para = '''«IF (v2 && l2_On)»«aresAccessor.includeKey(true)»«paraRoleHymn»«hymn.dsl_Elements.compileV2»«paraClose»«ENDIF»'''
+		var l2Para = '''«IF (v2 && l2_On)»«paraRoleHymn»«hymn.dsl_Elements.compileV2»«paraClose»«ENDIF»'''
 		var l2MediaHrefs = aresAccessor.hrefsRow
 		var textRow = 
 			'''
@@ -2710,12 +2723,11 @@ class AtemGenerator implements IGenerator {
 	}
 	def compile(Verse verse) '''
 		«IF inTable»«rowOpen»«setRowPrintFlag(true)»«ENDIF»
-		«IF (v1 && l1_On)»«IF inTable»«entryLeftOpen»«ENDIF»«aresAccessor.includeKey(true)»«compileParaRoleVerse»«verse.
+		«IF (v1 && l1_On)»«IF inTable»«entryLeftOpen»«ENDIF»«compileParaRoleVerse»«verse.
 			dsl_Elements.compile»«paraClose»«IF inTable»«entryClose»«ENDIF»«ENDIF»
-		«IF (v2 && l2_On)»«IF inTable»«entryRightOpen»«ENDIF»«aresAccessor.includeKey(true)»«compileParaRoleVerse»«verse.
+		«IF (v2 && l2_On)»«IF inTable»«entryRightOpen»«ENDIF»«compileParaRoleVerse»«verse.
 			dsl_Elements.compileV2»«paraClose»«IF inTable»«entryClose»«ENDIF»«ENDIF»
 		«IF inTable»«rowClose»«ENDIF»
-		«aresAccessor.includeKey(false)»
 	'''
 
 	def compileParaRoleVerse() {
