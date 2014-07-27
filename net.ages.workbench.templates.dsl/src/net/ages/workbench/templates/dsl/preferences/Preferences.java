@@ -38,6 +38,8 @@ public class Preferences {
 	public boolean genHtmlLanguage1 = false;
 	public boolean genHtmlLanguage2 = false;
 	public boolean genHtmlLanguage12 = false;
+	public boolean genHtmlFileIncludeKeyOriginal = false;
+	public boolean genHtmlFileIncludeKeyDerived = false;
 	public boolean genPdfFile = false;
 	public boolean genPdfLanguage1 = false;
 	public boolean genPdfLanguage2 = false;
@@ -47,7 +49,13 @@ public class Preferences {
 	public boolean genEpubLanguage2 = false;
 	public boolean genEpubLanguage12 = false;
 	public boolean genResources = false;
-	public boolean genDelimitedFile = false;
+	public boolean genTmsJsonFile = false;
+	public static boolean tmsJsonFileFormatSetIncludeKey = false;
+	public static boolean tmsJsonFileFormatSetIncludeTag = false;
+	public static boolean tmsJsonFileFormatSetIncludeClass = false;
+	public static boolean tmsJsonFileFormatSetIncludeText = false;
+	public static boolean tmsJsonFileKeySetIncludeText = false;
+	public static boolean tmsJsonFileKeySetIncludeFrequencies = false;
 	public boolean makeL1Editable = false;
 	public boolean makeL2Editable = false;
 	public boolean includeMediaDocumentLinks = false;
@@ -318,6 +326,8 @@ public class Preferences {
 		genHtmlLanguage1 = getAgesBooleanPreference(AlwbConstants.PREF_BOOLEAN_GEN_HTML_LANGUAGE_1);
 		genHtmlLanguage2 = getAgesBooleanPreference(AlwbConstants.PREF_BOOLEAN_GEN_HTML_LANGUAGE_2);
 		genHtmlLanguage12 = getAgesBooleanPreference(AlwbConstants.PREF_BOOLEAN_GEN_HTML_LANGUAGE_1_2);
+		genHtmlFileIncludeKeyOriginal = getAgesBooleanPreference(AlwbConstants.PREF_BOOLEAN_GEN_HTML_FILE_INCLUDE_KEY_ORIGINAL);
+		genHtmlFileIncludeKeyDerived = getAgesBooleanPreference(AlwbConstants.PREF_BOOLEAN_GEN_HTML_FILE_INCLUDE_KEY_DERIVED);
 		genPdfFile = getAgesBooleanPreference(AlwbConstants.PREF_BOOLEAN_GEN_PDF_FILE);
 		genPdfLanguage1 = getAgesBooleanPreference(AlwbConstants.PREF_BOOLEAN_GEN_PDF_LANGUAGE_1);
 		genPdfLanguage2 = getAgesBooleanPreference(AlwbConstants.PREF_BOOLEAN_GEN_PDF_LANGUAGE_2);
@@ -327,7 +337,13 @@ public class Preferences {
 		genEpubLanguage2 = getAgesBooleanPreference(AlwbConstants.PREF_BOOLEAN_GEN_EPUB_LANGUAGE_2);
 		genEpubLanguage12 = getAgesBooleanPreference(AlwbConstants.PREF_BOOLEAN_GEN_EPUB_LANGUAGE_1_2);
 		genResources = getAgesBooleanPreference(AlwbConstants.PREF_BOOLEAN_GEN_RESOURCES);
-		genDelimitedFile = getAgesBooleanPreference(AlwbConstants.PREF_BOOLEAN_GEN_DELIMITED_FILE);
+		genTmsJsonFile = getAgesBooleanPreference(AlwbConstants.PREF_BOOLEAN_GEN_JSON_FILE);
+		tmsJsonFileFormatSetIncludeKey = getAgesBooleanPreference(AlwbConstants.PREF_BOOLEAN_TMS_JSON_FORMAT_SET_INCLUDE_KEY);
+		tmsJsonFileFormatSetIncludeTag = getAgesBooleanPreference(AlwbConstants.PREF_BOOLEAN_TMS_JSON_FORMAT_SET_INCLUDE_TAG);
+		tmsJsonFileFormatSetIncludeClass = getAgesBooleanPreference(AlwbConstants.PREF_BOOLEAN_TMS_JSON_FORMAT_SET_INCLUDE_CLASS);
+		tmsJsonFileFormatSetIncludeText = getAgesBooleanPreference(AlwbConstants.PREF_BOOLEAN_TMS_JSON_FORMAT_SET_INCLUDE_TEXT);
+		tmsJsonFileKeySetIncludeText = getAgesBooleanPreference(AlwbConstants.PREF_BOOLEAN_TMS_JSON_KEY_SET_INCLUDE_TEXT);
+		tmsJsonFileKeySetIncludeFrequencies = getAgesBooleanPreference(AlwbConstants.PREF_BOOLEAN_TMS_JSON_KEY_SET_INCLUDE_FREQUENCIES);
 		makeL1Editable = getAgesBooleanPreference(AlwbConstants.PREF_BOOLEAN_MAKE_L1_EDITABLE);
 		makeL2Editable = getAgesBooleanPreference(AlwbConstants.PREF_BOOLEAN_MAKE_L2_EDITABLE);
 		includeMediaDocumentLinks = getAgesBooleanPreference(AlwbConstants.PREF_BOOLEAN_INCLUDE_MEDIA_DOCUMENT_LINKS);

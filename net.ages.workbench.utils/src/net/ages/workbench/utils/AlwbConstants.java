@@ -60,6 +60,8 @@ public class AlwbConstants {
 	public static final String PREF_BOOLEAN_GEN_HTML_LANGUAGE_1 = "generate.file.html.version.v1";
 	public static final String PREF_BOOLEAN_GEN_HTML_LANGUAGE_2 = "generate.file.html.version.v2";
 	public static final String PREF_BOOLEAN_GEN_HTML_LANGUAGE_1_2 = "generate.file.html.version.v1v2";
+	public static final String PREF_BOOLEAN_GEN_HTML_FILE_INCLUDE_KEY_ORIGINAL = "generate.file.html.include.key.original";
+	public static final String PREF_BOOLEAN_GEN_HTML_FILE_INCLUDE_KEY_DERIVED = "generate.file.html.include.key.derived";
 	public static final String PREF_BOOLEAN_GEN_PDF_FILE = "generate.file.pdf";
 	public static final String PREF_BOOLEAN_GEN_PDF_LANGUAGE_1 = "generate.file.pdf.version.v1";
 	public static final String PREF_BOOLEAN_GEN_PDF_LANGUAGE_2 = "generate.file.pdf.version.v2";
@@ -69,7 +71,13 @@ public class AlwbConstants {
 	public static final String PREF_BOOLEAN_GEN_EPUB_LANGUAGE_2 = "generate.file.epub.version.v2";
 	public static final String PREF_BOOLEAN_GEN_EPUB_LANGUAGE_1_2 = "generate.file.epub.version.v1v2";
 	public static final String PREF_BOOLEAN_GEN_RESOURCES = "generate.file.resources";
-	public static final String PREF_BOOLEAN_GEN_DELIMITED_FILE = "generate.file.delimited";
+	public static final String PREF_BOOLEAN_GEN_JSON_FILE = "generate.tms.json";
+	public static final String PREF_BOOLEAN_TMS_JSON_FORMAT_SET_INCLUDE_KEY = "tms.json.format.set.include.key";
+	public static final String PREF_BOOLEAN_TMS_JSON_FORMAT_SET_INCLUDE_TAG = "tms.json.format.set.include.tag";
+	public static final String PREF_BOOLEAN_TMS_JSON_FORMAT_SET_INCLUDE_CLASS = "tms.json.format.set.include.class";
+	public static final String PREF_BOOLEAN_TMS_JSON_FORMAT_SET_INCLUDE_TEXT = "tms.json.format.set.include.text";
+	public static final String PREF_BOOLEAN_TMS_JSON_KEY_SET_INCLUDE_TEXT = "tms.json.key.set.include.text";
+	public static final String PREF_BOOLEAN_TMS_JSON_KEY_SET_INCLUDE_FREQUENCIES = "tms.json.key.set.include.frequencies";
 	public static final String PREF_BOOLEAN_MAKE_L1_EDITABLE = "make.editable.html.v1";
 	public static final String PREF_BOOLEAN_MAKE_L2_EDITABLE = "make.editable.html.v2";
 	
