@@ -853,7 +853,7 @@ class AtemGenerator implements IGenerator {
 							fileroot = fileroot.replaceAll("\\.","_")
 							var varName = fileroot.replaceFirst("/","")
 							
-							var delimitedFile = tmsJsonFolderRoot + fileroot + "_" + aresAccessor.language1Id + tmsJsonExtension
+							var delimitedFile = tmsJsonFolderRoot + fileroot + tmsJsonExtension
 							// delimited file 1
 //							fsa.generateFile(delimitedFile,aresAccessor.tableManager.lang1ValuesAsPropertyLines)
 							fsa.generateFile(delimitedFile,aresAccessor.getTableManagerL1.valuesAsJson(1,varName))

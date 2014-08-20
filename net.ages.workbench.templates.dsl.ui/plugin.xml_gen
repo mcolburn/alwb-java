@@ -250,7 +250,9 @@
    <extension
          point="org.eclipse.xtext.builder.participant">
       <participant
-            class="net.ages.workbench.templates.dsl.ui.AtemExecutableExtensionFactory:org.eclipse.xtext.builder.IXtextBuilderParticipant">
+            class="net.ages.workbench.templates.dsl.ui.AtemExecutableExtensionFactory:org.eclipse.xtext.builder.IXtextBuilderParticipant"
+            fileExtensions="atem"
+            >
       </participant>
    </extension>
    <extension

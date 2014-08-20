@@ -3,6 +3,7 @@
 	<name>net.ages.workbench.resources.dsl.tests</name>
 	<comment></comment>
 	<projects>
+		<project>net.ages.workbench.resources.dsl</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

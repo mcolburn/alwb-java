@@ -31,6 +31,7 @@ public class AlwbGeneralUtils {
 	public static String absolutePathToSrcGen = "";
 	public static boolean websiteOnly = false;
 	public static boolean copyAssets = false;
+	public final static String QUOTE = "\"";
 	
 	public static String getBundleName(String file) {
 		logger.entry();
@@ -267,5 +268,26 @@ public class AlwbGeneralUtils {
 	public static void copyMedia(String from, String to ) {
 			copyDirectory(from,to + "m");
 	}
-	
+
+	/**
+	 * Convert a List of Strings to an Array of Strings
+	 * @param list
+	 * @return the string array
+	 */
+	public static String[] listToStringArray(List<String> list) {
+		return list.toArray(new String[list.size()]);
+	}
+
+	/**
+	 * Wrap the string in quotes
+	 * @param s
+	 * @return
+	 */
+	public static String wrapQuotes(String s) {
+		if (s.length() > 0) {
+			return QUOTE + s + QUOTE;
+		} else {
+			return QUOTE+QUOTE;
+		}
+	}
 }

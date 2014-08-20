@@ -2,18 +2,17 @@ package net.ages.workbench.templates.dsl.utils;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Properties;
+import java.util.List;
+
 import java.util.Set;
 import java.util.TreeMap;
 
-import javax.json.Json;
-import javax.json.JsonObject;
-
 import net.ages.workbench.templates.dsl.preferences.Preferences;
+import net.ages.workbench.utils.AlwbGeneralUtils;
 
 /**
  * The purpose of this class is to hold the metadata for a processed template, so that it can be used
@@ -22,8 +21,10 @@ import net.ages.workbench.templates.dsl.preferences.Preferences;
  *
  */
 public class TableManager {
-	private TreeMap<String,String> aresKeys = new TreeMap<String,String>();
+	private TreeMap<String,List<String>> aresKeys = new TreeMap<String,List<String>>();
 	private LinkedHashMap<String,TableRow> atemKeys = new LinkedHashMap<String,TableRow>();
+	private List<String> aresTopicList = new ArrayList<String>(); // contains a unique set of topics of the ares files used in this template 
+
 	private String lang1Id;
 	private String lang2Id;
 	private String delimiter = "~";
@@ -85,15 +86,28 @@ public class TableManager {
 						htmlTagForNextAdd,
 						htmlTagClassForNextAdd)
 					);
-		count++;
-		if (count == 531) {
-			System.out.print("");
-		}
 		String hashKey = "\"_id\": \"" + filename + "__" + theKey + "\"";
 		if (Preferences.tmsJsonFileKeySetIncludeText) {
 			hashKey = hashKey + ", \"value\": " + "\"" + value + "\"";
 		}
-		aresKeys.put(hashKey, incrementCounter(aresKeys.get(hashKey)));
+		
+		// add row index to the list for this ares key
+		String zeroBasedRowIndex = AlwbGeneralUtils.wrapQuotes(String.valueOf(count-1));
+		List<String> rows = null;				// get the variable ready
+		if (aresKeys.containsKey(hashKey)) {
+			rows = aresKeys.get(hashKey); 		// set it to the existing key's list if found
+		} else {
+			rows = new ArrayList<String>(); 		// otherwise just create a new list
+		}
+		rows.add(zeroBasedRowIndex); // this is for a zero based index, so decrease by one
+		aresKeys.put(hashKey, rows);
+		
+		// add the topic
+		if (! aresTopicList.contains(filename)) {
+			aresTopicList.add(AlwbGeneralUtils.wrapQuotes(filename));
+		}
+
+		count++;
 	}
 	
 	@Override
@@ -208,9 +222,18 @@ public class TableManager {
 		
 		sb.append(openJsonValueAsArray("libraryKeys"));
 
+		List<String> indexedRows = null;
+		
 		while (it.hasNext()) {
 			key = it.next();
-			sb.append(t2 + "{ " + key + (Preferences.tmsJsonFileKeySetIncludeFrequencies ? countToJson(aresKeys.get(key)) : "") + " }");
+			indexedRows = aresKeys.get(key);
+			String theCount = String.valueOf(indexedRows.size());
+			sb.append(t2 + "{ " 
+					+ key 
+					+ ", "
+					+ "\"ids\": " + indexedRows.toString()
+					+ (Preferences.tmsJsonFileKeySetIncludeFrequencies ? countToJson(theCount) : "") 
+					+ " }");
 
 			if (it.hasNext()) {
 				sb.append(",");
@@ -218,7 +241,10 @@ public class TableManager {
 			sb.append("\n");
 		}
 
-		sb.append(closeJsonArray(true));
+		sb.append(closeJsonArray(false));
+		
+		sb.append("\n");
+		sb.append(t1 + "\"topics\": " + aresTopicList.toString());
 		sb.append("\n}");
 		
 		return sb.toString();		

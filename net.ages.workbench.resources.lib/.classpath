@@ -13,6 +13,5 @@
 	<classpathentry exported="true" kind="lib" path="log4j-core-2.0-beta8-javadoc.jar"/>
 	<classpathentry exported="true" kind="lib" path="log4j-core-2.0-beta8-sources.jar"/>
 	<classpathentry exported="true" kind="lib" path="log4j-core-2.0-beta8.jar"/>
-	<classpathentry kind="lib" path="javax.json-api-1.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
