@@ -109,12 +109,12 @@
     <eLiterals name="L2" value="1" literal="L2"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ResourceText" eSuperTypes="#//ElementType">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="dsl_ResourceTextRef" eType="ecore:EClass ../../../../../../../net.ages.workbench.resources.dsl/src-gen/net/ages/workbench/resources/dsl/Ares.ecore#//Definition"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dsl_ResourceTextRef" eType="ecore:EClass platform:/resource/net.ages.workbench.resources.dsl/src-gen/net/ages/workbench/resources/dsl/Ares.ecore#//Definition"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dsl_ResourceText_Media_Off"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Lookup" eSuperTypes="#//ElementType">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="dsl_ResourceTextRef" eType="ecore:EClass ../../../../../../../net.ages.workbench.resources.dsl/src-gen/net/ages/workbench/resources/dsl/Ares.ecore#//Definition"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dsl_ResourceTextRef" eType="ecore:EClass platform:/resource/net.ages.workbench.resources.dsl/src-gen/net/ages/workbench/resources/dsl/Ares.ecore#//Definition"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dsl_Lookup_Media_Off" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dsl_Lookup_Override_Mode_Set"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
@@ -130,7 +130,7 @@
         eType="#//LdpType" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TaggedText" eSuperTypes="#//ElementType">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="dsl_TaggedText_tag" eType="ecore:EClass ../../../../../../../net.ages.workbench.resources.dsl/src-gen/net/ages/workbench/resources/dsl/Ares.ecore#//Definition"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dsl_TaggedText_tag" eType="ecore:EClass platform:/resource/net.ages.workbench.resources.dsl/src-gen/net/ages/workbench/resources/dsl/Ares.ecore#//Definition"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dsl_TaggedText" upperBound="-1"
         eType="#//ElementType" containment="true"/>
   </eClassifiers>
@@ -153,7 +153,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="PrefaceElementType"/>
   <eClassifiers xsi:type="ecore:EClass" name="Section" eSuperTypes="#//AbstractComponent #//PrefaceElementType #//SectionElementType">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="dsl_Section_Role" eType="ecore:EClass ../../../../../../../net.ages.workbench.resources.dsl/src-gen/net/ages/workbench/resources/dsl/Ares.ecore#//Definition"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dsl_Section_Role" eType="ecore:EClass platform:/resource/net.ages.workbench.resources.dsl/src-gen/net/ages/workbench/resources/dsl/Ares.ecore#//Definition"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dsl_Section_Elements" upperBound="-1"
         eType="#//SectionElementType" containment="true"/>
   </eClassifiers>
@@ -242,22 +242,22 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Title" eSuperTypes="#//AbstractComponent #//InfoElementType #//PrefaceElementType #//SectionElementType">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="dsl_Title_Role" eType="ecore:EClass ../../../../../../../net.ages.workbench.resources.dsl/src-gen/net/ages/workbench/resources/dsl/Ares.ecore#//Definition"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dsl_Title_Role" eType="ecore:EClass platform:/resource/net.ages.workbench.resources.dsl/src-gen/net/ages/workbench/resources/dsl/Ares.ecore#//Definition"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dsl_Elements" upperBound="-1"
         eType="#//ElementType" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SubTitle" eSuperTypes="#//AbstractComponent #//InfoElementType #//PrefaceElementType #//SectionElementType">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="dsl_SubTitle_Role" eType="ecore:EClass ../../../../../../../net.ages.workbench.resources.dsl/src-gen/net/ages/workbench/resources/dsl/Ares.ecore#//Definition"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dsl_SubTitle_Role" eType="ecore:EClass platform:/resource/net.ages.workbench.resources.dsl/src-gen/net/ages/workbench/resources/dsl/Ares.ecore#//Definition"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dsl_Elements" upperBound="-1"
         eType="#//ElementType" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Paragraph" eSuperTypes="#//AbstractComponent #//InfoElementType #//PrefaceElementType #//SectionElementType">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="dsl_Para_Role" eType="ecore:EClass ../../../../../../../net.ages.workbench.resources.dsl/src-gen/net/ages/workbench/resources/dsl/Ares.ecore#//Definition"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dsl_Para_Role" eType="ecore:EClass platform:/resource/net.ages.workbench.resources.dsl/src-gen/net/ages/workbench/resources/dsl/Ares.ecore#//Definition"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dsl_Elements" upperBound="-1"
         eType="#//ElementType" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Block" eSuperTypes="#//AbstractComponent #//InfoElementType #//PrefaceElementType #//SectionElementType">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="dsl_Block_Role" eType="ecore:EClass ../../../../../../../net.ages.workbench.resources.dsl/src-gen/net/ages/workbench/resources/dsl/Ares.ecore#//Definition"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dsl_Block_Role" eType="ecore:EClass platform:/resource/net.ages.workbench.resources.dsl/src-gen/net/ages/workbench/resources/dsl/Ares.ecore#//Definition"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dsl_Elements" upperBound="-1"
         eType="#//ElementType" containment="true"/>
   </eClassifiers>
@@ -565,7 +565,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="WhenExistsCase">
     <eStructuralFeatures xsi:type="ecore:EReference" name="dsl_WhenExistsCase_Ref"
-        eType="ecore:EClass ../../../../../../../net.ages.workbench.resources.dsl/src-gen/net/ages/workbench/resources/dsl/Ares.ecore#//Definition"/>
+        eType="ecore:EClass platform:/resource/net.ages.workbench.resources.dsl/src-gen/net/ages/workbench/resources/dsl/Ares.ecore#//Definition"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dsl_WhenExistsCase_True_actions"
         upperBound="-1" eType="#//AbstractComponent" containment="true"/>
   </eClassifiers>

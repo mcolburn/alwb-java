@@ -4,7 +4,7 @@
     editorDirectory="/net.ages.workbench.resources.dsl.editor/src" modelPluginID="net.ages.workbench.resources.dsl"
     forceOverwrite="true" modelName="Ares" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     complianceLevel="5.0" copyrightFields="false" editPluginID="net.ages.workbench.resources.dsl.edit"
-    editorPluginID="net.ages.workbench.resources.dsl.editor" runtimeVersion="2.9">
+    editorPluginID="net.ages.workbench.resources.dsl.editor" runtimeVersion="2.10">
   <genPackages prefix="Ares" basePackage="net.ages.workbench.resources.dsl" disposableProviderFactory="true"
       ecorePackage="Ares.ecore#/">
     <genClasses ecoreClass="Ares.ecore#//AresModel">

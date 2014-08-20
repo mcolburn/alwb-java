@@ -4,8 +4,8 @@
     editorDirectory="/net.ages.workbench.templates.dsl.editor/src" modelPluginID="net.ages.workbench.templates.dsl"
     forceOverwrite="true" modelName="Atem" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     complianceLevel="5.0" copyrightFields="false" editPluginID="net.ages.workbench.templates.dsl.edit"
-    editorPluginID="net.ages.workbench.templates.dsl.editor" runtimeVersion="2.9"
-    usedGenPackages="../../../../../../../net.ages.workbench.resources.dsl/src-gen/net/ages/workbench/resources/dsl/Ares.genmodel#//ares">
+    editorPluginID="net.ages.workbench.templates.dsl.editor" runtimeVersion="2.10"
+    usedGenPackages="platform:/resource/net.ages.workbench.resources.dsl/src-gen/net/ages/workbench/resources/dsl/Ares.genmodel#//ares">
   <genPackages prefix="Atem" basePackage="net.ages.workbench.templates.dsl" disposableProviderFactory="true"
       ecorePackage="Atem.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Atem.ecore#//VersionSwitchType">

@@ -142,7 +142,7 @@ public class TableRow {
 	 * @return Javascript friendly json formatted key
 	 */
 	public String jsonKey() {
-		return filename + "__" + key.replaceAll("\\.", "_");
+		return filename + "__" + key; // .replaceAll("\\.", "_");
 	}
 	
 	/**
