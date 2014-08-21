@@ -3,11 +3,11 @@ package net.ages.workbench.templates.dsl.utils;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
-
 import java.util.Set;
 import java.util.TreeMap;
 
@@ -103,8 +103,9 @@ public class TableManager {
 		aresKeys.put(hashKey, rows);
 		
 		// add the topic
-		if (! aresTopicList.contains(filename)) {
-			aresTopicList.add(AlwbGeneralUtils.wrapQuotes(filename));
+		String quotedTopic = AlwbGeneralUtils.wrapQuotes(filename);
+		if (! aresTopicList.contains(quotedTopic)) {
+			aresTopicList.add(quotedTopic);
 		}
 
 		count++;
@@ -241,10 +242,10 @@ public class TableManager {
 			sb.append("\n");
 		}
 
+		Collections.sort(aresTopicList);
 		sb.append(closeJsonArray(false));
-		
 		sb.append("\n");
-		sb.append(t1 + "\"topics\": " + aresTopicList.toString());
+		sb.append(t1 + "\"topics\": " + aresTopicList).toString();
 		sb.append("\n}");
 		
 		return sb.toString();		
