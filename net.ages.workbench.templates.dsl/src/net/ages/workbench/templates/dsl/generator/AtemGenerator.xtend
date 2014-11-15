@@ -762,12 +762,17 @@ class AtemGenerator implements IGenerator {
 						 
 						if (isService) {
 							serviceType = fileParts.get(fileParts.length-2)
+							
+							/**
+							 * Commented out this code per request by Fr Seraphim on 31 October, 2014.
 							if (aresAccessor.matinsInHolyWeek(serviceType)) {
 								if (serviceType == AlwbConstants.MATINS) {
 									serviceType = AlwbConstants.EVENING_MATINS
 									filename = filename.replaceFirst("\\."+AlwbConstants.MATINS,"\\."+AlwbConstants.EVENING_MATINS)
 								}
 							}
+							 */
+
 							if (filename.startsWith("/se.tr")) {
 								filename = convertTriodionToServiceName(serviceType)
 							}
