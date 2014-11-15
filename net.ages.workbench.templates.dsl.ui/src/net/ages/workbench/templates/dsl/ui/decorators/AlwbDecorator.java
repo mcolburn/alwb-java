@@ -51,6 +51,7 @@ public class AlwbDecorator  implements ILightweightLabelDecorator {
 	private final String unknown = " (unknown)";
 	private final String draft = " (draft)";
 	private final String review = " (review)";
+	private final String exclude = " (exclude)";
 	private final String finalized = " (final)";
 	public static boolean clearMap = true;
 	private ImageDescriptor imgDraft;
@@ -108,6 +109,8 @@ public class AlwbDecorator  implements ILightweightLabelDecorator {
 						status = draft;
 					} else if (line.toLowerCase().contains("review")) {
 						status = review;
+					} else if (line.toLowerCase().contains("exclude")) {
+						status = exclude;
 					} else if (line.toLowerCase().contains("final")) {
 						status = finalized;
 					} else {
