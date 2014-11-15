@@ -3095,7 +3095,8 @@ public class ModelAccessor {
 	private void initializePerferenceManager() {
 		logger.entry();
 		try {
-			Resource main = getResource(preferenceFileId);
+			Resource master = getResource(preferenceFileId);
+			Resource main = getResourceByKey(master, AlwbConstants.PREF_STRING_PREFERENCES_SELECTED_MAIN);
 			Resource resourceHtml = getResourceByKey(main, AlwbConstants.PREF_STRING_PREFERENCES_HTML);
 			Resource resourcePdf = getResourceByKey(main, AlwbConstants.PREF_STRING_PREFERENCES_PDF);
 			Resource resourceVersion = getResourceByKey(main, AlwbConstants.PREF_STRING_PREFERENCES_VERSION);
