@@ -48,6 +48,8 @@ public class AlwbConstants {
 	
 // The following match the keys in the preference ares files
 	
+// pref.master
+	public static final String PREF_STRING_PREFERENCES_SELECTED_MAIN = "selected.pref.main";
 // pref.main*.ares
 	public static final String PREF_STRING_PREFERENCES_HTML = "prefs.html";
 	public static final String PREF_STRING_PREFERENCES_PDF = "prefs.pdf";
