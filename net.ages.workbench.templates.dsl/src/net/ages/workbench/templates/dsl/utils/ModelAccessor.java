@@ -570,6 +570,7 @@ public class ModelAccessor {
 				serviceType.startsWith(AlwbConstants.PRESANCTIFIED_LITURGY) ||
 				serviceType.startsWith(AlwbConstants.VESPERAL_LITURGY) ||
 				serviceType.startsWith(AlwbConstants.VESPERS) ||
+				serviceType.startsWith(AlwbConstants.EVENING_MATINS) ||
 				serviceType.startsWith(AlwbConstants.COMPLINE)) {
 			result = true;
 		} else if (matinsInHolyWeek(serviceType)) {
