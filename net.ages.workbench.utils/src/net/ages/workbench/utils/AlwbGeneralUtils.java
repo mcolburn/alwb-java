@@ -269,6 +269,7 @@ public class AlwbGeneralUtils {
 			copyDirectory(from,to + "m");
 	}
 
+
 	/**
 	 * Convert a List of Strings to an Array of Strings
 	 * @param list
@@ -289,5 +290,21 @@ public class AlwbGeneralUtils {
 		} else {
 			return QUOTE+QUOTE;
 		}
+	}
+	/**
+	 * Strips off positions 2 to n for serviceType whose length exceeds 2
+	 * @param serviceType
+	 * @return first two characters
+	 */
+	public static String normalizeServiceType(String serviceType) {
+		String result = serviceType;
+		 if (serviceType.length() > 2) {
+			 try {
+				 result = serviceType.substring(0, 2);
+			 } catch (Exception e) {
+				 logger.catching(e);
+			 }
+		 }
+		 return result;
 	}
 }
