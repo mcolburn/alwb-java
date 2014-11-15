@@ -250,7 +250,7 @@ public class AlwbConstants {
 	public static final String VESPERAL_LITURGY = "vl";
 	public static final String VESPERS = "ve";
 	public static final String COMPLINE = "co";
-	public static final String MIDNIGHT_OFFICE = "mi";
+	public static final String MIDNIGHT_OFFICE = "mo";
 	public static final String MATINS = "ma";
 	public static final String EVENING_MATINS = "em";
 	public static final String HOURS_1 = "h1";
