@@ -24,7 +24,8 @@ public class ServiceDay {
 	private Logger logger = AlwbLogger.getLogger("Website");
 	private LiturgicalDayProperties theDay;
 	private Map<String,ServiceDayType> servicesForTheDay = new HashMap<String,ServiceDayType>();
-
+	private 	List<ServiceDayType> services;
+	
 	public ServiceDay(FileNameParser parser) {
 		theDay = new LiturgicalDayProperties(parser.year, parser.month, parser.day);
 		theKey = parser.year + parser.month + parser.day;
@@ -93,124 +94,62 @@ public class ServiceDay {
 	 * @return an iterator of services
 	 */
 	public List<ServiceDayType> getServicesOrdered() {
-		List<ServiceDayType> services = new ArrayList<ServiceDayType>();
+		services = new ArrayList<ServiceDayType>();
 
-		ServiceDayType midnightOffice = null;
-		ServiceDayType matins = null;
-		ServiceDayType hours1 = null;
-		ServiceDayType hours3 = null;
-		ServiceDayType hours6 = null;
-		ServiceDayType liturgy = null;
-		ServiceDayType hours9 = null;
-		ServiceDayType greatHours = null;
-		ServiceDayType smallVespers = null;
-		ServiceDayType vespers = null;
-		ServiceDayType presanctifiedLiturgy = null;
-		ServiceDayType vesperalLiturgy = null;
-		ServiceDayType compline = null;
-		ServiceDayType eveningMatins = null;
+		// the order of the constants below is critical.  It governs the order in which 
+		// services will appear on the index pages in the website
+		addEntriesForService(theKey, AlwbConstants.MIDNIGHT_OFFICE);
+		addEntriesForService(theKey, AlwbConstants.MATINS);
+		addEntriesForService(theKey, AlwbConstants.HOURS_1);
+		addEntriesForService(theKey, AlwbConstants.HOURS_3);
+		addEntriesForService(theKey, AlwbConstants.HOURS_6);
+		addEntriesForService(theKey, AlwbConstants.LITURGY);
 		// liturgy, hours 9 and great hours are mutually exclusive.  
 		// Only one will occur on a particular day.
-
-		try {
-			midnightOffice = servicesForTheDay.get(theKey+AlwbConstants.MIDNIGHT_OFFICE);
-			if (midnightOffice != null) {
-				services.add(midnightOffice);
-			}
-		} catch (Exception e) {
-		}
-		try {
-			matins = servicesForTheDay.get(theKey+AlwbConstants.MATINS);
-			if (matins != null) {
-				services.add(matins);
-			}
-		} catch (Exception e) {
-		}
-		try {
-			hours1 = servicesForTheDay.get(theKey+AlwbConstants.HOURS_1);
-			if (hours1 != null) {
-				services.add(hours1);
-			}
-		} catch (Exception e) {
-		}
-		try {
-			hours3 = servicesForTheDay.get(theKey+AlwbConstants.HOURS_3);
-			if (hours3 != null) {
-				services.add(hours3);
-			}
-		} catch (Exception e) {
-		}
-		try {
-			hours6 = servicesForTheDay.get(theKey+AlwbConstants.HOURS_6);
-			if (hours6 != null) {
-				services.add(hours6);
-			}
-		} catch (Exception e) {
-		}
-		try {
-			liturgy = servicesForTheDay.get(theKey+AlwbConstants.LITURGY);
-			if (liturgy != null) {
-				services.add(liturgy);
-			}
-		} catch (Exception e) {
-		}
-		try {
-			hours9 = servicesForTheDay.get(theKey+AlwbConstants.HOURS_9);
-			if (hours9 != null) {
-				services.add(hours9);
-			}
-		} catch (Exception e) {
-		}
-		try {
-			greatHours = servicesForTheDay.get(theKey+AlwbConstants.GREAT_HOURS);
-			if (greatHours != null) {
-				services.add(greatHours);
-			}
-		} catch (Exception e) {
-		}
-		try {
-			smallVespers = servicesForTheDay.get(theKey+AlwbConstants.SMALL_VESPERS);
-			if (smallVespers != null) {
-				services.add(smallVespers);
-			}
-		} catch (Exception e) {
-		}
-		try {
-			vespers = servicesForTheDay.get(theKey+AlwbConstants.VESPERS);
-			if (vespers != null) {
-				services.add(vespers);
-			}
-		} catch (Exception e) {
-		}
-		try {
-			presanctifiedLiturgy = servicesForTheDay.get(theKey+AlwbConstants.PRESANCTIFIED_LITURGY);
-			if (presanctifiedLiturgy != null) {
-				services.add(presanctifiedLiturgy);
-			}
-		} catch (Exception e) {
-		}
-		try {
-			vesperalLiturgy = servicesForTheDay.get(theKey+AlwbConstants.VESPERAL_LITURGY);
-			if (vesperalLiturgy != null) {
-				services.add(vesperalLiturgy);
-			}
-		} catch (Exception e) {
-		}
-		try {
-			compline = servicesForTheDay.get(theKey+AlwbConstants.COMPLINE);
-			if (compline != null) {
-				services.add(compline);
-			}
-		} catch (Exception e) {
-		}
-		try {
-			eveningMatins = servicesForTheDay.get(theKey+AlwbConstants.EVENING_MATINS);
-			if (eveningMatins != null) {
-				services.add(eveningMatins);
-			}
-		} catch (Exception e) {
-		}
+		addEntriesForService(theKey, AlwbConstants.HOURS_9);
+		addEntriesForService(theKey, AlwbConstants.GREAT_HOURS);
+		addEntriesForService(theKey, AlwbConstants.SMALL_VESPERS);
+		addEntriesForService(theKey, AlwbConstants.VESPERS);
+		addEntriesForService(theKey, AlwbConstants.PRESANCTIFIED_LITURGY);
+		addEntriesForService(theKey, AlwbConstants.VESPERAL_LITURGY);
+		addEntriesForService(theKey, AlwbConstants.COMPLINE);
+		addEntriesForService(theKey, AlwbConstants.EVENING_MATINS);
 		return services;
+	}
+	
+	/**
+	 * Iterates from 1 through 9 adding the number to the service
+	 * constant in order to determine whether there is a match.
+	 * For example, ma1, ma2, ma3, ma4, etc. up to ma9.  This 
+	 * allows the user to define alternate titles for services,
+	 * and to have multiple occurrences of each type of service
+	 * on the same day. 
+	 * @param service
+	 * @param key
+	 * @param constant
+	 */
+	private void addEntriesForService(String key, String constant) {
+		
+		// first check for the normal service type (e.g. ma without a number)
+		try {
+			ServiceDayType service = servicesForTheDay.get(key+constant);
+			if (service != null) {
+				services.add(service);
+			}
+		} catch (Exception e) {
+			logger.catching(e);
+		}
+		// now iterate and append 1 through 9 after the service type, e.g. ma1, ma2, etc. to ma9.
+		for (int i=1; i < 10; i++) {
+			try {
+				ServiceDayType service = servicesForTheDay.get(key+constant+Integer.valueOf(i));
+				if (service != null) {
+					services.add(service);
+				}
+			} catch (Exception e) {
+				logger.catching(e);
+			}
+		}
 	}
 	
 	private void updateCommemoration(String c) {
