@@ -1479,6 +1479,8 @@ public class ModelAccessor {
 		logger.entry(d);
 		processingLanguage1 = false;
 		String theResult = null;
+		String firstDefFile = null;
+		String secondDefFile = null;
 		String defFile = d.eResource().getURI().lastSegment();
 		String lang2Id = getPreferredVersion2Id(defFile);
 		String lang2File = getPreferredVersion2File(defFile);
@@ -1486,15 +1488,19 @@ public class ModelAccessor {
 		try {
 			if (defFile.endsWith(lang2File) // actual language is the requested one
 					|| (!defFile.endsWith(getTemplateLanguageFile()))) { // user set template to a non-default
+				firstDefFile = defFile;
 				theResult = getDefinitionText(d,defFile);
 			} else {
-				theResult =  getDefinitionValueById(convertFilename(
+				defFile = convertFilename(
 						d.eResource().getURI().lastSegment(), // e.g., properties_el_GR_cog.ares
-						lang2Id), // e.g., en_US_goarch
+						lang2Id);
+				firstDefFile = defFile;
+				theResult =  getDefinitionValueById(defFile, // e.g., en_US_goarch
 						d.getName()); // ID of resource, e.g. Headings.GREAT_VESPERS
 			}
 			if (theResult == null || theResult.startsWith("null")) {
 				defFile = convertFilename(d.eResource().getURI().lastSegment(),lang2DefaultId);
+				secondDefFile = defFile;
 				theResult =  getDefinitionValueById(defFile,
 						d.getName()) + source(defFile,d.getName());
 				if (theResult == null || theResult.startsWith("null")) { // this really is NOT dead code
@@ -1505,7 +1511,7 @@ public class ModelAccessor {
 			logger.exit();
 			if (debug) {
 				theResult = reportIssue("getLanguage2Text",
-						defFile,
+						firstDefFile + " and " + secondDefFile,
 						d.getName(),
 						"null. " + (lang2File == null ? " Missing name of Version 2 in Preferences." : ""));
 			} else {
