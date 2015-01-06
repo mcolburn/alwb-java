@@ -119,8 +119,10 @@ enum VersionSwitchType: L1 | L2 | Both;
 enum Language: L1 | L2;
 ResourceText:  'sid' dsl_ResourceTextRef=[def::Definition | QualifiedName]
 	( dsl_ResourceText_Media_Off ?='media-off')? 
+	( dsl_ResourceText_Version ?='@ver')? 
 ;
 Lookup:        'rid'dsl_ResourceTextRef=[def::Definition | QualifiedName] 
+				( dsl_ResourceTextRef_Version ?='@ver')? 
 	 			( dsl_Lookup_Media_Off ?='media-off')?  
 				(dsl_Lookup_Override_Mode_Set?='@mode' dsl_Lookup_OverrideMode=ModeTypes)? 
 				(dsl_Lookup_Override__Day_Set?='@day' dsl_Lookup_OverrideDay=DowTypes)?;
