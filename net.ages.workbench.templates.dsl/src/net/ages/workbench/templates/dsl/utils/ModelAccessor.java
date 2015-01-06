@@ -88,6 +88,11 @@ import com.google.inject.Inject;
  */
 public class ModelAccessor {
 
+	private boolean versionCall = false;
+	private boolean nonRecursive = true;
+	private boolean displayVersionOfPara = false;
+	private String lastFile = "";
+	private String lastId = "";
 	private String abbreviationFileDefault = "";
 	private String abbreviationFilePreferred = "";
 	private String abbreviationKeySuffixHtmlLink = ".html.link";
@@ -107,6 +112,7 @@ public class ModelAccessor {
 	private String copyMediaFrom = "";
 	private int counter = 1;
 	private boolean debug = false;
+	private VersionManager versionManager = new VersionManager();
 	private Map<String, org.eclipse.emf.common.util.URI> filenameToUriMap = null;
 	private boolean generateDelimitedFile = false;
 	private boolean generateDocbookFile = false;
@@ -230,6 +236,7 @@ public class ModelAccessor {
 	public boolean generateMessagesHtml = false;
 	private boolean showSource = false;
 	private boolean showDomain = false;
+	private boolean showVersion = false;
 	private boolean suppressMedia = false;
 	private TableManager tableManagerL1;
 	private String templateLanguageId = "gr_GR_cog";
@@ -833,13 +840,24 @@ public class ModelAccessor {
 		Definition resolvedDefinition = null;
 		String theFinalKey = null; 
 		String result = null;
-
+		String lastSegment = "";
+		lastFile = "";
+		lastId = "";
 		try {
 			resolvedDefinition = getResolvedDefinition(d);
-			theFinalKey = resolvedDefinition.eResource().getURI().lastSegment() + "." + resolvedDefinition.getName();
-			result = resolvedDefinition.getDsl_Definition_Text() 
-					+ source(resolvedDefinition.eResource().getURI().lastSegment(),
-							resolvedDefinition.getName());
+			lastSegment = resolvedDefinition.eResource().getURI().lastSegment();
+			theFinalKey = lastSegment + "." + resolvedDefinition.getName();
+			result = resolvedDefinition.getDsl_Definition_Text();
+			if (! lastSegment.startsWith("pref")) {
+				// save info require to retrieve source later on
+				lastId = resolvedDefinition.getName();
+				lastFile = lastSegment;
+				if (result != null & result.length() > 0) {
+					if (showVersion) {
+						setVersion(lastFile);
+					}
+				}
+			}
 		} catch (Exception e) {
 			logger.catching(e);
 			if (debug) {
@@ -913,8 +931,17 @@ public class ModelAccessor {
 			String _name = e.getName();
 			boolean _matches = _name.matches(id);
 			if (_matches) { 
+				if (! resource.getURI().lastSegment().startsWith("pref")) {
+					// save info require to retrieve source later on
+					lastFile = resource.getURI().lastSegment();
+					lastId = id;
+					if (nonRecursive && showVersion) { // setVersion will result in a call back to here, so need to block it
+						setVersion(lastFile);
+					}
+				}
+
 				logger.exit();
-				return getDefinitionText(e,resource.getURI().lastSegment());// + source(resource.getURI().lastSegment(), id);
+				return getDefinitionText(e,resource.getURI().lastSegment());
 			}
 		}
 		logger.exit();
@@ -1324,12 +1351,12 @@ public class ModelAccessor {
 			} else {
 				defFile = convertFilename(d.eResource().getURI().lastSegment(),lang1Id);
 				theResult =  getDefinitionValueById(defFile,
-						theKey) + source(defFile,theKey);
+						theKey);
 			}
 			if (theResult == null || theResult.startsWith("null")) {
 				defFile = convertFilename(d.eResource().getURI().lastSegment(),lang1DefaultId);
 				theResult =  getDefinitionValueById(defFile,
-						theKey) + source(defFile,theKey);
+						theKey);
 				if (theResult == null || theResult.startsWith("null")) { // this really is NOT dead code
 					theResult = "";
 				}
@@ -1348,6 +1375,9 @@ public class ModelAccessor {
 		}
 		theResult = convertFormatCodes(theResult);
 		processingLanguage1 = false;
+		if (theResult != null || theResult != "") {
+			theResult = theResult + source(lastFile,lastId);
+		}
 		logger.exit(theResult);
 		return theResult;
 	}
@@ -1360,6 +1390,9 @@ public class ModelAccessor {
 		String result = getLanguageVariableText(d, lang1IdPreferred);
 		if (result == null || result == "") {
 			result = getLanguageVariableText(d, lang1IdDefault);
+		}
+		if (result != null || result != "") {
+			result = result + source(lastFile,lastId);
 		}
 		processingLanguage1 = false;
 		return result;
@@ -1502,7 +1535,7 @@ public class ModelAccessor {
 				defFile = convertFilename(d.eResource().getURI().lastSegment(),lang2DefaultId);
 				secondDefFile = defFile;
 				theResult =  getDefinitionValueById(defFile,
-						d.getName()) + source(defFile,d.getName());
+						d.getName());
 				if (theResult == null || theResult.startsWith("null")) { // this really is NOT dead code
 					theResult = "";
 				}
@@ -1519,6 +1552,9 @@ public class ModelAccessor {
 			}
 		}
 		theResult = convertFormatCodes(theResult);
+		if (theResult != null || theResult != "") {
+			theResult = theResult + source(lastFile,lastId);
+		}
 		logger.exit(theResult);
 		return theResult;
 	}
@@ -1531,6 +1567,9 @@ public class ModelAccessor {
 		String result = getLanguageVariableText(d, langIdPreferred);
 		if (result == null || result == "" || result.contains("Could not find")) {
 			result = getLanguageVariableText(d, langIdDefault);
+		}
+		if (result != null || result != "") {
+			result = result + source(lastFile,lastId);
 		}
 		return result;
 	}
@@ -3142,6 +3181,10 @@ public class ModelAccessor {
 		this.showSource = showSource;
 	}
 
+	public void setShowVersion(boolean showVersion) {
+		this.showVersion = showVersion;
+	}
+
 	public void setGenerateMessagesHtml(boolean value) {
 		this.generateMessagesHtml = value;
 	}
@@ -3177,15 +3220,7 @@ public class ModelAccessor {
 					String source = dropExtension(file) + id;
 					result = source;
 			} else if (showDomain) {
-				if (file.contains(language1Id)) {
-					result = language1Id;
-				} else if (file.contains(language1DefaultId)) {
-					result = language1DefaultId;
-				} else if (file.contains(language2Id)) {
-					result = language2Id;
-				} else if (file.contains(language2DefaultId)) {
-					result = language2DefaultId;
-				} 
+				result = AlwbGeneralUtils.getDomainFromAresFile(file);
 			}
 		}
 		logger.exit();
@@ -3193,6 +3228,105 @@ public class ModelAccessor {
 			result = " (from " + result + ")";
 		}
 		return result;
+	}
+	
+	/**
+	 * Performs a lookup to see if there is a description for the version
+	 * being displayed.
+	 * @param domain
+	 * @return version
+	 */
+	
+	public String getHymnVersion() {
+		String result = "";
+		if (preferences.displayVersionOfHymn) {
+			result = getVersions();
+		}
+		return result;
+	}
+	
+	/**
+	 * Performs a lookup to see if there is a description for the version
+	 * being displayed.
+	 * @param domain
+	 * @return version
+	 */
+	
+	public String getVerseVersion() {
+		String result = "";
+		if (preferences.displayVersionOfVerse) {
+			result = getVersions();
+		}
+		return result;
+	}
+	
+	public String getReadingVersion() {
+		String result = "";
+		if (preferences.displayVersionOfReading) {
+			result = getVersions();
+		}
+		return result;
+	}
+	
+	public void setDisplayVersionOfPara(boolean value) {
+		displayVersionOfPara = value;
+	}
+
+	public String getParaVersion() {
+		String result = "";
+		if (displayVersionOfPara) {
+			result = getVersions();
+			displayVersionOfPara = false;
+		}
+		return result;
+	}
+
+
+	/**
+	 * Gets the versions for a given paragraph, 
+	 * wrapped as an HTML span.  Resets the versions
+	 * after the call.
+	 * @return the versions wrapped in an HTML span.
+	 */
+	public String getVersions() {
+		String result = versionManager.toHtmlSpan();
+		versionManager.resetVersions();
+		return result;
+	}
+	
+	/**
+	 * Set the version for a given domain.
+	 * The version is retrieved from the
+	 * version.designation key in the 
+	 * properties_ ares file for that domain, 
+	 * @param domain to use for the lookup of the version
+	 */
+	public void setVersion(String filename) {
+		String domain = "";
+		domain = AlwbGeneralUtils.getDomainFromAresFile(filename);
+		if (domain.startsWith("en_US_dedes")) {
+			System.out.print("");
+		}
+		if (versionManager.contains(domain)) {
+			// do nothing
+		} else {
+			String version = "";
+			try {
+				if (nonRecursive) {
+					nonRecursive = false;
+					version = getDefinitionValueById(
+							"properties_" 
+							+ domain
+							+ ".ares", "version.designation");
+				}
+			} catch (Exception e) {
+				version = "";
+			}
+			if (version != null && version.length() > 0) {
+				versionManager.push(domain, version);
+			}
+			nonRecursive = true;
+		}
 	}
 
 	/**
@@ -3210,6 +3344,26 @@ public class ModelAccessor {
 	 */
 	public void suppressMedia(boolean value) {
 		suppressMedia = value;
+	}
+
+	/**
+	 * Indicates whether for the current processing scope the user has set a media-off flag
+	 * @return true if media is to be suppressed
+	 */
+	public boolean showVersion() {
+		return showVersion;
+	}
+	
+	/**
+	 * Controlled by AtemGenerator.  When it encounters a show version flag when processing a hymn, it will set this true
+	 * @param value true - show version of text (e.g. Dedes, RSV)
+	 */
+	public void showVersion(boolean value) {
+		showVersion = value;
+		if (showVersion) {
+			// reset the versions - clears previous values
+			versionManager.resetVersions();
+		}
 	}
 
 	/**

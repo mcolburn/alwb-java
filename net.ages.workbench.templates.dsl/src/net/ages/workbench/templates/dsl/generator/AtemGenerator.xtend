@@ -306,6 +306,9 @@ class AtemGenerator implements IGenerator {
 	val roleDialog = "dialog"
 	val roleMedia = "media"
 	val roleMixed = "mixed"
+	val roleChant = "chant"
+	val roleHeirmos = "heirmos" 
+	val roleHymnLastLine = "hymnlinelast"
 	
 	/** Tag Names */
 	val tagTable = "table"
@@ -2500,6 +2503,14 @@ class AtemGenerator implements IGenerator {
 			result = r
 		}
 		setClassForDelimitedFileRow(htmlTag,r)
+		if (
+			(r.contains("prayer") && aresAccessor.preferences.displayVersionOfParaPrayer)
+			|| (r.contains("chant") && aresAccessor.preferences.displayVersionOfParaChant)
+			|| (r.contains("heirmos") && aresAccessor.preferences.displayVersionOfParaHeirmos)
+			|| (r.contains("hymnlinelast") && aresAccessor.preferences.displayVersionOfParaHymnLastLine)			
+		) {
+			aresAccessor.displayVersionOfPara = true
+		}
 		return result
 	}
 	
@@ -2521,12 +2532,14 @@ class AtemGenerator implements IGenerator {
 		«compileWithHref(hymn)»
 		«ELSE»
 		«IF inTable»«rowOpen»«setRowPrintFlag(true)»«ENDIF»
-		«IF (v1 && l1_On)»«IF inTable»«entryLeftOpen»«ENDIF»«compileParaRoleHymn»«hymn.dsl_Elements.compile»«paraClose»«IF inTable»«entryClose»«ENDIF»«ENDIF»
-		«IF (v2 && l2_On)»«IF inTable»«entryRightOpen»«ENDIF»«compileParaRoleHymn»«hymn.dsl_Elements.compileV2»«paraClose»«IF inTable»«entryClose»«ENDIF»«ENDIF»
+		«IF (v1 && l1_On)»«IF inTable»«entryLeftOpen»«ENDIF»«compileParaRoleHymn»«hymn.dsl_Elements.compile»«getHymnVersion»«paraClose»«IF inTable»«entryClose»«ENDIF»«ENDIF»
+		«IF (v2 && l2_On)»«IF inTable»«entryRightOpen»«ENDIF»«compileParaRoleHymn»«hymn.dsl_Elements.compileV2»«getHymnVersion»«paraClose»«IF inTable»«entryClose»«ENDIF»«ENDIF»
 		«IF inTable»«rowClose»«ENDIF»
 		«ENDIF»
 		«resetClassForDelimitedFileRow»
 	'''
+	
+	def getHymnVersion()'''«aresAccessor.getHymnVersion»'''
 
 	def compileParaRoleHymn() {
 		setClassForDelimitedFileRow(htmlParaTagName, paraRoleHymn)
@@ -2548,13 +2561,13 @@ class AtemGenerator implements IGenerator {
 		var hrefRowOpen = '''«IF inTable»«rowOpen»«setRowPrintFlag(true)»«ENDIF»'''
 		var l1TdOpen = '''«IF (v1 && l1_On)»«IF inTable»«entryLeftOpen»«ENDIF»«ENDIF»'''
 		var l1TdClose = '''«IF (v1 && l1_On)»«IF inTable»«entryClose»«ENDIF»«ENDIF»'''
-		var l1Para = '''«IF (v1 && l1_On)»«paraRoleHymn»«hymn.dsl_Elements.compile»«paraClose»«ENDIF»'''
+		var l1Para = '''«IF (v1 && l1_On)»«paraRoleHymn»«hymn.dsl_Elements.compile»«getHymnVersion»«paraClose»«ENDIF»'''
 		var l1MediaHrefs = aresAccessor.hrefsRow
 		aresAccessor.resetHrefsRow();
 		
 		var l2TdOpen = '''«IF (v2 && l2_On)»«IF inTable»«entryRightOpen»«ENDIF»«ENDIF»'''
 		var l2TdClose = '''«IF (v2 && l2_On)»«IF inTable»«entryClose»«ENDIF»«ENDIF»'''
-		var l2Para = '''«IF (v2 && l2_On)»«paraRoleHymn»«hymn.dsl_Elements.compileV2»«paraClose»«ENDIF»'''
+		var l2Para = '''«IF (v2 && l2_On)»«paraRoleHymn»«hymn.dsl_Elements.compileV2»«getHymnVersion»«paraClose»«ENDIF»'''
 		var l2MediaHrefs = aresAccessor.hrefsRow
 		var textRow = 
 			'''
@@ -2631,11 +2644,11 @@ class AtemGenerator implements IGenerator {
  	def compile(Paragraph paragraph, boolean asTable) '''
 		«IF asTable»«IF inTable»«rowOpen»«setRowPrintFlag(true)»«ENDIF»«ENDIF»
 		«IF (v1 && l1_On)»«IF asTable»«IF inTable»«entryLeftOpen»«ENDIF»«ENDIF»«paraRoleOpen»«compileRole(paragraph.dsl_Para_Role?.
-			dsl_Definition_Text)»«roleClose»«paragraph.dsl_Elements.compile»«paraClose»«IF asTable»«IF inTable»«entryClose»«ENDIF»«ENDIF»«ENDIF»
+			dsl_Definition_Text)»«roleClose»«paragraph.dsl_Elements.compile»«aresAccessor.getParaVersion»«paraClose»«IF asTable»«IF inTable»«entryClose»«ENDIF»«ENDIF»«ENDIF»
 			«resetClassForDelimitedFileRow»
 		«IF asTable»
 			«IF (v2 && l2_On)»«IF inTable»«entryRightOpen»«ENDIF»«paraRoleOpen»«compileRole(paragraph.dsl_Para_Role?.dsl_Definition_Text)»«roleClose»«paragraph.
-			dsl_Elements.compileV2»«paraClose»«IF inTable»«entryClose»«ENDIF»«ENDIF»
+			dsl_Elements.compileV2»«aresAccessor.getParaVersion»«paraClose»«IF inTable»«entryClose»«ENDIF»«ENDIF»
 			«resetClassForDelimitedFileRow»
 			«IF inTable»«rowClose»«ENDIF»
 		«ENDIF»
@@ -2699,8 +2712,8 @@ class AtemGenerator implements IGenerator {
 
 	def compile(Reading reading) '''
 		«IF inTable»«rowOpen»«setRowPrintFlag(true)»«ENDIF»
-		«IF (v1 && l1_On)»«IF inTable»«entryLeftOpen»«ENDIF»«compileParaRoleReading»«reading.dsl_Elements.compile»«paraClose»«IF inTable»«entryClose»«ENDIF»«ENDIF»
-		«IF (v2 && l2_On)»«IF inTable»«entryRightOpen»«ENDIF»«compileParaRoleReading»«reading.dsl_Elements.compileV2»«paraClose»«IF inTable»«entryClose»«ENDIF»«ENDIF»
+		«IF (v1 && l1_On)»«IF inTable»«entryLeftOpen»«ENDIF»«compileParaRoleReading»«reading.dsl_Elements.compile»«aresAccessor.getReadingVersion»«paraClose»«IF inTable»«entryClose»«ENDIF»«ENDIF»
+		«IF (v2 && l2_On)»«IF inTable»«entryRightOpen»«ENDIF»«compileParaRoleReading»«reading.dsl_Elements.compileV2»«aresAccessor.getReadingVersion»«paraClose»«IF inTable»«entryClose»«ENDIF»«ENDIF»
 		«IF inTable»«rowClose»«ENDIF»
 	'''
 
@@ -2729,9 +2742,9 @@ class AtemGenerator implements IGenerator {
 	def compile(Verse verse) '''
 		«IF inTable»«rowOpen»«setRowPrintFlag(true)»«ENDIF»
 		«IF (v1 && l1_On)»«IF inTable»«entryLeftOpen»«ENDIF»«compileParaRoleVerse»«verse.
-			dsl_Elements.compile»«paraClose»«IF inTable»«entryClose»«ENDIF»«ENDIF»
+			dsl_Elements.compile»«aresAccessor.getVerseVersion»«paraClose»«IF inTable»«entryClose»«ENDIF»«ENDIF»
 		«IF (v2 && l2_On)»«IF inTable»«entryRightOpen»«ENDIF»«compileParaRoleVerse»«verse.
-			dsl_Elements.compileV2»«paraClose»«IF inTable»«entryClose»«ENDIF»«ENDIF»
+			dsl_Elements.compileV2»«aresAccessor.getVerseVersion»«paraClose»«IF inTable»«entryClose»«ENDIF»«ENDIF»
 		«IF inTable»«rowClose»«ENDIF»
 	'''
 
@@ -2978,10 +2991,12 @@ class AtemGenerator implements IGenerator {
 	}
 	
 	def void setResourceOverrides(ResourceText r) {
+		aresAccessor.showVersion(r.dsl_ResourceText_Version);
 		aresAccessor.suppressMedia(r.dsl_ResourceText_Media_Off);
 	}
 	
 	def void resetResourceOverrides() {
+		aresAccessor.showVersion(false);
 		aresAccessor.suppressMedia(false);
 	}
 
