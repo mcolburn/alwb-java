@@ -112,7 +112,7 @@ public class ModelAccessor {
 	private String copyMediaFrom = "";
 	private int counter = 1;
 	private boolean debug = false;
-	private VersionManager versionManager = new VersionManager();
+	private VersionManager versionManager;
 	private Map<String, org.eclipse.emf.common.util.URI> filenameToUriMap = null;
 	private boolean generateDelimitedFile = false;
 	private boolean generateDocbookFile = false;
@@ -271,6 +271,7 @@ public class ModelAccessor {
 			resourceSet = resourceset;
 			loadOptions.put(XtextResource.OPTION_ENCODING, "UTF-8");
 			readGenerationPreferences();
+			versionManager = new VersionManager(preferences.versionPrefix, preferences.versionSuffix, preferences.versionDelimiter);
 			initializeResourceMap();
 			setLiturgicalDayProperties(new LiturgicalDayProperties());
 			if (includeMediaLinks) {
@@ -3231,56 +3232,19 @@ public class ModelAccessor {
 	}
 	
 	/**
-	 * Performs a lookup to see if there is a description for the version
-	 * being displayed.
+	 * Performs a lookup to see if there is a description 
+	 * of the version of the text, e.g. RSV, KJV, Dedes, COG.
 	 * @param domain
 	 * @return version
 	 */
 	
-	public String getHymnVersion() {
+	public String getTextVersion() {
 		String result = "";
-		if (preferences.displayVersionOfHymn) {
+		if (preferences.displayVersionOfText) {
 			result = getVersions();
 		}
 		return result;
 	}
-	
-	/**
-	 * Performs a lookup to see if there is a description for the version
-	 * being displayed.
-	 * @param domain
-	 * @return version
-	 */
-	
-	public String getVerseVersion() {
-		String result = "";
-		if (preferences.displayVersionOfVerse) {
-			result = getVersions();
-		}
-		return result;
-	}
-	
-	public String getReadingVersion() {
-		String result = "";
-		if (preferences.displayVersionOfReading) {
-			result = getVersions();
-		}
-		return result;
-	}
-	
-	public void setDisplayVersionOfPara(boolean value) {
-		displayVersionOfPara = value;
-	}
-
-	public String getParaVersion() {
-		String result = "";
-		if (displayVersionOfPara) {
-			result = getVersions();
-			displayVersionOfPara = false;
-		}
-		return result;
-	}
-
 
 	/**
 	 * Gets the versions for a given paragraph, 
