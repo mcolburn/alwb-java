@@ -82,13 +82,10 @@ public class AlwbConstants {
 	public static final String PREF_BOOLEAN_TMS_JSON_KEY_SET_INCLUDE_FREQUENCIES = "tms.json.key.set.include.frequencies";
 	public static final String PREF_BOOLEAN_MAKE_L1_EDITABLE = "make.editable.html.v1";
 	public static final String PREF_BOOLEAN_MAKE_L2_EDITABLE = "make.editable.html.v2";
-	public static final String PREF_BOOLEAN_DISPLAY_VERSION_OF_HYMN = "display.version.hymn";
-	public static final String PREF_BOOLEAN_DISPLAY_VERSION_OF_VERSE = "display.version.verse";
-	public static final String PREF_BOOLEAN_DISPLAY_VERSION_OF_READING = "display.version.reading";
-	public static final String PREF_BOOLEAN_DISPLAY_VERSION_OF_PARA_PRAYER = "display.version.para.prayer";
-	public static final String PREF_BOOLEAN_DISPLAY_VERSION_OF_PARA_CHANT = "display.version.para.chant";
-	public static final String PREF_BOOLEAN_DISPLAY_VERSION_OF_PARA_HEIRMOS = "display.version.para.heirmos";
-	public static final String PREF_BOOLEAN_DISPLAY_VERSION_OF_PARA_HYMN_LAST_LINE = "display.version.para.hymn.last.line";
+	public static final String PREF_BOOLEAN_DISPLAY_VERSION_OF_TEXT = "display.version.text";
+	public static final String PREF_STRING_VERSION_PREFIX = "version.prefix";
+	public static final String PREF_STRING_VERSION_SUFFIX = "version.suffix";
+	public static final String PREF_STRING_VERSION_DELIMITER = "version.delimiter";
 	
 // pref.html*.ares
 	public static final String PREF_BOOLEAN_INCLUDE_MEDIA_DOCUMENT_LINKS = "include.media.links.text";
