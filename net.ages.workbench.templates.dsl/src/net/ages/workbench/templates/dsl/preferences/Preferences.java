@@ -50,14 +50,12 @@ public class Preferences {
 	public boolean genEpubLanguage12 = false;
 	public boolean genResources = false;
 	public boolean genTmsJsonFile = false;
-	public boolean displayVersionOfHymn = false;
-	public boolean displayVersionOfVerse = false;
-	public boolean displayVersionOfReading = false;
-	public boolean displayVersionOfParaPrayer = false;
-	public boolean displayVersionOfParaChant = false;
-	public boolean displayVersionOfParaHeirmos = false;
-	public boolean displayVersionOfParaHymnLastLine = false;
-
+	
+	public boolean displayVersionOfText = false;
+	public String versionPrefix = "";
+	public String versionSuffix = "";
+	public String versionDelimiter = "";
+	
 	public static boolean tmsJsonFileFormatSetIncludeKey = false;
 	public static boolean tmsJsonFileFormatSetIncludeTag = false;
 	public static boolean tmsJsonFileFormatSetIncludeClass = false;
@@ -352,13 +350,10 @@ public class Preferences {
 		tmsJsonFileFormatSetIncludeText = getAgesBooleanPreference(AlwbConstants.PREF_BOOLEAN_TMS_JSON_FORMAT_SET_INCLUDE_TEXT);
 		tmsJsonFileKeySetIncludeText = getAgesBooleanPreference(AlwbConstants.PREF_BOOLEAN_TMS_JSON_KEY_SET_INCLUDE_TEXT);
 		tmsJsonFileKeySetIncludeFrequencies = getAgesBooleanPreference(AlwbConstants.PREF_BOOLEAN_TMS_JSON_KEY_SET_INCLUDE_FREQUENCIES);
-		displayVersionOfHymn = getAgesBooleanPreference(AlwbConstants.PREF_BOOLEAN_DISPLAY_VERSION_OF_HYMN);
-		displayVersionOfVerse = getAgesBooleanPreference(AlwbConstants.PREF_BOOLEAN_DISPLAY_VERSION_OF_VERSE);
-		displayVersionOfReading = getAgesBooleanPreference(AlwbConstants.PREF_BOOLEAN_DISPLAY_VERSION_OF_READING);
-		displayVersionOfParaPrayer = getAgesBooleanPreference(AlwbConstants.PREF_BOOLEAN_DISPLAY_VERSION_OF_PARA_PRAYER);
-		displayVersionOfParaChant = getAgesBooleanPreference(AlwbConstants.PREF_BOOLEAN_DISPLAY_VERSION_OF_PARA_CHANT);
-		displayVersionOfParaHeirmos = getAgesBooleanPreference(AlwbConstants.PREF_BOOLEAN_DISPLAY_VERSION_OF_PARA_HEIRMOS);
-		displayVersionOfParaHymnLastLine = getAgesBooleanPreference(AlwbConstants.PREF_BOOLEAN_DISPLAY_VERSION_OF_PARA_HYMN_LAST_LINE);
+		displayVersionOfText = getAgesBooleanPreference(AlwbConstants.PREF_BOOLEAN_DISPLAY_VERSION_OF_TEXT);
+		versionPrefix = getAgesStringPreference(AlwbConstants.PREF_STRING_VERSION_PREFIX);
+		versionSuffix = getAgesStringPreference(AlwbConstants.PREF_STRING_VERSION_SUFFIX);
+		versionDelimiter = getAgesStringPreference(AlwbConstants.PREF_STRING_VERSION_DELIMITER);
 		makeL1Editable = getAgesBooleanPreference(AlwbConstants.PREF_BOOLEAN_MAKE_L1_EDITABLE);
 		makeL2Editable = getAgesBooleanPreference(AlwbConstants.PREF_BOOLEAN_MAKE_L2_EDITABLE);
 		includeMediaDocumentLinks = getAgesBooleanPreference(AlwbConstants.PREF_BOOLEAN_INCLUDE_MEDIA_DOCUMENT_LINKS);

@@ -16,8 +16,14 @@ import java.util.Map;
 public class VersionManager {
 	LinkedList<String> versions = null;
 	Map<String,String> domains = null;
+	String prefix;
+	String suffix;
+	String delimiter;
 	
-	public VersionManager() {
+	public VersionManager(String prefix, String suffix, String delimiter) {
+		this.prefix = prefix;
+		this.suffix = suffix;
+		this.delimiter = delimiter;
 		resetVersions();
 	}
 	
@@ -69,8 +75,8 @@ public class VersionManager {
 			return "";
 		} else {
 			StringBuffer sb = new StringBuffer();
-			sb.append("<span class='versiondesignation'>&nbsp;");
-			sb.append(delimitedValues(", "));
+			sb.append("<span class='versiondesignation'>");
+			sb.append(delimitedValues());
 			sb.append("</span>");
 			return sb.toString();
 		}
@@ -81,15 +87,17 @@ public class VersionManager {
 	 * @param delimiter to use
 	 * @return string of values separated by the delimiter
 	 */
-	public String delimitedValues(String delimiter) {
+	public String delimitedValues() {
 		StringBuffer sb = new StringBuffer();
 		Iterator<String> it = versions.iterator();
+		sb.append(prefix);
 		while (it.hasNext()) {
 			sb.append(it.next());
 			if (it.hasNext()) {
-				sb.append(delimiter);
+				sb.append(delimiter + " ");
 			}
 		}
+		sb.append(suffix);
 		return sb.toString();
 	}
 	
