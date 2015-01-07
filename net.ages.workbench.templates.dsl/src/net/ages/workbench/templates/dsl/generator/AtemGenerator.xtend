@@ -2971,6 +2971,7 @@ class AtemGenerator implements IGenerator {
 		} else {
 			theDay.setModeOfTheWeekOverride("00");
 		}
+		aresAccessor.showVersion(l.dsl_Lookup_Version);
 		aresAccessor.suppressMedia(l.dsl_Lookup_Media_Off);			
 	}
 
@@ -2978,6 +2979,7 @@ class AtemGenerator implements IGenerator {
 		theDay.setNbrDayOfWeekOverride("")
 		theDay.setModeOfTheWeekOverride("00");
 		aresAccessor.suppressMedia(false);
+		aresAccessor.showVersion(false);
 	}
 	
 	def void setResourceOverrides(ResourceText r) {
