@@ -849,16 +849,6 @@ public class ModelAccessor {
 			lastSegment = resolvedDefinition.eResource().getURI().lastSegment();
 			theFinalKey = lastSegment + "." + resolvedDefinition.getName();
 			result = resolvedDefinition.getDsl_Definition_Text();
-			if (! lastSegment.startsWith("pref")) {
-				// save info require to retrieve source later on
-				lastId = resolvedDefinition.getName();
-				lastFile = lastSegment;
-				if (result != null & result.length() > 0) {
-					if (showVersion) {
-						setVersion(lastFile);
-					}
-				}
-			}
 		} catch (Exception e) {
 			logger.catching(e);
 			if (debug) {
@@ -919,6 +909,9 @@ public class ModelAccessor {
 	 */
 	public String getDefinitionValue(final Resource resource, final String id) {
 		logger.entry(resource,id);
+		if (id.startsWith("meVE.Apolytikion1.text")) {
+			System.out.print("");
+		}
 		try {
 			resource.load(loadOptions); // in order to ensure loaded as UTF-8
 		} catch (IOException e1) {
@@ -932,15 +925,6 @@ public class ModelAccessor {
 			String _name = e.getName();
 			boolean _matches = _name.matches(id);
 			if (_matches) { 
-				if (! resource.getURI().lastSegment().startsWith("pref")) {
-					// save info require to retrieve source later on
-					lastFile = resource.getURI().lastSegment();
-					lastId = id;
-					if (nonRecursive && showVersion) { // setVersion will result in a call back to here, so need to block it
-						setVersion(lastFile);
-					}
-				}
-
 				logger.exit();
 				return getDefinitionText(e,resource.getURI().lastSegment());
 			}
@@ -1770,6 +1754,15 @@ public class ModelAccessor {
 	 */
 	public Definition getResolvedDefinition(Definition d) {
 		if (d.getDsl_Definition_Text() != null) {
+			String lastSegment = d.eContainer().eResource().getURI().lastSegment();
+			if (! lastSegment.startsWith("pref")) {
+				// save info require to retrieve source later on
+				lastFile = lastSegment;
+				lastId = d.getName();
+				if (nonRecursive && showVersion) { // setVersion will result in a call back to here, so need to block it
+					setVersion(lastFile);
+				}
+			}
 			return d;
 		} else {
 			return getResolvedDefinition(d.getDsl_Definition_Ref());
@@ -3234,13 +3227,30 @@ public class ModelAccessor {
 	/**
 	 * Performs a lookup to see if there is a description 
 	 * of the version of the text, e.g. RSV, KJV, Dedes, COG.
+	 * for version v1
 	 * @param domain
 	 * @return version
 	 */
 	
-	public String getTextVersion() {
+	public String getTextVersion1() {
 		String result = "";
-		if (preferences.displayVersionOfText) {
+		if (preferences.displayVersionOfTextV1) {
+			result = getVersions();
+		}
+		return result;
+	}
+
+	/**
+	 * Performs a lookup to see if there is a description 
+	 * of the version of the text, e.g. RSV, KJV, Dedes, COG.
+	 * for version v2
+	 * @param domain
+	 * @return version
+	 */
+	
+	public String getTextVersion2() {
+		String result = "";
+		if (preferences.displayVersionOfTextV2) {
 			result = getVersions();
 		}
 		return result;
@@ -3248,12 +3258,11 @@ public class ModelAccessor {
 
 	/**
 	 * Gets the versions for a given paragraph, 
-	 * wrapped as an HTML span.  Resets the versions
-	 * after the call.
-	 * @return the versions wrapped in an HTML span.
+	 * Resets the versions after the call.
+	 * @return the versions wrapped in the prefix and suffix set in the generation prefs.
 	 */
 	public String getVersions() {
-		String result = versionManager.toHtmlSpan();
+		String result = versionManager.delimitedValues();
 		versionManager.resetVersions();
 		return result;
 	}

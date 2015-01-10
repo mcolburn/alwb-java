@@ -51,7 +51,8 @@ public class Preferences {
 	public boolean genResources = false;
 	public boolean genTmsJsonFile = false;
 	
-	public boolean displayVersionOfText = false;
+	public boolean displayVersionOfTextV1 = false;
+	public boolean displayVersionOfTextV2 = false;
 	public String versionPrefix = "";
 	public String versionSuffix = "";
 	public String versionDelimiter = "";
@@ -350,7 +351,8 @@ public class Preferences {
 		tmsJsonFileFormatSetIncludeText = getAgesBooleanPreference(AlwbConstants.PREF_BOOLEAN_TMS_JSON_FORMAT_SET_INCLUDE_TEXT);
 		tmsJsonFileKeySetIncludeText = getAgesBooleanPreference(AlwbConstants.PREF_BOOLEAN_TMS_JSON_KEY_SET_INCLUDE_TEXT);
 		tmsJsonFileKeySetIncludeFrequencies = getAgesBooleanPreference(AlwbConstants.PREF_BOOLEAN_TMS_JSON_KEY_SET_INCLUDE_FREQUENCIES);
-		displayVersionOfText = getAgesBooleanPreference(AlwbConstants.PREF_BOOLEAN_DISPLAY_VERSION_OF_TEXT);
+		displayVersionOfTextV1 = getAgesBooleanPreference(AlwbConstants.PREF_BOOLEAN_DISPLAY_VERSION_OF_TEXT_V1);
+		displayVersionOfTextV2 = getAgesBooleanPreference(AlwbConstants.PREF_BOOLEAN_DISPLAY_VERSION_OF_TEXT_V2);
 		versionPrefix = getAgesStringPreference(AlwbConstants.PREF_STRING_VERSION_PREFIX);
 		versionSuffix = getAgesStringPreference(AlwbConstants.PREF_STRING_VERSION_SUFFIX);
 		versionDelimiter = getAgesStringPreference(AlwbConstants.PREF_STRING_VERSION_DELIMITER);

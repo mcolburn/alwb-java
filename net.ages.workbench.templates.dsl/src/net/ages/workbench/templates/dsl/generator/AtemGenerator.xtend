@@ -1853,6 +1853,7 @@ class AtemGenerator implements IGenerator {
 		«IF (includeDayNight)»
         <a href="#" class="dayMode"><i class="fa fa-sun-o dayMode ages-menu-link"></i></a>
         <a href="#" class="nightMode"><i class="fa fa-moon-o nightMode ages-menu-link"></i></a>
+        <a href="#" class="versionMode"><i class="fa fa-info versionMode ages-menu-link"></i></a>
 		<span id="clockbox" class="clockbox"></span>
 		«ENDIF»
 		
@@ -2514,6 +2515,48 @@ class AtemGenerator implements IGenerator {
 		}
 	}
 	
+	
+/**
+	def compileVersion(String versions) {
+		if (versions.length > 0) {
+			if (aresAccessor.outputType == AlwbConstants.PDF) {
+				return "<fo:inline " + XmlFoFormatManager.getStyleFor("footerOddLeftColor") + ">«pdfFooterOddLeft»</fo:inline>  + XmlFoFormatManager.getStyleFor(roleHymn) + foRoleClose
+			} else {
+				return paraRoleHymn
+			}
+		}
+	}
+ * 
+ */
+ 
+ 	def compileVersion1() {
+ 		var version = aresAccessor.getTextVersion1
+ 		if (version.length > 0) {
+ 			return compileVersion(version)
+ 		} else {
+ 			return ""
+ 		}
+ 	}
+ 	
+ 	def compileVersion2() {
+ 		var version = aresAccessor.getTextVersion2
+ 		if (version.length > 0) {
+ 			return compileVersion(version)
+ 		} else {
+ 			return ""
+ 		}
+ 	}
+ 	
+ 	def compileVersion(String version)'''
+ 		«IF (version.length > 0)»
+ 			 «IF (aresAccessor.outputType == AlwbConstants.PDF)»
+ 				<fo:inline «XmlFoFormatManager.getStyleFor("versiondesignation")»>«version»</fo:inline>
+ 			«ELSE»
+ 				<span class="versiondesignation">«version»</span>
+ 			«ENDIF»
+ 		«ENDIF»
+ 	'''
+	
 	/**
 	 * Problem: if we are generating HTML, and if we are including media links,
 	 * the links need to become a division placed before the paragraph containing the
@@ -2524,8 +2567,8 @@ class AtemGenerator implements IGenerator {
 		«compileWithHref(hymn)»
 		«ELSE»
 		«IF inTable»«rowOpen»«setRowPrintFlag(true)»«ENDIF»
-		«IF (v1 && l1_On)»«IF inTable»«entryLeftOpen»«ENDIF»«compileParaRoleHymn»«hymn.dsl_Elements.compile»«aresAccessor.getTextVersion»«paraClose»«IF inTable»«entryClose»«ENDIF»«ENDIF»
-		«IF (v2 && l2_On)»«IF inTable»«entryRightOpen»«ENDIF»«compileParaRoleHymn»«hymn.dsl_Elements.compileV2»«aresAccessor.getTextVersion»«paraClose»«IF inTable»«entryClose»«ENDIF»«ENDIF»
+		«IF (v1 && l1_On)»«IF inTable»«entryLeftOpen»«ENDIF»«compileParaRoleHymn»«hymn.dsl_Elements.compile»«compileVersion1»«paraClose»«IF inTable»«entryClose»«ENDIF»«ENDIF»
+		«IF (v2 && l2_On)»«IF inTable»«entryRightOpen»«ENDIF»«compileParaRoleHymn»«hymn.dsl_Elements.compileV2»«compileVersion2»«paraClose»«IF inTable»«entryClose»«ENDIF»«ENDIF»
 		«IF inTable»«rowClose»«ENDIF»
 		«ENDIF»
 		«resetClassForDelimitedFileRow»
@@ -2551,13 +2594,13 @@ class AtemGenerator implements IGenerator {
 		var hrefRowOpen = '''«IF inTable»«rowOpen»«setRowPrintFlag(true)»«ENDIF»'''
 		var l1TdOpen = '''«IF (v1 && l1_On)»«IF inTable»«entryLeftOpen»«ENDIF»«ENDIF»'''
 		var l1TdClose = '''«IF (v1 && l1_On)»«IF inTable»«entryClose»«ENDIF»«ENDIF»'''
-		var l1Para = '''«IF (v1 && l1_On)»«paraRoleHymn»«hymn.dsl_Elements.compile»«aresAccessor.getTextVersion»«paraClose»«ENDIF»'''
+		var l1Para = '''«IF (v1 && l1_On)»«paraRoleHymn»«hymn.dsl_Elements.compile»«compileVersion1»«paraClose»«ENDIF»'''
 		var l1MediaHrefs = aresAccessor.hrefsRow
 		aresAccessor.resetHrefsRow();
 		
 		var l2TdOpen = '''«IF (v2 && l2_On)»«IF inTable»«entryRightOpen»«ENDIF»«ENDIF»'''
 		var l2TdClose = '''«IF (v2 && l2_On)»«IF inTable»«entryClose»«ENDIF»«ENDIF»'''
-		var l2Para = '''«IF (v2 && l2_On)»«paraRoleHymn»«hymn.dsl_Elements.compileV2»«aresAccessor.getTextVersion»«paraClose»«ENDIF»'''
+		var l2Para = '''«IF (v2 && l2_On)»«paraRoleHymn»«hymn.dsl_Elements.compileV2»«compileVersion2»«paraClose»«ENDIF»'''
 		var l2MediaHrefs = aresAccessor.hrefsRow
 		var textRow = 
 			'''
@@ -2634,11 +2677,11 @@ class AtemGenerator implements IGenerator {
  	def compile(Paragraph paragraph, boolean asTable) '''
 		«IF asTable»«IF inTable»«rowOpen»«setRowPrintFlag(true)»«ENDIF»«ENDIF»
 		«IF (v1 && l1_On)»«IF asTable»«IF inTable»«entryLeftOpen»«ENDIF»«ENDIF»«paraRoleOpen»«compileRole(paragraph.dsl_Para_Role?.
-			dsl_Definition_Text)»«roleClose»«paragraph.dsl_Elements.compile»«aresAccessor.getTextVersion»«paraClose»«IF asTable»«IF inTable»«entryClose»«ENDIF»«ENDIF»«ENDIF»
+			dsl_Definition_Text)»«roleClose»«paragraph.dsl_Elements.compile»«compileVersion1»«paraClose»«IF asTable»«IF inTable»«entryClose»«ENDIF»«ENDIF»«ENDIF»
 			«resetClassForDelimitedFileRow»
 		«IF asTable»
 			«IF (v2 && l2_On)»«IF inTable»«entryRightOpen»«ENDIF»«paraRoleOpen»«compileRole(paragraph.dsl_Para_Role?.dsl_Definition_Text)»«roleClose»«paragraph.
-			dsl_Elements.compileV2»«aresAccessor.getTextVersion»«paraClose»«IF inTable»«entryClose»«ENDIF»«ENDIF»
+			dsl_Elements.compileV2»«compileVersion2»«paraClose»«IF inTable»«entryClose»«ENDIF»«ENDIF»
 			«resetClassForDelimitedFileRow»
 			«IF inTable»«rowClose»«ENDIF»
 		«ENDIF»
@@ -2702,8 +2745,8 @@ class AtemGenerator implements IGenerator {
 
 	def compile(Reading reading) '''
 		«IF inTable»«rowOpen»«setRowPrintFlag(true)»«ENDIF»
-		«IF (v1 && l1_On)»«IF inTable»«entryLeftOpen»«ENDIF»«compileParaRoleReading»«reading.dsl_Elements.compile»«aresAccessor.getTextVersion»«paraClose»«IF inTable»«entryClose»«ENDIF»«ENDIF»
-		«IF (v2 && l2_On)»«IF inTable»«entryRightOpen»«ENDIF»«compileParaRoleReading»«reading.dsl_Elements.compileV2»«aresAccessor.getTextVersion»«paraClose»«IF inTable»«entryClose»«ENDIF»«ENDIF»
+		«IF (v1 && l1_On)»«IF inTable»«entryLeftOpen»«ENDIF»«compileParaRoleReading»«reading.dsl_Elements.compile»«compileVersion1»«paraClose»«IF inTable»«entryClose»«ENDIF»«ENDIF»
+		«IF (v2 && l2_On)»«IF inTable»«entryRightOpen»«ENDIF»«compileParaRoleReading»«reading.dsl_Elements.compileV2»«compileVersion2»«paraClose»«IF inTable»«entryClose»«ENDIF»«ENDIF»
 		«IF inTable»«rowClose»«ENDIF»
 	'''
 
@@ -2732,9 +2775,9 @@ class AtemGenerator implements IGenerator {
 	def compile(Verse verse) '''
 		«IF inTable»«rowOpen»«setRowPrintFlag(true)»«ENDIF»
 		«IF (v1 && l1_On)»«IF inTable»«entryLeftOpen»«ENDIF»«compileParaRoleVerse»«verse.
-			dsl_Elements.compile»«aresAccessor.getTextVersion»«paraClose»«IF inTable»«entryClose»«ENDIF»«ENDIF»
+			dsl_Elements.compile»«compileVersion1»«paraClose»«IF inTable»«entryClose»«ENDIF»«ENDIF»
 		«IF (v2 && l2_On)»«IF inTable»«entryRightOpen»«ENDIF»«compileParaRoleVerse»«verse.
-			dsl_Elements.compileV2»«aresAccessor.getTextVersion»«paraClose»«IF inTable»«entryClose»«ENDIF»«ENDIF»
+			dsl_Elements.compileV2»«compileVersion2»«paraClose»«IF inTable»«entryClose»«ENDIF»«ENDIF»
 		«IF inTable»«rowClose»«ENDIF»
 	'''
 
