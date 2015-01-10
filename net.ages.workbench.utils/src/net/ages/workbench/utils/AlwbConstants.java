@@ -82,7 +82,8 @@ public class AlwbConstants {
 	public static final String PREF_BOOLEAN_TMS_JSON_KEY_SET_INCLUDE_FREQUENCIES = "tms.json.key.set.include.frequencies";
 	public static final String PREF_BOOLEAN_MAKE_L1_EDITABLE = "make.editable.html.v1";
 	public static final String PREF_BOOLEAN_MAKE_L2_EDITABLE = "make.editable.html.v2";
-	public static final String PREF_BOOLEAN_DISPLAY_VERSION_OF_TEXT = "display.version.text";
+	public static final String PREF_BOOLEAN_DISPLAY_VERSION_OF_TEXT_V1 = "display.version.text.v1";
+	public static final String PREF_BOOLEAN_DISPLAY_VERSION_OF_TEXT_V2 = "display.version.text.v2";
 	public static final String PREF_STRING_VERSION_PREFIX = "version.prefix";
 	public static final String PREF_STRING_VERSION_SUFFIX = "version.suffix";
 	public static final String PREF_STRING_VERSION_DELIMITER = "version.delimiter";
