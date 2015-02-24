@@ -3015,6 +3015,16 @@ public class ModelAccessor {
 		
 	}
 	
+	/**
+	 * Process request from template to override the 
+	 * movable cycle to a day specified by the creator
+	 * of the template
+	 * @param d
+	 */
+	public void overrideMovableCycleDay(int d) {
+		theDay.overrideMovableCycleDay(d);
+	}
+	
 	private void setLiturgicalDayProperties(LiturgicalDayProperties theDay) {
 		this.theDay = theDay;
 	}
