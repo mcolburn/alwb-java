@@ -45,6 +45,7 @@ import net.ages.workbench.templates.dsl.atem.Info
 import net.ages.workbench.templates.dsl.atem.LDP
 import net.ages.workbench.templates.dsl.atem.LdpType
 import net.ages.workbench.templates.dsl.atem.Lookup
+import net.ages.workbench.templates.dsl.atem.McDay
 import net.ages.workbench.templates.dsl.atem.Media
 import net.ages.workbench.templates.dsl.atem.MCD
 import net.ages.workbench.templates.dsl.atem.MOW
@@ -1412,6 +1413,10 @@ class AtemGenerator implements IGenerator {
 		aresAccessor.setLiturgicalDate(d)
 	}
 	
+	def compile(McDay d) {
+		aresAccessor.overrideMovableCycleDay(d.dsl_Mc_day)
+	}
+	
 	def void resetHeaders() {
 
 		pdfHeaderOddLeft = foNonBreakingSpace
@@ -1452,6 +1457,9 @@ class AtemGenerator implements IGenerator {
 					htmlCommemoration = c.dsl_Commemoration_Elements.compileHeaderFooterFragments
 				}
 				Date: {
+					c.compile
+				}
+				McDay: {
 					c.compile
 				}
 				PageHeaderEven: {
@@ -2219,6 +2227,9 @@ class AtemGenerator implements IGenerator {
 			Hymn: {
 				(e as Hymn).compile
 			}
+			McDay: {
+				(e as McDay).compile
+			}
 			Media: {
 				(e as Media).compile
 			}
@@ -2547,14 +2558,10 @@ class AtemGenerator implements IGenerator {
  		}
  	}
  	
- 	def compileVersion(String version)'''
- 		«IF (version.length > 0)»
- 			 «IF (aresAccessor.outputType == AlwbConstants.PDF)»
- 				<fo:inline «XmlFoFormatManager.getStyleFor("versiondesignation")»>«version»</fo:inline>
- 			«ELSE»
- 				<span class="versiondesignation">«version»</span>
- 			«ENDIF»
- 		«ENDIF»
+ 	/**
+ 	 * Get the version (i.e. translation) info
+ 	 */
+ 	def compileVersion(String version)'''«IF (version.length > 0)»«IF (aresAccessor.outputType == AlwbConstants.PDF)»<fo:inline «XmlFoFormatManager.getStyleFor("versiondesignation")»>«version»</fo:inline>«ELSE»<span class="versiondesignation">«version»</span>«ENDIF»«ENDIF»
  	'''
 	
 	/**
