@@ -567,31 +567,36 @@ public class LiturgicalDayProperties {
 			return dayOfSeason;
 		}
 
-		public void setDayOfSeason(int dayOfSeason) {
+		private void setDayOfSeason(int dayOfSeason) {
 			this.dayOfSeason = dayOfSeason;
 		}
+		
 		private void setDayOfSeason() {
-			// Deal with GregorianCalendar millisecond issue when transitioning into daylight savings
-			if(isTriodion && isPentecostarion) {
+			// 2-24-15 Mac changed if (isTriodion && isPentecostarion) to ||
+			if(isTriodion || isPentecostarion) {
 				// Get difference in milliseconds
 				Long diffMillis = diffMillis(theDay,triodionStartDateThisYear);
 				// Get difference in days, add 1 to be 1-index based instead of zero.
 				dayOfSeason = (int) ( diffMillis / (24*60*60*1000) ) + 1; 
 			}
-/*			
-			else if(isPentecostarion) {
-				// Get difference in milliseconds
-				Long diffMillis = diffMillis(theDay,paschaDateLast);
-				String formattedTheDay = formattedDate(theDay);
-				String formattedPaschaLast = formattedDate(paschaDateLast);
-				// Get difference in days, and 1 to be 1-index based instead of zero.
-				dayOfSeason = (int) ( diffMillis / (24*60*60*1000) ) + 1; 
-			}
-*/
 			else { // movable cycle starts with day 1 of Triodion and continues through the year
 				dayOfSeason = 0;
 			}
 		}	
+		
+		/**
+		 * When the template user sets the movable cycle day using
+		 * Set_mcDay, this method will be called.
+		 * @param d
+		 */
+	    public void overrideMovableCycleDay(int d) {
+	    		setDayOfSeason(d);
+	    		setDaysSinceStartOfLastTriodion(d);
+	    }
+	    
+	    private void setDaysSinceStartOfLastTriodion(int d) {
+	    		daysSinceStartOfTriodion = d;
+	    }
 
 		private void setDaysSinceStartOfLastTriodion() {
 				Long diffMillis = diffMillis(theDay,this.triodionStartDateLast);
