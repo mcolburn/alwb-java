@@ -24,6 +24,7 @@ Head: 'Head' dsl_Head_components+=HeadComponent+ 'End_Head'
 HeadComponent:
 	Commemoration
 	| Date
+	| McDay
 	| PageHeaderEven
 	| PageHeaderOdd
 	| PageFooterEven
@@ -142,6 +143,7 @@ InfoElementType:
 	| Title 
 ;
 Date: 'Set_Date' 'month' dsl_Date_month=INT  'day' dsl_Date_day=INT  ('year' dsl_Date_year=INT)? 'End_Date';
+McDay: 'Set_mcDay' 'day' dsl_Mc_day=INT 'End_mcDay';
 Preface: 'Preface' name=ID dsl_Preface_Elements+=PrefaceElementType* 'End-Preface';
 PrefaceElementType: 
 	  VersionSwitch
@@ -166,6 +168,7 @@ SectionElementType:
 	| Heading2
 	| Heading3
 	| Hymn 
+	| McDay
 	| Media
 	| Paragraph
 	| PassThroughHtml
