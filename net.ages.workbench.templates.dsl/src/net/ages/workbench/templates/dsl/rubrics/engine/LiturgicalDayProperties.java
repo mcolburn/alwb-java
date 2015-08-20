@@ -590,8 +590,15 @@ public class LiturgicalDayProperties {
 		 * @param d
 		 */
 	    public void overrideMovableCycleDay(int d) {
-	    		setDayOfSeason(d);
-	    		setDaysSinceStartOfLastTriodion(d);
+	    		if (d == 0) {
+	    			// zero means reset back to date based calculation
+	    			setDayOfSeason();
+	    			setDaysSinceStartOfLastTriodion();
+	    		} else {
+	    			// override to the specified day
+		    		setDayOfSeason(d);
+		    		setDaysSinceStartOfLastTriodion(d);
+	    		}
 	    }
 	    
 	    private void setDaysSinceStartOfLastTriodion(int d) {
