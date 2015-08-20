@@ -58,6 +58,7 @@ import net.ages.workbench.templates.dsl.atem.Language;
 import net.ages.workbench.templates.dsl.atem.LdpType;
 import net.ages.workbench.templates.dsl.atem.LitBook;
 import net.ages.workbench.templates.dsl.atem.Lookup;
+import net.ages.workbench.templates.dsl.atem.McDay;
 import net.ages.workbench.templates.dsl.atem.Media;
 import net.ages.workbench.templates.dsl.atem.ModeOfWeekSet;
 import net.ages.workbench.templates.dsl.atem.ModeTypes;
@@ -361,6 +362,13 @@ public class AtemPackageImpl extends EPackageImpl implements AtemPackage
    * @generated
    */
   private EClass dateEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass mcDayEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1633,9 +1641,19 @@ public class AtemPackageImpl extends EPackageImpl implements AtemPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getResourceText_Dsl_ResourceText_Media_Off()
+  public EAttribute getResourceText_Dsl_ResourceText_Version()
   {
     return (EAttribute)resourceTextEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getResourceText_Dsl_ResourceText_Media_Off()
+  {
+    return (EAttribute)resourceTextEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -1663,7 +1681,7 @@ public class AtemPackageImpl extends EPackageImpl implements AtemPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getLookup_Dsl_Lookup_Media_Off()
+  public EAttribute getLookup_Dsl_Lookup_Version()
   {
     return (EAttribute)lookupEClass.getEStructuralFeatures().get(1);
   }
@@ -1673,7 +1691,7 @@ public class AtemPackageImpl extends EPackageImpl implements AtemPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getLookup_Dsl_Lookup_Override_Mode_Set()
+  public EAttribute getLookup_Dsl_Lookup_Media_Off()
   {
     return (EAttribute)lookupEClass.getEStructuralFeatures().get(2);
   }
@@ -1683,7 +1701,7 @@ public class AtemPackageImpl extends EPackageImpl implements AtemPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getLookup_Dsl_Lookup_OverrideMode()
+  public EAttribute getLookup_Dsl_Lookup_Override_Mode_Set()
   {
     return (EAttribute)lookupEClass.getEStructuralFeatures().get(3);
   }
@@ -1693,7 +1711,7 @@ public class AtemPackageImpl extends EPackageImpl implements AtemPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getLookup_Dsl_Lookup_Override__Day_Set()
+  public EAttribute getLookup_Dsl_Lookup_OverrideMode()
   {
     return (EAttribute)lookupEClass.getEStructuralFeatures().get(4);
   }
@@ -1703,9 +1721,19 @@ public class AtemPackageImpl extends EPackageImpl implements AtemPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getLookup_Dsl_Lookup_OverrideDay()
+  public EAttribute getLookup_Dsl_Lookup_Override__Day_Set()
   {
     return (EAttribute)lookupEClass.getEStructuralFeatures().get(5);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getLookup_Dsl_Lookup_OverrideDay()
+  {
+    return (EAttribute)lookupEClass.getEStructuralFeatures().get(6);
   }
 
   /**
@@ -1836,6 +1864,26 @@ public class AtemPackageImpl extends EPackageImpl implements AtemPackage
   public EAttribute getDate_Dsl_Date_year()
   {
     return (EAttribute)dateEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getMcDay()
+  {
+    return mcDayEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getMcDay_Dsl_McDay_val()
+  {
+    return (EAttribute)mcDayEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -3841,10 +3889,12 @@ public class AtemPackageImpl extends EPackageImpl implements AtemPackage
 
     resourceTextEClass = createEClass(RESOURCE_TEXT);
     createEReference(resourceTextEClass, RESOURCE_TEXT__DSL_RESOURCE_TEXT_REF);
+    createEAttribute(resourceTextEClass, RESOURCE_TEXT__DSL_RESOURCE_TEXT_VERSION);
     createEAttribute(resourceTextEClass, RESOURCE_TEXT__DSL_RESOURCE_TEXT_MEDIA_OFF);
 
     lookupEClass = createEClass(LOOKUP);
     createEReference(lookupEClass, LOOKUP__DSL_RESOURCE_TEXT_REF);
+    createEAttribute(lookupEClass, LOOKUP__DSL_LOOKUP_VERSION);
     createEAttribute(lookupEClass, LOOKUP__DSL_LOOKUP_MEDIA_OFF);
     createEAttribute(lookupEClass, LOOKUP__DSL_LOOKUP_OVERRIDE_MODE_SET);
     createEAttribute(lookupEClass, LOOKUP__DSL_LOOKUP_OVERRIDE_MODE);
@@ -3868,6 +3918,9 @@ public class AtemPackageImpl extends EPackageImpl implements AtemPackage
     createEAttribute(dateEClass, DATE__DSL_DATE_MONTH);
     createEAttribute(dateEClass, DATE__DSL_DATE_DAY);
     createEAttribute(dateEClass, DATE__DSL_DATE_YEAR);
+
+    mcDayEClass = createEClass(MC_DAY);
+    createEAttribute(mcDayEClass, MC_DAY__DSL_MC_DAY_VAL);
 
     prefaceEClass = createEClass(PREFACE);
     createEAttribute(prefaceEClass, PREFACE__NAME);
@@ -4196,6 +4249,8 @@ public class AtemPackageImpl extends EPackageImpl implements AtemPackage
     infoEClass.getESuperTypes().add(this.getAbstractComponent());
     dateEClass.getESuperTypes().add(this.getHeadComponent());
     dateEClass.getESuperTypes().add(this.getSectionElementType());
+    mcDayEClass.getESuperTypes().add(this.getHeadComponent());
+    mcDayEClass.getESuperTypes().add(this.getSectionElementType());
     sectionEClass.getESuperTypes().add(this.getAbstractComponent());
     sectionEClass.getESuperTypes().add(this.getPrefaceElementType());
     sectionEClass.getESuperTypes().add(this.getSectionElementType());
@@ -4385,10 +4440,12 @@ public class AtemPackageImpl extends EPackageImpl implements AtemPackage
 
     initEClass(resourceTextEClass, ResourceText.class, "ResourceText", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getResourceText_Dsl_ResourceTextRef(), theAresPackage.getDefinition(), null, "dsl_ResourceTextRef", null, 0, 1, ResourceText.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getResourceText_Dsl_ResourceText_Version(), ecorePackage.getEBoolean(), "dsl_ResourceText_Version", null, 0, 1, ResourceText.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getResourceText_Dsl_ResourceText_Media_Off(), ecorePackage.getEBoolean(), "dsl_ResourceText_Media_Off", null, 0, 1, ResourceText.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(lookupEClass, Lookup.class, "Lookup", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getLookup_Dsl_ResourceTextRef(), theAresPackage.getDefinition(), null, "dsl_ResourceTextRef", null, 0, 1, Lookup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getLookup_Dsl_Lookup_Version(), ecorePackage.getEBoolean(), "dsl_Lookup_Version", null, 0, 1, Lookup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getLookup_Dsl_Lookup_Media_Off(), ecorePackage.getEBoolean(), "dsl_Lookup_Media_Off", null, 0, 1, Lookup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getLookup_Dsl_Lookup_Override_Mode_Set(), ecorePackage.getEBoolean(), "dsl_Lookup_Override_Mode_Set", null, 0, 1, Lookup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getLookup_Dsl_Lookup_OverrideMode(), this.getModeTypes(), "dsl_Lookup_OverrideMode", null, 0, 1, Lookup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -4412,6 +4469,9 @@ public class AtemPackageImpl extends EPackageImpl implements AtemPackage
     initEAttribute(getDate_Dsl_Date_month(), ecorePackage.getEInt(), "dsl_Date_month", null, 0, 1, Date.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getDate_Dsl_Date_day(), ecorePackage.getEInt(), "dsl_Date_day", null, 0, 1, Date.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getDate_Dsl_Date_year(), ecorePackage.getEInt(), "dsl_Date_year", null, 0, 1, Date.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(mcDayEClass, McDay.class, "McDay", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getMcDay_Dsl_McDay_val(), ecorePackage.getEInt(), "dsl_McDay_val", null, 0, 1, McDay.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(prefaceEClass, Preface.class, "Preface", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getPreface_Name(), ecorePackage.getEString(), "name", null, 0, 1, Preface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

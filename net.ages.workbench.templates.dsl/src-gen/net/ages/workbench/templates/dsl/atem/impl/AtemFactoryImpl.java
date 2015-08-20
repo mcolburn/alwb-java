@@ -98,6 +98,7 @@ public class AtemFactoryImpl extends EFactoryImpl implements AtemFactory
       case AtemPackage.INFO: return createInfo();
       case AtemPackage.INFO_ELEMENT_TYPE: return createInfoElementType();
       case AtemPackage.DATE: return createDate();
+      case AtemPackage.MC_DAY: return createMcDay();
       case AtemPackage.PREFACE: return createPreface();
       case AtemPackage.PREFACE_ELEMENT_TYPE: return createPrefaceElementType();
       case AtemPackage.SECTION: return createSection();
@@ -623,6 +624,17 @@ public class AtemFactoryImpl extends EFactoryImpl implements AtemFactory
   {
     DateImpl date = new DateImpl();
     return date;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public McDay createMcDay()
+  {
+    McDayImpl mcDay = new McDayImpl();
+    return mcDay;
   }
 
   /**
