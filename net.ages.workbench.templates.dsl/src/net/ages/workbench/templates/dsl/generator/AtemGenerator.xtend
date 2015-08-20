@@ -136,6 +136,10 @@ import net.ages.workbench.templates.dsl.html.ServiceDayTypeVersionFormat
 import net.ages.workbench.templates.dsl.html.ServiceDay
 import java.util.ArrayList
 import net.ages.workbench.utils.AlwbGeneralUtils
+import org.eclipse.core.resources.IFile
+import org.eclipse.core.resources.IProject
+import org.eclipse.core.resources.ResourcesPlugin
+import org.eclipse.core.runtime.Path
 
 class AtemGenerator implements IGenerator {
 	val debugDummyPrint = false
@@ -915,7 +919,12 @@ class AtemGenerator implements IGenerator {
 	}
 
 	def void generateWebsite(Resource resource, IFileSystemAccess fsa) {
-		
+				
+		var	String platformString = resource.getURI().toPlatformString(true);
+		var	IFile myFile = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(platformString));
+		var	IProject proj = myFile.getProject();
+		var projLocation = proj.getLocation().toString();
+				
 		if (AlwbGeneralUtils.websiteOnly) {
 			setTagsToHtml
 			resourceUri = resource.URI
@@ -924,7 +933,7 @@ class AtemGenerator implements IGenerator {
 		// copy the CSS, JS, media files
 		var assetsProjectPath = aresAccessor.pathToAssetsProject + "/"
 		var mediaProjectPath = aresAccessor.pathToMediaProject + "/"
-		var targetDirectory = aresAccessor.containingProject(resourceUri) + "/" + "src-gen"  + "/" + htmlWebSite
+		var targetDirectory = projLocation + "/" + "src-gen"  + "/" + htmlWebSite
 
 		if (AlwbGeneralUtils.copyAssets) {
 			if (aresAccessor.copyCss) {
@@ -1414,7 +1423,7 @@ class AtemGenerator implements IGenerator {
 	}
 	
 	def compile(McDay d) {
-		aresAccessor.overrideMovableCycleDay(d.dsl_Mc_day)
+		aresAccessor.overrideMovableCycleDay(d.dsl_McDay_val)
 	}
 	
 	def void resetHeaders() {
@@ -1868,9 +1877,9 @@ class AtemGenerator implements IGenerator {
 		<!-- Dropdown Menu Contents -->
 		<div id="jqm-dropdown-pages" class="jqm-dropdown jqm-dropdown-tip">
 		    <ul class="jqm-dropdown-menu jqm-dropdown-relative">
-				<li><a href="servicesindex.html"><i class="fa fa-calendar">&nbsp;Services</i></a></li>
-			    <li><a href="booksindex.html"><i class="fa fa-arrows">&nbsp;Sacraments</i></a></li>
-			    <li><a href="customindex.html"><i class="fa fa-list-alt">&nbsp;Additional</i></a></li>
+				<li><a href="servicesindex.html"><i class="fa fa-calendar">&nbsp;Daily Services by Date</i></a></li>
+			    <li><a href="booksindex.html"><i class="fa fa-arrows">&nbsp;Sacraments and Services</i></a></li>
+			    <li><a href="customindex.html"><i class="fa fa-list-alt">&nbsp;Additional Texts Music</i></a></li>
 				<li class="jqm-dropdown-divider"></li>
 			    <li><a href="about.html"><i class="fa fa-info-circle">&nbsp;About</i></a></li>
 			    <li><a href="contact.html"><i class="fa fa-envelope">&nbsp;Contact</i></a></li>
@@ -1899,6 +1908,9 @@ class AtemGenerator implements IGenerator {
 				VersionSwitch: {
 					(c as VersionSwitch).compile;
 				}
+				Date: {
+					(c as Date).compile
+				}
 				Dialog: {
 					(c as Dialog).compile
 				}
@@ -1913,6 +1925,9 @@ class AtemGenerator implements IGenerator {
 				}
 				Hymn: {
 					(c as Hymn).compile
+				}
+				McDay: {
+					(c as McDay).compile
 				}
 				Media: {
 					(c as Media).compile
