@@ -23,4 +23,19 @@ public class AlwbResourceUtils {
 		}
 		return result;
 	}
+	
+	/**
+	 * Get the domain part of an ares file name
+	 * @param file
+	 * @return the domain, e.g. en_US_dedes
+	 */
+	public static String getDomainFromAresFile(String file) {
+		String result = "";
+		try {
+			result = getAresFileParts(file)[1];
+		} catch (Exception e) {
+			result = null;
+		}
+		return result;
+	}
 }
