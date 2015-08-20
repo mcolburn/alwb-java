@@ -13,6 +13,7 @@ import net.ages.workbench.resources.dsl.ares.Definition;
  * The following features are supported:
  * <ul>
  *   <li>{@link net.ages.workbench.templates.dsl.atem.Lookup#getDsl_ResourceTextRef <em>Dsl Resource Text Ref</em>}</li>
+ *   <li>{@link net.ages.workbench.templates.dsl.atem.Lookup#isDsl_Lookup_Version <em>Dsl Lookup Version</em>}</li>
  *   <li>{@link net.ages.workbench.templates.dsl.atem.Lookup#isDsl_Lookup_Media_Off <em>Dsl Lookup Media Off</em>}</li>
  *   <li>{@link net.ages.workbench.templates.dsl.atem.Lookup#isDsl_Lookup_Override_Mode_Set <em>Dsl Lookup Override Mode Set</em>}</li>
  *   <li>{@link net.ages.workbench.templates.dsl.atem.Lookup#getDsl_Lookup_OverrideMode <em>Dsl Lookup Override Mode</em>}</li>
@@ -52,6 +53,32 @@ public interface Lookup extends ElementType
    * @generated
    */
   void setDsl_ResourceTextRef(Definition value);
+
+  /**
+   * Returns the value of the '<em><b>Dsl Lookup Version</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Dsl Lookup Version</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Dsl Lookup Version</em>' attribute.
+   * @see #setDsl_Lookup_Version(boolean)
+   * @see net.ages.workbench.templates.dsl.atem.AtemPackage#getLookup_Dsl_Lookup_Version()
+   * @model
+   * @generated
+   */
+  boolean isDsl_Lookup_Version();
+
+  /**
+   * Sets the value of the '{@link net.ages.workbench.templates.dsl.atem.Lookup#isDsl_Lookup_Version <em>Dsl Lookup Version</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Dsl Lookup Version</em>' attribute.
+   * @see #isDsl_Lookup_Version()
+   * @generated
+   */
+  void setDsl_Lookup_Version(boolean value);
 
   /**
    * Returns the value of the '<em><b>Dsl Lookup Media Off</b></em>' attribute.

@@ -320,6 +320,15 @@ public interface AtemFactory extends EFactory
   Date createDate();
 
   /**
+   * Returns a new object of class '<em>Mc Day</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Mc Day</em>'.
+   * @generated
+   */
+  McDay createMcDay();
+
+  /**
    * Returns a new object of class '<em>Preface</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

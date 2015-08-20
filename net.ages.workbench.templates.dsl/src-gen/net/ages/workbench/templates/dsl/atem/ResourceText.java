@@ -13,6 +13,7 @@ import net.ages.workbench.resources.dsl.ares.Definition;
  * The following features are supported:
  * <ul>
  *   <li>{@link net.ages.workbench.templates.dsl.atem.ResourceText#getDsl_ResourceTextRef <em>Dsl Resource Text Ref</em>}</li>
+ *   <li>{@link net.ages.workbench.templates.dsl.atem.ResourceText#isDsl_ResourceText_Version <em>Dsl Resource Text Version</em>}</li>
  *   <li>{@link net.ages.workbench.templates.dsl.atem.ResourceText#isDsl_ResourceText_Media_Off <em>Dsl Resource Text Media Off</em>}</li>
  * </ul>
  * </p>
@@ -48,6 +49,32 @@ public interface ResourceText extends ElementType
    * @generated
    */
   void setDsl_ResourceTextRef(Definition value);
+
+  /**
+   * Returns the value of the '<em><b>Dsl Resource Text Version</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Dsl Resource Text Version</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Dsl Resource Text Version</em>' attribute.
+   * @see #setDsl_ResourceText_Version(boolean)
+   * @see net.ages.workbench.templates.dsl.atem.AtemPackage#getResourceText_Dsl_ResourceText_Version()
+   * @model
+   * @generated
+   */
+  boolean isDsl_ResourceText_Version();
+
+  /**
+   * Sets the value of the '{@link net.ages.workbench.templates.dsl.atem.ResourceText#isDsl_ResourceText_Version <em>Dsl Resource Text Version</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Dsl Resource Text Version</em>' attribute.
+   * @see #isDsl_ResourceText_Version()
+   * @generated
+   */
+  void setDsl_ResourceText_Version(boolean value);
 
   /**
    * Returns the value of the '<em><b>Dsl Resource Text Media Off</b></em>' attribute.
