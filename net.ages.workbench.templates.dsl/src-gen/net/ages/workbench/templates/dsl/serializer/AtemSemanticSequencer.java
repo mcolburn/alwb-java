@@ -48,6 +48,7 @@ import net.ages.workbench.templates.dsl.atem.LitBook;
 import net.ages.workbench.templates.dsl.atem.Lookup;
 import net.ages.workbench.templates.dsl.atem.MCD;
 import net.ages.workbench.templates.dsl.atem.MOW;
+import net.ages.workbench.templates.dsl.atem.McDay;
 import net.ages.workbench.templates.dsl.atem.Media;
 import net.ages.workbench.templates.dsl.atem.ModeOfWeekSet;
 import net.ages.workbench.templates.dsl.atem.NOP;
@@ -441,6 +442,14 @@ public class AtemSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				if(context == grammarAccess.getLdpTypeRule() ||
 				   context == grammarAccess.getMOWRule()) {
 					sequence_MOW(context, (MOW) semanticObject); 
+					return; 
+				}
+				else break;
+			case AtemPackage.MC_DAY:
+				if(context == grammarAccess.getHeadComponentRule() ||
+				   context == grammarAccess.getMcDayRule() ||
+				   context == grammarAccess.getSectionElementTypeRule()) {
+					sequence_McDay(context, (McDay) semanticObject); 
 					return; 
 				}
 				else break;
@@ -1383,6 +1392,7 @@ public class AtemSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 * Constraint:
 	 *     (
 	 *         dsl_ResourceTextRef=[Definition|QualifiedName] 
+	 *         dsl_Lookup_Version?='@ver'? 
 	 *         dsl_Lookup_Media_Off?='media-off'? 
 	 *         (dsl_Lookup_Override_Mode_Set?='@mode' dsl_Lookup_OverrideMode=ModeTypes)? 
 	 *         (dsl_Lookup_Override__Day_Set?='@day' dsl_Lookup_OverrideDay=DowTypes)?
@@ -1421,6 +1431,22 @@ public class AtemSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
 		feeder.accept(grammarAccess.getMOWAccess().getDsl_Display_ModeMode_of_WeekKeyword_0(), semanticObject.isDsl_Display_Mode());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     dsl_McDay_val=INT
+	 */
+	protected void sequence_McDay(EObject context, McDay semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, AtemPackage.Literals.MC_DAY__DSL_MC_DAY_VAL) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AtemPackage.Literals.MC_DAY__DSL_MC_DAY_VAL));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getMcDayAccess().getDsl_McDay_valINTTerminalRuleCall_2_0(), semanticObject.getDsl_McDay_val());
 		feeder.finish();
 	}
 	
@@ -1604,7 +1630,7 @@ public class AtemSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (dsl_ResourceTextRef=[Definition|QualifiedName] dsl_ResourceText_Media_Off?='media-off'?)
+	 *     (dsl_ResourceTextRef=[Definition|QualifiedName] dsl_ResourceText_Version?='@ver'? dsl_ResourceText_Media_Off?='media-off'?)
 	 */
 	protected void sequence_ResourceText(EObject context, ResourceText semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

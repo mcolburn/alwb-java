@@ -240,6 +240,11 @@ public class AtemAdapterFactory extends AdapterFactoryImpl
         return createDateAdapter();
       }
       @Override
+      public Adapter caseMcDay(McDay object)
+      {
+        return createMcDayAdapter();
+      }
+      @Override
       public Adapter casePreface(Preface object)
       {
         return createPrefaceAdapter();
@@ -1137,6 +1142,21 @@ public class AtemAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createDateAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link net.ages.workbench.templates.dsl.atem.McDay <em>Mc Day</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see net.ages.workbench.templates.dsl.atem.McDay
+   * @generated
+   */
+  public Adapter createMcDayAdapter()
   {
     return null;
   }

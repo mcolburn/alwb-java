@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * <ul>
  *   <li>{@link net.ages.workbench.templates.dsl.atem.impl.ResourceTextImpl#getDsl_ResourceTextRef <em>Dsl Resource Text Ref</em>}</li>
+ *   <li>{@link net.ages.workbench.templates.dsl.atem.impl.ResourceTextImpl#isDsl_ResourceText_Version <em>Dsl Resource Text Version</em>}</li>
  *   <li>{@link net.ages.workbench.templates.dsl.atem.impl.ResourceTextImpl#isDsl_ResourceText_Media_Off <em>Dsl Resource Text Media Off</em>}</li>
  * </ul>
  * </p>
@@ -39,6 +40,26 @@ public class ResourceTextImpl extends ElementTypeImpl implements ResourceText
    * @ordered
    */
   protected Definition dsl_ResourceTextRef;
+
+  /**
+   * The default value of the '{@link #isDsl_ResourceText_Version() <em>Dsl Resource Text Version</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isDsl_ResourceText_Version()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean DSL_RESOURCE_TEXT_VERSION_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isDsl_ResourceText_Version() <em>Dsl Resource Text Version</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isDsl_ResourceText_Version()
+   * @generated
+   * @ordered
+   */
+  protected boolean dsl_ResourceText_Version = DSL_RESOURCE_TEXT_VERSION_EDEFAULT;
 
   /**
    * The default value of the '{@link #isDsl_ResourceText_Media_Off() <em>Dsl Resource Text Media Off</em>}' attribute.
@@ -129,6 +150,29 @@ public class ResourceTextImpl extends ElementTypeImpl implements ResourceText
    * <!-- end-user-doc -->
    * @generated
    */
+  public boolean isDsl_ResourceText_Version()
+  {
+    return dsl_ResourceText_Version;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setDsl_ResourceText_Version(boolean newDsl_ResourceText_Version)
+  {
+    boolean oldDsl_ResourceText_Version = dsl_ResourceText_Version;
+    dsl_ResourceText_Version = newDsl_ResourceText_Version;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, AtemPackage.RESOURCE_TEXT__DSL_RESOURCE_TEXT_VERSION, oldDsl_ResourceText_Version, dsl_ResourceText_Version));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public boolean isDsl_ResourceText_Media_Off()
   {
     return dsl_ResourceText_Media_Off;
@@ -160,6 +204,8 @@ public class ResourceTextImpl extends ElementTypeImpl implements ResourceText
       case AtemPackage.RESOURCE_TEXT__DSL_RESOURCE_TEXT_REF:
         if (resolve) return getDsl_ResourceTextRef();
         return basicGetDsl_ResourceTextRef();
+      case AtemPackage.RESOURCE_TEXT__DSL_RESOURCE_TEXT_VERSION:
+        return isDsl_ResourceText_Version();
       case AtemPackage.RESOURCE_TEXT__DSL_RESOURCE_TEXT_MEDIA_OFF:
         return isDsl_ResourceText_Media_Off();
     }
@@ -178,6 +224,9 @@ public class ResourceTextImpl extends ElementTypeImpl implements ResourceText
     {
       case AtemPackage.RESOURCE_TEXT__DSL_RESOURCE_TEXT_REF:
         setDsl_ResourceTextRef((Definition)newValue);
+        return;
+      case AtemPackage.RESOURCE_TEXT__DSL_RESOURCE_TEXT_VERSION:
+        setDsl_ResourceText_Version((Boolean)newValue);
         return;
       case AtemPackage.RESOURCE_TEXT__DSL_RESOURCE_TEXT_MEDIA_OFF:
         setDsl_ResourceText_Media_Off((Boolean)newValue);
@@ -199,6 +248,9 @@ public class ResourceTextImpl extends ElementTypeImpl implements ResourceText
       case AtemPackage.RESOURCE_TEXT__DSL_RESOURCE_TEXT_REF:
         setDsl_ResourceTextRef((Definition)null);
         return;
+      case AtemPackage.RESOURCE_TEXT__DSL_RESOURCE_TEXT_VERSION:
+        setDsl_ResourceText_Version(DSL_RESOURCE_TEXT_VERSION_EDEFAULT);
+        return;
       case AtemPackage.RESOURCE_TEXT__DSL_RESOURCE_TEXT_MEDIA_OFF:
         setDsl_ResourceText_Media_Off(DSL_RESOURCE_TEXT_MEDIA_OFF_EDEFAULT);
         return;
@@ -218,6 +270,8 @@ public class ResourceTextImpl extends ElementTypeImpl implements ResourceText
     {
       case AtemPackage.RESOURCE_TEXT__DSL_RESOURCE_TEXT_REF:
         return dsl_ResourceTextRef != null;
+      case AtemPackage.RESOURCE_TEXT__DSL_RESOURCE_TEXT_VERSION:
+        return dsl_ResourceText_Version != DSL_RESOURCE_TEXT_VERSION_EDEFAULT;
       case AtemPackage.RESOURCE_TEXT__DSL_RESOURCE_TEXT_MEDIA_OFF:
         return dsl_ResourceText_Media_Off != DSL_RESOURCE_TEXT_MEDIA_OFF_EDEFAULT;
     }
@@ -235,7 +289,9 @@ public class ResourceTextImpl extends ElementTypeImpl implements ResourceText
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (dsl_ResourceText_Media_Off: ");
+    result.append(" (dsl_ResourceText_Version: ");
+    result.append(dsl_ResourceText_Version);
+    result.append(", dsl_ResourceText_Media_Off: ");
     result.append(dsl_ResourceText_Media_Off);
     result.append(')');
     return result.toString();

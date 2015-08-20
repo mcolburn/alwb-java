@@ -132,21 +132,22 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cCommemorationParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cDateParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cPageHeaderEvenParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
-		private final RuleCall cPageHeaderOddParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
-		private final RuleCall cPageFooterEvenParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
-		private final RuleCall cPageFooterOddParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
-		private final RuleCall cPageKeepWithNextParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
-		private final RuleCall cPageNumberParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
-		private final RuleCall cTemplateTitleParserRuleCall_8 = (RuleCall)cAlternatives.eContents().get(8);
+		private final RuleCall cMcDayParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cPageHeaderEvenParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		private final RuleCall cPageHeaderOddParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
+		private final RuleCall cPageFooterEvenParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
+		private final RuleCall cPageFooterOddParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
+		private final RuleCall cPageKeepWithNextParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
+		private final RuleCall cPageNumberParserRuleCall_8 = (RuleCall)cAlternatives.eContents().get(8);
+		private final RuleCall cTemplateTitleParserRuleCall_9 = (RuleCall)cAlternatives.eContents().get(9);
 		
 		//HeadComponent:
-		//	Commemoration | Date | PageHeaderEven | PageHeaderOdd | PageFooterEven | PageFooterOdd | PageKeepWithNext | PageNumber
-		//	| TemplateTitle;
+		//	Commemoration | Date | McDay | PageHeaderEven | PageHeaderOdd | PageFooterEven | PageFooterOdd | PageKeepWithNext |
+		//	PageNumber | TemplateTitle;
 		public ParserRule getRule() { return rule; }
 
-		//Commemoration | Date | PageHeaderEven | PageHeaderOdd | PageFooterEven | PageFooterOdd | PageKeepWithNext | PageNumber |
-		//TemplateTitle
+		//Commemoration | Date | McDay | PageHeaderEven | PageHeaderOdd | PageFooterEven | PageFooterOdd | PageKeepWithNext |
+		//PageNumber | TemplateTitle
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//Commemoration
@@ -155,26 +156,29 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 		//Date
 		public RuleCall getDateParserRuleCall_1() { return cDateParserRuleCall_1; }
 
+		//McDay
+		public RuleCall getMcDayParserRuleCall_2() { return cMcDayParserRuleCall_2; }
+
 		//PageHeaderEven
-		public RuleCall getPageHeaderEvenParserRuleCall_2() { return cPageHeaderEvenParserRuleCall_2; }
+		public RuleCall getPageHeaderEvenParserRuleCall_3() { return cPageHeaderEvenParserRuleCall_3; }
 
 		//PageHeaderOdd
-		public RuleCall getPageHeaderOddParserRuleCall_3() { return cPageHeaderOddParserRuleCall_3; }
+		public RuleCall getPageHeaderOddParserRuleCall_4() { return cPageHeaderOddParserRuleCall_4; }
 
 		//PageFooterEven
-		public RuleCall getPageFooterEvenParserRuleCall_4() { return cPageFooterEvenParserRuleCall_4; }
+		public RuleCall getPageFooterEvenParserRuleCall_5() { return cPageFooterEvenParserRuleCall_5; }
 
 		//PageFooterOdd
-		public RuleCall getPageFooterOddParserRuleCall_5() { return cPageFooterOddParserRuleCall_5; }
+		public RuleCall getPageFooterOddParserRuleCall_6() { return cPageFooterOddParserRuleCall_6; }
 
 		//PageKeepWithNext
-		public RuleCall getPageKeepWithNextParserRuleCall_6() { return cPageKeepWithNextParserRuleCall_6; }
+		public RuleCall getPageKeepWithNextParserRuleCall_7() { return cPageKeepWithNextParserRuleCall_7; }
 
 		//PageNumber
-		public RuleCall getPageNumberParserRuleCall_7() { return cPageNumberParserRuleCall_7; }
+		public RuleCall getPageNumberParserRuleCall_8() { return cPageNumberParserRuleCall_8; }
 
 		//TemplateTitle
-		public RuleCall getTemplateTitleParserRuleCall_8() { return cTemplateTitleParserRuleCall_8; }
+		public RuleCall getTemplateTitleParserRuleCall_9() { return cTemplateTitleParserRuleCall_9; }
 	}
 
 	public class DriverElements extends AbstractParserRuleElementFinder {
@@ -1010,14 +1014,18 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cDsl_ResourceTextRefAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final CrossReference cDsl_ResourceTextRefDefinitionCrossReference_1_0 = (CrossReference)cDsl_ResourceTextRefAssignment_1.eContents().get(0);
 		private final RuleCall cDsl_ResourceTextRefDefinitionQualifiedNameParserRuleCall_1_0_1 = (RuleCall)cDsl_ResourceTextRefDefinitionCrossReference_1_0.eContents().get(1);
-		private final Assignment cDsl_ResourceText_Media_OffAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final Keyword cDsl_ResourceText_Media_OffMediaOffKeyword_2_0 = (Keyword)cDsl_ResourceText_Media_OffAssignment_2.eContents().get(0);
+		private final Assignment cDsl_ResourceText_VersionAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final Keyword cDsl_ResourceText_VersionVerKeyword_2_0 = (Keyword)cDsl_ResourceText_VersionAssignment_2.eContents().get(0);
+		private final Assignment cDsl_ResourceText_Media_OffAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final Keyword cDsl_ResourceText_Media_OffMediaOffKeyword_3_0 = (Keyword)cDsl_ResourceText_Media_OffAssignment_3.eContents().get(0);
 		
 		//ResourceText:
-		//	"sid" dsl_ResourceTextRef=[def::Definition|QualifiedName] dsl_ResourceText_Media_Off?="media-off"?;
+		//	"sid" dsl_ResourceTextRef=[def::Definition|QualifiedName] dsl_ResourceText_Version?="@ver"?
+		//	dsl_ResourceText_Media_Off?="media-off"?;
 		public ParserRule getRule() { return rule; }
 
-		//"sid" dsl_ResourceTextRef=[def::Definition|QualifiedName] dsl_ResourceText_Media_Off?="media-off"?
+		//"sid" dsl_ResourceTextRef=[def::Definition|QualifiedName] dsl_ResourceText_Version?="@ver"?
+		//dsl_ResourceText_Media_Off?="media-off"?
 		public Group getGroup() { return cGroup; }
 
 		//"sid"
@@ -1032,11 +1040,17 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 		//QualifiedName
 		public RuleCall getDsl_ResourceTextRefDefinitionQualifiedNameParserRuleCall_1_0_1() { return cDsl_ResourceTextRefDefinitionQualifiedNameParserRuleCall_1_0_1; }
 
+		//dsl_ResourceText_Version?="@ver"?
+		public Assignment getDsl_ResourceText_VersionAssignment_2() { return cDsl_ResourceText_VersionAssignment_2; }
+
+		//"@ver"
+		public Keyword getDsl_ResourceText_VersionVerKeyword_2_0() { return cDsl_ResourceText_VersionVerKeyword_2_0; }
+
 		//dsl_ResourceText_Media_Off?="media-off"?
-		public Assignment getDsl_ResourceText_Media_OffAssignment_2() { return cDsl_ResourceText_Media_OffAssignment_2; }
+		public Assignment getDsl_ResourceText_Media_OffAssignment_3() { return cDsl_ResourceText_Media_OffAssignment_3; }
 
 		//"media-off"
-		public Keyword getDsl_ResourceText_Media_OffMediaOffKeyword_2_0() { return cDsl_ResourceText_Media_OffMediaOffKeyword_2_0; }
+		public Keyword getDsl_ResourceText_Media_OffMediaOffKeyword_3_0() { return cDsl_ResourceText_Media_OffMediaOffKeyword_3_0; }
 	}
 
 	public class LookupElements extends AbstractParserRuleElementFinder {
@@ -1046,26 +1060,28 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cDsl_ResourceTextRefAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final CrossReference cDsl_ResourceTextRefDefinitionCrossReference_1_0 = (CrossReference)cDsl_ResourceTextRefAssignment_1.eContents().get(0);
 		private final RuleCall cDsl_ResourceTextRefDefinitionQualifiedNameParserRuleCall_1_0_1 = (RuleCall)cDsl_ResourceTextRefDefinitionCrossReference_1_0.eContents().get(1);
-		private final Assignment cDsl_Lookup_Media_OffAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final Keyword cDsl_Lookup_Media_OffMediaOffKeyword_2_0 = (Keyword)cDsl_Lookup_Media_OffAssignment_2.eContents().get(0);
-		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final Assignment cDsl_Lookup_Override_Mode_SetAssignment_3_0 = (Assignment)cGroup_3.eContents().get(0);
-		private final Keyword cDsl_Lookup_Override_Mode_SetModeKeyword_3_0_0 = (Keyword)cDsl_Lookup_Override_Mode_SetAssignment_3_0.eContents().get(0);
-		private final Assignment cDsl_Lookup_OverrideModeAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cDsl_Lookup_OverrideModeModeTypesEnumRuleCall_3_1_0 = (RuleCall)cDsl_Lookup_OverrideModeAssignment_3_1.eContents().get(0);
+		private final Assignment cDsl_Lookup_VersionAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final Keyword cDsl_Lookup_VersionVerKeyword_2_0 = (Keyword)cDsl_Lookup_VersionAssignment_2.eContents().get(0);
+		private final Assignment cDsl_Lookup_Media_OffAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final Keyword cDsl_Lookup_Media_OffMediaOffKeyword_3_0 = (Keyword)cDsl_Lookup_Media_OffAssignment_3.eContents().get(0);
 		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
-		private final Assignment cDsl_Lookup_Override__Day_SetAssignment_4_0 = (Assignment)cGroup_4.eContents().get(0);
-		private final Keyword cDsl_Lookup_Override__Day_SetDayKeyword_4_0_0 = (Keyword)cDsl_Lookup_Override__Day_SetAssignment_4_0.eContents().get(0);
-		private final Assignment cDsl_Lookup_OverrideDayAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
-		private final RuleCall cDsl_Lookup_OverrideDayDowTypesEnumRuleCall_4_1_0 = (RuleCall)cDsl_Lookup_OverrideDayAssignment_4_1.eContents().get(0);
+		private final Assignment cDsl_Lookup_Override_Mode_SetAssignment_4_0 = (Assignment)cGroup_4.eContents().get(0);
+		private final Keyword cDsl_Lookup_Override_Mode_SetModeKeyword_4_0_0 = (Keyword)cDsl_Lookup_Override_Mode_SetAssignment_4_0.eContents().get(0);
+		private final Assignment cDsl_Lookup_OverrideModeAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
+		private final RuleCall cDsl_Lookup_OverrideModeModeTypesEnumRuleCall_4_1_0 = (RuleCall)cDsl_Lookup_OverrideModeAssignment_4_1.eContents().get(0);
+		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
+		private final Assignment cDsl_Lookup_Override__Day_SetAssignment_5_0 = (Assignment)cGroup_5.eContents().get(0);
+		private final Keyword cDsl_Lookup_Override__Day_SetDayKeyword_5_0_0 = (Keyword)cDsl_Lookup_Override__Day_SetAssignment_5_0.eContents().get(0);
+		private final Assignment cDsl_Lookup_OverrideDayAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
+		private final RuleCall cDsl_Lookup_OverrideDayDowTypesEnumRuleCall_5_1_0 = (RuleCall)cDsl_Lookup_OverrideDayAssignment_5_1.eContents().get(0);
 		
 		//Lookup:
-		//	"rid" dsl_ResourceTextRef=[def::Definition|QualifiedName] dsl_Lookup_Media_Off?="media-off"?
-		//	(dsl_Lookup_Override_Mode_Set?="@mode" dsl_Lookup_OverrideMode=ModeTypes)? (dsl_Lookup_Override__Day_Set?="@day"
-		//	dsl_Lookup_OverrideDay=DowTypes)?;
+		//	"rid" dsl_ResourceTextRef=[def::Definition|QualifiedName] dsl_Lookup_Version?="@ver"?
+		//	dsl_Lookup_Media_Off?="media-off"? (dsl_Lookup_Override_Mode_Set?="@mode" dsl_Lookup_OverrideMode=ModeTypes)?
+		//	(dsl_Lookup_Override__Day_Set?="@day" dsl_Lookup_OverrideDay=DowTypes)?;
 		public ParserRule getRule() { return rule; }
 
-		//"rid" dsl_ResourceTextRef=[def::Definition|QualifiedName] dsl_Lookup_Media_Off?="media-off"?
+		//"rid" dsl_ResourceTextRef=[def::Definition|QualifiedName] dsl_Lookup_Version?="@ver"? dsl_Lookup_Media_Off?="media-off"?
 		//(dsl_Lookup_Override_Mode_Set?="@mode" dsl_Lookup_OverrideMode=ModeTypes)? (dsl_Lookup_Override__Day_Set?="@day"
 		//dsl_Lookup_OverrideDay=DowTypes)?
 		public Group getGroup() { return cGroup; }
@@ -1082,41 +1098,47 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 		//QualifiedName
 		public RuleCall getDsl_ResourceTextRefDefinitionQualifiedNameParserRuleCall_1_0_1() { return cDsl_ResourceTextRefDefinitionQualifiedNameParserRuleCall_1_0_1; }
 
+		//dsl_Lookup_Version?="@ver"?
+		public Assignment getDsl_Lookup_VersionAssignment_2() { return cDsl_Lookup_VersionAssignment_2; }
+
+		//"@ver"
+		public Keyword getDsl_Lookup_VersionVerKeyword_2_0() { return cDsl_Lookup_VersionVerKeyword_2_0; }
+
 		//dsl_Lookup_Media_Off?="media-off"?
-		public Assignment getDsl_Lookup_Media_OffAssignment_2() { return cDsl_Lookup_Media_OffAssignment_2; }
+		public Assignment getDsl_Lookup_Media_OffAssignment_3() { return cDsl_Lookup_Media_OffAssignment_3; }
 
 		//"media-off"
-		public Keyword getDsl_Lookup_Media_OffMediaOffKeyword_2_0() { return cDsl_Lookup_Media_OffMediaOffKeyword_2_0; }
+		public Keyword getDsl_Lookup_Media_OffMediaOffKeyword_3_0() { return cDsl_Lookup_Media_OffMediaOffKeyword_3_0; }
 
 		//(dsl_Lookup_Override_Mode_Set?="@mode" dsl_Lookup_OverrideMode=ModeTypes)?
-		public Group getGroup_3() { return cGroup_3; }
-
-		//dsl_Lookup_Override_Mode_Set?="@mode"
-		public Assignment getDsl_Lookup_Override_Mode_SetAssignment_3_0() { return cDsl_Lookup_Override_Mode_SetAssignment_3_0; }
-
-		//"@mode"
-		public Keyword getDsl_Lookup_Override_Mode_SetModeKeyword_3_0_0() { return cDsl_Lookup_Override_Mode_SetModeKeyword_3_0_0; }
-
-		//dsl_Lookup_OverrideMode=ModeTypes
-		public Assignment getDsl_Lookup_OverrideModeAssignment_3_1() { return cDsl_Lookup_OverrideModeAssignment_3_1; }
-
-		//ModeTypes
-		public RuleCall getDsl_Lookup_OverrideModeModeTypesEnumRuleCall_3_1_0() { return cDsl_Lookup_OverrideModeModeTypesEnumRuleCall_3_1_0; }
-
-		//(dsl_Lookup_Override__Day_Set?="@day" dsl_Lookup_OverrideDay=DowTypes)?
 		public Group getGroup_4() { return cGroup_4; }
 
+		//dsl_Lookup_Override_Mode_Set?="@mode"
+		public Assignment getDsl_Lookup_Override_Mode_SetAssignment_4_0() { return cDsl_Lookup_Override_Mode_SetAssignment_4_0; }
+
+		//"@mode"
+		public Keyword getDsl_Lookup_Override_Mode_SetModeKeyword_4_0_0() { return cDsl_Lookup_Override_Mode_SetModeKeyword_4_0_0; }
+
+		//dsl_Lookup_OverrideMode=ModeTypes
+		public Assignment getDsl_Lookup_OverrideModeAssignment_4_1() { return cDsl_Lookup_OverrideModeAssignment_4_1; }
+
+		//ModeTypes
+		public RuleCall getDsl_Lookup_OverrideModeModeTypesEnumRuleCall_4_1_0() { return cDsl_Lookup_OverrideModeModeTypesEnumRuleCall_4_1_0; }
+
+		//(dsl_Lookup_Override__Day_Set?="@day" dsl_Lookup_OverrideDay=DowTypes)?
+		public Group getGroup_5() { return cGroup_5; }
+
 		//dsl_Lookup_Override__Day_Set?="@day"
-		public Assignment getDsl_Lookup_Override__Day_SetAssignment_4_0() { return cDsl_Lookup_Override__Day_SetAssignment_4_0; }
+		public Assignment getDsl_Lookup_Override__Day_SetAssignment_5_0() { return cDsl_Lookup_Override__Day_SetAssignment_5_0; }
 
 		//"@day"
-		public Keyword getDsl_Lookup_Override__Day_SetDayKeyword_4_0_0() { return cDsl_Lookup_Override__Day_SetDayKeyword_4_0_0; }
+		public Keyword getDsl_Lookup_Override__Day_SetDayKeyword_5_0_0() { return cDsl_Lookup_Override__Day_SetDayKeyword_5_0_0; }
 
 		//dsl_Lookup_OverrideDay=DowTypes
-		public Assignment getDsl_Lookup_OverrideDayAssignment_4_1() { return cDsl_Lookup_OverrideDayAssignment_4_1; }
+		public Assignment getDsl_Lookup_OverrideDayAssignment_5_1() { return cDsl_Lookup_OverrideDayAssignment_5_1; }
 
 		//DowTypes
-		public RuleCall getDsl_Lookup_OverrideDayDowTypesEnumRuleCall_4_1_0() { return cDsl_Lookup_OverrideDayDowTypesEnumRuleCall_4_1_0; }
+		public RuleCall getDsl_Lookup_OverrideDayDowTypesEnumRuleCall_5_1_0() { return cDsl_Lookup_OverrideDayDowTypesEnumRuleCall_5_1_0; }
 	}
 
 	public class LDPElements extends AbstractParserRuleElementFinder {
@@ -1315,6 +1337,38 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 		public Keyword getEnd_DateKeyword_6() { return cEnd_DateKeyword_6; }
 	}
 
+	public class McDayElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "McDay");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cSet_mcDayKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cDayKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cDsl_McDay_valAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cDsl_McDay_valINTTerminalRuleCall_2_0 = (RuleCall)cDsl_McDay_valAssignment_2.eContents().get(0);
+		private final Keyword cEnd_mcDayKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		
+		//McDay:
+		//	"Set_mcDay" "day" dsl_McDay_val=INT "End_mcDay";
+		public ParserRule getRule() { return rule; }
+
+		//"Set_mcDay" "day" dsl_McDay_val=INT "End_mcDay"
+		public Group getGroup() { return cGroup; }
+
+		//"Set_mcDay"
+		public Keyword getSet_mcDayKeyword_0() { return cSet_mcDayKeyword_0; }
+
+		//"day"
+		public Keyword getDayKeyword_1() { return cDayKeyword_1; }
+
+		//dsl_McDay_val=INT
+		public Assignment getDsl_McDay_valAssignment_2() { return cDsl_McDay_valAssignment_2; }
+
+		//INT
+		public RuleCall getDsl_McDay_valINTTerminalRuleCall_2_0() { return cDsl_McDay_valINTTerminalRuleCall_2_0; }
+
+		//"End_mcDay"
+		public Keyword getEnd_mcDayKeyword_3() { return cEnd_mcDayKeyword_3; }
+	}
+
 	public class PrefaceElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Preface");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -1465,37 +1519,38 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cHeading2ParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
 		private final RuleCall cHeading3ParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
 		private final RuleCall cHymnParserRuleCall_8 = (RuleCall)cAlternatives.eContents().get(8);
-		private final RuleCall cMediaParserRuleCall_9 = (RuleCall)cAlternatives.eContents().get(9);
-		private final RuleCall cParagraphParserRuleCall_10 = (RuleCall)cAlternatives.eContents().get(10);
-		private final RuleCall cPassThroughHtmlParserRuleCall_11 = (RuleCall)cAlternatives.eContents().get(11);
-		private final RuleCall cPassThroughPdfParserRuleCall_12 = (RuleCall)cAlternatives.eContents().get(12);
-		private final RuleCall cReadingParserRuleCall_13 = (RuleCall)cAlternatives.eContents().get(13);
-		private final RuleCall cRestoreLocaleParserRuleCall_14 = (RuleCall)cAlternatives.eContents().get(14);
-		private final RuleCall cRubricParserRuleCall_15 = (RuleCall)cAlternatives.eContents().get(15);
-		private final RuleCall cSectionParserRuleCall_16 = (RuleCall)cAlternatives.eContents().get(16);
-		private final RuleCall cSectionFragmentParserRuleCall_17 = (RuleCall)cAlternatives.eContents().get(17);
-		private final RuleCall cSetLocaleParserRuleCall_18 = (RuleCall)cAlternatives.eContents().get(18);
-		private final RuleCall cTemplateFragmentParserRuleCall_19 = (RuleCall)cAlternatives.eContents().get(19);
-		private final RuleCall cTitleParserRuleCall_20 = (RuleCall)cAlternatives.eContents().get(20);
-		private final RuleCall cSubTitleParserRuleCall_21 = (RuleCall)cAlternatives.eContents().get(21);
-		private final RuleCall cVerseParserRuleCall_22 = (RuleCall)cAlternatives.eContents().get(22);
-		private final RuleCall cWhenDateParserRuleCall_23 = (RuleCall)cAlternatives.eContents().get(23);
-		private final RuleCall cWhenDayNameParserRuleCall_24 = (RuleCall)cAlternatives.eContents().get(24);
-		private final RuleCall cWhenExistsParserRuleCall_25 = (RuleCall)cAlternatives.eContents().get(25);
-		private final RuleCall cWhenLukanCycleDayParserRuleCall_26 = (RuleCall)cAlternatives.eContents().get(26);
-		private final RuleCall cWhenModeOfWeekParserRuleCall_27 = (RuleCall)cAlternatives.eContents().get(27);
-		private final RuleCall cWhenMovableCycleDayParserRuleCall_28 = (RuleCall)cAlternatives.eContents().get(28);
-		private final RuleCall cWhenPaschaParserRuleCall_29 = (RuleCall)cAlternatives.eContents().get(29);
-		private final RuleCall cWhenPentecostarionDayParserRuleCall_30 = (RuleCall)cAlternatives.eContents().get(30);
-		private final RuleCall cWhenSundayAfterElevationOfCrossDayParserRuleCall_31 = (RuleCall)cAlternatives.eContents().get(31);
-		private final RuleCall cWhenTriodionDayParserRuleCall_32 = (RuleCall)cAlternatives.eContents().get(32);
-		private final RuleCall cWhenSundaysBeforeTriodionParserRuleCall_33 = (RuleCall)cAlternatives.eContents().get(33);
+		private final RuleCall cMcDayParserRuleCall_9 = (RuleCall)cAlternatives.eContents().get(9);
+		private final RuleCall cMediaParserRuleCall_10 = (RuleCall)cAlternatives.eContents().get(10);
+		private final RuleCall cParagraphParserRuleCall_11 = (RuleCall)cAlternatives.eContents().get(11);
+		private final RuleCall cPassThroughHtmlParserRuleCall_12 = (RuleCall)cAlternatives.eContents().get(12);
+		private final RuleCall cPassThroughPdfParserRuleCall_13 = (RuleCall)cAlternatives.eContents().get(13);
+		private final RuleCall cReadingParserRuleCall_14 = (RuleCall)cAlternatives.eContents().get(14);
+		private final RuleCall cRestoreLocaleParserRuleCall_15 = (RuleCall)cAlternatives.eContents().get(15);
+		private final RuleCall cRubricParserRuleCall_16 = (RuleCall)cAlternatives.eContents().get(16);
+		private final RuleCall cSectionParserRuleCall_17 = (RuleCall)cAlternatives.eContents().get(17);
+		private final RuleCall cSectionFragmentParserRuleCall_18 = (RuleCall)cAlternatives.eContents().get(18);
+		private final RuleCall cSetLocaleParserRuleCall_19 = (RuleCall)cAlternatives.eContents().get(19);
+		private final RuleCall cTemplateFragmentParserRuleCall_20 = (RuleCall)cAlternatives.eContents().get(20);
+		private final RuleCall cTitleParserRuleCall_21 = (RuleCall)cAlternatives.eContents().get(21);
+		private final RuleCall cSubTitleParserRuleCall_22 = (RuleCall)cAlternatives.eContents().get(22);
+		private final RuleCall cVerseParserRuleCall_23 = (RuleCall)cAlternatives.eContents().get(23);
+		private final RuleCall cWhenDateParserRuleCall_24 = (RuleCall)cAlternatives.eContents().get(24);
+		private final RuleCall cWhenDayNameParserRuleCall_25 = (RuleCall)cAlternatives.eContents().get(25);
+		private final RuleCall cWhenExistsParserRuleCall_26 = (RuleCall)cAlternatives.eContents().get(26);
+		private final RuleCall cWhenLukanCycleDayParserRuleCall_27 = (RuleCall)cAlternatives.eContents().get(27);
+		private final RuleCall cWhenModeOfWeekParserRuleCall_28 = (RuleCall)cAlternatives.eContents().get(28);
+		private final RuleCall cWhenMovableCycleDayParserRuleCall_29 = (RuleCall)cAlternatives.eContents().get(29);
+		private final RuleCall cWhenPaschaParserRuleCall_30 = (RuleCall)cAlternatives.eContents().get(30);
+		private final RuleCall cWhenPentecostarionDayParserRuleCall_31 = (RuleCall)cAlternatives.eContents().get(31);
+		private final RuleCall cWhenSundayAfterElevationOfCrossDayParserRuleCall_32 = (RuleCall)cAlternatives.eContents().get(32);
+		private final RuleCall cWhenTriodionDayParserRuleCall_33 = (RuleCall)cAlternatives.eContents().get(33);
+		private final RuleCall cWhenSundaysBeforeTriodionParserRuleCall_34 = (RuleCall)cAlternatives.eContents().get(34);
 		
 		//SectionElementType:
 		//	Actor //	| Condition
 		//	//	| Rule 
 		//	//	| WhenCondition
-		//	| Block | Break | Date | Dialog | Heading1 | Heading2 | Heading3 | Hymn | Media | Paragraph | PassThroughHtml |
+		//	| Block | Break | Date | Dialog | Heading1 | Heading2 | Heading3 | Hymn | McDay | Media | Paragraph | PassThroughHtml |
 		//	PassThroughPdf | Reading | RestoreLocale | Rubric | Section | SectionFragment | SetLocale | TemplateFragment | Title |
 		//	SubTitle | Verse | WhenDate | WhenDayName | WhenExists | WhenLukanCycleDay | WhenModeOfWeek | WhenMovableCycleDay |
 		//	WhenPascha | WhenPentecostarionDay | WhenSundayAfterElevationOfCrossDay | WhenTriodionDay | WhenSundaysBeforeTriodion;
@@ -1504,7 +1559,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 		//Actor //	| Condition
 		////	| Rule 
 		////	| WhenCondition
-		//| Block | Break | Date | Dialog | Heading1 | Heading2 | Heading3 | Hymn | Media | Paragraph | PassThroughHtml |
+		//| Block | Break | Date | Dialog | Heading1 | Heading2 | Heading3 | Hymn | McDay | Media | Paragraph | PassThroughHtml |
 		//PassThroughPdf | Reading | RestoreLocale | Rubric | Section | SectionFragment | SetLocale | TemplateFragment | Title |
 		//SubTitle | Verse | WhenDate | WhenDayName | WhenExists | WhenLukanCycleDay | WhenModeOfWeek | WhenMovableCycleDay |
 		//WhenPascha | WhenPentecostarionDay | WhenSundayAfterElevationOfCrossDay | WhenTriodionDay | WhenSundaysBeforeTriodion
@@ -1537,80 +1592,83 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 		//Hymn
 		public RuleCall getHymnParserRuleCall_8() { return cHymnParserRuleCall_8; }
 
+		//McDay
+		public RuleCall getMcDayParserRuleCall_9() { return cMcDayParserRuleCall_9; }
+
 		//Media
-		public RuleCall getMediaParserRuleCall_9() { return cMediaParserRuleCall_9; }
+		public RuleCall getMediaParserRuleCall_10() { return cMediaParserRuleCall_10; }
 
 		//Paragraph
-		public RuleCall getParagraphParserRuleCall_10() { return cParagraphParserRuleCall_10; }
+		public RuleCall getParagraphParserRuleCall_11() { return cParagraphParserRuleCall_11; }
 
 		//PassThroughHtml
-		public RuleCall getPassThroughHtmlParserRuleCall_11() { return cPassThroughHtmlParserRuleCall_11; }
+		public RuleCall getPassThroughHtmlParserRuleCall_12() { return cPassThroughHtmlParserRuleCall_12; }
 
 		//PassThroughPdf
-		public RuleCall getPassThroughPdfParserRuleCall_12() { return cPassThroughPdfParserRuleCall_12; }
+		public RuleCall getPassThroughPdfParserRuleCall_13() { return cPassThroughPdfParserRuleCall_13; }
 
 		//Reading
-		public RuleCall getReadingParserRuleCall_13() { return cReadingParserRuleCall_13; }
+		public RuleCall getReadingParserRuleCall_14() { return cReadingParserRuleCall_14; }
 
 		//RestoreLocale
-		public RuleCall getRestoreLocaleParserRuleCall_14() { return cRestoreLocaleParserRuleCall_14; }
+		public RuleCall getRestoreLocaleParserRuleCall_15() { return cRestoreLocaleParserRuleCall_15; }
 
 		//Rubric
-		public RuleCall getRubricParserRuleCall_15() { return cRubricParserRuleCall_15; }
+		public RuleCall getRubricParserRuleCall_16() { return cRubricParserRuleCall_16; }
 
 		//Section
-		public RuleCall getSectionParserRuleCall_16() { return cSectionParserRuleCall_16; }
+		public RuleCall getSectionParserRuleCall_17() { return cSectionParserRuleCall_17; }
 
 		//SectionFragment
-		public RuleCall getSectionFragmentParserRuleCall_17() { return cSectionFragmentParserRuleCall_17; }
+		public RuleCall getSectionFragmentParserRuleCall_18() { return cSectionFragmentParserRuleCall_18; }
 
 		//SetLocale
-		public RuleCall getSetLocaleParserRuleCall_18() { return cSetLocaleParserRuleCall_18; }
+		public RuleCall getSetLocaleParserRuleCall_19() { return cSetLocaleParserRuleCall_19; }
 
 		//TemplateFragment
-		public RuleCall getTemplateFragmentParserRuleCall_19() { return cTemplateFragmentParserRuleCall_19; }
+		public RuleCall getTemplateFragmentParserRuleCall_20() { return cTemplateFragmentParserRuleCall_20; }
 
 		//Title
-		public RuleCall getTitleParserRuleCall_20() { return cTitleParserRuleCall_20; }
+		public RuleCall getTitleParserRuleCall_21() { return cTitleParserRuleCall_21; }
 
 		//SubTitle
-		public RuleCall getSubTitleParserRuleCall_21() { return cSubTitleParserRuleCall_21; }
+		public RuleCall getSubTitleParserRuleCall_22() { return cSubTitleParserRuleCall_22; }
 
 		//Verse
-		public RuleCall getVerseParserRuleCall_22() { return cVerseParserRuleCall_22; }
+		public RuleCall getVerseParserRuleCall_23() { return cVerseParserRuleCall_23; }
 
 		//WhenDate
-		public RuleCall getWhenDateParserRuleCall_23() { return cWhenDateParserRuleCall_23; }
+		public RuleCall getWhenDateParserRuleCall_24() { return cWhenDateParserRuleCall_24; }
 
 		//WhenDayName
-		public RuleCall getWhenDayNameParserRuleCall_24() { return cWhenDayNameParserRuleCall_24; }
+		public RuleCall getWhenDayNameParserRuleCall_25() { return cWhenDayNameParserRuleCall_25; }
 
 		//WhenExists
-		public RuleCall getWhenExistsParserRuleCall_25() { return cWhenExistsParserRuleCall_25; }
+		public RuleCall getWhenExistsParserRuleCall_26() { return cWhenExistsParserRuleCall_26; }
 
 		//WhenLukanCycleDay
-		public RuleCall getWhenLukanCycleDayParserRuleCall_26() { return cWhenLukanCycleDayParserRuleCall_26; }
+		public RuleCall getWhenLukanCycleDayParserRuleCall_27() { return cWhenLukanCycleDayParserRuleCall_27; }
 
 		//WhenModeOfWeek
-		public RuleCall getWhenModeOfWeekParserRuleCall_27() { return cWhenModeOfWeekParserRuleCall_27; }
+		public RuleCall getWhenModeOfWeekParserRuleCall_28() { return cWhenModeOfWeekParserRuleCall_28; }
 
 		//WhenMovableCycleDay
-		public RuleCall getWhenMovableCycleDayParserRuleCall_28() { return cWhenMovableCycleDayParserRuleCall_28; }
+		public RuleCall getWhenMovableCycleDayParserRuleCall_29() { return cWhenMovableCycleDayParserRuleCall_29; }
 
 		//WhenPascha
-		public RuleCall getWhenPaschaParserRuleCall_29() { return cWhenPaschaParserRuleCall_29; }
+		public RuleCall getWhenPaschaParserRuleCall_30() { return cWhenPaschaParserRuleCall_30; }
 
 		//WhenPentecostarionDay
-		public RuleCall getWhenPentecostarionDayParserRuleCall_30() { return cWhenPentecostarionDayParserRuleCall_30; }
+		public RuleCall getWhenPentecostarionDayParserRuleCall_31() { return cWhenPentecostarionDayParserRuleCall_31; }
 
 		//WhenSundayAfterElevationOfCrossDay
-		public RuleCall getWhenSundayAfterElevationOfCrossDayParserRuleCall_31() { return cWhenSundayAfterElevationOfCrossDayParserRuleCall_31; }
+		public RuleCall getWhenSundayAfterElevationOfCrossDayParserRuleCall_32() { return cWhenSundayAfterElevationOfCrossDayParserRuleCall_32; }
 
 		//WhenTriodionDay
-		public RuleCall getWhenTriodionDayParserRuleCall_32() { return cWhenTriodionDayParserRuleCall_32; }
+		public RuleCall getWhenTriodionDayParserRuleCall_33() { return cWhenTriodionDayParserRuleCall_33; }
 
 		//WhenSundaysBeforeTriodion
-		public RuleCall getWhenSundaysBeforeTriodionParserRuleCall_33() { return cWhenSundaysBeforeTriodionParserRuleCall_33; }
+		public RuleCall getWhenSundaysBeforeTriodionParserRuleCall_34() { return cWhenSundaysBeforeTriodionParserRuleCall_34; }
 	}
 
 	public class LdpTypeElements extends AbstractParserRuleElementFinder {
@@ -4746,141 +4804,268 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 		public Keyword getDecDecKeyword_11_0() { return cDecDecKeyword_11_0; }
 	}
 	
-	private AtemModelElements pAtemModel;
-	private HeadElements pHead;
-	private HeadComponentElements pHeadComponent;
-	private DriverElements pDriver;
-	private TemplateTitleElements pTemplateTitle;
-	private PageKeepWithNextElements pPageKeepWithNext;
-	private PageHeaderEvenElements pPageHeaderEven;
-	private PageHeaderOddElements pPageHeaderOdd;
-	private PageFooterEvenElements pPageFooterEven;
-	private PageFooterOddElements pPageFooterOdd;
-	private HeaderFooterColumnElements pHeaderFooterColumn;
-	private HeaderFooterColumnLeftElements pHeaderFooterColumnLeft;
-	private HeaderFooterColumnCenterElements pHeaderFooterColumnCenter;
-	private HeaderFooterColumnRightElements pHeaderFooterColumnRight;
-	private HeaderFooterFragmentElements pHeaderFooterFragment;
-	private HeaderFooterTextElements pHeaderFooterText;
-	private HeaderFooterDateElements pHeaderFooterDate;
-	private HeaderFooterPageNumberElements pHeaderFooterPageNumber;
-	private HeaderFooterLookupElements pHeaderFooterLookup;
-	private HeaderFooterTitleElements pHeaderFooterTitle;
-	private HeaderFooterCommemorationElements pHeaderFooterCommemoration;
-	private CommemorationElements pCommemoration;
-	private TemplateStatusElements pTemplateStatus;
-	private AbstractComponentElements pAbstractComponent;
-	private QualifiedNameElements pQualifiedName;
-	private QualifiedNameWithWildCardElements pQualifiedNameWithWildCard;
-	private ImportElements pImport;
-	private VersionSwitchElements pVersionSwitch;
-	private VersionSwitchTypeElements unknownRuleVersionSwitchType;
-	private LanguageElements unknownRuleLanguage;
-	private ResourceTextElements pResourceText;
-	private LookupElements pLookup;
-	private LDPElements pLDP;
-	private TaggedTextElements pTaggedText;
-	private InfoElements pInfo;
-	private InfoElementTypeElements pInfoElementType;
-	private DateElements pDate;
-	private PrefaceElements pPreface;
-	private PrefaceElementTypeElements pPrefaceElementType;
-	private SectionElements pSection;
-	private SectionElementTypeElements pSectionElementType;
-	private LdpTypeElements pLdpType;
-	private AllElements pAll;
-	private GenDateElements pGenDate;
-	private GenYearElements pGenYear;
-	private MCDElements pMCD;
-	private MOWElements pMOW;
-	private NOPElements pNOP;
-	private DOMElements pDOM;
-	private DOPElements pDOP;
-	private DOWNElements pDOWN;
-	private DOWTElements pDOWT;
-	private EOWElements pEOW;
-	private SAECElements pSAEC;
-	private SOLElements pSOL;
-	private DOLElements pDOL;
-	private WOLCElements pWOLC;
-	private WDOLCElements pWDOLC;
-	private SBTElements pSBT;
-	private TemplateFragmentElements pTemplateFragment;
-	private PrefaceFragmentElements pPrefaceFragment;
-	private SectionFragmentElements pSectionFragment;
-	private BreakElements pBreak;
-	private BreakTypeElements unknownRuleBreakType;
-	private PageNumberElements pPageNumber;
-	private PassThroughHtmlElements pPassThroughHtml;
-	private PassThroughPdfElements pPassThroughPdf;
-	private TitleElements pTitle;
-	private SubTitleElements pSubTitle;
-	private ParagraphElements pParagraph;
-	private BlockElements pBlock;
-	private HymnElements pHymn;
-	private MediaElements pMedia;
-	private VerseElements pVerse;
-	private ActorElements pActor;
-	private RubricElements pRubric;
-	private DialogElements pDialog;
-	private ReadingElements pReading;
-	private Heading1Elements pHeading1;
-	private Heading2Elements pHeading2;
-	private Heading3Elements pHeading3;
-	private ElementTypeElements pElementType;
-	private AidElements pAid;
-	private VersionElements pVersion;
-	private LitBookElements pLitBook;
-	private SetLocaleElements pSetLocale;
-	private RestoreLocaleElements pRestoreLocale;
-	private TemplateStatusesElements unknownRuleTemplateStatuses;
-	private NullElements unknownRuleNull;
-	private ModeTypesElements unknownRuleModeTypes;
-	private DowTypesElements unknownRuleDowTypes;
-	private BookTypesElements unknownRuleBookTypes;
-	private SeasonsElements unknownRuleSeasons;
-	private DayOfMonthTypesElements unknownRuleDayOfMonthTypes;
-	private WhenDateElements pWhenDate;
-	private WhenDateCaseElements pWhenDateCase;
-	private AbstractDateCaseElements pAbstractDateCase;
-	private DateRangeElements pDateRange;
-	private DateSetElements pDateSet;
-	private WhenDayNameElements pWhenDayName;
-	private WhenDayNameCaseElements pWhenDayNameCase;
-	private AbstractDayNameCaseElements pAbstractDayNameCase;
-	private DayNameRangeElements pDayNameRange;
-	private DayNameSetElements pDayNameSet;
-	private PeriodTypeElements unknownRulePeriodType;
-	private WhenPentecostarionDayElements pWhenPentecostarionDay;
-	private WhenTriodionDayElements pWhenTriodionDay;
-	private WhenMovableCycleDayElements pWhenMovableCycleDay;
-	private WhenSundayAfterElevationOfCrossDayElements pWhenSundayAfterElevationOfCrossDay;
-	private WhenLukanCycleDayElements pWhenLukanCycleDay;
-	private WhenPaschaElements pWhenPascha;
-	private WhenOtherElements pWhenOther;
-	private WhenPeriodCaseElements pWhenPeriodCase;
-	private AbstractDayCaseElements pAbstractDayCase;
-	private DayRangeElements pDayRange;
-	private DaySetElements pDaySet;
-	private WhenModeOfWeekElements pWhenModeOfWeek;
-	private WhenModeOfWeekCaseElements pWhenModeOfWeekCase;
-	private ModeOfWeekSetElements pModeOfWeekSet;
-	private WhenSundaysBeforeTriodionElements pWhenSundaysBeforeTriodion;
-	private SundaysBeforeTriodionCaseElements pSundaysBeforeTriodionCase;
-	private DayOfWeekElements unknownRuleDayOfWeek;
-	private MonthNameElements unknownRuleMonthName;
-	private WhenExistsElements pWhenExists;
-	private WhenExistsCaseElements pWhenExistsCase;
+	private final AtemModelElements pAtemModel;
+	private final HeadElements pHead;
+	private final HeadComponentElements pHeadComponent;
+	private final DriverElements pDriver;
+	private final TemplateTitleElements pTemplateTitle;
+	private final PageKeepWithNextElements pPageKeepWithNext;
+	private final PageHeaderEvenElements pPageHeaderEven;
+	private final PageHeaderOddElements pPageHeaderOdd;
+	private final PageFooterEvenElements pPageFooterEven;
+	private final PageFooterOddElements pPageFooterOdd;
+	private final HeaderFooterColumnElements pHeaderFooterColumn;
+	private final HeaderFooterColumnLeftElements pHeaderFooterColumnLeft;
+	private final HeaderFooterColumnCenterElements pHeaderFooterColumnCenter;
+	private final HeaderFooterColumnRightElements pHeaderFooterColumnRight;
+	private final HeaderFooterFragmentElements pHeaderFooterFragment;
+	private final HeaderFooterTextElements pHeaderFooterText;
+	private final HeaderFooterDateElements pHeaderFooterDate;
+	private final HeaderFooterPageNumberElements pHeaderFooterPageNumber;
+	private final HeaderFooterLookupElements pHeaderFooterLookup;
+	private final HeaderFooterTitleElements pHeaderFooterTitle;
+	private final HeaderFooterCommemorationElements pHeaderFooterCommemoration;
+	private final CommemorationElements pCommemoration;
+	private final TemplateStatusElements pTemplateStatus;
+	private final AbstractComponentElements pAbstractComponent;
+	private final QualifiedNameElements pQualifiedName;
+	private final QualifiedNameWithWildCardElements pQualifiedNameWithWildCard;
+	private final ImportElements pImport;
+	private final VersionSwitchElements pVersionSwitch;
+	private final VersionSwitchTypeElements unknownRuleVersionSwitchType;
+	private final LanguageElements unknownRuleLanguage;
+	private final ResourceTextElements pResourceText;
+	private final LookupElements pLookup;
+	private final LDPElements pLDP;
+	private final TaggedTextElements pTaggedText;
+	private final InfoElements pInfo;
+	private final InfoElementTypeElements pInfoElementType;
+	private final DateElements pDate;
+	private final McDayElements pMcDay;
+	private final PrefaceElements pPreface;
+	private final PrefaceElementTypeElements pPrefaceElementType;
+	private final SectionElements pSection;
+	private final SectionElementTypeElements pSectionElementType;
+	private final LdpTypeElements pLdpType;
+	private final AllElements pAll;
+	private final GenDateElements pGenDate;
+	private final GenYearElements pGenYear;
+	private final MCDElements pMCD;
+	private final MOWElements pMOW;
+	private final NOPElements pNOP;
+	private final DOMElements pDOM;
+	private final DOPElements pDOP;
+	private final DOWNElements pDOWN;
+	private final DOWTElements pDOWT;
+	private final EOWElements pEOW;
+	private final SAECElements pSAEC;
+	private final SOLElements pSOL;
+	private final DOLElements pDOL;
+	private final WOLCElements pWOLC;
+	private final WDOLCElements pWDOLC;
+	private final SBTElements pSBT;
+	private final TemplateFragmentElements pTemplateFragment;
+	private final PrefaceFragmentElements pPrefaceFragment;
+	private final SectionFragmentElements pSectionFragment;
+	private final BreakElements pBreak;
+	private final BreakTypeElements unknownRuleBreakType;
+	private final PageNumberElements pPageNumber;
+	private final PassThroughHtmlElements pPassThroughHtml;
+	private final PassThroughPdfElements pPassThroughPdf;
+	private final TitleElements pTitle;
+	private final SubTitleElements pSubTitle;
+	private final ParagraphElements pParagraph;
+	private final BlockElements pBlock;
+	private final HymnElements pHymn;
+	private final MediaElements pMedia;
+	private final VerseElements pVerse;
+	private final ActorElements pActor;
+	private final RubricElements pRubric;
+	private final DialogElements pDialog;
+	private final ReadingElements pReading;
+	private final Heading1Elements pHeading1;
+	private final Heading2Elements pHeading2;
+	private final Heading3Elements pHeading3;
+	private final ElementTypeElements pElementType;
+	private final AidElements pAid;
+	private final VersionElements pVersion;
+	private final LitBookElements pLitBook;
+	private final SetLocaleElements pSetLocale;
+	private final RestoreLocaleElements pRestoreLocale;
+	private final TemplateStatusesElements unknownRuleTemplateStatuses;
+	private final NullElements unknownRuleNull;
+	private final ModeTypesElements unknownRuleModeTypes;
+	private final DowTypesElements unknownRuleDowTypes;
+	private final BookTypesElements unknownRuleBookTypes;
+	private final SeasonsElements unknownRuleSeasons;
+	private final DayOfMonthTypesElements unknownRuleDayOfMonthTypes;
+	private final WhenDateElements pWhenDate;
+	private final WhenDateCaseElements pWhenDateCase;
+	private final AbstractDateCaseElements pAbstractDateCase;
+	private final DateRangeElements pDateRange;
+	private final DateSetElements pDateSet;
+	private final WhenDayNameElements pWhenDayName;
+	private final WhenDayNameCaseElements pWhenDayNameCase;
+	private final AbstractDayNameCaseElements pAbstractDayNameCase;
+	private final DayNameRangeElements pDayNameRange;
+	private final DayNameSetElements pDayNameSet;
+	private final PeriodTypeElements unknownRulePeriodType;
+	private final WhenPentecostarionDayElements pWhenPentecostarionDay;
+	private final WhenTriodionDayElements pWhenTriodionDay;
+	private final WhenMovableCycleDayElements pWhenMovableCycleDay;
+	private final WhenSundayAfterElevationOfCrossDayElements pWhenSundayAfterElevationOfCrossDay;
+	private final WhenLukanCycleDayElements pWhenLukanCycleDay;
+	private final WhenPaschaElements pWhenPascha;
+	private final WhenOtherElements pWhenOther;
+	private final WhenPeriodCaseElements pWhenPeriodCase;
+	private final AbstractDayCaseElements pAbstractDayCase;
+	private final DayRangeElements pDayRange;
+	private final DaySetElements pDaySet;
+	private final WhenModeOfWeekElements pWhenModeOfWeek;
+	private final WhenModeOfWeekCaseElements pWhenModeOfWeekCase;
+	private final ModeOfWeekSetElements pModeOfWeekSet;
+	private final WhenSundaysBeforeTriodionElements pWhenSundaysBeforeTriodion;
+	private final SundaysBeforeTriodionCaseElements pSundaysBeforeTriodionCase;
+	private final DayOfWeekElements unknownRuleDayOfWeek;
+	private final MonthNameElements unknownRuleMonthName;
+	private final WhenExistsElements pWhenExists;
+	private final WhenExistsCaseElements pWhenExistsCase;
 	
 	private final Grammar grammar;
 
-	private TerminalsGrammarAccess gaTerminals;
+	private final TerminalsGrammarAccess gaTerminals;
 
 	@Inject
 	public AtemGrammarAccess(GrammarProvider grammarProvider,
 		TerminalsGrammarAccess gaTerminals) {
 		this.grammar = internalFindGrammar(grammarProvider);
 		this.gaTerminals = gaTerminals;
+		this.pAtemModel = new AtemModelElements();
+		this.pHead = new HeadElements();
+		this.pHeadComponent = new HeadComponentElements();
+		this.pDriver = new DriverElements();
+		this.pTemplateTitle = new TemplateTitleElements();
+		this.pPageKeepWithNext = new PageKeepWithNextElements();
+		this.pPageHeaderEven = new PageHeaderEvenElements();
+		this.pPageHeaderOdd = new PageHeaderOddElements();
+		this.pPageFooterEven = new PageFooterEvenElements();
+		this.pPageFooterOdd = new PageFooterOddElements();
+		this.pHeaderFooterColumn = new HeaderFooterColumnElements();
+		this.pHeaderFooterColumnLeft = new HeaderFooterColumnLeftElements();
+		this.pHeaderFooterColumnCenter = new HeaderFooterColumnCenterElements();
+		this.pHeaderFooterColumnRight = new HeaderFooterColumnRightElements();
+		this.pHeaderFooterFragment = new HeaderFooterFragmentElements();
+		this.pHeaderFooterText = new HeaderFooterTextElements();
+		this.pHeaderFooterDate = new HeaderFooterDateElements();
+		this.pHeaderFooterPageNumber = new HeaderFooterPageNumberElements();
+		this.pHeaderFooterLookup = new HeaderFooterLookupElements();
+		this.pHeaderFooterTitle = new HeaderFooterTitleElements();
+		this.pHeaderFooterCommemoration = new HeaderFooterCommemorationElements();
+		this.pCommemoration = new CommemorationElements();
+		this.pTemplateStatus = new TemplateStatusElements();
+		this.pAbstractComponent = new AbstractComponentElements();
+		this.pQualifiedName = new QualifiedNameElements();
+		this.pQualifiedNameWithWildCard = new QualifiedNameWithWildCardElements();
+		this.pImport = new ImportElements();
+		this.pVersionSwitch = new VersionSwitchElements();
+		this.unknownRuleVersionSwitchType = new VersionSwitchTypeElements();
+		this.unknownRuleLanguage = new LanguageElements();
+		this.pResourceText = new ResourceTextElements();
+		this.pLookup = new LookupElements();
+		this.pLDP = new LDPElements();
+		this.pTaggedText = new TaggedTextElements();
+		this.pInfo = new InfoElements();
+		this.pInfoElementType = new InfoElementTypeElements();
+		this.pDate = new DateElements();
+		this.pMcDay = new McDayElements();
+		this.pPreface = new PrefaceElements();
+		this.pPrefaceElementType = new PrefaceElementTypeElements();
+		this.pSection = new SectionElements();
+		this.pSectionElementType = new SectionElementTypeElements();
+		this.pLdpType = new LdpTypeElements();
+		this.pAll = new AllElements();
+		this.pGenDate = new GenDateElements();
+		this.pGenYear = new GenYearElements();
+		this.pMCD = new MCDElements();
+		this.pMOW = new MOWElements();
+		this.pNOP = new NOPElements();
+		this.pDOM = new DOMElements();
+		this.pDOP = new DOPElements();
+		this.pDOWN = new DOWNElements();
+		this.pDOWT = new DOWTElements();
+		this.pEOW = new EOWElements();
+		this.pSAEC = new SAECElements();
+		this.pSOL = new SOLElements();
+		this.pDOL = new DOLElements();
+		this.pWOLC = new WOLCElements();
+		this.pWDOLC = new WDOLCElements();
+		this.pSBT = new SBTElements();
+		this.pTemplateFragment = new TemplateFragmentElements();
+		this.pPrefaceFragment = new PrefaceFragmentElements();
+		this.pSectionFragment = new SectionFragmentElements();
+		this.pBreak = new BreakElements();
+		this.unknownRuleBreakType = new BreakTypeElements();
+		this.pPageNumber = new PageNumberElements();
+		this.pPassThroughHtml = new PassThroughHtmlElements();
+		this.pPassThroughPdf = new PassThroughPdfElements();
+		this.pTitle = new TitleElements();
+		this.pSubTitle = new SubTitleElements();
+		this.pParagraph = new ParagraphElements();
+		this.pBlock = new BlockElements();
+		this.pHymn = new HymnElements();
+		this.pMedia = new MediaElements();
+		this.pVerse = new VerseElements();
+		this.pActor = new ActorElements();
+		this.pRubric = new RubricElements();
+		this.pDialog = new DialogElements();
+		this.pReading = new ReadingElements();
+		this.pHeading1 = new Heading1Elements();
+		this.pHeading2 = new Heading2Elements();
+		this.pHeading3 = new Heading3Elements();
+		this.pElementType = new ElementTypeElements();
+		this.pAid = new AidElements();
+		this.pVersion = new VersionElements();
+		this.pLitBook = new LitBookElements();
+		this.pSetLocale = new SetLocaleElements();
+		this.pRestoreLocale = new RestoreLocaleElements();
+		this.unknownRuleTemplateStatuses = new TemplateStatusesElements();
+		this.unknownRuleNull = new NullElements();
+		this.unknownRuleModeTypes = new ModeTypesElements();
+		this.unknownRuleDowTypes = new DowTypesElements();
+		this.unknownRuleBookTypes = new BookTypesElements();
+		this.unknownRuleSeasons = new SeasonsElements();
+		this.unknownRuleDayOfMonthTypes = new DayOfMonthTypesElements();
+		this.pWhenDate = new WhenDateElements();
+		this.pWhenDateCase = new WhenDateCaseElements();
+		this.pAbstractDateCase = new AbstractDateCaseElements();
+		this.pDateRange = new DateRangeElements();
+		this.pDateSet = new DateSetElements();
+		this.pWhenDayName = new WhenDayNameElements();
+		this.pWhenDayNameCase = new WhenDayNameCaseElements();
+		this.pAbstractDayNameCase = new AbstractDayNameCaseElements();
+		this.pDayNameRange = new DayNameRangeElements();
+		this.pDayNameSet = new DayNameSetElements();
+		this.unknownRulePeriodType = new PeriodTypeElements();
+		this.pWhenPentecostarionDay = new WhenPentecostarionDayElements();
+		this.pWhenTriodionDay = new WhenTriodionDayElements();
+		this.pWhenMovableCycleDay = new WhenMovableCycleDayElements();
+		this.pWhenSundayAfterElevationOfCrossDay = new WhenSundayAfterElevationOfCrossDayElements();
+		this.pWhenLukanCycleDay = new WhenLukanCycleDayElements();
+		this.pWhenPascha = new WhenPaschaElements();
+		this.pWhenOther = new WhenOtherElements();
+		this.pWhenPeriodCase = new WhenPeriodCaseElements();
+		this.pAbstractDayCase = new AbstractDayCaseElements();
+		this.pDayRange = new DayRangeElements();
+		this.pDaySet = new DaySetElements();
+		this.pWhenModeOfWeek = new WhenModeOfWeekElements();
+		this.pWhenModeOfWeekCase = new WhenModeOfWeekCaseElements();
+		this.pModeOfWeekSet = new ModeOfWeekSetElements();
+		this.pWhenSundaysBeforeTriodion = new WhenSundaysBeforeTriodionElements();
+		this.pSundaysBeforeTriodionCase = new SundaysBeforeTriodionCaseElements();
+		this.unknownRuleDayOfWeek = new DayOfWeekElements();
+		this.unknownRuleMonthName = new MonthNameElements();
+		this.pWhenExists = new WhenExistsElements();
+		this.pWhenExistsCase = new WhenExistsCaseElements();
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -4917,7 +5102,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//	"Template" name=QualifiedName dsl_Template_Status=TemplateStatus? imports+=Import* dsl_Template_Driver=Driver?
 	//	dsl_Template_head=Head? dsl_Template_preface=Preface? dsl_Template_components+=AbstractComponent* "End-Template";
 	public AtemModelElements getAtemModelAccess() {
-		return (pAtemModel != null) ? pAtemModel : (pAtemModel = new AtemModelElements());
+		return pAtemModel;
 	}
 	
 	public ParserRule getAtemModelRule() {
@@ -4927,7 +5112,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//Head:
 	//	"Head" dsl_Head_components+=HeadComponent+ "End_Head";
 	public HeadElements getHeadAccess() {
-		return (pHead != null) ? pHead : (pHead = new HeadElements());
+		return pHead;
 	}
 	
 	public ParserRule getHeadRule() {
@@ -4935,10 +5120,10 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//HeadComponent:
-	//	Commemoration | Date | PageHeaderEven | PageHeaderOdd | PageFooterEven | PageFooterOdd | PageKeepWithNext | PageNumber
-	//	| TemplateTitle;
+	//	Commemoration | Date | McDay | PageHeaderEven | PageHeaderOdd | PageFooterEven | PageFooterOdd | PageKeepWithNext |
+	//	PageNumber | TemplateTitle;
 	public HeadComponentElements getHeadComponentAccess() {
-		return (pHeadComponent != null) ? pHeadComponent : (pHeadComponent = new HeadComponentElements());
+		return pHeadComponent;
 	}
 	
 	public ParserRule getHeadComponentRule() {
@@ -4949,7 +5134,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//	"Generation_Driver" "Service_Regular_Expression" dsl_Driver_RegEx=STRING ("Service_Status"
 	//	dsl_Driver_Status=TemplateStatuses)? "End_Generation_Driver";
 	public DriverElements getDriverAccess() {
-		return (pDriver != null) ? pDriver : (pDriver = new DriverElements());
+		return pDriver;
 	}
 	
 	public ParserRule getDriverRule() {
@@ -4959,7 +5144,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//TemplateTitle:
 	//	"Template_Title" dsl_TemplateTitle_Elements+=HeaderFooterFragment+ "End_Title";
 	public TemplateTitleElements getTemplateTitleAccess() {
-		return (pTemplateTitle != null) ? pTemplateTitle : (pTemplateTitle = new TemplateTitleElements());
+		return pTemplateTitle;
 	}
 	
 	public ParserRule getTemplateTitleRule() {
@@ -4969,7 +5154,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//PageKeepWithNext:
 	//	"Page_Keep_With_Next" dsl_PageKeepWithNext_value=STRING "End_Page_Keep_With_Next";
 	public PageKeepWithNextElements getPageKeepWithNextAccess() {
-		return (pPageKeepWithNext != null) ? pPageKeepWithNext : (pPageKeepWithNext = new PageKeepWithNextElements());
+		return pPageKeepWithNext;
 	}
 	
 	public ParserRule getPageKeepWithNextRule() {
@@ -4979,7 +5164,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//PageHeaderEven:
 	//	"Page_Header_Even" dsl_PageHeader_columns+=HeaderFooterColumn+ "End_Page_Header_Even";
 	public PageHeaderEvenElements getPageHeaderEvenAccess() {
-		return (pPageHeaderEven != null) ? pPageHeaderEven : (pPageHeaderEven = new PageHeaderEvenElements());
+		return pPageHeaderEven;
 	}
 	
 	public ParserRule getPageHeaderEvenRule() {
@@ -4989,7 +5174,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//PageHeaderOdd:
 	//	"Page_Header_Odd" dsl_PageHeader_columns+=HeaderFooterColumn+ "End_Page_Header_Odd";
 	public PageHeaderOddElements getPageHeaderOddAccess() {
-		return (pPageHeaderOdd != null) ? pPageHeaderOdd : (pPageHeaderOdd = new PageHeaderOddElements());
+		return pPageHeaderOdd;
 	}
 	
 	public ParserRule getPageHeaderOddRule() {
@@ -4999,7 +5184,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//PageFooterEven:
 	//	"Page_Footer_Even" dsl_PageHeader_columns+=HeaderFooterColumn+ "End_Page_Footer_Even";
 	public PageFooterEvenElements getPageFooterEvenAccess() {
-		return (pPageFooterEven != null) ? pPageFooterEven : (pPageFooterEven = new PageFooterEvenElements());
+		return pPageFooterEven;
 	}
 	
 	public ParserRule getPageFooterEvenRule() {
@@ -5009,7 +5194,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//PageFooterOdd:
 	//	"Page_Footer_Odd" dsl_PageHeader_columns+=HeaderFooterColumn+ "End_Page_Footer_Odd";
 	public PageFooterOddElements getPageFooterOddAccess() {
-		return (pPageFooterOdd != null) ? pPageFooterOdd : (pPageFooterOdd = new PageFooterOddElements());
+		return pPageFooterOdd;
 	}
 	
 	public ParserRule getPageFooterOddRule() {
@@ -5019,7 +5204,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//HeaderFooterColumn:
 	//	HeaderFooterColumnLeft | HeaderFooterColumnCenter | HeaderFooterColumnRight;
 	public HeaderFooterColumnElements getHeaderFooterColumnAccess() {
-		return (pHeaderFooterColumn != null) ? pHeaderFooterColumn : (pHeaderFooterColumn = new HeaderFooterColumnElements());
+		return pHeaderFooterColumn;
 	}
 	
 	public ParserRule getHeaderFooterColumnRule() {
@@ -5029,7 +5214,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//HeaderFooterColumnLeft:
 	//	"left" dsl_HeaderFooterColumn_fragments+=HeaderFooterFragment+;
 	public HeaderFooterColumnLeftElements getHeaderFooterColumnLeftAccess() {
-		return (pHeaderFooterColumnLeft != null) ? pHeaderFooterColumnLeft : (pHeaderFooterColumnLeft = new HeaderFooterColumnLeftElements());
+		return pHeaderFooterColumnLeft;
 	}
 	
 	public ParserRule getHeaderFooterColumnLeftRule() {
@@ -5039,7 +5224,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//HeaderFooterColumnCenter:
 	//	"center" dsl_HeaderFooterColumn_fragments+=HeaderFooterFragment+;
 	public HeaderFooterColumnCenterElements getHeaderFooterColumnCenterAccess() {
-		return (pHeaderFooterColumnCenter != null) ? pHeaderFooterColumnCenter : (pHeaderFooterColumnCenter = new HeaderFooterColumnCenterElements());
+		return pHeaderFooterColumnCenter;
 	}
 	
 	public ParserRule getHeaderFooterColumnCenterRule() {
@@ -5049,7 +5234,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//HeaderFooterColumnRight:
 	//	"right" dsl_HeaderFooterColumn_fragments+=HeaderFooterFragment+;
 	public HeaderFooterColumnRightElements getHeaderFooterColumnRightAccess() {
-		return (pHeaderFooterColumnRight != null) ? pHeaderFooterColumnRight : (pHeaderFooterColumnRight = new HeaderFooterColumnRightElements());
+		return pHeaderFooterColumnRight;
 	}
 	
 	public ParserRule getHeaderFooterColumnRightRule() {
@@ -5060,7 +5245,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//	HeaderFooterText | HeaderFooterDate | HeaderFooterPageNumber | HeaderFooterLookup | HeaderFooterTitle |
 	//	HeaderFooterCommemoration;
 	public HeaderFooterFragmentElements getHeaderFooterFragmentAccess() {
-		return (pHeaderFooterFragment != null) ? pHeaderFooterFragment : (pHeaderFooterFragment = new HeaderFooterFragmentElements());
+		return pHeaderFooterFragment;
 	}
 	
 	public ParserRule getHeaderFooterFragmentRule() {
@@ -5070,7 +5255,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//HeaderFooterText:
 	//	"@text" dsl_HeaderFooterText=STRING;
 	public HeaderFooterTextElements getHeaderFooterTextAccess() {
-		return (pHeaderFooterText != null) ? pHeaderFooterText : (pHeaderFooterText = new HeaderFooterTextElements());
+		return pHeaderFooterText;
 	}
 	
 	public ParserRule getHeaderFooterTextRule() {
@@ -5080,7 +5265,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//HeaderFooterDate:
 	//	dsl_HeaderFooterDate?="@date" ("lang" dsl_HeaderFooterDate_Language=Language)?;
 	public HeaderFooterDateElements getHeaderFooterDateAccess() {
-		return (pHeaderFooterDate != null) ? pHeaderFooterDate : (pHeaderFooterDate = new HeaderFooterDateElements());
+		return pHeaderFooterDate;
 	}
 	
 	public ParserRule getHeaderFooterDateRule() {
@@ -5090,7 +5275,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//HeaderFooterPageNumber:
 	//	dsl_HeaderFooterPageNumber?="@pageNbr";
 	public HeaderFooterPageNumberElements getHeaderFooterPageNumberAccess() {
-		return (pHeaderFooterPageNumber != null) ? pHeaderFooterPageNumber : (pHeaderFooterPageNumber = new HeaderFooterPageNumberElements());
+		return pHeaderFooterPageNumber;
 	}
 	
 	public ParserRule getHeaderFooterPageNumberRule() {
@@ -5100,7 +5285,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//HeaderFooterLookup:
 	//	"@lookup" dsl_HeaderFooterLookup_Elements+=ElementType* "lang" dsl_HeaderFooterLookup_Language=Language;
 	public HeaderFooterLookupElements getHeaderFooterLookupAccess() {
-		return (pHeaderFooterLookup != null) ? pHeaderFooterLookup : (pHeaderFooterLookup = new HeaderFooterLookupElements());
+		return pHeaderFooterLookup;
 	}
 	
 	public ParserRule getHeaderFooterLookupRule() {
@@ -5110,7 +5295,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//HeaderFooterTitle:
 	//	dsl_HeaderFooterTitle?="@title";
 	public HeaderFooterTitleElements getHeaderFooterTitleAccess() {
-		return (pHeaderFooterTitle != null) ? pHeaderFooterTitle : (pHeaderFooterTitle = new HeaderFooterTitleElements());
+		return pHeaderFooterTitle;
 	}
 	
 	public ParserRule getHeaderFooterTitleRule() {
@@ -5120,7 +5305,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//HeaderFooterCommemoration:
 	//	dsl_HeaderFooterCommemoration?="@commemoration";
 	public HeaderFooterCommemorationElements getHeaderFooterCommemorationAccess() {
-		return (pHeaderFooterCommemoration != null) ? pHeaderFooterCommemoration : (pHeaderFooterCommemoration = new HeaderFooterCommemorationElements());
+		return pHeaderFooterCommemoration;
 	}
 	
 	public ParserRule getHeaderFooterCommemorationRule() {
@@ -5130,7 +5315,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//Commemoration:
 	//	"Template_Commemoration" dsl_Commemoration_Elements+=HeaderFooterFragment+ "End_Template_Commemoration";
 	public CommemorationElements getCommemorationAccess() {
-		return (pCommemoration != null) ? pCommemoration : (pCommemoration = new CommemorationElements());
+		return pCommemoration;
 	}
 	
 	public ParserRule getCommemorationRule() {
@@ -5140,7 +5325,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//TemplateStatus:
 	//	"Status" dsl_TemplateStatus=TemplateStatuses;
 	public TemplateStatusElements getTemplateStatusAccess() {
-		return (pTemplateStatus != null) ? pTemplateStatus : (pTemplateStatus = new TemplateStatusElements());
+		return pTemplateStatus;
 	}
 	
 	public ParserRule getTemplateStatusRule() {
@@ -5157,7 +5342,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//	WhenLukanCycleDay | WhenModeOfWeek | WhenPascha | WhenMovableCycleDay | WhenPentecostarionDay |
 	//	WhenSundayAfterElevationOfCrossDay | WhenTriodionDay | WhenSundaysBeforeTriodion;
 	public AbstractComponentElements getAbstractComponentAccess() {
-		return (pAbstractComponent != null) ? pAbstractComponent : (pAbstractComponent = new AbstractComponentElements());
+		return pAbstractComponent;
 	}
 	
 	public ParserRule getAbstractComponentRule() {
@@ -5167,7 +5352,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//QualifiedName:
 	//	ID ("." ID)*;
 	public QualifiedNameElements getQualifiedNameAccess() {
-		return (pQualifiedName != null) ? pQualifiedName : (pQualifiedName = new QualifiedNameElements());
+		return pQualifiedName;
 	}
 	
 	public ParserRule getQualifiedNameRule() {
@@ -5177,7 +5362,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//QualifiedNameWithWildCard:
 	//	QualifiedName ".*"?;
 	public QualifiedNameWithWildCardElements getQualifiedNameWithWildCardAccess() {
-		return (pQualifiedNameWithWildCard != null) ? pQualifiedNameWithWildCard : (pQualifiedNameWithWildCard = new QualifiedNameWithWildCardElements());
+		return pQualifiedNameWithWildCard;
 	}
 	
 	public ParserRule getQualifiedNameWithWildCardRule() {
@@ -5187,7 +5372,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//Import:
 	//	"import" importedNamespace=QualifiedNameWithWildCard;
 	public ImportElements getImportAccess() {
-		return (pImport != null) ? pImport : (pImport = new ImportElements());
+		return pImport;
 	}
 	
 	public ParserRule getImportRule() {
@@ -5197,7 +5382,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//VersionSwitch:
 	//	"Switch-Version" dsl_VersionSwitch_flag=VersionSwitchType "End-Switch-Version";
 	public VersionSwitchElements getVersionSwitchAccess() {
-		return (pVersionSwitch != null) ? pVersionSwitch : (pVersionSwitch = new VersionSwitchElements());
+		return pVersionSwitch;
 	}
 	
 	public ParserRule getVersionSwitchRule() {
@@ -5207,7 +5392,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//enum VersionSwitchType:
 	//	L1 | L2 | Both;
 	public VersionSwitchTypeElements getVersionSwitchTypeAccess() {
-		return (unknownRuleVersionSwitchType != null) ? unknownRuleVersionSwitchType : (unknownRuleVersionSwitchType = new VersionSwitchTypeElements());
+		return unknownRuleVersionSwitchType;
 	}
 	
 	public EnumRule getVersionSwitchTypeRule() {
@@ -5217,7 +5402,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//enum Language:
 	//	L1 | L2;
 	public LanguageElements getLanguageAccess() {
-		return (unknownRuleLanguage != null) ? unknownRuleLanguage : (unknownRuleLanguage = new LanguageElements());
+		return unknownRuleLanguage;
 	}
 	
 	public EnumRule getLanguageRule() {
@@ -5225,9 +5410,10 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ResourceText:
-	//	"sid" dsl_ResourceTextRef=[def::Definition|QualifiedName] dsl_ResourceText_Media_Off?="media-off"?;
+	//	"sid" dsl_ResourceTextRef=[def::Definition|QualifiedName] dsl_ResourceText_Version?="@ver"?
+	//	dsl_ResourceText_Media_Off?="media-off"?;
 	public ResourceTextElements getResourceTextAccess() {
-		return (pResourceText != null) ? pResourceText : (pResourceText = new ResourceTextElements());
+		return pResourceText;
 	}
 	
 	public ParserRule getResourceTextRule() {
@@ -5235,11 +5421,11 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Lookup:
-	//	"rid" dsl_ResourceTextRef=[def::Definition|QualifiedName] dsl_Lookup_Media_Off?="media-off"?
-	//	(dsl_Lookup_Override_Mode_Set?="@mode" dsl_Lookup_OverrideMode=ModeTypes)? (dsl_Lookup_Override__Day_Set?="@day"
-	//	dsl_Lookup_OverrideDay=DowTypes)?;
+	//	"rid" dsl_ResourceTextRef=[def::Definition|QualifiedName] dsl_Lookup_Version?="@ver"?
+	//	dsl_Lookup_Media_Off?="media-off"? (dsl_Lookup_Override_Mode_Set?="@mode" dsl_Lookup_OverrideMode=ModeTypes)?
+	//	(dsl_Lookup_Override__Day_Set?="@day" dsl_Lookup_OverrideDay=DowTypes)?;
 	public LookupElements getLookupAccess() {
-		return (pLookup != null) ? pLookup : (pLookup = new LookupElements());
+		return pLookup;
 	}
 	
 	public ParserRule getLookupRule() {
@@ -5249,7 +5435,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//LDP:
 	//	"ldp" dsl_LDP+=LdpType*;
 	public LDPElements getLDPAccess() {
-		return (pLDP != null) ? pLDP : (pLDP = new LDPElements());
+		return pLDP;
 	}
 	
 	public ParserRule getLDPRule() {
@@ -5259,7 +5445,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//TaggedText:
 	//	"<" dsl_TaggedText_tag=[def::Definition|QualifiedName] ">" dsl_TaggedText+=ElementType* "</>";
 	public TaggedTextElements getTaggedTextAccess() {
-		return (pTaggedText != null) ? pTaggedText : (pTaggedText = new TaggedTextElements());
+		return pTaggedText;
 	}
 	
 	public ParserRule getTaggedTextRule() {
@@ -5269,7 +5455,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//Info:
 	//	"Info" name=ID dsl_Info_Elements+=InfoElementType* "End-Info";
 	public InfoElements getInfoAccess() {
-		return (pInfo != null) ? pInfo : (pInfo = new InfoElements());
+		return pInfo;
 	}
 	
 	public ParserRule getInfoRule() {
@@ -5279,7 +5465,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//InfoElementType:
 	//	VersionSwitch | Block | Paragraph | SubTitle | Title;
 	public InfoElementTypeElements getInfoElementTypeAccess() {
-		return (pInfoElementType != null) ? pInfoElementType : (pInfoElementType = new InfoElementTypeElements());
+		return pInfoElementType;
 	}
 	
 	public ParserRule getInfoElementTypeRule() {
@@ -5289,17 +5475,27 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//Date:
 	//	"Set_Date" "month" dsl_Date_month=INT "day" dsl_Date_day=INT ("year" dsl_Date_year=INT)? "End_Date";
 	public DateElements getDateAccess() {
-		return (pDate != null) ? pDate : (pDate = new DateElements());
+		return pDate;
 	}
 	
 	public ParserRule getDateRule() {
 		return getDateAccess().getRule();
 	}
 
+	//McDay:
+	//	"Set_mcDay" "day" dsl_McDay_val=INT "End_mcDay";
+	public McDayElements getMcDayAccess() {
+		return pMcDay;
+	}
+	
+	public ParserRule getMcDayRule() {
+		return getMcDayAccess().getRule();
+	}
+
 	//Preface:
 	//	"Preface" name=ID dsl_Preface_Elements+=PrefaceElementType* "End-Preface";
 	public PrefaceElements getPrefaceAccess() {
-		return (pPreface != null) ? pPreface : (pPreface = new PrefaceElements());
+		return pPreface;
 	}
 	
 	public ParserRule getPrefaceRule() {
@@ -5309,7 +5505,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//PrefaceElementType:
 	//	VersionSwitch | Block | Paragraph | Section | SectionFragment | SubTitle | TemplateFragment | Title;
 	public PrefaceElementTypeElements getPrefaceElementTypeAccess() {
-		return (pPrefaceElementType != null) ? pPrefaceElementType : (pPrefaceElementType = new PrefaceElementTypeElements());
+		return pPrefaceElementType;
 	}
 	
 	public ParserRule getPrefaceElementTypeRule() {
@@ -5320,7 +5516,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//	"Section" name=ID ("role" dsl_Section_Role=[def::Definition|QualifiedName])? dsl_Section_Elements+=SectionElementType*
 	//	"End-Section";
 	public SectionElements getSectionAccess() {
-		return (pSection != null) ? pSection : (pSection = new SectionElements());
+		return pSection;
 	}
 	
 	public ParserRule getSectionRule() {
@@ -5331,12 +5527,12 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//	Actor //	| Condition
 	//	//	| Rule 
 	//	//	| WhenCondition
-	//	| Block | Break | Date | Dialog | Heading1 | Heading2 | Heading3 | Hymn | Media | Paragraph | PassThroughHtml |
+	//	| Block | Break | Date | Dialog | Heading1 | Heading2 | Heading3 | Hymn | McDay | Media | Paragraph | PassThroughHtml |
 	//	PassThroughPdf | Reading | RestoreLocale | Rubric | Section | SectionFragment | SetLocale | TemplateFragment | Title |
 	//	SubTitle | Verse | WhenDate | WhenDayName | WhenExists | WhenLukanCycleDay | WhenModeOfWeek | WhenMovableCycleDay |
 	//	WhenPascha | WhenPentecostarionDay | WhenSundayAfterElevationOfCrossDay | WhenTriodionDay | WhenSundaysBeforeTriodion;
 	public SectionElementTypeElements getSectionElementTypeAccess() {
-		return (pSectionElementType != null) ? pSectionElementType : (pSectionElementType = new SectionElementTypeElements());
+		return pSectionElementType;
 	}
 	
 	public ParserRule getSectionElementTypeRule() {
@@ -5346,7 +5542,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//LdpType:
 	//	DOM | DOWN | DOWT | EOW | All | GenDate | GenYear | MCD | MOW | NOP | DOP | SAEC | SOL | DOL | WOLC | WDOLC | SBT;
 	public LdpTypeElements getLdpTypeAccess() {
-		return (pLdpType != null) ? pLdpType : (pLdpType = new LdpTypeElements());
+		return pLdpType;
 	}
 	
 	public ParserRule getLdpTypeRule() {
@@ -5356,7 +5552,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//All:
 	//	dsl_Display_LiturgicalDayProperties?="@All_Liturgical_Day_Properties";
 	public AllElements getAllAccess() {
-		return (pAll != null) ? pAll : (pAll = new AllElements());
+		return pAll;
 	}
 	
 	public ParserRule getAllRule() {
@@ -5366,7 +5562,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//GenDate:
 	//	dsl_Display_Date?="@Service_Date";
 	public GenDateElements getGenDateAccess() {
-		return (pGenDate != null) ? pGenDate : (pGenDate = new GenDateElements());
+		return pGenDate;
 	}
 	
 	public ParserRule getGenDateRule() {
@@ -5376,7 +5572,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//GenYear:
 	//	dsl_Display_Year?="@Service_Year";
 	public GenYearElements getGenYearAccess() {
-		return (pGenYear != null) ? pGenYear : (pGenYear = new GenYearElements());
+		return pGenYear;
 	}
 	
 	public ParserRule getGenYearRule() {
@@ -5386,7 +5582,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//MCD:
 	//	dsl_MCD_value?="@Day_of_Movable_Cycle";
 	public MCDElements getMCDAccess() {
-		return (pMCD != null) ? pMCD : (pMCD = new MCDElements());
+		return pMCD;
 	}
 	
 	public ParserRule getMCDRule() {
@@ -5396,7 +5592,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//MOW:
 	//	dsl_Display_Mode?="@Mode_of_Week";
 	public MOWElements getMOWAccess() {
-		return (pMOW != null) ? pMOW : (pMOW = new MOWElements());
+		return pMOW;
 	}
 	
 	public ParserRule getMOWRule() {
@@ -5406,7 +5602,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//NOP:
 	//	dsl_Display_Mode?="@Name_of_Period";
 	public NOPElements getNOPAccess() {
-		return (pNOP != null) ? pNOP : (pNOP = new NOPElements());
+		return pNOP;
 	}
 	
 	public ParserRule getNOPRule() {
@@ -5416,7 +5612,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//DOM:
 	//	dsl_Display_Mode?="@Day_of_Month";
 	public DOMElements getDOMAccess() {
-		return (pDOM != null) ? pDOM : (pDOM = new DOMElements());
+		return pDOM;
 	}
 	
 	public ParserRule getDOMRule() {
@@ -5426,7 +5622,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//DOP:
 	//	dsl_Display_Mode?="@Day_of_Period";
 	public DOPElements getDOPAccess() {
-		return (pDOP != null) ? pDOP : (pDOP = new DOPElements());
+		return pDOP;
 	}
 	
 	public ParserRule getDOPRule() {
@@ -5436,7 +5632,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//DOWN:
 	//	dsl_Display_Mode?="@Day_of_Week_As_Number";
 	public DOWNElements getDOWNAccess() {
-		return (pDOWN != null) ? pDOWN : (pDOWN = new DOWNElements());
+		return pDOWN;
 	}
 	
 	public ParserRule getDOWNRule() {
@@ -5446,7 +5642,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//DOWT:
 	//	dsl_Display_Mode?="@Day_of_Week_As_Text";
 	public DOWTElements getDOWTAccess() {
-		return (pDOWT != null) ? pDOWT : (pDOWT = new DOWTElements());
+		return pDOWT;
 	}
 	
 	public ParserRule getDOWTRule() {
@@ -5456,7 +5652,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//EOW:
 	//	dsl_Display_Eothinon?="@Eothinon";
 	public EOWElements getEOWAccess() {
-		return (pEOW != null) ? pEOW : (pEOW = new EOWElements());
+		return pEOW;
 	}
 	
 	public ParserRule getEOWRule() {
@@ -5466,7 +5662,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//SAEC:
 	//	dsl_Display_SundayAfterElevationCross?="@Sunday_After_Elevation_Cross_Date";
 	public SAECElements getSAECAccess() {
-		return (pSAEC != null) ? pSAEC : (pSAEC = new SAECElements());
+		return pSAEC;
 	}
 	
 	public ParserRule getSAECRule() {
@@ -5476,7 +5672,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//SOL:
 	//	dsl_Display_StartLukan?="@Lukan_Cycle_Start_Date";
 	public SOLElements getSOLAccess() {
-		return (pSOL != null) ? pSOL : (pSOL = new SOLElements());
+		return pSOL;
 	}
 	
 	public ParserRule getSOLRule() {
@@ -5486,7 +5682,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//DOL:
 	//	dsl_Display_DayLukan?="@Lukan_Cycle_Elapsed_Days";
 	public DOLElements getDOLAccess() {
-		return (pDOL != null) ? pDOL : (pDOL = new DOLElements());
+		return pDOL;
 	}
 	
 	public ParserRule getDOLRule() {
@@ -5496,7 +5692,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//WOLC:
 	//	dsl_Display_DayLukan?="@Lukan_Cycle_Week";
 	public WOLCElements getWOLCAccess() {
-		return (pWOLC != null) ? pWOLC : (pWOLC = new WOLCElements());
+		return pWOLC;
 	}
 	
 	public ParserRule getWOLCRule() {
@@ -5506,7 +5702,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//WDOLC:
 	//	dsl_Display_DayLukan?="@Lukan_Cycle_Week_Day";
 	public WDOLCElements getWDOLCAccess() {
-		return (pWDOLC != null) ? pWDOLC : (pWDOLC = new WDOLCElements());
+		return pWDOLC;
 	}
 	
 	public ParserRule getWDOLCRule() {
@@ -5516,7 +5712,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//SBT:
 	//	dsl_Display_SundaysBeforeTriodion?="@Sundays_Before_Triodion";
 	public SBTElements getSBTAccess() {
-		return (pSBT != null) ? pSBT : (pSBT = new SBTElements());
+		return pSBT;
 	}
 	
 	public ParserRule getSBTRule() {
@@ -5526,7 +5722,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//TemplateFragment:
 	//	"Insert_template" name=[AtemModel|QualifiedName] "End-Insert";
 	public TemplateFragmentElements getTemplateFragmentAccess() {
-		return (pTemplateFragment != null) ? pTemplateFragment : (pTemplateFragment = new TemplateFragmentElements());
+		return pTemplateFragment;
 	}
 	
 	public ParserRule getTemplateFragmentRule() {
@@ -5536,7 +5732,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//PrefaceFragment:
 	//	"Insert_preface" name=[Preface|QualifiedName] "End-Insert";
 	public PrefaceFragmentElements getPrefaceFragmentAccess() {
-		return (pPrefaceFragment != null) ? pPrefaceFragment : (pPrefaceFragment = new PrefaceFragmentElements());
+		return pPrefaceFragment;
 	}
 	
 	public ParserRule getPrefaceFragmentRule() {
@@ -5546,7 +5742,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//SectionFragment:
 	//	"Insert_section" name=[Section|QualifiedName] "End-Insert";
 	public SectionFragmentElements getSectionFragmentAccess() {
-		return (pSectionFragment != null) ? pSectionFragment : (pSectionFragment = new SectionFragmentElements());
+		return pSectionFragment;
 	}
 	
 	public ParserRule getSectionFragmentRule() {
@@ -5556,7 +5752,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//Break:
 	//	"Break" dsl_break_type=BreakType "End_Break";
 	public BreakElements getBreakAccess() {
-		return (pBreak != null) ? pBreak : (pBreak = new BreakElements());
+		return pBreak;
 	}
 	
 	public ParserRule getBreakRule() {
@@ -5566,7 +5762,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//enum BreakType:
 	//	line | page;
 	public BreakTypeElements getBreakTypeAccess() {
-		return (unknownRuleBreakType != null) ? unknownRuleBreakType : (unknownRuleBreakType = new BreakTypeElements());
+		return unknownRuleBreakType;
 	}
 	
 	public EnumRule getBreakTypeRule() {
@@ -5576,7 +5772,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//PageNumber:
 	//	"Set_Page_Number" dsl_PageNumber_value=INT "End_Set_Page_Number";
 	public PageNumberElements getPageNumberAccess() {
-		return (pPageNumber != null) ? pPageNumber : (pPageNumber = new PageNumberElements());
+		return pPageNumber;
 	}
 	
 	public ParserRule getPageNumberRule() {
@@ -5586,7 +5782,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//PassThroughHtml:
 	//	"Passthrough-Html" dsl_Passthrough_html_text=STRING "END-Passthrough-Html";
 	public PassThroughHtmlElements getPassThroughHtmlAccess() {
-		return (pPassThroughHtml != null) ? pPassThroughHtml : (pPassThroughHtml = new PassThroughHtmlElements());
+		return pPassThroughHtml;
 	}
 	
 	public ParserRule getPassThroughHtmlRule() {
@@ -5596,7 +5792,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//PassThroughPdf:
 	//	"Passthrough-Html" dsl_Passthrough_pdf_text=STRING "END-Passthrough-Pdf";
 	public PassThroughPdfElements getPassThroughPdfAccess() {
-		return (pPassThroughPdf != null) ? pPassThroughPdf : (pPassThroughPdf = new PassThroughPdfElements());
+		return pPassThroughPdf;
 	}
 	
 	public ParserRule getPassThroughPdfRule() {
@@ -5606,7 +5802,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//Title:
 	//	"Title" ("role" dsl_Title_Role=[def::Definition|QualifiedName])? dsl_Elements+=ElementType* "End-Title";
 	public TitleElements getTitleAccess() {
-		return (pTitle != null) ? pTitle : (pTitle = new TitleElements());
+		return pTitle;
 	}
 	
 	public ParserRule getTitleRule() {
@@ -5616,7 +5812,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//SubTitle:
 	//	"Sub-Title" ("role" dsl_SubTitle_Role=[def::Definition|QualifiedName])? dsl_Elements+=ElementType* "End-Sub-Title";
 	public SubTitleElements getSubTitleAccess() {
-		return (pSubTitle != null) ? pSubTitle : (pSubTitle = new SubTitleElements());
+		return pSubTitle;
 	}
 	
 	public ParserRule getSubTitleRule() {
@@ -5626,7 +5822,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//Paragraph:
 	//	"Para" ("role" dsl_Para_Role=[def::Definition|QualifiedName])? dsl_Elements+=ElementType* "End-Para";
 	public ParagraphElements getParagraphAccess() {
-		return (pParagraph != null) ? pParagraph : (pParagraph = new ParagraphElements());
+		return pParagraph;
 	}
 	
 	public ParserRule getParagraphRule() {
@@ -5636,7 +5832,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//Block:
 	//	"bTag" dsl_Block_Role=[def::Definition|QualifiedName] dsl_Elements+=ElementType* "End-bTag";
 	public BlockElements getBlockAccess() {
-		return (pBlock != null) ? pBlock : (pBlock = new BlockElements());
+		return pBlock;
 	}
 	
 	public ParserRule getBlockRule() {
@@ -5646,7 +5842,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//Hymn:
 	//	"Hymn" dsl_Elements+=ElementType* "End-Hymn";
 	public HymnElements getHymnAccess() {
-		return (pHymn != null) ? pHymn : (pHymn = new HymnElements());
+		return pHymn;
 	}
 	
 	public ParserRule getHymnRule() {
@@ -5656,7 +5852,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//Media:
 	//	"Media" dsl_Elements+=ElementType* "End-Media";
 	public MediaElements getMediaAccess() {
-		return (pMedia != null) ? pMedia : (pMedia = new MediaElements());
+		return pMedia;
 	}
 	
 	public ParserRule getMediaRule() {
@@ -5666,7 +5862,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//Verse:
 	//	"Verse" dsl_Elements+=ElementType* "End-Verse";
 	public VerseElements getVerseAccess() {
-		return (pVerse != null) ? pVerse : (pVerse = new VerseElements());
+		return pVerse;
 	}
 	
 	public ParserRule getVerseRule() {
@@ -5676,7 +5872,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//Actor:
 	//	"Actor" dsl_Elements+=ElementType* "End-Actor";
 	public ActorElements getActorAccess() {
-		return (pActor != null) ? pActor : (pActor = new ActorElements());
+		return pActor;
 	}
 	
 	public ParserRule getActorRule() {
@@ -5686,7 +5882,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//Rubric:
 	//	"Rubric" dsl_Elements+=ElementType* "End-Rubric";
 	public RubricElements getRubricAccess() {
-		return (pRubric != null) ? pRubric : (pRubric = new RubricElements());
+		return pRubric;
 	}
 	
 	public ParserRule getRubricRule() {
@@ -5696,7 +5892,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//Dialog:
 	//	"Dialog" dsl_Elements+=ElementType* "End-Dialog";
 	public DialogElements getDialogAccess() {
-		return (pDialog != null) ? pDialog : (pDialog = new DialogElements());
+		return pDialog;
 	}
 	
 	public ParserRule getDialogRule() {
@@ -5706,7 +5902,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//Reading:
 	//	"Reading" dsl_Elements+=ElementType* "End-Reading";
 	public ReadingElements getReadingAccess() {
-		return (pReading != null) ? pReading : (pReading = new ReadingElements());
+		return pReading;
 	}
 	
 	public ParserRule getReadingRule() {
@@ -5716,7 +5912,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//Heading1:
 	//	"Heading_1" dsl_Elements+=ElementType* "End_Heading_1";
 	public Heading1Elements getHeading1Access() {
-		return (pHeading1 != null) ? pHeading1 : (pHeading1 = new Heading1Elements());
+		return pHeading1;
 	}
 	
 	public ParserRule getHeading1Rule() {
@@ -5726,7 +5922,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//Heading2:
 	//	"Heading_2" dsl_Elements+=ElementType* "End_Heading_2";
 	public Heading2Elements getHeading2Access() {
-		return (pHeading2 != null) ? pHeading2 : (pHeading2 = new Heading2Elements());
+		return pHeading2;
 	}
 	
 	public ParserRule getHeading2Rule() {
@@ -5736,7 +5932,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//Heading3:
 	//	"Heading_3" dsl_Elements+=ElementType* "End_Heading_3";
 	public Heading3Elements getHeading3Access() {
-		return (pHeading3 != null) ? pHeading3 : (pHeading3 = new Heading3Elements());
+		return pHeading3;
 	}
 	
 	public ParserRule getHeading3Rule() {
@@ -5746,7 +5942,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//ElementType:
 	//	ResourceText | TaggedText | Lookup | LDP;
 	public ElementTypeElements getElementTypeAccess() {
-		return (pElementType != null) ? pElementType : (pElementType = new ElementTypeElements());
+		return pElementType;
 	}
 	
 	public ParserRule getElementTypeRule() {
@@ -5756,7 +5952,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//Aid:
 	//	"AGES_ID" name=QualifiedName;
 	public AidElements getAidAccess() {
-		return (pAid != null) ? pAid : (pAid = new AidElements());
+		return pAid;
 	}
 	
 	public ParserRule getAidRule() {
@@ -5766,7 +5962,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//Version:
 	//	"Version" name=QualifiedName;
 	public VersionElements getVersionAccess() {
-		return (pVersion != null) ? pVersion : (pVersion = new VersionElements());
+		return pVersion;
 	}
 	
 	public ParserRule getVersionRule() {
@@ -5776,7 +5972,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//LitBook:
 	//	"LiturgicalBook" name=QualifiedName;
 	public LitBookElements getLitBookAccess() {
-		return (pLitBook != null) ? pLitBook : (pLitBook = new LitBookElements());
+		return pLitBook;
 	}
 	
 	public ParserRule getLitBookRule() {
@@ -5786,7 +5982,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//SetLocale:
 	//	"Set_Locale" "locale_1" dsl_SetLocale_V1=STRING "locale_2" dsl_SetLocale_V2=STRING "End_Set_Locale";
 	public SetLocaleElements getSetLocaleAccess() {
-		return (pSetLocale != null) ? pSetLocale : (pSetLocale = new SetLocaleElements());
+		return pSetLocale;
 	}
 	
 	public ParserRule getSetLocaleRule() {
@@ -5796,7 +5992,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//RestoreLocale:
 	//	dsl_RestoreLocale?="@restoreLocale";
 	public RestoreLocaleElements getRestoreLocaleAccess() {
-		return (pRestoreLocale != null) ? pRestoreLocale : (pRestoreLocale = new RestoreLocaleElements());
+		return pRestoreLocale;
 	}
 	
 	public ParserRule getRestoreLocaleRule() {
@@ -5806,7 +6002,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//enum TemplateStatuses:
 	//	NA | Draft | Review | Final;
 	public TemplateStatusesElements getTemplateStatusesAccess() {
-		return (unknownRuleTemplateStatuses != null) ? unknownRuleTemplateStatuses : (unknownRuleTemplateStatuses = new TemplateStatusesElements());
+		return unknownRuleTemplateStatuses;
 	}
 	
 	public EnumRule getTemplateStatusesRule() {
@@ -5816,7 +6012,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//enum Null:
 	//	null;
 	public NullElements getNullAccess() {
-		return (unknownRuleNull != null) ? unknownRuleNull : (unknownRuleNull = new NullElements());
+		return unknownRuleNull;
 	}
 	
 	public EnumRule getNullRule() {
@@ -5881,7 +6077,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	// * / enum ModeTypes:
 	//	M1 | M2 | M3 | M4 | M5 | M6 | M7 | M8;
 	public ModeTypesElements getModeTypesAccess() {
-		return (unknownRuleModeTypes != null) ? unknownRuleModeTypes : (unknownRuleModeTypes = new ModeTypesElements());
+		return unknownRuleModeTypes;
 	}
 	
 	public EnumRule getModeTypesRule() {
@@ -5891,7 +6087,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//enum DowTypes:
 	//	D1 | D2 | D3 | D4 | D5 | D6 | D7;
 	public DowTypesElements getDowTypesAccess() {
-		return (unknownRuleDowTypes != null) ? unknownRuleDowTypes : (unknownRuleDowTypes = new DowTypesElements());
+		return unknownRuleDowTypes;
 	}
 	
 	public EnumRule getDowTypesRule() {
@@ -5902,7 +6098,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//	Octochechos | Menaion | Euchologion | Pentecostarion | Triodion | Horologion | Eothina | Heirmologion | Katavasias |
 	//	Psalter | Lectionary | Other;
 	public BookTypesElements getBookTypesAccess() {
-		return (unknownRuleBookTypes != null) ? unknownRuleBookTypes : (unknownRuleBookTypes = new BookTypesElements());
+		return unknownRuleBookTypes;
 	}
 	
 	public EnumRule getBookTypesRule() {
@@ -5912,7 +6108,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//enum Seasons:
 	//	Triodion | Pentecostarion | Nativity_Fast | Apostles_Fast | Dormition_Fast;
 	public SeasonsElements getSeasonsAccess() {
-		return (unknownRuleSeasons != null) ? unknownRuleSeasons : (unknownRuleSeasons = new SeasonsElements());
+		return unknownRuleSeasons;
 	}
 	
 	public EnumRule getSeasonsRule() {
@@ -5934,7 +6130,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//	D01 | D02 | D03 | D04 | D05 | D06 | D07 | D08 | D09 | D10 | D11 | D12 | D13 | D14 | D15 | D16 | D17 | D18 | D19 | D20
 	//	| D21 | D22 | D23 | D24 | D25 | D26 | D27 | D28 | D29 | D30 | D31;
 	public DayOfMonthTypesElements getDayOfMonthTypesAccess() {
-		return (unknownRuleDayOfMonthTypes != null) ? unknownRuleDayOfMonthTypes : (unknownRuleDayOfMonthTypes = new DayOfMonthTypesElements());
+		return unknownRuleDayOfMonthTypes;
 	}
 	
 	public EnumRule getDayOfMonthTypesRule() {
@@ -5944,7 +6140,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//WhenDate:
 	//	"when-date-is" dsl_WhenDate_Cases+=WhenDateCase+ dsl_WhenDate_Other=WhenOther? "end-when";
 	public WhenDateElements getWhenDateAccess() {
-		return (pWhenDate != null) ? pWhenDate : (pWhenDate = new WhenDateElements());
+		return pWhenDate;
 	}
 	
 	public ParserRule getWhenDateRule() {
@@ -5955,7 +6151,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//	dsl_WhenDate_Case_Month=MonthName dsl_WhenDateCase_Days=AbstractDateCase "use:"
 	//	dsl_WhenDateCase_True_actions+=AbstractComponent*;
 	public WhenDateCaseElements getWhenDateCaseAccess() {
-		return (pWhenDateCase != null) ? pWhenDateCase : (pWhenDateCase = new WhenDateCaseElements());
+		return pWhenDateCase;
 	}
 	
 	public ParserRule getWhenDateCaseRule() {
@@ -5965,7 +6161,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//AbstractDateCase:
 	//	DateRange | DateSet;
 	public AbstractDateCaseElements getAbstractDateCaseAccess() {
-		return (pAbstractDateCase != null) ? pAbstractDateCase : (pAbstractDateCase = new AbstractDateCaseElements());
+		return pAbstractDateCase;
 	}
 	
 	public ParserRule getAbstractDateCaseRule() {
@@ -5975,7 +6171,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//DateRange:
 	//	dsl_DateRange_from=INT "thru" dsl_DateRange_To=INT;
 	public DateRangeElements getDateRangeAccess() {
-		return (pDateRange != null) ? pDateRange : (pDateRange = new DateRangeElements());
+		return pDateRange;
 	}
 	
 	public ParserRule getDateRangeRule() {
@@ -5985,7 +6181,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//DateSet:
 	//	dslDateSet_Values+=INT ("," dslDateSet_Values+=INT)*;
 	public DateSetElements getDateSetAccess() {
-		return (pDateSet != null) ? pDateSet : (pDateSet = new DateSetElements());
+		return pDateSet;
 	}
 	
 	public ParserRule getDateSetRule() {
@@ -5995,7 +6191,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//WhenDayName:
 	//	"when-name-of-day-is" dsl_WhenDayName_Cases+=WhenDayNameCase+ dsl_WhenDayName_Other=WhenOther? "end-when";
 	public WhenDayNameElements getWhenDayNameAccess() {
-		return (pWhenDayName != null) ? pWhenDayName : (pWhenDayName = new WhenDayNameElements());
+		return pWhenDayName;
 	}
 	
 	public ParserRule getWhenDayNameRule() {
@@ -6005,7 +6201,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//WhenDayNameCase:
 	//	dsl_WhenDayNameCase_Days=AbstractDayNameCase "use:" dsl_WhenDayNameCase_True_actions+=AbstractComponent*;
 	public WhenDayNameCaseElements getWhenDayNameCaseAccess() {
-		return (pWhenDayNameCase != null) ? pWhenDayNameCase : (pWhenDayNameCase = new WhenDayNameCaseElements());
+		return pWhenDayNameCase;
 	}
 	
 	public ParserRule getWhenDayNameCaseRule() {
@@ -6015,7 +6211,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//AbstractDayNameCase:
 	//	DayNameRange | DayNameSet;
 	public AbstractDayNameCaseElements getAbstractDayNameCaseAccess() {
-		return (pAbstractDayNameCase != null) ? pAbstractDayNameCase : (pAbstractDayNameCase = new AbstractDayNameCaseElements());
+		return pAbstractDayNameCase;
 	}
 	
 	public ParserRule getAbstractDayNameCaseRule() {
@@ -6025,7 +6221,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//DayNameRange:
 	//	dsl_DayNameRange_from=DayOfWeek "thru" dsl_DayNameRange_To=DayOfWeek;
 	public DayNameRangeElements getDayNameRangeAccess() {
-		return (pDayNameRange != null) ? pDayNameRange : (pDayNameRange = new DayNameRangeElements());
+		return pDayNameRange;
 	}
 	
 	public ParserRule getDayNameRangeRule() {
@@ -6035,7 +6231,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//DayNameSet:
 	//	dslDayNameSet_Values+=DayOfWeek ("," dslDayNameSet_Values+=DayOfWeek)*;
 	public DayNameSetElements getDayNameSetAccess() {
-		return (pDayNameSet != null) ? pDayNameSet : (pDayNameSet = new DayNameSetElements());
+		return pDayNameSet;
 	}
 	
 	public ParserRule getDayNameSetRule() {
@@ -6045,7 +6241,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//enum PeriodType:
 	//	pascha | pentecostarion | triodion;
 	public PeriodTypeElements getPeriodTypeAccess() {
-		return (unknownRulePeriodType != null) ? unknownRulePeriodType : (unknownRulePeriodType = new PeriodTypeElements());
+		return unknownRulePeriodType;
 	}
 	
 	public EnumRule getPeriodTypeRule() {
@@ -6056,7 +6252,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//	"when-pentecostarion-day-is" dsl_WhenPentecostarionDay_Cases+=WhenPeriodCase+
 	//	dsl_WhenPentecostarionDay_Other=WhenOther? "end-when";
 	public WhenPentecostarionDayElements getWhenPentecostarionDayAccess() {
-		return (pWhenPentecostarionDay != null) ? pWhenPentecostarionDay : (pWhenPentecostarionDay = new WhenPentecostarionDayElements());
+		return pWhenPentecostarionDay;
 	}
 	
 	public ParserRule getWhenPentecostarionDayRule() {
@@ -6066,7 +6262,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//WhenTriodionDay:
 	//	"when-triodion-day-is" dsl_WhenTriodionDay_Cases+=WhenPeriodCase+ dsl_WhenTriodionDay_Other=WhenOther? "end-when";
 	public WhenTriodionDayElements getWhenTriodionDayAccess() {
-		return (pWhenTriodionDay != null) ? pWhenTriodionDay : (pWhenTriodionDay = new WhenTriodionDayElements());
+		return pWhenTriodionDay;
 	}
 	
 	public ParserRule getWhenTriodionDayRule() {
@@ -6077,7 +6273,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//	"when-movable-cycle-day-is" dsl_WhenMovableCycleDay_Cases+=WhenPeriodCase+ dsl_WhenMovableCycleDay_Other=WhenOther?
 	//	"end-when";
 	public WhenMovableCycleDayElements getWhenMovableCycleDayAccess() {
-		return (pWhenMovableCycleDay != null) ? pWhenMovableCycleDay : (pWhenMovableCycleDay = new WhenMovableCycleDayElements());
+		return pWhenMovableCycleDay;
 	}
 	
 	public ParserRule getWhenMovableCycleDayRule() {
@@ -6088,7 +6284,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//	"when-Sunday-after-Elevation-of-Cross-is" dsl_WhenSundayAfterElevationOfCrossDay_Cases+=WhenDateCase+
 	//	dsl_WhenSundayAfterElevationOfCrossDay_Other=WhenOther? "end-when";
 	public WhenSundayAfterElevationOfCrossDayElements getWhenSundayAfterElevationOfCrossDayAccess() {
-		return (pWhenSundayAfterElevationOfCrossDay != null) ? pWhenSundayAfterElevationOfCrossDay : (pWhenSundayAfterElevationOfCrossDay = new WhenSundayAfterElevationOfCrossDayElements());
+		return pWhenSundayAfterElevationOfCrossDay;
 	}
 	
 	public ParserRule getWhenSundayAfterElevationOfCrossDayRule() {
@@ -6099,7 +6295,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//	"when-Lukan-Cycle-Day-is" dsl_WhenLukanCycleDay_Cases+=WhenPeriodCase+ dsl_WhenLukanCycleDay_Other=WhenOther?
 	//	"end-when";
 	public WhenLukanCycleDayElements getWhenLukanCycleDayAccess() {
-		return (pWhenLukanCycleDay != null) ? pWhenLukanCycleDay : (pWhenLukanCycleDay = new WhenLukanCycleDayElements());
+		return pWhenLukanCycleDay;
 	}
 	
 	public ParserRule getWhenLukanCycleDayRule() {
@@ -6110,7 +6306,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//	"when-pascha use:" dsl_WhenPascha_true_actions+=AbstractComponent* ("otherwise use:"
 	//	dsl_WhenPascha_Other_actions+=AbstractComponent*)? "end-when";
 	public WhenPaschaElements getWhenPaschaAccess() {
-		return (pWhenPascha != null) ? pWhenPascha : (pWhenPascha = new WhenPaschaElements());
+		return pWhenPascha;
 	}
 	
 	public ParserRule getWhenPaschaRule() {
@@ -6120,7 +6316,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//WhenOther:
 	//	"otherwise use:" dsl_WhenCase_Other_actions+=AbstractComponent*;
 	public WhenOtherElements getWhenOtherAccess() {
-		return (pWhenOther != null) ? pWhenOther : (pWhenOther = new WhenOtherElements());
+		return pWhenOther;
 	}
 	
 	public ParserRule getWhenOtherRule() {
@@ -6130,7 +6326,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//WhenPeriodCase:
 	//	dsl_WhenPeriodCase_Days=AbstractDayCase "use:" dsl_WhenPeriodCase_True_actions+=AbstractComponent*;
 	public WhenPeriodCaseElements getWhenPeriodCaseAccess() {
-		return (pWhenPeriodCase != null) ? pWhenPeriodCase : (pWhenPeriodCase = new WhenPeriodCaseElements());
+		return pWhenPeriodCase;
 	}
 	
 	public ParserRule getWhenPeriodCaseRule() {
@@ -6140,7 +6336,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//AbstractDayCase:
 	//	DayRange | DaySet;
 	public AbstractDayCaseElements getAbstractDayCaseAccess() {
-		return (pAbstractDayCase != null) ? pAbstractDayCase : (pAbstractDayCase = new AbstractDayCaseElements());
+		return pAbstractDayCase;
 	}
 	
 	public ParserRule getAbstractDayCaseRule() {
@@ -6150,7 +6346,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//DayRange:
 	//	dsl_DayRange_from=INT "thru" dsl_Range_To=INT;
 	public DayRangeElements getDayRangeAccess() {
-		return (pDayRange != null) ? pDayRange : (pDayRange = new DayRangeElements());
+		return pDayRange;
 	}
 	
 	public ParserRule getDayRangeRule() {
@@ -6160,7 +6356,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//DaySet:
 	//	dslSetValue_Days+=INT ("," dslSetValue_Days+=INT)*;
 	public DaySetElements getDaySetAccess() {
-		return (pDaySet != null) ? pDaySet : (pDaySet = new DaySetElements());
+		return pDaySet;
 	}
 	
 	public ParserRule getDaySetRule() {
@@ -6170,7 +6366,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//WhenModeOfWeek:
 	//	"when-mode-of-week-is" dsl_WhenModeOfWeek_Cases+=WhenModeOfWeekCase+ dsl_WhenModeOfWeek_Other=WhenOther? "end-when";
 	public WhenModeOfWeekElements getWhenModeOfWeekAccess() {
-		return (pWhenModeOfWeek != null) ? pWhenModeOfWeek : (pWhenModeOfWeek = new WhenModeOfWeekElements());
+		return pWhenModeOfWeek;
 	}
 	
 	public ParserRule getWhenModeOfWeekRule() {
@@ -6180,7 +6376,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//WhenModeOfWeekCase:
 	//	dsl_WhenModeOfWeekCase_Days=ModeOfWeekSet "use:" dsl_WhenModeOfWeekCase_True_actions+=AbstractComponent*;
 	public WhenModeOfWeekCaseElements getWhenModeOfWeekCaseAccess() {
-		return (pWhenModeOfWeekCase != null) ? pWhenModeOfWeekCase : (pWhenModeOfWeekCase = new WhenModeOfWeekCaseElements());
+		return pWhenModeOfWeekCase;
 	}
 	
 	public ParserRule getWhenModeOfWeekCaseRule() {
@@ -6190,7 +6386,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//ModeOfWeekSet:
 	//	dsl_ModeOfWeekSet_MOWs+=ModeTypes ("," dsl_ModeOfWeekSet_MOWs+=ModeTypes)*;
 	public ModeOfWeekSetElements getModeOfWeekSetAccess() {
-		return (pModeOfWeekSet != null) ? pModeOfWeekSet : (pModeOfWeekSet = new ModeOfWeekSetElements());
+		return pModeOfWeekSet;
 	}
 	
 	public ParserRule getModeOfWeekSetRule() {
@@ -6201,7 +6397,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//	"when-sundays-before-triodion-is" dsl_WhenSundaysBeforeTriodion_Cases+=SundaysBeforeTriodionCase+
 	//	dsl_SundaysBeforeTriodion_Other=WhenOther? "end-when";
 	public WhenSundaysBeforeTriodionElements getWhenSundaysBeforeTriodionAccess() {
-		return (pWhenSundaysBeforeTriodion != null) ? pWhenSundaysBeforeTriodion : (pWhenSundaysBeforeTriodion = new WhenSundaysBeforeTriodionElements());
+		return pWhenSundaysBeforeTriodion;
 	}
 	
 	public ParserRule getWhenSundaysBeforeTriodionRule() {
@@ -6211,7 +6407,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//SundaysBeforeTriodionCase:
 	//	dsl_SundaysBeforeTriodionCase_Days=INT "use:" dsl_SundaysBeforeTriodionCase_True_actions+=AbstractComponent*;
 	public SundaysBeforeTriodionCaseElements getSundaysBeforeTriodionCaseAccess() {
-		return (pSundaysBeforeTriodionCase != null) ? pSundaysBeforeTriodionCase : (pSundaysBeforeTriodionCase = new SundaysBeforeTriodionCaseElements());
+		return pSundaysBeforeTriodionCase;
 	}
 	
 	public ParserRule getSundaysBeforeTriodionCaseRule() {
@@ -6221,7 +6417,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//enum DayOfWeek:
 	//	Sunday | Monday | Tuesday | Wednesday | Thursday | Friday | Saturday;
 	public DayOfWeekElements getDayOfWeekAccess() {
-		return (unknownRuleDayOfWeek != null) ? unknownRuleDayOfWeek : (unknownRuleDayOfWeek = new DayOfWeekElements());
+		return unknownRuleDayOfWeek;
 	}
 	
 	public EnumRule getDayOfWeekRule() {
@@ -6231,7 +6427,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//enum MonthName:
 	//	Jan | Feb | Mar | Apr | May | Jun | Jul | Aug | Sep | Oct | Nov | Dec;
 	public MonthNameElements getMonthNameAccess() {
-		return (unknownRuleMonthName != null) ? unknownRuleMonthName : (unknownRuleMonthName = new MonthNameElements());
+		return unknownRuleMonthName;
 	}
 	
 	public EnumRule getMonthNameRule() {
@@ -6241,7 +6437,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//WhenExists:
 	//	"when-exists" dsl_WhenExists_Cases+=WhenExistsCase+ dsl_WhenExists_Other=WhenOther? "end-when";
 	public WhenExistsElements getWhenExistsAccess() {
-		return (pWhenExists != null) ? pWhenExists : (pWhenExists = new WhenExistsElements());
+		return pWhenExists;
 	}
 	
 	public ParserRule getWhenExistsRule() {
@@ -6252,7 +6448,7 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	//	"rid" dsl_WhenExistsCase_Ref=[def::Definition|QualifiedName] "use:"
 	//	dsl_WhenExistsCase_True_actions+=AbstractComponent*;
 	public WhenExistsCaseElements getWhenExistsCaseAccess() {
-		return (pWhenExistsCase != null) ? pWhenExistsCase : (pWhenExistsCase = new WhenExistsCaseElements());
+		return pWhenExistsCase;
 	}
 	
 	public ParserRule getWhenExistsCaseRule() {
@@ -6272,8 +6468,8 @@ public class AtemGrammarAccess extends AbstractGrammarElementFinder {
 	} 
 
 	//terminal STRING:
-	//	"\"" ("\\" ("b" | "t" | "n" | "f" | "r" | "u" | "\"" | "\'" | "\\") | !("\\" | "\""))* "\"" | "\'" ("\\" ("b" | "t" |
-	//	"n" | "f" | "r" | "u" | "\"" | "\'" | "\\") | !("\\" | "\'"))* "\'";
+	//	"\"" ("\\" . / * 'b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\' * / | !("\\" | "\""))* "\"" | "\'" ("\\" .
+	//	/ * 'b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\' * / | !("\\" | "\'"))* "\'";
 	public TerminalRule getSTRINGRule() {
 		return gaTerminals.getSTRINGRule();
 	} 

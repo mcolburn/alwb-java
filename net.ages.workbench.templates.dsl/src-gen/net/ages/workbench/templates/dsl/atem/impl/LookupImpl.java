@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * <ul>
  *   <li>{@link net.ages.workbench.templates.dsl.atem.impl.LookupImpl#getDsl_ResourceTextRef <em>Dsl Resource Text Ref</em>}</li>
+ *   <li>{@link net.ages.workbench.templates.dsl.atem.impl.LookupImpl#isDsl_Lookup_Version <em>Dsl Lookup Version</em>}</li>
  *   <li>{@link net.ages.workbench.templates.dsl.atem.impl.LookupImpl#isDsl_Lookup_Media_Off <em>Dsl Lookup Media Off</em>}</li>
  *   <li>{@link net.ages.workbench.templates.dsl.atem.impl.LookupImpl#isDsl_Lookup_Override_Mode_Set <em>Dsl Lookup Override Mode Set</em>}</li>
  *   <li>{@link net.ages.workbench.templates.dsl.atem.impl.LookupImpl#getDsl_Lookup_OverrideMode <em>Dsl Lookup Override Mode</em>}</li>
@@ -45,6 +46,26 @@ public class LookupImpl extends ElementTypeImpl implements Lookup
    * @ordered
    */
   protected Definition dsl_ResourceTextRef;
+
+  /**
+   * The default value of the '{@link #isDsl_Lookup_Version() <em>Dsl Lookup Version</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isDsl_Lookup_Version()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean DSL_LOOKUP_VERSION_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isDsl_Lookup_Version() <em>Dsl Lookup Version</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isDsl_Lookup_Version()
+   * @generated
+   * @ordered
+   */
+  protected boolean dsl_Lookup_Version = DSL_LOOKUP_VERSION_EDEFAULT;
 
   /**
    * The default value of the '{@link #isDsl_Lookup_Media_Off() <em>Dsl Lookup Media Off</em>}' attribute.
@@ -215,6 +236,29 @@ public class LookupImpl extends ElementTypeImpl implements Lookup
    * <!-- end-user-doc -->
    * @generated
    */
+  public boolean isDsl_Lookup_Version()
+  {
+    return dsl_Lookup_Version;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setDsl_Lookup_Version(boolean newDsl_Lookup_Version)
+  {
+    boolean oldDsl_Lookup_Version = dsl_Lookup_Version;
+    dsl_Lookup_Version = newDsl_Lookup_Version;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, AtemPackage.LOOKUP__DSL_LOOKUP_VERSION, oldDsl_Lookup_Version, dsl_Lookup_Version));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public boolean isDsl_Lookup_Media_Off()
   {
     return dsl_Lookup_Media_Off;
@@ -338,6 +382,8 @@ public class LookupImpl extends ElementTypeImpl implements Lookup
       case AtemPackage.LOOKUP__DSL_RESOURCE_TEXT_REF:
         if (resolve) return getDsl_ResourceTextRef();
         return basicGetDsl_ResourceTextRef();
+      case AtemPackage.LOOKUP__DSL_LOOKUP_VERSION:
+        return isDsl_Lookup_Version();
       case AtemPackage.LOOKUP__DSL_LOOKUP_MEDIA_OFF:
         return isDsl_Lookup_Media_Off();
       case AtemPackage.LOOKUP__DSL_LOOKUP_OVERRIDE_MODE_SET:
@@ -364,6 +410,9 @@ public class LookupImpl extends ElementTypeImpl implements Lookup
     {
       case AtemPackage.LOOKUP__DSL_RESOURCE_TEXT_REF:
         setDsl_ResourceTextRef((Definition)newValue);
+        return;
+      case AtemPackage.LOOKUP__DSL_LOOKUP_VERSION:
+        setDsl_Lookup_Version((Boolean)newValue);
         return;
       case AtemPackage.LOOKUP__DSL_LOOKUP_MEDIA_OFF:
         setDsl_Lookup_Media_Off((Boolean)newValue);
@@ -397,6 +446,9 @@ public class LookupImpl extends ElementTypeImpl implements Lookup
       case AtemPackage.LOOKUP__DSL_RESOURCE_TEXT_REF:
         setDsl_ResourceTextRef((Definition)null);
         return;
+      case AtemPackage.LOOKUP__DSL_LOOKUP_VERSION:
+        setDsl_Lookup_Version(DSL_LOOKUP_VERSION_EDEFAULT);
+        return;
       case AtemPackage.LOOKUP__DSL_LOOKUP_MEDIA_OFF:
         setDsl_Lookup_Media_Off(DSL_LOOKUP_MEDIA_OFF_EDEFAULT);
         return;
@@ -428,6 +480,8 @@ public class LookupImpl extends ElementTypeImpl implements Lookup
     {
       case AtemPackage.LOOKUP__DSL_RESOURCE_TEXT_REF:
         return dsl_ResourceTextRef != null;
+      case AtemPackage.LOOKUP__DSL_LOOKUP_VERSION:
+        return dsl_Lookup_Version != DSL_LOOKUP_VERSION_EDEFAULT;
       case AtemPackage.LOOKUP__DSL_LOOKUP_MEDIA_OFF:
         return dsl_Lookup_Media_Off != DSL_LOOKUP_MEDIA_OFF_EDEFAULT;
       case AtemPackage.LOOKUP__DSL_LOOKUP_OVERRIDE_MODE_SET:
@@ -453,7 +507,9 @@ public class LookupImpl extends ElementTypeImpl implements Lookup
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (dsl_Lookup_Media_Off: ");
+    result.append(" (dsl_Lookup_Version: ");
+    result.append(dsl_Lookup_Version);
+    result.append(", dsl_Lookup_Media_Off: ");
     result.append(dsl_Lookup_Media_Off);
     result.append(", dsl_Lookup_Override_Mode_Set: ");
     result.append(dsl_Lookup_Override_Mode_Set);
