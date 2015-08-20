@@ -76,7 +76,7 @@ AbstractComponent:
 	| Heading1
 	| Heading2
 	| Heading3
-	| Hymn 
+	| Hymn
 	| Media
 //	| IfStatement
 	| Info
@@ -143,7 +143,7 @@ InfoElementType:
 	| Title 
 ;
 Date: 'Set_Date' 'month' dsl_Date_month=INT  'day' dsl_Date_day=INT  ('year' dsl_Date_year=INT)? 'End_Date';
-McDay: 'Set_mcDay' 'day' dsl_Mc_day=INT 'End_mcDay';
+McDay: 'Set_mcDay' 'day' dsl_McDay_val=INT 'End_mcDay';
 Preface: 'Preface' name=ID dsl_Preface_Elements+=PrefaceElementType* 'End-Preface';
 PrefaceElementType: 
 	  VersionSwitch

@@ -39,6 +39,7 @@ import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.message.MapMessage.MapFormat;
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspaceRoot;
@@ -261,7 +262,7 @@ public class ModelAccessor {
 		logger.entry();
 		AlwbLogger.setLogLevelToEclipsePreference();
 		resourceFileExtension = modelExtension;
-		try {
+		try {			
 			IWorkspaceRoot theRoot = ResourcesPlugin.getWorkspace().getRoot();
 			VisitorSeekingFiles myVisitor = new VisitorSeekingFiles(extensions);
 			myVisitor.setResourceSet(resourceset);
