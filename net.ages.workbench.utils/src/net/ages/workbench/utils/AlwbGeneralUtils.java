@@ -243,7 +243,7 @@ public class AlwbGeneralUtils {
 		logger.entry();
 		try {
 			File srcDir = new File(from);
-			File destDir = new File(from.split("net.ages")[0]+to);
+			File destDir = new File(to);
 			FileUtils.copyDirectory(srcDir, destDir);
 		} catch (Exception e) {
 			logger.catching(e);
