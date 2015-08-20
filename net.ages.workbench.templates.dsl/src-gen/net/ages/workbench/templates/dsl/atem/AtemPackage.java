@@ -847,7 +847,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getElementType()
    * @generated
    */
-  int ELEMENT_TYPE = 76;
+  int ELEMENT_TYPE = 77;
 
   /**
    * The number of structural features of the '<em>Element Type</em>' class.
@@ -878,13 +878,22 @@ public interface AtemPackage extends EPackage
   int RESOURCE_TEXT__DSL_RESOURCE_TEXT_REF = ELEMENT_TYPE_FEATURE_COUNT + 0;
 
   /**
+   * The feature id for the '<em><b>Dsl Resource Text Version</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RESOURCE_TEXT__DSL_RESOURCE_TEXT_VERSION = ELEMENT_TYPE_FEATURE_COUNT + 1;
+
+  /**
    * The feature id for the '<em><b>Dsl Resource Text Media Off</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int RESOURCE_TEXT__DSL_RESOURCE_TEXT_MEDIA_OFF = ELEMENT_TYPE_FEATURE_COUNT + 1;
+  int RESOURCE_TEXT__DSL_RESOURCE_TEXT_MEDIA_OFF = ELEMENT_TYPE_FEATURE_COUNT + 2;
 
   /**
    * The number of structural features of the '<em>Resource Text</em>' class.
@@ -893,7 +902,7 @@ public interface AtemPackage extends EPackage
    * @generated
    * @ordered
    */
-  int RESOURCE_TEXT_FEATURE_COUNT = ELEMENT_TYPE_FEATURE_COUNT + 2;
+  int RESOURCE_TEXT_FEATURE_COUNT = ELEMENT_TYPE_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link net.ages.workbench.templates.dsl.atem.impl.LookupImpl <em>Lookup</em>}' class.
@@ -915,13 +924,22 @@ public interface AtemPackage extends EPackage
   int LOOKUP__DSL_RESOURCE_TEXT_REF = ELEMENT_TYPE_FEATURE_COUNT + 0;
 
   /**
+   * The feature id for the '<em><b>Dsl Lookup Version</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LOOKUP__DSL_LOOKUP_VERSION = ELEMENT_TYPE_FEATURE_COUNT + 1;
+
+  /**
    * The feature id for the '<em><b>Dsl Lookup Media Off</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int LOOKUP__DSL_LOOKUP_MEDIA_OFF = ELEMENT_TYPE_FEATURE_COUNT + 1;
+  int LOOKUP__DSL_LOOKUP_MEDIA_OFF = ELEMENT_TYPE_FEATURE_COUNT + 2;
 
   /**
    * The feature id for the '<em><b>Dsl Lookup Override Mode Set</b></em>' attribute.
@@ -930,7 +948,7 @@ public interface AtemPackage extends EPackage
    * @generated
    * @ordered
    */
-  int LOOKUP__DSL_LOOKUP_OVERRIDE_MODE_SET = ELEMENT_TYPE_FEATURE_COUNT + 2;
+  int LOOKUP__DSL_LOOKUP_OVERRIDE_MODE_SET = ELEMENT_TYPE_FEATURE_COUNT + 3;
 
   /**
    * The feature id for the '<em><b>Dsl Lookup Override Mode</b></em>' attribute.
@@ -939,7 +957,7 @@ public interface AtemPackage extends EPackage
    * @generated
    * @ordered
    */
-  int LOOKUP__DSL_LOOKUP_OVERRIDE_MODE = ELEMENT_TYPE_FEATURE_COUNT + 3;
+  int LOOKUP__DSL_LOOKUP_OVERRIDE_MODE = ELEMENT_TYPE_FEATURE_COUNT + 4;
 
   /**
    * The feature id for the '<em><b>Dsl Lookup Override Day Set</b></em>' attribute.
@@ -948,7 +966,7 @@ public interface AtemPackage extends EPackage
    * @generated
    * @ordered
    */
-  int LOOKUP__DSL_LOOKUP_OVERRIDE_DAY_SET = ELEMENT_TYPE_FEATURE_COUNT + 4;
+  int LOOKUP__DSL_LOOKUP_OVERRIDE_DAY_SET = ELEMENT_TYPE_FEATURE_COUNT + 5;
 
   /**
    * The feature id for the '<em><b>Dsl Lookup Override Day</b></em>' attribute.
@@ -957,7 +975,7 @@ public interface AtemPackage extends EPackage
    * @generated
    * @ordered
    */
-  int LOOKUP__DSL_LOOKUP_OVERRIDE_DAY = ELEMENT_TYPE_FEATURE_COUNT + 5;
+  int LOOKUP__DSL_LOOKUP_OVERRIDE_DAY = ELEMENT_TYPE_FEATURE_COUNT + 6;
 
   /**
    * The number of structural features of the '<em>Lookup</em>' class.
@@ -966,7 +984,7 @@ public interface AtemPackage extends EPackage
    * @generated
    * @ordered
    */
-  int LOOKUP_FEATURE_COUNT = ELEMENT_TYPE_FEATURE_COUNT + 6;
+  int LOOKUP_FEATURE_COUNT = ELEMENT_TYPE_FEATURE_COUNT + 7;
 
   /**
    * The meta object id for the '{@link net.ages.workbench.templates.dsl.atem.impl.LDPImpl <em>LDP</em>}' class.
@@ -1136,6 +1154,34 @@ public interface AtemPackage extends EPackage
   int DATE_FEATURE_COUNT = HEAD_COMPONENT_FEATURE_COUNT + 3;
 
   /**
+   * The meta object id for the '{@link net.ages.workbench.templates.dsl.atem.impl.McDayImpl <em>Mc Day</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see net.ages.workbench.templates.dsl.atem.impl.McDayImpl
+   * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getMcDay()
+   * @generated
+   */
+  int MC_DAY = 33;
+
+  /**
+   * The feature id for the '<em><b>Dsl Mc Day val</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MC_DAY__DSL_MC_DAY_VAL = HEAD_COMPONENT_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Mc Day</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MC_DAY_FEATURE_COUNT = HEAD_COMPONENT_FEATURE_COUNT + 1;
+
+  /**
    * The meta object id for the '{@link net.ages.workbench.templates.dsl.atem.impl.PrefaceImpl <em>Preface</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1143,7 +1189,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getPreface()
    * @generated
    */
-  int PREFACE = 33;
+  int PREFACE = 34;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1180,7 +1226,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getPrefaceElementType()
    * @generated
    */
-  int PREFACE_ELEMENT_TYPE = 34;
+  int PREFACE_ELEMENT_TYPE = 35;
 
   /**
    * The number of structural features of the '<em>Preface Element Type</em>' class.
@@ -1199,7 +1245,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getSection()
    * @generated
    */
-  int SECTION = 35;
+  int SECTION = 36;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1245,7 +1291,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getSectionElementType()
    * @generated
    */
-  int SECTION_ELEMENT_TYPE = 36;
+  int SECTION_ELEMENT_TYPE = 37;
 
   /**
    * The number of structural features of the '<em>Section Element Type</em>' class.
@@ -1264,7 +1310,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getLdpType()
    * @generated
    */
-  int LDP_TYPE = 37;
+  int LDP_TYPE = 38;
 
   /**
    * The number of structural features of the '<em>Ldp Type</em>' class.
@@ -1283,7 +1329,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getAll()
    * @generated
    */
-  int ALL = 38;
+  int ALL = 39;
 
   /**
    * The feature id for the '<em><b>Dsl Display Liturgical Day Properties</b></em>' attribute.
@@ -1311,7 +1357,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getGenDate()
    * @generated
    */
-  int GEN_DATE = 39;
+  int GEN_DATE = 40;
 
   /**
    * The feature id for the '<em><b>Dsl Display Date</b></em>' attribute.
@@ -1339,7 +1385,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getGenYear()
    * @generated
    */
-  int GEN_YEAR = 40;
+  int GEN_YEAR = 41;
 
   /**
    * The feature id for the '<em><b>Dsl Display Year</b></em>' attribute.
@@ -1367,7 +1413,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getMCD()
    * @generated
    */
-  int MCD = 41;
+  int MCD = 42;
 
   /**
    * The feature id for the '<em><b>Dsl MCD value</b></em>' attribute.
@@ -1395,7 +1441,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getMOW()
    * @generated
    */
-  int MOW = 42;
+  int MOW = 43;
 
   /**
    * The feature id for the '<em><b>Dsl Display Mode</b></em>' attribute.
@@ -1423,7 +1469,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getNOP()
    * @generated
    */
-  int NOP = 43;
+  int NOP = 44;
 
   /**
    * The feature id for the '<em><b>Dsl Display Mode</b></em>' attribute.
@@ -1451,7 +1497,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getDOM()
    * @generated
    */
-  int DOM = 44;
+  int DOM = 45;
 
   /**
    * The feature id for the '<em><b>Dsl Display Mode</b></em>' attribute.
@@ -1479,7 +1525,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getDOP()
    * @generated
    */
-  int DOP = 45;
+  int DOP = 46;
 
   /**
    * The feature id for the '<em><b>Dsl Display Mode</b></em>' attribute.
@@ -1507,7 +1553,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getDOWN()
    * @generated
    */
-  int DOWN = 46;
+  int DOWN = 47;
 
   /**
    * The feature id for the '<em><b>Dsl Display Mode</b></em>' attribute.
@@ -1535,7 +1581,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getDOWT()
    * @generated
    */
-  int DOWT = 47;
+  int DOWT = 48;
 
   /**
    * The feature id for the '<em><b>Dsl Display Mode</b></em>' attribute.
@@ -1563,7 +1609,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getEOW()
    * @generated
    */
-  int EOW = 48;
+  int EOW = 49;
 
   /**
    * The feature id for the '<em><b>Dsl Display Eothinon</b></em>' attribute.
@@ -1591,7 +1637,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getSAEC()
    * @generated
    */
-  int SAEC = 49;
+  int SAEC = 50;
 
   /**
    * The feature id for the '<em><b>Dsl Display Sunday After Elevation Cross</b></em>' attribute.
@@ -1619,7 +1665,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getSOL()
    * @generated
    */
-  int SOL = 50;
+  int SOL = 51;
 
   /**
    * The feature id for the '<em><b>Dsl Display Start Lukan</b></em>' attribute.
@@ -1647,7 +1693,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getDOL()
    * @generated
    */
-  int DOL = 51;
+  int DOL = 52;
 
   /**
    * The feature id for the '<em><b>Dsl Display Day Lukan</b></em>' attribute.
@@ -1675,7 +1721,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getWOLC()
    * @generated
    */
-  int WOLC = 52;
+  int WOLC = 53;
 
   /**
    * The feature id for the '<em><b>Dsl Display Day Lukan</b></em>' attribute.
@@ -1703,7 +1749,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getWDOLC()
    * @generated
    */
-  int WDOLC = 53;
+  int WDOLC = 54;
 
   /**
    * The feature id for the '<em><b>Dsl Display Day Lukan</b></em>' attribute.
@@ -1731,7 +1777,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getSBT()
    * @generated
    */
-  int SBT = 54;
+  int SBT = 55;
 
   /**
    * The feature id for the '<em><b>Dsl Display Sundays Before Triodion</b></em>' attribute.
@@ -1759,7 +1805,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getTemplateFragment()
    * @generated
    */
-  int TEMPLATE_FRAGMENT = 55;
+  int TEMPLATE_FRAGMENT = 56;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' reference.
@@ -1787,7 +1833,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getPrefaceFragment()
    * @generated
    */
-  int PREFACE_FRAGMENT = 56;
+  int PREFACE_FRAGMENT = 57;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' reference.
@@ -1815,7 +1861,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getSectionFragment()
    * @generated
    */
-  int SECTION_FRAGMENT = 57;
+  int SECTION_FRAGMENT = 58;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' reference.
@@ -1843,7 +1889,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getBreak()
    * @generated
    */
-  int BREAK = 58;
+  int BREAK = 59;
 
   /**
    * The feature id for the '<em><b>Dsl break type</b></em>' attribute.
@@ -1871,7 +1917,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getPageNumber()
    * @generated
    */
-  int PAGE_NUMBER = 59;
+  int PAGE_NUMBER = 60;
 
   /**
    * The feature id for the '<em><b>Dsl Page Number value</b></em>' attribute.
@@ -1899,7 +1945,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getPassThroughHtml()
    * @generated
    */
-  int PASS_THROUGH_HTML = 60;
+  int PASS_THROUGH_HTML = 61;
 
   /**
    * The feature id for the '<em><b>Dsl Passthrough html text</b></em>' attribute.
@@ -1927,7 +1973,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getPassThroughPdf()
    * @generated
    */
-  int PASS_THROUGH_PDF = 61;
+  int PASS_THROUGH_PDF = 62;
 
   /**
    * The feature id for the '<em><b>Dsl Passthrough pdf text</b></em>' attribute.
@@ -1955,7 +2001,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getTitle()
    * @generated
    */
-  int TITLE = 62;
+  int TITLE = 63;
 
   /**
    * The feature id for the '<em><b>Dsl Title Role</b></em>' reference.
@@ -1992,7 +2038,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getSubTitle()
    * @generated
    */
-  int SUB_TITLE = 63;
+  int SUB_TITLE = 64;
 
   /**
    * The feature id for the '<em><b>Dsl Sub Title Role</b></em>' reference.
@@ -2029,7 +2075,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getParagraph()
    * @generated
    */
-  int PARAGRAPH = 64;
+  int PARAGRAPH = 65;
 
   /**
    * The feature id for the '<em><b>Dsl Para Role</b></em>' reference.
@@ -2066,7 +2112,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getBlock()
    * @generated
    */
-  int BLOCK = 65;
+  int BLOCK = 66;
 
   /**
    * The feature id for the '<em><b>Dsl Block Role</b></em>' reference.
@@ -2103,7 +2149,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getHymn()
    * @generated
    */
-  int HYMN = 66;
+  int HYMN = 67;
 
   /**
    * The feature id for the '<em><b>Dsl Elements</b></em>' containment reference list.
@@ -2131,7 +2177,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getMedia()
    * @generated
    */
-  int MEDIA = 67;
+  int MEDIA = 68;
 
   /**
    * The feature id for the '<em><b>Dsl Elements</b></em>' containment reference list.
@@ -2159,7 +2205,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getVerse()
    * @generated
    */
-  int VERSE = 68;
+  int VERSE = 69;
 
   /**
    * The feature id for the '<em><b>Dsl Elements</b></em>' containment reference list.
@@ -2187,7 +2233,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getActor()
    * @generated
    */
-  int ACTOR = 69;
+  int ACTOR = 70;
 
   /**
    * The feature id for the '<em><b>Dsl Elements</b></em>' containment reference list.
@@ -2215,7 +2261,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getRubric()
    * @generated
    */
-  int RUBRIC = 70;
+  int RUBRIC = 71;
 
   /**
    * The feature id for the '<em><b>Dsl Elements</b></em>' containment reference list.
@@ -2243,7 +2289,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getDialog()
    * @generated
    */
-  int DIALOG = 71;
+  int DIALOG = 72;
 
   /**
    * The feature id for the '<em><b>Dsl Elements</b></em>' containment reference list.
@@ -2271,7 +2317,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getReading()
    * @generated
    */
-  int READING = 72;
+  int READING = 73;
 
   /**
    * The feature id for the '<em><b>Dsl Elements</b></em>' containment reference list.
@@ -2299,7 +2345,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getHeading1()
    * @generated
    */
-  int HEADING1 = 73;
+  int HEADING1 = 74;
 
   /**
    * The feature id for the '<em><b>Dsl Elements</b></em>' containment reference list.
@@ -2327,7 +2373,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getHeading2()
    * @generated
    */
-  int HEADING2 = 74;
+  int HEADING2 = 75;
 
   /**
    * The feature id for the '<em><b>Dsl Elements</b></em>' containment reference list.
@@ -2355,7 +2401,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getHeading3()
    * @generated
    */
-  int HEADING3 = 75;
+  int HEADING3 = 76;
 
   /**
    * The feature id for the '<em><b>Dsl Elements</b></em>' containment reference list.
@@ -2383,7 +2429,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getAid()
    * @generated
    */
-  int AID = 77;
+  int AID = 78;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2411,7 +2457,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getVersion()
    * @generated
    */
-  int VERSION = 78;
+  int VERSION = 79;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2439,7 +2485,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getLitBook()
    * @generated
    */
-  int LIT_BOOK = 79;
+  int LIT_BOOK = 80;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2467,7 +2513,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getSetLocale()
    * @generated
    */
-  int SET_LOCALE = 80;
+  int SET_LOCALE = 81;
 
   /**
    * The feature id for the '<em><b>Dsl Set Locale V1</b></em>' attribute.
@@ -2504,7 +2550,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getRestoreLocale()
    * @generated
    */
-  int RESTORE_LOCALE = 81;
+  int RESTORE_LOCALE = 82;
 
   /**
    * The feature id for the '<em><b>Dsl Restore Locale</b></em>' attribute.
@@ -2532,7 +2578,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getWhenDate()
    * @generated
    */
-  int WHEN_DATE = 82;
+  int WHEN_DATE = 83;
 
   /**
    * The feature id for the '<em><b>Dsl When Date Cases</b></em>' containment reference list.
@@ -2569,7 +2615,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getWhenDateCase()
    * @generated
    */
-  int WHEN_DATE_CASE = 83;
+  int WHEN_DATE_CASE = 84;
 
   /**
    * The feature id for the '<em><b>Dsl When Date Case Month</b></em>' attribute.
@@ -2615,7 +2661,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getAbstractDateCase()
    * @generated
    */
-  int ABSTRACT_DATE_CASE = 84;
+  int ABSTRACT_DATE_CASE = 85;
 
   /**
    * The number of structural features of the '<em>Abstract Date Case</em>' class.
@@ -2634,7 +2680,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getDateRange()
    * @generated
    */
-  int DATE_RANGE = 85;
+  int DATE_RANGE = 86;
 
   /**
    * The feature id for the '<em><b>Dsl Date Range from</b></em>' attribute.
@@ -2671,7 +2717,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getDateSet()
    * @generated
    */
-  int DATE_SET = 86;
+  int DATE_SET = 87;
 
   /**
    * The feature id for the '<em><b>Dsl Date Set Values</b></em>' attribute list.
@@ -2699,7 +2745,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getWhenDayName()
    * @generated
    */
-  int WHEN_DAY_NAME = 87;
+  int WHEN_DAY_NAME = 88;
 
   /**
    * The feature id for the '<em><b>Dsl When Day Name Cases</b></em>' containment reference list.
@@ -2736,7 +2782,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getWhenDayNameCase()
    * @generated
    */
-  int WHEN_DAY_NAME_CASE = 88;
+  int WHEN_DAY_NAME_CASE = 89;
 
   /**
    * The feature id for the '<em><b>Dsl When Day Name Case Days</b></em>' containment reference.
@@ -2773,7 +2819,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getAbstractDayNameCase()
    * @generated
    */
-  int ABSTRACT_DAY_NAME_CASE = 89;
+  int ABSTRACT_DAY_NAME_CASE = 90;
 
   /**
    * The number of structural features of the '<em>Abstract Day Name Case</em>' class.
@@ -2792,7 +2838,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getDayNameRange()
    * @generated
    */
-  int DAY_NAME_RANGE = 90;
+  int DAY_NAME_RANGE = 91;
 
   /**
    * The feature id for the '<em><b>Dsl Day Name Range from</b></em>' attribute.
@@ -2829,7 +2875,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getDayNameSet()
    * @generated
    */
-  int DAY_NAME_SET = 91;
+  int DAY_NAME_SET = 92;
 
   /**
    * The feature id for the '<em><b>Dsl Day Name Set Values</b></em>' attribute list.
@@ -2857,7 +2903,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getWhenPentecostarionDay()
    * @generated
    */
-  int WHEN_PENTECOSTARION_DAY = 92;
+  int WHEN_PENTECOSTARION_DAY = 93;
 
   /**
    * The feature id for the '<em><b>Dsl When Pentecostarion Day Cases</b></em>' containment reference list.
@@ -2894,7 +2940,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getWhenTriodionDay()
    * @generated
    */
-  int WHEN_TRIODION_DAY = 93;
+  int WHEN_TRIODION_DAY = 94;
 
   /**
    * The feature id for the '<em><b>Dsl When Triodion Day Cases</b></em>' containment reference list.
@@ -2931,7 +2977,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getWhenMovableCycleDay()
    * @generated
    */
-  int WHEN_MOVABLE_CYCLE_DAY = 94;
+  int WHEN_MOVABLE_CYCLE_DAY = 95;
 
   /**
    * The feature id for the '<em><b>Dsl When Movable Cycle Day Cases</b></em>' containment reference list.
@@ -2968,7 +3014,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getWhenSundayAfterElevationOfCrossDay()
    * @generated
    */
-  int WHEN_SUNDAY_AFTER_ELEVATION_OF_CROSS_DAY = 95;
+  int WHEN_SUNDAY_AFTER_ELEVATION_OF_CROSS_DAY = 96;
 
   /**
    * The feature id for the '<em><b>Dsl When Sunday After Elevation Of Cross Day Cases</b></em>' containment reference list.
@@ -3005,7 +3051,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getWhenLukanCycleDay()
    * @generated
    */
-  int WHEN_LUKAN_CYCLE_DAY = 96;
+  int WHEN_LUKAN_CYCLE_DAY = 97;
 
   /**
    * The feature id for the '<em><b>Dsl When Lukan Cycle Day Cases</b></em>' containment reference list.
@@ -3042,7 +3088,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getWhenPascha()
    * @generated
    */
-  int WHEN_PASCHA = 97;
+  int WHEN_PASCHA = 98;
 
   /**
    * The feature id for the '<em><b>Dsl When Pascha true actions</b></em>' containment reference list.
@@ -3079,7 +3125,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getWhenOther()
    * @generated
    */
-  int WHEN_OTHER = 98;
+  int WHEN_OTHER = 99;
 
   /**
    * The feature id for the '<em><b>Dsl When Case Other actions</b></em>' containment reference list.
@@ -3107,7 +3153,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getWhenPeriodCase()
    * @generated
    */
-  int WHEN_PERIOD_CASE = 99;
+  int WHEN_PERIOD_CASE = 100;
 
   /**
    * The feature id for the '<em><b>Dsl When Period Case Days</b></em>' containment reference.
@@ -3144,7 +3190,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getAbstractDayCase()
    * @generated
    */
-  int ABSTRACT_DAY_CASE = 100;
+  int ABSTRACT_DAY_CASE = 101;
 
   /**
    * The number of structural features of the '<em>Abstract Day Case</em>' class.
@@ -3163,7 +3209,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getDayRange()
    * @generated
    */
-  int DAY_RANGE = 101;
+  int DAY_RANGE = 102;
 
   /**
    * The feature id for the '<em><b>Dsl Day Range from</b></em>' attribute.
@@ -3200,7 +3246,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getDaySet()
    * @generated
    */
-  int DAY_SET = 102;
+  int DAY_SET = 103;
 
   /**
    * The feature id for the '<em><b>Dsl Set Value Days</b></em>' attribute list.
@@ -3228,7 +3274,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getWhenModeOfWeek()
    * @generated
    */
-  int WHEN_MODE_OF_WEEK = 103;
+  int WHEN_MODE_OF_WEEK = 104;
 
   /**
    * The feature id for the '<em><b>Dsl When Mode Of Week Cases</b></em>' containment reference list.
@@ -3265,7 +3311,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getWhenModeOfWeekCase()
    * @generated
    */
-  int WHEN_MODE_OF_WEEK_CASE = 104;
+  int WHEN_MODE_OF_WEEK_CASE = 105;
 
   /**
    * The feature id for the '<em><b>Dsl When Mode Of Week Case Days</b></em>' containment reference.
@@ -3302,7 +3348,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getModeOfWeekSet()
    * @generated
    */
-  int MODE_OF_WEEK_SET = 105;
+  int MODE_OF_WEEK_SET = 106;
 
   /**
    * The feature id for the '<em><b>Dsl Mode Of Week Set MO Ws</b></em>' attribute list.
@@ -3330,7 +3376,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getWhenSundaysBeforeTriodion()
    * @generated
    */
-  int WHEN_SUNDAYS_BEFORE_TRIODION = 106;
+  int WHEN_SUNDAYS_BEFORE_TRIODION = 107;
 
   /**
    * The feature id for the '<em><b>Dsl When Sundays Before Triodion Cases</b></em>' containment reference list.
@@ -3367,7 +3413,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getSundaysBeforeTriodionCase()
    * @generated
    */
-  int SUNDAYS_BEFORE_TRIODION_CASE = 107;
+  int SUNDAYS_BEFORE_TRIODION_CASE = 108;
 
   /**
    * The feature id for the '<em><b>Dsl Sundays Before Triodion Case Days</b></em>' attribute.
@@ -3404,7 +3450,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getWhenExists()
    * @generated
    */
-  int WHEN_EXISTS = 108;
+  int WHEN_EXISTS = 109;
 
   /**
    * The feature id for the '<em><b>Dsl When Exists Cases</b></em>' containment reference list.
@@ -3441,7 +3487,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getWhenExistsCase()
    * @generated
    */
-  int WHEN_EXISTS_CASE = 109;
+  int WHEN_EXISTS_CASE = 110;
 
   /**
    * The feature id for the '<em><b>Dsl When Exists Case Ref</b></em>' reference.
@@ -3478,7 +3524,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getVersionSwitchType()
    * @generated
    */
-  int VERSION_SWITCH_TYPE = 110;
+  int VERSION_SWITCH_TYPE = 111;
 
   /**
    * The meta object id for the '{@link net.ages.workbench.templates.dsl.atem.Language <em>Language</em>}' enum.
@@ -3488,7 +3534,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getLanguage()
    * @generated
    */
-  int LANGUAGE = 111;
+  int LANGUAGE = 112;
 
   /**
    * The meta object id for the '{@link net.ages.workbench.templates.dsl.atem.BreakType <em>Break Type</em>}' enum.
@@ -3498,7 +3544,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getBreakType()
    * @generated
    */
-  int BREAK_TYPE = 112;
+  int BREAK_TYPE = 113;
 
   /**
    * The meta object id for the '{@link net.ages.workbench.templates.dsl.atem.TemplateStatuses <em>Template Statuses</em>}' enum.
@@ -3508,7 +3554,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getTemplateStatuses()
    * @generated
    */
-  int TEMPLATE_STATUSES = 113;
+  int TEMPLATE_STATUSES = 114;
 
   /**
    * The meta object id for the '{@link net.ages.workbench.templates.dsl.atem.Null <em>Null</em>}' enum.
@@ -3518,7 +3564,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getNull()
    * @generated
    */
-  int NULL = 114;
+  int NULL = 115;
 
   /**
    * The meta object id for the '{@link net.ages.workbench.templates.dsl.atem.ModeTypes <em>Mode Types</em>}' enum.
@@ -3528,7 +3574,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getModeTypes()
    * @generated
    */
-  int MODE_TYPES = 115;
+  int MODE_TYPES = 116;
 
   /**
    * The meta object id for the '{@link net.ages.workbench.templates.dsl.atem.DowTypes <em>Dow Types</em>}' enum.
@@ -3538,7 +3584,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getDowTypes()
    * @generated
    */
-  int DOW_TYPES = 116;
+  int DOW_TYPES = 117;
 
   /**
    * The meta object id for the '{@link net.ages.workbench.templates.dsl.atem.BookTypes <em>Book Types</em>}' enum.
@@ -3548,7 +3594,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getBookTypes()
    * @generated
    */
-  int BOOK_TYPES = 117;
+  int BOOK_TYPES = 118;
 
   /**
    * The meta object id for the '{@link net.ages.workbench.templates.dsl.atem.Seasons <em>Seasons</em>}' enum.
@@ -3558,7 +3604,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getSeasons()
    * @generated
    */
-  int SEASONS = 118;
+  int SEASONS = 119;
 
   /**
    * The meta object id for the '{@link net.ages.workbench.templates.dsl.atem.DayOfMonthTypes <em>Day Of Month Types</em>}' enum.
@@ -3568,7 +3614,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getDayOfMonthTypes()
    * @generated
    */
-  int DAY_OF_MONTH_TYPES = 119;
+  int DAY_OF_MONTH_TYPES = 120;
 
   /**
    * The meta object id for the '{@link net.ages.workbench.templates.dsl.atem.PeriodType <em>Period Type</em>}' enum.
@@ -3578,7 +3624,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getPeriodType()
    * @generated
    */
-  int PERIOD_TYPE = 120;
+  int PERIOD_TYPE = 121;
 
   /**
    * The meta object id for the '{@link net.ages.workbench.templates.dsl.atem.DayOfWeek <em>Day Of Week</em>}' enum.
@@ -3588,7 +3634,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getDayOfWeek()
    * @generated
    */
-  int DAY_OF_WEEK = 121;
+  int DAY_OF_WEEK = 122;
 
   /**
    * The meta object id for the '{@link net.ages.workbench.templates.dsl.atem.MonthName <em>Month Name</em>}' enum.
@@ -3598,7 +3644,7 @@ public interface AtemPackage extends EPackage
    * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getMonthName()
    * @generated
    */
-  int MONTH_NAME = 122;
+  int MONTH_NAME = 123;
 
 
   /**
@@ -4202,6 +4248,17 @@ public interface AtemPackage extends EPackage
   EReference getResourceText_Dsl_ResourceTextRef();
 
   /**
+   * Returns the meta object for the attribute '{@link net.ages.workbench.templates.dsl.atem.ResourceText#isDsl_ResourceText_Version <em>Dsl Resource Text Version</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Dsl Resource Text Version</em>'.
+   * @see net.ages.workbench.templates.dsl.atem.ResourceText#isDsl_ResourceText_Version()
+   * @see #getResourceText()
+   * @generated
+   */
+  EAttribute getResourceText_Dsl_ResourceText_Version();
+
+  /**
    * Returns the meta object for the attribute '{@link net.ages.workbench.templates.dsl.atem.ResourceText#isDsl_ResourceText_Media_Off <em>Dsl Resource Text Media Off</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -4232,6 +4289,17 @@ public interface AtemPackage extends EPackage
    * @generated
    */
   EReference getLookup_Dsl_ResourceTextRef();
+
+  /**
+   * Returns the meta object for the attribute '{@link net.ages.workbench.templates.dsl.atem.Lookup#isDsl_Lookup_Version <em>Dsl Lookup Version</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Dsl Lookup Version</em>'.
+   * @see net.ages.workbench.templates.dsl.atem.Lookup#isDsl_Lookup_Version()
+   * @see #getLookup()
+   * @generated
+   */
+  EAttribute getLookup_Dsl_Lookup_Version();
 
   /**
    * Returns the meta object for the attribute '{@link net.ages.workbench.templates.dsl.atem.Lookup#isDsl_Lookup_Media_Off <em>Dsl Lookup Media Off</em>}'.
@@ -4425,6 +4493,27 @@ public interface AtemPackage extends EPackage
    * @generated
    */
   EAttribute getDate_Dsl_Date_year();
+
+  /**
+   * Returns the meta object for class '{@link net.ages.workbench.templates.dsl.atem.McDay <em>Mc Day</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Mc Day</em>'.
+   * @see net.ages.workbench.templates.dsl.atem.McDay
+   * @generated
+   */
+  EClass getMcDay();
+
+  /**
+   * Returns the meta object for the attribute '{@link net.ages.workbench.templates.dsl.atem.McDay#getDsl_McDay_val <em>Dsl Mc Day val</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Dsl Mc Day val</em>'.
+   * @see net.ages.workbench.templates.dsl.atem.McDay#getDsl_McDay_val()
+   * @see #getMcDay()
+   * @generated
+   */
+  EAttribute getMcDay_Dsl_McDay_val();
 
   /**
    * Returns the meta object for class '{@link net.ages.workbench.templates.dsl.atem.Preface <em>Preface</em>}'.
@@ -6949,6 +7038,14 @@ public interface AtemPackage extends EPackage
     EReference RESOURCE_TEXT__DSL_RESOURCE_TEXT_REF = eINSTANCE.getResourceText_Dsl_ResourceTextRef();
 
     /**
+     * The meta object literal for the '<em><b>Dsl Resource Text Version</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute RESOURCE_TEXT__DSL_RESOURCE_TEXT_VERSION = eINSTANCE.getResourceText_Dsl_ResourceText_Version();
+
+    /**
      * The meta object literal for the '<em><b>Dsl Resource Text Media Off</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -6973,6 +7070,14 @@ public interface AtemPackage extends EPackage
      * @generated
      */
     EReference LOOKUP__DSL_RESOURCE_TEXT_REF = eINSTANCE.getLookup_Dsl_ResourceTextRef();
+
+    /**
+     * The meta object literal for the '<em><b>Dsl Lookup Version</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute LOOKUP__DSL_LOOKUP_VERSION = eINSTANCE.getLookup_Dsl_Lookup_Version();
 
     /**
      * The meta object literal for the '<em><b>Dsl Lookup Media Off</b></em>' attribute feature.
@@ -7127,6 +7232,24 @@ public interface AtemPackage extends EPackage
      * @generated
      */
     EAttribute DATE__DSL_DATE_YEAR = eINSTANCE.getDate_Dsl_Date_year();
+
+    /**
+     * The meta object literal for the '{@link net.ages.workbench.templates.dsl.atem.impl.McDayImpl <em>Mc Day</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see net.ages.workbench.templates.dsl.atem.impl.McDayImpl
+     * @see net.ages.workbench.templates.dsl.atem.impl.AtemPackageImpl#getMcDay()
+     * @generated
+     */
+    EClass MC_DAY = eINSTANCE.getMcDay();
+
+    /**
+     * The meta object literal for the '<em><b>Dsl Mc Day val</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute MC_DAY__DSL_MC_DAY_VAL = eINSTANCE.getMcDay_Dsl_McDay_val();
 
     /**
      * The meta object literal for the '{@link net.ages.workbench.templates.dsl.atem.impl.PrefaceImpl <em>Preface</em>}' class.
