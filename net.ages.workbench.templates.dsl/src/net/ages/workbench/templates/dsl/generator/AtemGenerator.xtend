@@ -183,9 +183,9 @@ class AtemGenerator implements IGenerator {
 	var htmlBookFolderRoot = ""
 	var htmlCustomFolderRoot = ""
 	var htmlWebSite = AlwbConstants.HTML_WEBSITE + "/" + htmlSiteRoot
-	var htmlWebSiteFileTypeHtml = "h/"
-	var htmlWebSiteFileTypePdf = "p/"
-	var htmlWebSiteFileTypeEpub = "e/"
+	var htmlWebSiteFileTypeHtml = "h" + "/"
+	var htmlWebSiteFileTypePdf = "p" + "/"
+	var htmlWebSiteFileTypeEpub = "e" + "/"
 	var indexHtml = "index.html"
 		
 	var htmlCssPrefix = "<link rel='stylesheet' type='text/css' href='"
@@ -923,7 +923,7 @@ class AtemGenerator implements IGenerator {
 		var	String platformString = resource.getURI().toPlatformString(true);
 		var	IFile myFile = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(platformString));
 		var	IProject proj = myFile.getProject();
-		var projLocation = proj.getLocation().toString();
+		var projLocation = proj.getLocation().toOSString();
 				
 		if (AlwbGeneralUtils.websiteOnly) {
 			setTagsToHtml
@@ -931,8 +931,8 @@ class AtemGenerator implements IGenerator {
 			aresAccessor.setOutputType(AlwbConstants.HTML, false, true)
 		}
 		// copy the CSS, JS, media files
-		var assetsProjectPath = aresAccessor.pathToAssetsProject + "/"
-		var mediaProjectPath = aresAccessor.pathToMediaProject + "/"
+		var assetsProjectPath = aresAccessor.pathToAssetsProject + "/";
+		var mediaProjectPath = aresAccessor.pathToMediaProject + "/";
 		var targetDirectory = projLocation + "/" + "src-gen"  + "/" + htmlWebSite
 
 		if (AlwbGeneralUtils.copyAssets) {
