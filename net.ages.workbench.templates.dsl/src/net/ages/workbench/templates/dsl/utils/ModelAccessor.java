@@ -269,6 +269,7 @@ public class ModelAccessor {
 			myVisitor.setProjects(theRoot.getProjects());
 			theRoot.accept(myVisitor, IResource.NONE);
 			filenameToUriMap = myVisitor.getFileResourceMap();
+	//		reportFilenameToUriMap();
 			resourceSet = resourceset;
 			loadOptions.put(XtextResource.OPTION_ENCODING, "UTF-8");
 			readGenerationPreferences();
@@ -288,6 +289,38 @@ public class ModelAccessor {
 		}
 		logger.exit();
 	}
+	 
+	 /**
+	  * Started to implement this to trouble shoot a problem on Windows.  But, Fr. Seraphim's 
+	  * problem got resolved, so this has not been completed.  See the line on c = r...
+	  */
+	 public void reportFilenameToUriMap() {
+		 String target = "pref";
+		 StringBuffer sb = new StringBuffer();
+		 sb.append("<table>");
+		 
+		 try {
+			 Set<String> keys = filenameToUriMap.keySet();
+			 messageBoard.logMessage(messageBoard.NON_FATAL, "Here are the pref files that have been loaded...");
+			 int c = 0;
+			 for (String key : keys) {
+				 if (key.startsWith(target)) {
+					 try {
+						 Resource r = getResource(key);
+						 c = r.getContents().size(); // this isn't working yet...
+					 } catch (Exception i) {
+						 
+					 }
+					 sb.append("<tr><td>" + key + "</td>" + "<td>" + c + "</td></tr>");
+				 }
+			 }
+			 sb.append("</table>");
+			 messageBoard.logMessage(messageBoard.NON_FATAL, sb.toString());
+		 } catch (Exception e) {
+			 
+		 }
+	 }
+	 
 	 /**
 	private void setVersionBlocks() {
 		blockSetManager = new BlockSetManager();
@@ -627,6 +660,41 @@ public class ModelAccessor {
 		String result = "";
 		try {
 		result = filename.split(resourceFileExtension)[0];
+		} catch (Exception e) {
+			logger.catching(e);
+			result = filename;
+		}
+		logger.exit();
+		return result;
+	}
+	
+	public String dropDomain(String filename) {
+		logger.entry();
+		String result = "";
+		try {
+		String [] parts = filename.split("_");
+		if (parts.length > 1) {
+			result = parts[0];
+		}
+		} catch (Exception e) {
+			logger.catching(e);
+			result = filename;
+		}
+		logger.exit();
+		return result;
+	}
+
+	public String getDomain(String filename) {
+		logger.entry();
+		String result = "";
+		try {
+		String [] parts = filename.split("_");
+		if (parts.length > 3) {
+			result = parts[1]+"_"+parts[2]+"_"+parts[3];
+			if (result.endsWith("\\.")) {
+				result = result.substring(0, result.length()-2);
+			}
+		}
 		} catch (Exception e) {
 			logger.catching(e);
 			result = filename;
@@ -1355,14 +1423,14 @@ public class ModelAccessor {
 						theKey,
 						"null. " + (lang1File == null ? " Missing name of Version 1 in Preferences." : ""));
 			} else {
-				theResult = "";
 			}
+				theResult = "";
 			
 		}
 		theResult = convertFormatCodes(theResult);
 		processingLanguage1 = false;
 		if (theResult != null || theResult != "") {
-			theResult = theResult + source(lastFile,lastId);
+				theResult = theResult + source(lastFile,lastId);
 		}
 		logger.exit(theResult);
 		return theResult;
@@ -1378,7 +1446,7 @@ public class ModelAccessor {
 			result = getLanguageVariableText(d, lang1IdDefault);
 		}
 		if (result != null || result != "") {
-			result = result + source(lastFile,lastId);
+				result = result + source(lastFile,lastId);
 		}
 		processingLanguage1 = false;
 		return result;
@@ -1539,7 +1607,7 @@ public class ModelAccessor {
 		}
 		theResult = convertFormatCodes(theResult);
 		if (theResult != null || theResult != "") {
-			theResult = theResult + source(lastFile,lastId);
+				theResult = theResult + source(lastFile,lastId);
 		}
 		logger.exit(theResult);
 		return theResult;
@@ -1555,7 +1623,7 @@ public class ModelAccessor {
 			result = getLanguageVariableText(d, langIdDefault);
 		}
 		if (result != null || result != "") {
-			result = result + source(lastFile,lastId);
+				result = result + source(lastFile,lastId);
 		}
 		return result;
 	}
@@ -2418,6 +2486,8 @@ public class ModelAccessor {
 		setLanguage2ProphetologionPreferred(preferences.language2ProphetologionPreferred);
 		setLanguage2PsalterPreferred(preferences.language2PsalterPreferred);
 	
+		setGenerateJsonFile(preferences.genTmsJsonFile);
+		
 		setAbbreviationResource();
 		
 	}
@@ -3209,6 +3279,7 @@ public class ModelAccessor {
 	private void setUseLanguage2(boolean useLanguage2) {
 		this.useLanguage2 = useLanguage2;
 	}
+//		return "<span class=\"key\" data-key=\"" + file + "|"+ id + "\" hidden=\"hidden\"></span>"; 
 	
 	/**
 	 * Creates a string to be displayed in the HTML to show the source of the text.
@@ -3219,22 +3290,22 @@ public class ModelAccessor {
 	 */
 	public String source(String file, String id) {
 		logger.entry(file,id);
+		String span = "<span class=\"key\" data-key=\"" + file.replace(".ares", "") + "|"+ id + "\" hidden=\"hidden\"></span>"; 
 		String result = "";
 		if (! file.startsWith("pref")) {
 			if (showSource) {
-					String source = dropExtension(file) + id;
-					result = source;
+					result = dropExtension(file) + id;
 			} else if (showDomain) {
-				result = AlwbGeneralUtils.getDomainFromAresFile(file);
+				result = AlwbGeneralUtils.getDomainFromAresFile(file) + result;
 			}
 		}
 		logger.exit();
 		if (result != "") {
 			result = " (from " + result + ")";
 		}
+		result = result + span;
 		return result;
-	}
-	
+	}	
 	/**
 	 * Performs a lookup to see if there is a description 
 	 * of the version of the text, e.g. RSV, KJV, Dedes, COG.

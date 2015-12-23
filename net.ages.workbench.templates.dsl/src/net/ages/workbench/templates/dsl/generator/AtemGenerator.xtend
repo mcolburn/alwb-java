@@ -754,6 +754,9 @@ class AtemGenerator implements IGenerator {
 							}
 						}
 						
+						// note that the following booleans require the user to 
+						// conform to a file naming convention for the first two
+						// characters of the filename.
 						isService = (filename.startsWith("/se.") && (serviceDate != null)) 
 						isBook = filename.startsWith("/bk.") 
 						isCustom = filename.startsWith("/cu.") 
@@ -891,6 +894,8 @@ class AtemGenerator implements IGenerator {
 				generateWebsite(r, fsa)
 				logState(fsa,"Finished Creating website files")
 			}
+			
+			//		fsa.generateFile("prefReport.html", preferenceFileError("<p>"+ aresAccessor.messageBoard.getMessages +"</p>"))
 				
 			} else {
 					fsa.generateFile("error.html", preferenceFileError("<p>"+ aresAccessor.messageBoard.getMessages +"</p>"))
