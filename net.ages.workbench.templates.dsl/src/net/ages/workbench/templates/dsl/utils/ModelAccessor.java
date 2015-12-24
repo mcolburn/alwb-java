@@ -901,7 +901,7 @@ public class ModelAccessor {
 		return (Definition) resource.getEObject("//@dsl_Model_definitions."
 				+ index);
 	}
-
+	
 	public String getDefinitionText(Definition d, String defFile) {
 		logger.entry(d,defFile);
 
@@ -916,8 +916,12 @@ public class ModelAccessor {
 		try {
 			resolvedDefinition = getResolvedDefinition(d);
 			lastSegment = resolvedDefinition.eResource().getURI().lastSegment();
-			theFinalKey = lastSegment + "." + resolvedDefinition.getName();
 			result = resolvedDefinition.getDsl_Definition_Text();
+			if (result != null) {
+				lastFile = lastSegment;
+				lastId = resolvedDefinition.getName();
+				theFinalKey = lastFile + "." + lastId;
+			}
 		} catch (Exception e) {
 			logger.catching(e);
 			if (debug) {
@@ -978,9 +982,6 @@ public class ModelAccessor {
 	 */
 	public String getDefinitionValue(final Resource resource, final String id) {
 		logger.entry(resource,id);
-		if (id.startsWith("meVE.Apolytikion1.text")) {
-			System.out.print("");
-		}
 		try {
 			resource.load(loadOptions); // in order to ensure loaded as UTF-8
 		} catch (IOException e1) {
@@ -1429,7 +1430,7 @@ public class ModelAccessor {
 		}
 		theResult = convertFormatCodes(theResult);
 		processingLanguage1 = false;
-		if (theResult != null || theResult != "") {
+		if (theResult != null && theResult.length() > 0) {
 				theResult = theResult + source(lastFile,lastId);
 		}
 		logger.exit(theResult);
@@ -1445,7 +1446,7 @@ public class ModelAccessor {
 		if (result == null || result == "") {
 			result = getLanguageVariableText(d, lang1IdDefault);
 		}
-		if (result != null || result != "") {
+		if (result != null && result.length() > 0) {
 				result = result + source(lastFile,lastId);
 		}
 		processingLanguage1 = false;
@@ -1606,7 +1607,7 @@ public class ModelAccessor {
 			}
 		}
 		theResult = convertFormatCodes(theResult);
-		if (theResult != null || theResult != "") {
+		if (theResult != null && theResult.length() > 0) {
 				theResult = theResult + source(lastFile,lastId);
 		}
 		logger.exit(theResult);
@@ -1622,7 +1623,7 @@ public class ModelAccessor {
 		if (result == null || result == "" || result.contains("Could not find")) {
 			result = getLanguageVariableText(d, langIdDefault);
 		}
-		if (result != null || result != "") {
+		if (result != null && result.length() > 0) {
 				result = result + source(lastFile,lastId);
 		}
 		return result;
@@ -3279,7 +3280,10 @@ public class ModelAccessor {
 	private void setUseLanguage2(boolean useLanguage2) {
 		this.useLanguage2 = useLanguage2;
 	}
-//		return "<span class=\"key\" data-key=\"" + file + "|"+ id + "\" hidden=\"hidden\"></span>"; 
+	
+	private String getKeySpan(String file, String id) {
+		return "<span class='key' data-key='" + file.replace(".ares", "") + "|"+ id + "' hidden='hidden'></span>"; 
+	}
 	
 	/**
 	 * Creates a string to be displayed in the HTML to show the source of the text.
@@ -3290,7 +3294,10 @@ public class ModelAccessor {
 	 */
 	public String source(String file, String id) {
 		logger.entry(file,id);
-		String span = "<span class=\"key\" data-key=\"" + file.replace(".ares", "") + "|"+ id + "\" hidden=\"hidden\"></span>"; 
+		String span = getKeySpan(file,id);
+		if (span.contains("sy.m12.d20_gr_GR_cog|S04.commemoration.text")) {
+			span = span;
+		}
 		String result = "";
 		if (! file.startsWith("pref")) {
 			if (showSource) {
@@ -3358,10 +3365,9 @@ public class ModelAccessor {
 	 */
 	public void setVersion(String filename) {
 		String domain = "";
+		String topic = "properties_";
+		String key = "version.designation";
 		domain = AlwbGeneralUtils.getDomainFromAresFile(filename);
-		if (domain.startsWith("en_US_dedes")) {
-			System.out.print("");
-		}
 		if (versionManager.contains(domain)) {
 			// do nothing
 		} else {
@@ -3370,15 +3376,19 @@ public class ModelAccessor {
 				if (nonRecursive) {
 					nonRecursive = false;
 					version = getDefinitionValueById(
-							"properties_" 
+							topic 
 							+ domain
-							+ ".ares", "version.designation");
+							+ ".ares", key);
 				}
 			} catch (Exception e) {
 				version = "";
 			}
 			if (version != null && version.length() > 0) {
-				versionManager.push(domain, version);
+				versionManager.push(
+						domain
+						, version
+						+  getKeySpan(topic+domain, key)
+						);
 			}
 			nonRecursive = true;
 		}
