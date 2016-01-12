@@ -70,6 +70,7 @@ public class LiturgicalDayProperties {
 		private int dayOfSeason = 0;  // return 1..70 (0 if no day set) 
 		
 		// Used to control lectionary and commemorations 
+		private int daysUntilStartOfTriodion;
 		private int daysSinceStartOfTriodion = 0;
 		private int daysSinceSundayAfterLastElevationOfCross = 0;
 		private int daysSinceStartLastLukanCycle = 0;
@@ -342,18 +343,14 @@ public class LiturgicalDayProperties {
 		}
 		
 		private void setNumberOfSundaysBeforeStartOfTriodion() {
-			/**
-			 * 2007 Triodion Starts Jan 28, 1 Sundays between Jan 15 and Triodion start 
-			 * 2011 Triodion Starts Feb 13, 4 Sundays between Jan 15 and Triodion start 
-			 * 2012 Triodion Starts Feb 05, 3 Sundays between Jan 15 and Triodion start
-			 * 2013 Triodion Starts Feb 24, 5 Sundays between Jan 15 and Triodion start
-			 * 2014 Triodion Starts Feb 09, 3 Sundays between Jan 15 and Triodion start
-			 */
-			GregorianCalendar jan15 = new GregorianCalendar(triodionStartDateThisYear.get(Calendar.YEAR),0,15);
-			Long diffMillis = diffMillis(this.triodionStartDateThisYear, jan15);
-			// Get difference in days, add 1 to be 1-index based instead of zero.
-			int daysUntilStartOfTriodion = (int) ( diffMillis / (24*60*60*1000) );
-			numberOfSundaysBeforeStartOfTriodion = daysUntilStartOfTriodion / 7;
+			Long diffMillis = diffMillis(this.triodionStartDateThisYear, theDay);
+			daysUntilStartOfTriodion = (int) ( diffMillis / (24*60*60*1000) );
+			if (daysUntilStartOfTriodion < 0) {
+				daysUntilStartOfTriodion = 0;
+				numberOfSundaysBeforeStartOfTriodion = 0;
+			} else {
+				numberOfSundaysBeforeStartOfTriodion = daysUntilStartOfTriodion / 7;
+			}
 		}
 		
 		public int getNumberOfSundaysBeforeStartOfTriodion() {
@@ -1141,9 +1138,13 @@ public class LiturgicalDayProperties {
 					strWrap("Triodion Starts next year:", formattedDate(triodionStartDateNextYear)) +
 					strWrap("Pascha:", formattedDate(paschaDateThisYear) ) +
 					strWrap("All-Saints:", formattedDate(allSaintsDateThisYear)) +
+					"\nNumber of Sundays Before Triodion: " + numberOfSundaysBeforeStartOfTriodion +
+					"\nNumber of days until start of Triodion" + daysUntilStartOfTriodion +
 					strWrap("Last Sunday After Elevation of Cross:", formattedDate(sundayAfterElevationOfCrossDateLast)) +
 					strWrap("Days Since Last Sunday AfterElevation of Cross:", String.valueOf(daysSinceSundayAfterLastElevationOfCross)) 
 					);
+			
+			//numberOfSundaysBeforeStartOfTriodion
 								
 			if( isTriodion || isPentecostarion ) {
 				String seasonInfo = (isTriodion) ? "Triodion day " : "Pentecostarion day ";
