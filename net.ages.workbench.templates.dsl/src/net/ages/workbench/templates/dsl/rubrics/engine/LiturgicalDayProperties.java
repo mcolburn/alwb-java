@@ -286,6 +286,7 @@ public class LiturgicalDayProperties {
 		
 		public void setLiturgicalPropertiesByDate(int year)
 		{	
+			setVariablesToDefaults();
 			boolean useGregorianCalendar = true; // vs Orthodox Old Calendar
 			paschaDateLastYear = computeDayOfPascha(theDay.get(GregorianCalendar.YEAR)-1, useGregorianCalendar);
 			paschaDateThisYear = computeDayOfPascha(year, useGregorianCalendar);
@@ -306,7 +307,9 @@ public class LiturgicalDayProperties {
 			if( theDay.equals(paschaDateThisYear) ||
 				theDay.equals(allSaintsDateThisYear) ||
 				(theDay.after(paschaDateThisYear) && theDay.before(allSaintsDateThisYear))) {
-				isPentecostarion = true;
+				setIsPentecostarion(true);
+			} else {
+				setIsPentecostarion(false);
 			}
 			
 			if( theDay.equals(triodionStartDateThisYear) ||
@@ -1337,5 +1340,43 @@ public class LiturgicalDayProperties {
 			return sb.toString();
 		}
 
+		/**
+		 * Because the date can be reset for an instance of this class,
+		 * it is necessary to reset certain variables to their default value.
+		 * 
+		 * Otherwise, there value can carry over erroneously to a new date.
+		 */
+		private void setVariablesToDefaults() {
+			
+			modeOfWeek = 0;  // return 0..8
+			modeOfWeekOverride = 0;
+			
+			// Valid values for 11 week cycle, only valid on Sundays!!!!
+			eothinonNumber = 0;  // 0..11
+
+			// valid only when isPentecostarion or isTriodion.
+			dayOfSeason = 0;  // return 1..70 (0 if no day set) 
+			
+			// Used to control lectionary and commemorations 
+			daysSinceStartOfTriodion = 0;
+			daysSinceSundayAfterLastElevationOfCross = 0;
+			daysSinceStartLastLukanCycle = 0;
+			numberOfSundaysBeforeStartOfTriodion = 0;
+
+			// movable feast seasons
+			isPentecostarion = false;
+			isTriodion = false;
+			isPascha = false;
+			isDaysOfLuke = false;
+
+			// days of week conditionals
+			isSunday = false;
+			isMonday = false;
+			isTuesday = false;
+			isWednesday = false;
+			isThursday = false;
+			isFriday = false;                                        
+			isSaturday = false;
+		}
 		
 }
