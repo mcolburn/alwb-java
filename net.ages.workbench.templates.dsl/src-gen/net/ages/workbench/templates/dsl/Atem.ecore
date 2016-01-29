@@ -110,11 +110,14 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ResourceText" eSuperTypes="#//ElementType">
     <eStructuralFeatures xsi:type="ecore:EReference" name="dsl_ResourceTextRef" eType="ecore:EClass platform:/resource/net.ages.workbench.resources.dsl/src-gen/net/ages/workbench/resources/dsl/Ares.ecore#//Definition"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dsl_ResourceText_Version"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dsl_ResourceText_Media_Off"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Lookup" eSuperTypes="#//ElementType">
     <eStructuralFeatures xsi:type="ecore:EReference" name="dsl_ResourceTextRef" eType="ecore:EClass platform:/resource/net.ages.workbench.resources.dsl/src-gen/net/ages/workbench/resources/dsl/Ares.ecore#//Definition"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dsl_Lookup_Version" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dsl_Lookup_Media_Off" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dsl_Lookup_Override_Mode_Set"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
@@ -144,6 +147,9 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dsl_Date_month" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dsl_Date_day" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dsl_Date_year" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="McDay" eSuperTypes="#//HeadComponent #//SectionElementType">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dsl_McDay_val" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Preface">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
