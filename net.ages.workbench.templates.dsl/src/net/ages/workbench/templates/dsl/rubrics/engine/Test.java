@@ -45,12 +45,12 @@ public class Test {
 		 * 2013 Triodion Starts Feb 24, 5 Sundays between Jan 15 and Triodion start
 		 * 2014 Triodion Starts Feb 09, 3 Sundays between Jan 15 and Triodion start
 		 */
-		showSundaysUntilStartOfTriodion("2007","1",2);
-		showSundaysUntilStartOfTriodion("2011","1",2);
-		showSundaysUntilStartOfTriodion("2012","1",2);
-		showSundaysUntilStartOfTriodion("2013","1",2);
-		showSundaysUntilStartOfTriodion("2014","1",2);
-		LiturgicalDayProperties theDay = new LiturgicalDayProperties("2014","1","3");
+		showSundaysUntilStartOfTriodion("2015","1",2);
+		showSundaysUntilStartOfTriodion("2016","1",2);
+		showSundaysUntilStartOfTriodion("2017","1",2);
+		showSundaysUntilStartOfTriodion("2018","1",2);
+		showSundaysUntilStartOfTriodion("2019","1",2);
+		LiturgicalDayProperties theDay = new LiturgicalDayProperties("2016","2","21");
 		String temp = theDay.getDisplayDate("yyyy/mm/dd");
 		System.out.println(temp);
 		

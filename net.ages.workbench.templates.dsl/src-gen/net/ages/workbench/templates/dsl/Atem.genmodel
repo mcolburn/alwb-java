@@ -208,10 +208,12 @@
     </genClasses>
     <genClasses ecoreClass="Atem.ecore#//ResourceText">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Atem.ecore#//ResourceText/dsl_ResourceTextRef"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//ResourceText/dsl_ResourceText_Version"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//ResourceText/dsl_ResourceText_Media_Off"/>
     </genClasses>
     <genClasses ecoreClass="Atem.ecore#//Lookup">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Atem.ecore#//Lookup/dsl_ResourceTextRef"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//Lookup/dsl_Lookup_Version"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//Lookup/dsl_Lookup_Media_Off"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//Lookup/dsl_Lookup_Override_Mode_Set"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//Lookup/dsl_Lookup_OverrideMode"/>
@@ -234,6 +236,9 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//Date/dsl_Date_month"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//Date/dsl_Date_day"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//Date/dsl_Date_year"/>
+    </genClasses>
+    <genClasses ecoreClass="Atem.ecore#//McDay">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//McDay/dsl_McDay_val"/>
     </genClasses>
     <genClasses ecoreClass="Atem.ecore#//Preface">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Atem.ecore#//Preface/name"/>

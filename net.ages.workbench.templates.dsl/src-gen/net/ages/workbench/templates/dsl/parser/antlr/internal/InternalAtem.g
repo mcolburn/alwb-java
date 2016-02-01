@@ -302,71 +302,81 @@ ruleHeadComponent returns [EObject current=null]
 
     |
     { 
-        newCompositeNode(grammarAccess.getHeadComponentAccess().getPageHeaderEvenParserRuleCall_2()); 
+        newCompositeNode(grammarAccess.getHeadComponentAccess().getMcDayParserRuleCall_2()); 
     }
-    this_PageHeaderEven_2=rulePageHeaderEven
+    this_McDay_2=ruleMcDay
     { 
-        $current = $this_PageHeaderEven_2.current; 
+        $current = $this_McDay_2.current; 
         afterParserOrEnumRuleCall();
     }
 
     |
     { 
-        newCompositeNode(grammarAccess.getHeadComponentAccess().getPageHeaderOddParserRuleCall_3()); 
+        newCompositeNode(grammarAccess.getHeadComponentAccess().getPageHeaderEvenParserRuleCall_3()); 
     }
-    this_PageHeaderOdd_3=rulePageHeaderOdd
+    this_PageHeaderEven_3=rulePageHeaderEven
     { 
-        $current = $this_PageHeaderOdd_3.current; 
+        $current = $this_PageHeaderEven_3.current; 
         afterParserOrEnumRuleCall();
     }
 
     |
     { 
-        newCompositeNode(grammarAccess.getHeadComponentAccess().getPageFooterEvenParserRuleCall_4()); 
+        newCompositeNode(grammarAccess.getHeadComponentAccess().getPageHeaderOddParserRuleCall_4()); 
     }
-    this_PageFooterEven_4=rulePageFooterEven
+    this_PageHeaderOdd_4=rulePageHeaderOdd
     { 
-        $current = $this_PageFooterEven_4.current; 
+        $current = $this_PageHeaderOdd_4.current; 
         afterParserOrEnumRuleCall();
     }
 
     |
     { 
-        newCompositeNode(grammarAccess.getHeadComponentAccess().getPageFooterOddParserRuleCall_5()); 
+        newCompositeNode(grammarAccess.getHeadComponentAccess().getPageFooterEvenParserRuleCall_5()); 
     }
-    this_PageFooterOdd_5=rulePageFooterOdd
+    this_PageFooterEven_5=rulePageFooterEven
     { 
-        $current = $this_PageFooterOdd_5.current; 
+        $current = $this_PageFooterEven_5.current; 
         afterParserOrEnumRuleCall();
     }
 
     |
     { 
-        newCompositeNode(grammarAccess.getHeadComponentAccess().getPageKeepWithNextParserRuleCall_6()); 
+        newCompositeNode(grammarAccess.getHeadComponentAccess().getPageFooterOddParserRuleCall_6()); 
     }
-    this_PageKeepWithNext_6=rulePageKeepWithNext
+    this_PageFooterOdd_6=rulePageFooterOdd
     { 
-        $current = $this_PageKeepWithNext_6.current; 
+        $current = $this_PageFooterOdd_6.current; 
         afterParserOrEnumRuleCall();
     }
 
     |
     { 
-        newCompositeNode(grammarAccess.getHeadComponentAccess().getPageNumberParserRuleCall_7()); 
+        newCompositeNode(grammarAccess.getHeadComponentAccess().getPageKeepWithNextParserRuleCall_7()); 
     }
-    this_PageNumber_7=rulePageNumber
+    this_PageKeepWithNext_7=rulePageKeepWithNext
     { 
-        $current = $this_PageNumber_7.current; 
+        $current = $this_PageKeepWithNext_7.current; 
         afterParserOrEnumRuleCall();
     }
 
     |
     { 
-        newCompositeNode(grammarAccess.getHeadComponentAccess().getTemplateTitleParserRuleCall_8()); 
+        newCompositeNode(grammarAccess.getHeadComponentAccess().getPageNumberParserRuleCall_8()); 
     }
-    this_TemplateTitle_8=ruleTemplateTitle
+    this_PageNumber_8=rulePageNumber
     { 
-        $current = $this_TemplateTitle_8.current; 
+        $current = $this_PageNumber_8.current; 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getHeadComponentAccess().getTemplateTitleParserRuleCall_9()); 
+    }
+    this_TemplateTitle_9=ruleTemplateTitle
+    { 
+        $current = $this_TemplateTitle_9.current; 
         afterParserOrEnumRuleCall();
     }
 )
@@ -1958,9 +1968,24 @@ ruleResourceText returns [EObject current=null]
 )
 )(
 (
-		lv_dsl_ResourceText_Media_Off_2_0=	'media-off' 
+		lv_dsl_ResourceText_Version_2_0=	'@ver' 
     {
-        newLeafNode(lv_dsl_ResourceText_Media_Off_2_0, grammarAccess.getResourceTextAccess().getDsl_ResourceText_Media_OffMediaOffKeyword_2_0());
+        newLeafNode(lv_dsl_ResourceText_Version_2_0, grammarAccess.getResourceTextAccess().getDsl_ResourceText_VersionVerKeyword_2_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getResourceTextRule());
+	        }
+       		setWithLastConsumed($current, "dsl_ResourceText_Version", true, "@ver");
+	    }
+
+)
+)?(
+(
+		lv_dsl_ResourceText_Media_Off_3_0=	'media-off' 
+    {
+        newLeafNode(lv_dsl_ResourceText_Media_Off_3_0, grammarAccess.getResourceTextAccess().getDsl_ResourceText_Media_OffMediaOffKeyword_3_0());
     }
  
 	    {
@@ -2013,9 +2038,24 @@ ruleLookup returns [EObject current=null]
 )
 )(
 (
-		lv_dsl_Lookup_Media_Off_2_0=	'media-off' 
+		lv_dsl_Lookup_Version_2_0=	'@ver' 
     {
-        newLeafNode(lv_dsl_Lookup_Media_Off_2_0, grammarAccess.getLookupAccess().getDsl_Lookup_Media_OffMediaOffKeyword_2_0());
+        newLeafNode(lv_dsl_Lookup_Version_2_0, grammarAccess.getLookupAccess().getDsl_Lookup_VersionVerKeyword_2_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getLookupRule());
+	        }
+       		setWithLastConsumed($current, "dsl_Lookup_Version", true, "@ver");
+	    }
+
+)
+)?(
+(
+		lv_dsl_Lookup_Media_Off_3_0=	'media-off' 
+    {
+        newLeafNode(lv_dsl_Lookup_Media_Off_3_0, grammarAccess.getLookupAccess().getDsl_Lookup_Media_OffMediaOffKeyword_3_0());
     }
  
 	    {
@@ -2028,9 +2068,9 @@ ruleLookup returns [EObject current=null]
 )
 )?((
 (
-		lv_dsl_Lookup_Override_Mode_Set_3_0=	'@mode' 
+		lv_dsl_Lookup_Override_Mode_Set_4_0=	'@mode' 
     {
-        newLeafNode(lv_dsl_Lookup_Override_Mode_Set_3_0, grammarAccess.getLookupAccess().getDsl_Lookup_Override_Mode_SetModeKeyword_3_0_0());
+        newLeafNode(lv_dsl_Lookup_Override_Mode_Set_4_0, grammarAccess.getLookupAccess().getDsl_Lookup_Override_Mode_SetModeKeyword_4_0_0());
     }
  
 	    {
@@ -2044,16 +2084,16 @@ ruleLookup returns [EObject current=null]
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getLookupAccess().getDsl_Lookup_OverrideModeModeTypesEnumRuleCall_3_1_0()); 
+	        newCompositeNode(grammarAccess.getLookupAccess().getDsl_Lookup_OverrideModeModeTypesEnumRuleCall_4_1_0()); 
 	    }
-		lv_dsl_Lookup_OverrideMode_4_0=ruleModeTypes		{
+		lv_dsl_Lookup_OverrideMode_5_0=ruleModeTypes		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getLookupRule());
 	        }
        		set(
        			$current, 
        			"dsl_Lookup_OverrideMode",
-        		lv_dsl_Lookup_OverrideMode_4_0, 
+        		lv_dsl_Lookup_OverrideMode_5_0, 
         		"ModeTypes");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -2061,9 +2101,9 @@ ruleLookup returns [EObject current=null]
 )
 ))?((
 (
-		lv_dsl_Lookup_Override__Day_Set_5_0=	'@day' 
+		lv_dsl_Lookup_Override__Day_Set_6_0=	'@day' 
     {
-        newLeafNode(lv_dsl_Lookup_Override__Day_Set_5_0, grammarAccess.getLookupAccess().getDsl_Lookup_Override__Day_SetDayKeyword_4_0_0());
+        newLeafNode(lv_dsl_Lookup_Override__Day_Set_6_0, grammarAccess.getLookupAccess().getDsl_Lookup_Override__Day_SetDayKeyword_5_0_0());
     }
  
 	    {
@@ -2077,16 +2117,16 @@ ruleLookup returns [EObject current=null]
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getLookupAccess().getDsl_Lookup_OverrideDayDowTypesEnumRuleCall_4_1_0()); 
+	        newCompositeNode(grammarAccess.getLookupAccess().getDsl_Lookup_OverrideDayDowTypesEnumRuleCall_5_1_0()); 
 	    }
-		lv_dsl_Lookup_OverrideDay_6_0=ruleDowTypes		{
+		lv_dsl_Lookup_OverrideDay_7_0=ruleDowTypes		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getLookupRule());
 	        }
        		set(
        			$current, 
        			"dsl_Lookup_OverrideDay",
-        		lv_dsl_Lookup_OverrideDay_6_0, 
+        		lv_dsl_Lookup_OverrideDay_7_0, 
         		"DowTypes");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -2430,6 +2470,57 @@ ruleDate returns [EObject current=null]
 ))?	otherlv_7='End_Date' 
     {
     	newLeafNode(otherlv_7, grammarAccess.getDateAccess().getEnd_DateKeyword_6());
+    }
+)
+;
+
+
+
+
+
+// Entry rule entryRuleMcDay
+entryRuleMcDay returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getMcDayRule()); }
+	 iv_ruleMcDay=ruleMcDay 
+	 { $current=$iv_ruleMcDay.current; } 
+	 EOF 
+;
+
+// Rule McDay
+ruleMcDay returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(	otherlv_0='Set_mcDay' 
+    {
+    	newLeafNode(otherlv_0, grammarAccess.getMcDayAccess().getSet_mcDayKeyword_0());
+    }
+	otherlv_1='day' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getMcDayAccess().getDayKeyword_1());
+    }
+(
+(
+		lv_dsl_McDay_val_2_0=RULE_INT
+		{
+			newLeafNode(lv_dsl_McDay_val_2_0, grammarAccess.getMcDayAccess().getDsl_McDay_valINTTerminalRuleCall_2_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMcDayRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"dsl_McDay_val",
+        		lv_dsl_McDay_val_2_0, 
+        		"INT");
+	    }
+
+)
+)	otherlv_3='End_mcDay' 
+    {
+    	newLeafNode(otherlv_3, grammarAccess.getMcDayAccess().getEnd_mcDayKeyword_3());
     }
 )
 ;
@@ -2793,251 +2884,261 @@ ruleSectionElementType returns [EObject current=null]
 
     |
     { 
-        newCompositeNode(grammarAccess.getSectionElementTypeAccess().getMediaParserRuleCall_9()); 
+        newCompositeNode(grammarAccess.getSectionElementTypeAccess().getMcDayParserRuleCall_9()); 
     }
-    this_Media_9=ruleMedia
+    this_McDay_9=ruleMcDay
     { 
-        $current = $this_Media_9.current; 
+        $current = $this_McDay_9.current; 
         afterParserOrEnumRuleCall();
     }
 
     |
     { 
-        newCompositeNode(grammarAccess.getSectionElementTypeAccess().getParagraphParserRuleCall_10()); 
+        newCompositeNode(grammarAccess.getSectionElementTypeAccess().getMediaParserRuleCall_10()); 
     }
-    this_Paragraph_10=ruleParagraph
+    this_Media_10=ruleMedia
     { 
-        $current = $this_Paragraph_10.current; 
+        $current = $this_Media_10.current; 
         afterParserOrEnumRuleCall();
     }
 
     |
     { 
-        newCompositeNode(grammarAccess.getSectionElementTypeAccess().getPassThroughHtmlParserRuleCall_11()); 
+        newCompositeNode(grammarAccess.getSectionElementTypeAccess().getParagraphParserRuleCall_11()); 
     }
-    this_PassThroughHtml_11=rulePassThroughHtml
+    this_Paragraph_11=ruleParagraph
     { 
-        $current = $this_PassThroughHtml_11.current; 
+        $current = $this_Paragraph_11.current; 
         afterParserOrEnumRuleCall();
     }
 
     |
     { 
-        newCompositeNode(grammarAccess.getSectionElementTypeAccess().getPassThroughPdfParserRuleCall_12()); 
+        newCompositeNode(grammarAccess.getSectionElementTypeAccess().getPassThroughHtmlParserRuleCall_12()); 
     }
-    this_PassThroughPdf_12=rulePassThroughPdf
+    this_PassThroughHtml_12=rulePassThroughHtml
     { 
-        $current = $this_PassThroughPdf_12.current; 
+        $current = $this_PassThroughHtml_12.current; 
         afterParserOrEnumRuleCall();
     }
 
     |
     { 
-        newCompositeNode(grammarAccess.getSectionElementTypeAccess().getReadingParserRuleCall_13()); 
+        newCompositeNode(grammarAccess.getSectionElementTypeAccess().getPassThroughPdfParserRuleCall_13()); 
     }
-    this_Reading_13=ruleReading
+    this_PassThroughPdf_13=rulePassThroughPdf
     { 
-        $current = $this_Reading_13.current; 
+        $current = $this_PassThroughPdf_13.current; 
         afterParserOrEnumRuleCall();
     }
 
     |
     { 
-        newCompositeNode(grammarAccess.getSectionElementTypeAccess().getRestoreLocaleParserRuleCall_14()); 
+        newCompositeNode(grammarAccess.getSectionElementTypeAccess().getReadingParserRuleCall_14()); 
     }
-    this_RestoreLocale_14=ruleRestoreLocale
+    this_Reading_14=ruleReading
     { 
-        $current = $this_RestoreLocale_14.current; 
+        $current = $this_Reading_14.current; 
         afterParserOrEnumRuleCall();
     }
 
     |
     { 
-        newCompositeNode(grammarAccess.getSectionElementTypeAccess().getRubricParserRuleCall_15()); 
+        newCompositeNode(grammarAccess.getSectionElementTypeAccess().getRestoreLocaleParserRuleCall_15()); 
     }
-    this_Rubric_15=ruleRubric
+    this_RestoreLocale_15=ruleRestoreLocale
     { 
-        $current = $this_Rubric_15.current; 
+        $current = $this_RestoreLocale_15.current; 
         afterParserOrEnumRuleCall();
     }
 
     |
     { 
-        newCompositeNode(grammarAccess.getSectionElementTypeAccess().getSectionParserRuleCall_16()); 
+        newCompositeNode(grammarAccess.getSectionElementTypeAccess().getRubricParserRuleCall_16()); 
     }
-    this_Section_16=ruleSection
+    this_Rubric_16=ruleRubric
     { 
-        $current = $this_Section_16.current; 
+        $current = $this_Rubric_16.current; 
         afterParserOrEnumRuleCall();
     }
 
     |
     { 
-        newCompositeNode(grammarAccess.getSectionElementTypeAccess().getSectionFragmentParserRuleCall_17()); 
+        newCompositeNode(grammarAccess.getSectionElementTypeAccess().getSectionParserRuleCall_17()); 
     }
-    this_SectionFragment_17=ruleSectionFragment
+    this_Section_17=ruleSection
     { 
-        $current = $this_SectionFragment_17.current; 
+        $current = $this_Section_17.current; 
         afterParserOrEnumRuleCall();
     }
 
     |
     { 
-        newCompositeNode(grammarAccess.getSectionElementTypeAccess().getSetLocaleParserRuleCall_18()); 
+        newCompositeNode(grammarAccess.getSectionElementTypeAccess().getSectionFragmentParserRuleCall_18()); 
     }
-    this_SetLocale_18=ruleSetLocale
+    this_SectionFragment_18=ruleSectionFragment
     { 
-        $current = $this_SetLocale_18.current; 
+        $current = $this_SectionFragment_18.current; 
         afterParserOrEnumRuleCall();
     }
 
     |
     { 
-        newCompositeNode(grammarAccess.getSectionElementTypeAccess().getTemplateFragmentParserRuleCall_19()); 
+        newCompositeNode(grammarAccess.getSectionElementTypeAccess().getSetLocaleParserRuleCall_19()); 
     }
-    this_TemplateFragment_19=ruleTemplateFragment
+    this_SetLocale_19=ruleSetLocale
     { 
-        $current = $this_TemplateFragment_19.current; 
+        $current = $this_SetLocale_19.current; 
         afterParserOrEnumRuleCall();
     }
 
     |
     { 
-        newCompositeNode(grammarAccess.getSectionElementTypeAccess().getTitleParserRuleCall_20()); 
+        newCompositeNode(grammarAccess.getSectionElementTypeAccess().getTemplateFragmentParserRuleCall_20()); 
     }
-    this_Title_20=ruleTitle
+    this_TemplateFragment_20=ruleTemplateFragment
     { 
-        $current = $this_Title_20.current; 
+        $current = $this_TemplateFragment_20.current; 
         afterParserOrEnumRuleCall();
     }
 
     |
     { 
-        newCompositeNode(grammarAccess.getSectionElementTypeAccess().getSubTitleParserRuleCall_21()); 
+        newCompositeNode(grammarAccess.getSectionElementTypeAccess().getTitleParserRuleCall_21()); 
     }
-    this_SubTitle_21=ruleSubTitle
+    this_Title_21=ruleTitle
     { 
-        $current = $this_SubTitle_21.current; 
+        $current = $this_Title_21.current; 
         afterParserOrEnumRuleCall();
     }
 
     |
     { 
-        newCompositeNode(grammarAccess.getSectionElementTypeAccess().getVerseParserRuleCall_22()); 
+        newCompositeNode(grammarAccess.getSectionElementTypeAccess().getSubTitleParserRuleCall_22()); 
     }
-    this_Verse_22=ruleVerse
+    this_SubTitle_22=ruleSubTitle
     { 
-        $current = $this_Verse_22.current; 
+        $current = $this_SubTitle_22.current; 
         afterParserOrEnumRuleCall();
     }
 
     |
     { 
-        newCompositeNode(grammarAccess.getSectionElementTypeAccess().getWhenDateParserRuleCall_23()); 
+        newCompositeNode(grammarAccess.getSectionElementTypeAccess().getVerseParserRuleCall_23()); 
     }
-    this_WhenDate_23=ruleWhenDate
+    this_Verse_23=ruleVerse
     { 
-        $current = $this_WhenDate_23.current; 
+        $current = $this_Verse_23.current; 
         afterParserOrEnumRuleCall();
     }
 
     |
     { 
-        newCompositeNode(grammarAccess.getSectionElementTypeAccess().getWhenDayNameParserRuleCall_24()); 
+        newCompositeNode(grammarAccess.getSectionElementTypeAccess().getWhenDateParserRuleCall_24()); 
     }
-    this_WhenDayName_24=ruleWhenDayName
+    this_WhenDate_24=ruleWhenDate
     { 
-        $current = $this_WhenDayName_24.current; 
+        $current = $this_WhenDate_24.current; 
         afterParserOrEnumRuleCall();
     }
 
     |
     { 
-        newCompositeNode(grammarAccess.getSectionElementTypeAccess().getWhenExistsParserRuleCall_25()); 
+        newCompositeNode(grammarAccess.getSectionElementTypeAccess().getWhenDayNameParserRuleCall_25()); 
     }
-    this_WhenExists_25=ruleWhenExists
+    this_WhenDayName_25=ruleWhenDayName
     { 
-        $current = $this_WhenExists_25.current; 
+        $current = $this_WhenDayName_25.current; 
         afterParserOrEnumRuleCall();
     }
 
     |
     { 
-        newCompositeNode(grammarAccess.getSectionElementTypeAccess().getWhenLukanCycleDayParserRuleCall_26()); 
+        newCompositeNode(grammarAccess.getSectionElementTypeAccess().getWhenExistsParserRuleCall_26()); 
     }
-    this_WhenLukanCycleDay_26=ruleWhenLukanCycleDay
+    this_WhenExists_26=ruleWhenExists
     { 
-        $current = $this_WhenLukanCycleDay_26.current; 
+        $current = $this_WhenExists_26.current; 
         afterParserOrEnumRuleCall();
     }
 
     |
     { 
-        newCompositeNode(grammarAccess.getSectionElementTypeAccess().getWhenModeOfWeekParserRuleCall_27()); 
+        newCompositeNode(grammarAccess.getSectionElementTypeAccess().getWhenLukanCycleDayParserRuleCall_27()); 
     }
-    this_WhenModeOfWeek_27=ruleWhenModeOfWeek
+    this_WhenLukanCycleDay_27=ruleWhenLukanCycleDay
     { 
-        $current = $this_WhenModeOfWeek_27.current; 
+        $current = $this_WhenLukanCycleDay_27.current; 
         afterParserOrEnumRuleCall();
     }
 
     |
     { 
-        newCompositeNode(grammarAccess.getSectionElementTypeAccess().getWhenMovableCycleDayParserRuleCall_28()); 
+        newCompositeNode(grammarAccess.getSectionElementTypeAccess().getWhenModeOfWeekParserRuleCall_28()); 
     }
-    this_WhenMovableCycleDay_28=ruleWhenMovableCycleDay
+    this_WhenModeOfWeek_28=ruleWhenModeOfWeek
     { 
-        $current = $this_WhenMovableCycleDay_28.current; 
+        $current = $this_WhenModeOfWeek_28.current; 
         afterParserOrEnumRuleCall();
     }
 
     |
     { 
-        newCompositeNode(grammarAccess.getSectionElementTypeAccess().getWhenPaschaParserRuleCall_29()); 
+        newCompositeNode(grammarAccess.getSectionElementTypeAccess().getWhenMovableCycleDayParserRuleCall_29()); 
     }
-    this_WhenPascha_29=ruleWhenPascha
+    this_WhenMovableCycleDay_29=ruleWhenMovableCycleDay
     { 
-        $current = $this_WhenPascha_29.current; 
+        $current = $this_WhenMovableCycleDay_29.current; 
         afterParserOrEnumRuleCall();
     }
 
     |
     { 
-        newCompositeNode(grammarAccess.getSectionElementTypeAccess().getWhenPentecostarionDayParserRuleCall_30()); 
+        newCompositeNode(grammarAccess.getSectionElementTypeAccess().getWhenPaschaParserRuleCall_30()); 
     }
-    this_WhenPentecostarionDay_30=ruleWhenPentecostarionDay
+    this_WhenPascha_30=ruleWhenPascha
     { 
-        $current = $this_WhenPentecostarionDay_30.current; 
+        $current = $this_WhenPascha_30.current; 
         afterParserOrEnumRuleCall();
     }
 
     |
     { 
-        newCompositeNode(grammarAccess.getSectionElementTypeAccess().getWhenSundayAfterElevationOfCrossDayParserRuleCall_31()); 
+        newCompositeNode(grammarAccess.getSectionElementTypeAccess().getWhenPentecostarionDayParserRuleCall_31()); 
     }
-    this_WhenSundayAfterElevationOfCrossDay_31=ruleWhenSundayAfterElevationOfCrossDay
+    this_WhenPentecostarionDay_31=ruleWhenPentecostarionDay
     { 
-        $current = $this_WhenSundayAfterElevationOfCrossDay_31.current; 
+        $current = $this_WhenPentecostarionDay_31.current; 
         afterParserOrEnumRuleCall();
     }
 
     |
     { 
-        newCompositeNode(grammarAccess.getSectionElementTypeAccess().getWhenTriodionDayParserRuleCall_32()); 
+        newCompositeNode(grammarAccess.getSectionElementTypeAccess().getWhenSundayAfterElevationOfCrossDayParserRuleCall_32()); 
     }
-    this_WhenTriodionDay_32=ruleWhenTriodionDay
+    this_WhenSundayAfterElevationOfCrossDay_32=ruleWhenSundayAfterElevationOfCrossDay
     { 
-        $current = $this_WhenTriodionDay_32.current; 
+        $current = $this_WhenSundayAfterElevationOfCrossDay_32.current; 
         afterParserOrEnumRuleCall();
     }
 
     |
     { 
-        newCompositeNode(grammarAccess.getSectionElementTypeAccess().getWhenSundaysBeforeTriodionParserRuleCall_33()); 
+        newCompositeNode(grammarAccess.getSectionElementTypeAccess().getWhenTriodionDayParserRuleCall_33()); 
     }
-    this_WhenSundaysBeforeTriodion_33=ruleWhenSundaysBeforeTriodion
+    this_WhenTriodionDay_33=ruleWhenTriodionDay
     { 
-        $current = $this_WhenSundaysBeforeTriodion_33.current; 
+        $current = $this_WhenTriodionDay_33.current; 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getSectionElementTypeAccess().getWhenSundaysBeforeTriodionParserRuleCall_34()); 
+    }
+    this_WhenSundaysBeforeTriodion_34=ruleWhenSundaysBeforeTriodion
+    { 
+        $current = $this_WhenSundaysBeforeTriodion_34.current; 
         afterParserOrEnumRuleCall();
     }
 )
@@ -7189,7 +7290,7 @@ RULE_ID : '^'? ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 
 RULE_INT : ('0'..'9')+;
 
-RULE_STRING : ('"' ('\\' ('b'|'t'|'n'|'f'|'r'|'u'|'"'|'\''|'\\')|~(('\\'|'"')))* '"'|'\'' ('\\' ('b'|'t'|'n'|'f'|'r'|'u'|'"'|'\''|'\\')|~(('\\'|'\'')))* '\'');
+RULE_STRING : ('"' ('\\' .|~(('\\'|'"')))* '"'|'\'' ('\\' .|~(('\\'|'\'')))* '\'');
 
 RULE_ML_COMMENT : '/*' ( options {greedy=false;} : . )*'*/';
 

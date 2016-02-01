@@ -258,7 +258,8 @@ public class ModelAccessor {
 	 * specified extension in the entire workspace. This means it looks across projects.
 	 * 
 	 * @param modelExtension
-	 */	public ModelAccessor(ResourceSet resourceset, String modelExtension) {
+	 */	
+	public ModelAccessor(ResourceSet resourceset, String modelExtension) {
 		logger.entry();
 		AlwbLogger.setLogLevelToEclipsePreference();
 		resourceFileExtension = modelExtension;
@@ -3271,6 +3272,7 @@ public class ModelAccessor {
 	
 	public void setTemplateLanguageId(String langId) {
 		this.templateLanguageId = langId;
+		setTemplateLanguageFile(langId);
 	}
 	
 	private void setUseLanguage1(boolean useLanguage1) {

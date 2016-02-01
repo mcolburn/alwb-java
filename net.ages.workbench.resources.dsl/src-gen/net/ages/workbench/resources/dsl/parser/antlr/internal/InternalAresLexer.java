@@ -252,10 +252,10 @@ public class InternalAresLexer extends Lexer {
         try {
             int _type = RULE_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../net.ages.workbench.resources.dsl/src-gen/net/ages/workbench/resources/dsl/parser/antlr/internal/InternalAres.g:252:13: ( ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
-            // ../net.ages.workbench.resources.dsl/src-gen/net/ages/workbench/resources/dsl/parser/antlr/internal/InternalAres.g:252:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../net.ages.workbench.resources.dsl/src-gen/net/ages/workbench/resources/dsl/parser/antlr/internal/InternalAres.g:252:13: ( ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
+            // ../net.ages.workbench.resources.dsl/src-gen/net/ages/workbench/resources/dsl/parser/antlr/internal/InternalAres.g:252:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             {
-            // ../net.ages.workbench.resources.dsl/src-gen/net/ages/workbench/resources/dsl/parser/antlr/internal/InternalAres.g:252:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../net.ages.workbench.resources.dsl/src-gen/net/ages/workbench/resources/dsl/parser/antlr/internal/InternalAres.g:252:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -273,10 +273,10 @@ public class InternalAresLexer extends Lexer {
             }
             switch (alt6) {
                 case 1 :
-                    // ../net.ages.workbench.resources.dsl/src-gen/net/ages/workbench/resources/dsl/parser/antlr/internal/InternalAres.g:252:16: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+                    // ../net.ages.workbench.resources.dsl/src-gen/net/ages/workbench/resources/dsl/parser/antlr/internal/InternalAres.g:252:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
                     {
                     match('\"'); 
-                    // ../net.ages.workbench.resources.dsl/src-gen/net/ages/workbench/resources/dsl/parser/antlr/internal/InternalAres.g:252:20: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
+                    // ../net.ages.workbench.resources.dsl/src-gen/net/ages/workbench/resources/dsl/parser/antlr/internal/InternalAres.g:252:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
                     loop4:
                     do {
                         int alt4=3;
@@ -292,23 +292,15 @@ public class InternalAresLexer extends Lexer {
 
                         switch (alt4) {
                     	case 1 :
-                    	    // ../net.ages.workbench.resources.dsl/src-gen/net/ages/workbench/resources/dsl/parser/antlr/internal/InternalAres.g:252:21: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
+                    	    // ../net.ages.workbench.resources.dsl/src-gen/net/ages/workbench/resources/dsl/parser/antlr/internal/InternalAres.g:252:21: '\\\\' .
                     	    {
                     	    match('\\'); 
-                    	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||(input.LA(1)>='t' && input.LA(1)<='u') ) {
-                    	        input.consume();
-
-                    	    }
-                    	    else {
-                    	        MismatchedSetException mse = new MismatchedSetException(null,input);
-                    	        recover(mse);
-                    	        throw mse;}
-
+                    	    matchAny(); 
 
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../net.ages.workbench.resources.dsl/src-gen/net/ages/workbench/resources/dsl/parser/antlr/internal/InternalAres.g:252:66: ~ ( ( '\\\\' | '\"' ) )
+                    	    // ../net.ages.workbench.resources.dsl/src-gen/net/ages/workbench/resources/dsl/parser/antlr/internal/InternalAres.g:252:28: ~ ( ( '\\\\' | '\"' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -333,10 +325,10 @@ public class InternalAresLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../net.ages.workbench.resources.dsl/src-gen/net/ages/workbench/resources/dsl/parser/antlr/internal/InternalAres.g:252:86: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
+                    // ../net.ages.workbench.resources.dsl/src-gen/net/ages/workbench/resources/dsl/parser/antlr/internal/InternalAres.g:252:48: '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
                     {
                     match('\''); 
-                    // ../net.ages.workbench.resources.dsl/src-gen/net/ages/workbench/resources/dsl/parser/antlr/internal/InternalAres.g:252:91: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
+                    // ../net.ages.workbench.resources.dsl/src-gen/net/ages/workbench/resources/dsl/parser/antlr/internal/InternalAres.g:252:53: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
                     loop5:
                     do {
                         int alt5=3;
@@ -352,23 +344,15 @@ public class InternalAresLexer extends Lexer {
 
                         switch (alt5) {
                     	case 1 :
-                    	    // ../net.ages.workbench.resources.dsl/src-gen/net/ages/workbench/resources/dsl/parser/antlr/internal/InternalAres.g:252:92: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
+                    	    // ../net.ages.workbench.resources.dsl/src-gen/net/ages/workbench/resources/dsl/parser/antlr/internal/InternalAres.g:252:54: '\\\\' .
                     	    {
                     	    match('\\'); 
-                    	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||(input.LA(1)>='t' && input.LA(1)<='u') ) {
-                    	        input.consume();
-
-                    	    }
-                    	    else {
-                    	        MismatchedSetException mse = new MismatchedSetException(null,input);
-                    	        recover(mse);
-                    	        throw mse;}
-
+                    	    matchAny(); 
 
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../net.ages.workbench.resources.dsl/src-gen/net/ages/workbench/resources/dsl/parser/antlr/internal/InternalAres.g:252:137: ~ ( ( '\\\\' | '\\'' ) )
+                    	    // ../net.ages.workbench.resources.dsl/src-gen/net/ages/workbench/resources/dsl/parser/antlr/internal/InternalAres.g:252:61: ~ ( ( '\\\\' | '\\'' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -723,27 +707,19 @@ public class InternalAresLexer extends Lexer {
 
     protected DFA12 dfa12 = new DFA12(this);
     static final String DFA12_eotS =
-        "\1\uffff\1\16\3\uffff\1\14\2\uffff\3\14\2\uffff\1\16\11\uffff\23"+
-        "\16\1\uffff";
+        "\1\uffff\1\16\3\uffff\1\14\2\uffff\3\14\2\uffff\1\16\11\uffff\23\16\1\uffff";
     static final String DFA12_eofS =
         "\53\uffff";
     static final String DFA12_minS =
-        "\1\0\1\137\3\uffff\1\101\2\uffff\2\0\1\52\2\uffff\1\122\11\uffff"+
-        "\1\145\1\163\1\157\1\165\1\162\1\143\1\145\1\137\1\127\1\150\1\157"+
-        "\1\163\1\145\1\137\1\116\1\141\1\155\1\145\1\40\1\uffff";
+        "\1\0\1\137\3\uffff\1\101\2\uffff\2\0\1\52\2\uffff\1\122\11\uffff\1\145\1\163\1\157\1\165\1\162\1\143\1\145\1\137\1\127\1\150\1\157\1\163\1\145\1\137\1\116\1\141\1\155\1\145\1\40\1\uffff";
     static final String DFA12_maxS =
-        "\1\uffff\1\137\3\uffff\1\172\2\uffff\2\uffff\1\57\2\uffff\1\122"+
-        "\11\uffff\1\145\1\163\1\157\1\165\1\162\1\143\1\145\1\137\1\127"+
-        "\1\150\1\157\1\163\1\145\1\137\1\116\1\141\1\155\1\145\1\40\1\uffff";
+        "\1\uffff\1\137\3\uffff\1\172\2\uffff\2\uffff\1\57\2\uffff\1\122\11\uffff\1\145\1\163\1\157\1\165\1\162\1\143\1\145\1\137\1\127\1\150\1\157\1\163\1\145\1\137\1\116\1\141\1\155\1\145\1\40\1\uffff";
     static final String DFA12_acceptS =
-        "\2\uffff\1\2\1\3\1\4\1\uffff\1\5\1\6\3\uffff\1\12\1\13\1\uffff\1"+
-        "\5\1\2\1\3\1\4\1\6\1\7\1\10\1\11\1\12\23\uffff\1\1";
+        "\2\uffff\1\2\1\3\1\4\1\uffff\1\5\1\6\3\uffff\1\12\1\13\1\uffff\1\5\1\2\1\3\1\4\1\6\1\7\1\10\1\11\1\12\23\uffff\1\1";
     static final String DFA12_specialS =
         "\1\2\7\uffff\1\1\1\0\41\uffff}>";
     static final String[] DFA12_transitionS = {
-            "\11\14\2\13\2\14\1\13\22\14\1\13\1\14\1\10\4\14\1\11\6\14\1"+
-            "\2\1\12\12\7\3\14\1\3\3\14\1\1\31\6\1\14\1\4\1\14\1\5\1\6\1"+
-            "\14\32\6\uff85\14",
+            "\11\14\2\13\2\14\1\13\22\14\1\13\1\14\1\10\4\14\1\11\6\14\1\2\1\12\12\7\3\14\1\3\3\14\1\1\31\6\1\14\1\4\1\14\1\5\1\6\1\14\32\6\uff85\14",
             "\1\15",
             "",
             "",

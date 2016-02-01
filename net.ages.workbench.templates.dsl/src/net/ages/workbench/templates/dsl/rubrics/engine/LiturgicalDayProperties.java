@@ -339,13 +339,15 @@ public class LiturgicalDayProperties {
 			setElevationOfCross(new GregorianCalendar(
 					sundayAfterElevationOfCrossDateLast.get(Calendar.YEAR),
 					sundayAfterElevationOfCrossDateLast.get(Calendar.MONTH), 14));
-			setNumberOfSundaysBeforeStartOfTriodion();
+			setNumberOfSundaysBeforeStartOfTriodionOnJan15();
 		}
+		
 
 		/**
-		 * Works from Jan 15...per Fr. Seraphim...
+		 * The Typikon has conditions that depend on the number of Sundays from Jan 15 to the start of the Triodion.
+		 * This is specifically for the lectionary.
 		 */
-		private void setNumberOfSundaysBeforeStartOfTriodion() {
+		private void setNumberOfSundaysBeforeStartOfTriodionOnJan15() {
 			/**
 			 * 2007 Triodion Starts Jan 28, 1 Sundays between Jan 15 and Triodion start 
 			 * 2011 Triodion Starts Feb 13, 4 Sundays between Jan 15 and Triodion start 
@@ -358,6 +360,17 @@ public class LiturgicalDayProperties {
 			// Get difference in days, add 1 to be 1-index based instead of zero.
 			daysUntilStartOfTriodion = (int) ( diffMillis / (24*60*60*1000) );
 			numberOfSundaysBeforeStartOfTriodion = daysUntilStartOfTriodion / 7;
+		}
+		
+		private void setNumberOfSundaysBeforeStartOfTriodion() {
+			Long diffMillis = diffMillis(this.triodionStartDateThisYear, theDay);
+			daysUntilStartOfTriodion = (int) ( diffMillis / (24*60*60*1000) );
+			if (daysUntilStartOfTriodion < 0) {
+				daysUntilStartOfTriodion = 0;
+				numberOfSundaysBeforeStartOfTriodion = 0;
+			} else {
+				numberOfSundaysBeforeStartOfTriodion = daysUntilStartOfTriodion / 7;
+			}
 		}
 		
 		public int getNumberOfSundaysBeforeStartOfTriodion() {

@@ -133,19 +133,22 @@ public class AresGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	
-	private AresModelElements pAresModel;
-	private QualifiedNameElements pQualifiedName;
-	private DefinitionElements pDefinition;
+	private final AresModelElements pAresModel;
+	private final QualifiedNameElements pQualifiedName;
+	private final DefinitionElements pDefinition;
 	
 	private final Grammar grammar;
 
-	private TerminalsGrammarAccess gaTerminals;
+	private final TerminalsGrammarAccess gaTerminals;
 
 	@Inject
 	public AresGrammarAccess(GrammarProvider grammarProvider,
 		TerminalsGrammarAccess gaTerminals) {
 		this.grammar = internalFindGrammar(grammarProvider);
 		this.gaTerminals = gaTerminals;
+		this.pAresModel = new AresModelElements();
+		this.pQualifiedName = new QualifiedNameElements();
+		this.pDefinition = new DefinitionElements();
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -178,7 +181,7 @@ public class AresGrammarAccess extends AbstractGrammarElementFinder {
 	//AresModel:
 	//	"A_Resource_Whose_Name = " name=QualifiedName dsl_Model_definitions+=Definition*;
 	public AresModelElements getAresModelAccess() {
-		return (pAresModel != null) ? pAresModel : (pAresModel = new AresModelElements());
+		return pAresModel;
 	}
 	
 	public ParserRule getAresModelRule() {
@@ -188,7 +191,7 @@ public class AresGrammarAccess extends AbstractGrammarElementFinder {
 	//QualifiedName:
 	//	ID ("." ID)*;
 	public QualifiedNameElements getQualifiedNameAccess() {
-		return (pQualifiedName != null) ? pQualifiedName : (pQualifiedName = new QualifiedNameElements());
+		return pQualifiedName;
 	}
 	
 	public ParserRule getQualifiedNameRule() {
@@ -200,7 +203,7 @@ public class AresGrammarAccess extends AbstractGrammarElementFinder {
 	//Definition:
 	//	name=QualifiedName "=" (dsl_Definition_Text=STRING "\\"*)? dsl_Definition_Ref=[Definition|QualifiedName]?;
 	public DefinitionElements getDefinitionAccess() {
-		return (pDefinition != null) ? pDefinition : (pDefinition = new DefinitionElements());
+		return pDefinition;
 	}
 	
 	public ParserRule getDefinitionRule() {
@@ -220,8 +223,8 @@ public class AresGrammarAccess extends AbstractGrammarElementFinder {
 	} 
 
 	//terminal STRING:
-	//	"\"" ("\\" ("b" | "t" | "n" | "f" | "r" | "u" | "\"" | "\'" | "\\") | !("\\" | "\""))* "\"" | "\'" ("\\" ("b" | "t" |
-	//	"n" | "f" | "r" | "u" | "\"" | "\'" | "\\") | !("\\" | "\'"))* "\'";
+	//	"\"" ("\\" . / * 'b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\' * / | !("\\" | "\""))* "\"" | "\'" ("\\" .
+	//	/ * 'b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\' * / | !("\\" | "\'"))* "\'";
 	public TerminalRule getSTRINGRule() {
 		return gaTerminals.getSTRINGRule();
 	} 
