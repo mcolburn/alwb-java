@@ -17,7 +17,6 @@ Require-Bundle: net.ages.workbench.templates.dsl;visibility:=reexport,
  org.eclipse.xtext.ui.codetemplates.ui,
  org.eclipse.compare,
  org.eclipse.core.runtime,
- com.essiembre.eclipse.i18n.resourcebundle;bundle-version="0.8.0",
  net.ages.workbench.utils;bundle-version="1.0.0",
  net.ages.workbench.resources.lib;bundle-version="1.0.0",
  org.eclipse.core.resources
