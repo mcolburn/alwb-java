@@ -883,6 +883,7 @@ class AtemGenerator implements IGenerator {
 						}
 			
 					} catch (Exception e) {
+						e.printStackTrace;
 						logger.catching(e)
 					}
 					

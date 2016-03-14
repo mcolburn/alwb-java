@@ -211,6 +211,15 @@ public class LiturgicalDayProperties {
 			put("31","λαʹ");		
 		}};
 		
+		/**
+		 * Used to Save Original Date So It can Be Restored
+		 * If the value is still -1, it has not been set for the first time.
+		 * If the value is greater than -1, it won't be overwritten.
+		 */
+		int originalYear = -1;
+		int originalMonth = -1;
+		int originalDay = -1;
+		
 		// -------------------------
 		// Class constructors 
 		public LiturgicalDayProperties() {
@@ -250,6 +259,25 @@ public class LiturgicalDayProperties {
 			theDay = new GregorianCalendar(theYear,theMonth,theMonthDay);
 			setLiturgicalPropertiesByDate(theYear);
 			setYesterday(theDay.getTimeInMillis());
+			
+			// if not already set, save the date values
+			if (originalYear == -1) {
+				originalYear = theYear;
+			}
+			if (originalMonth == -1) {
+				originalMonth = theMonth;
+			}
+			if (originalDay == -1) {
+				originalDay = theMonthDay;
+			}
+		}
+		
+		public void resetDate() {
+			if (originalYear != -1 && originalMonth != -1 && originalDay != -1) {
+				theDay = new GregorianCalendar(originalYear,originalMonth,originalDay);
+				setLiturgicalPropertiesByDate(originalYear);
+				setYesterday(theDay.getTimeInMillis());
+			}
 		}
 		
 		public LiturgicalDayProperties(long value) {

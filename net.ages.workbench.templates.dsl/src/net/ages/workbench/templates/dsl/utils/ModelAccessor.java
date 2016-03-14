@@ -1171,8 +1171,18 @@ public class ModelAccessor {
 	 * @return true if both are empty
 	 */
 	public boolean notEmptyMediaDivs(CharSequence v1, CharSequence v2) {
-		boolean v1Empty = v1.toString().startsWith(mediaL1.getEmptyMediaDiv());
-		boolean v2Empty = v2.toString().startsWith(mediaL1.getEmptyMediaDiv());
+		boolean v1Empty;
+		if (v1 == null || mediaL1 == null) {
+			v1Empty = true;
+		} else {
+			v1Empty = v1.toString().startsWith(mediaL1.getEmptyMediaDiv());
+		}
+		boolean v2Empty;
+		if (v2 == null || mediaL1 == null) {
+			v2Empty = true;
+		} else {
+			v2Empty = v2.toString().startsWith(mediaL1.getEmptyMediaDiv());
+		}
 		return ! (v1Empty && v2Empty);
 	}
 
@@ -1587,7 +1597,7 @@ public class ModelAccessor {
 				theResult =  getDefinitionValueById(defFile, // e.g., en_US_goarch
 						d.getName()); // ID of resource, e.g. Headings.GREAT_VESPERS
 			}
-			if (theResult == null || theResult.startsWith("null")) {
+			if (theResult == null || theResult.startsWith("null") || theResult.length() < 1) {
 				defFile = convertFilename(d.eResource().getURI().lastSegment(),lang2DefaultId);
 				secondDefFile = defFile;
 				theResult =  getDefinitionValueById(defFile,
@@ -3069,18 +3079,22 @@ public class ModelAccessor {
 	 */
 	public void setLiturgicalDate(net.ages.workbench.templates.dsl.atem.Date date) {
 		try {
-			if (date.getDsl_Date_day() > 0 && date.getDsl_Date_day() < 32 && date.getDsl_Date_month() < 13) {
-				String year = "";
-				try {
-					year = String.valueOf(date.getDsl_Date_year());
-	
-					if (year.length() == 1) {
+			if (date.getDsl_Date_day()  > 0) {
+				if (date.getDsl_Date_day() < 32 && date.getDsl_Date_month() < 13) {
+					String year = "";
+					try {
+						year = String.valueOf(date.getDsl_Date_year());
+		
+						if (year.length() == 1) {
+							year = String.valueOf(Calendar.getInstance().get(Calendar.YEAR));
+						}
+					} catch (Exception e) {
 						year = String.valueOf(Calendar.getInstance().get(Calendar.YEAR));
 					}
-				} catch (Exception e) {
-					year = String.valueOf(Calendar.getInstance().get(Calendar.YEAR));
+					theDay.setDateTo(year, String.valueOf(date.getDsl_Date_month()), String.valueOf(date.getDsl_Date_day()));
 				}
-				theDay.setDateTo(year, String.valueOf(date.getDsl_Date_month()), String.valueOf(date.getDsl_Date_day()));
+			} else { // zero or less
+				theDay.resetDate();
 			}
 		} catch (Exception e) {
 			logger.catching(e);
