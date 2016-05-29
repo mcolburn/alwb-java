@@ -1442,7 +1442,7 @@ public class ModelAccessor {
 		theResult = convertFormatCodes(theResult);
 		processingLanguage1 = false;
 		if (theResult != null && theResult.length() > 0) {
-				theResult = theResult + source(lastFile,lastId);
+				theResult = source(theResult, lastFile,lastId);
 		}
 		logger.exit(theResult);
 		return theResult;
@@ -1458,7 +1458,7 @@ public class ModelAccessor {
 			result = getLanguageVariableText(d, lang1IdDefault);
 		}
 		if (result != null && result.length() > 0) {
-				result = result + source(lastFile,lastId);
+				result = source(result, lastFile,lastId);
 		}
 		processingLanguage1 = false;
 		return result;
@@ -1619,7 +1619,7 @@ public class ModelAccessor {
 		}
 		theResult = convertFormatCodes(theResult);
 		if (theResult != null && theResult.length() > 0) {
-				theResult = theResult + source(lastFile,lastId);
+				theResult = source(theResult, lastFile,lastId);
 		}
 		logger.exit(theResult);
 		return theResult;
@@ -1635,7 +1635,7 @@ public class ModelAccessor {
 			result = getLanguageVariableText(d, langIdDefault);
 		}
 		if (result != null && result.length() > 0) {
-				result = result + source(lastFile,lastId);
+				result = source(result, lastFile,lastId);
 		}
 		return result;
 	}
@@ -3302,31 +3302,34 @@ public class ModelAccessor {
 	}
 	
 	/**
-	 * Creates a string to be displayed in the HTML to show the source of the text.
-	 * Also stores the key into a master keySet to be appended to an HTML file
-	 * @param file
-	 * @param id
-	 * @return
+	 * Wraps the text in a span that provides the source topic-key and domain
+	 * @value the text retrieved using this file and id
+	 * @param file that contained the key
+	 * @param id the key that is associated with the text
+	 * @return a span that contains the key-value-pair (topic, id, domain) and text
+	 * 
+	 * Modified by: Michael Colburn
+	 * Date: May 29, 2016
+	 * Reason: previously, the text value appeared before the span as an adjacent node.
+	 *                 Now, it appears as the inner text of the span.
 	 */
-	public String source(String file, String id) {
+	public String source(String value, String file, String id) {
 		logger.entry(file,id);
-		String span = getKeySpan(file,id);
-		if (span.contains("sy.m12.d20_gr_GR_cog|S04.commemoration.text")) {
-			span = span;
-		}
+		String span = "<span class='kvp' data-key='" + file.replace(".ares", "") + "|"+ id + "'>" + value + "</span>"; 
+
 		String result = "";
 		if (! file.startsWith("pref")) {
 			if (showSource) {
-					result = dropExtension(file) + id;
+					result = result + dropExtension(file) + id;
 			} else if (showDomain) {
-				result = AlwbGeneralUtils.getDomainFromAresFile(file) + result;
+				result = result + AlwbGeneralUtils.getDomainFromAresFile(file) + result;
 			}
 		}
 		logger.exit();
 		if (result != "") {
 			result = " (from " + result + ")";
 		}
-		result = result + span;
+		result = span + result;
 		return result;
 	}	
 	/**
