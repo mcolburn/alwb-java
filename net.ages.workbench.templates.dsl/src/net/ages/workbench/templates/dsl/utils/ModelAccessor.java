@@ -3315,8 +3315,18 @@ public class ModelAccessor {
 	 */
 	public String source(String value, String file, String id) {
 		logger.entry(file,id);
-		String span = "<span class='kvp' data-key='" + file.replace(".ares", "") + "|"+ id + "'>" + value + "</span>"; 
-
+		String span = "";
+		
+		if (outputType == AlwbConstants.PDF) {
+			span  = value;
+		} else {
+			span = 
+					"<span class='kvp' data-key='" 
+							+ file.replace(".ares", "") 
+							+ "|"+ id + "'>" 
+							+ value 
+							+ "</span>"; 
+		}
 		String result = "";
 		if (! file.startsWith("pref")) {
 			if (showSource) {
