@@ -61,9 +61,9 @@ public class AgesServiceGenerationPreferencePage
 				new DirectoryFieldEditor(PreferenceConstants.P_STRING_MEDIA_ROOT_FOLDER, 
 						"Root folder of Media Project:", getFieldEditorParent()));
 		
-		addField(
-				new DateTimeFieldEditor(PreferenceConstants.P_STRING_SERVICE_DATE, 
-						"Date of Service to Generate:", getFieldEditorParent()));
+//		addField(
+//				new DateTimeFieldEditor(PreferenceConstants.P_STRING_SERVICE_DATE, 
+//						"Date of Service to Generate:", getFieldEditorParent()));
 		
 	}
 
