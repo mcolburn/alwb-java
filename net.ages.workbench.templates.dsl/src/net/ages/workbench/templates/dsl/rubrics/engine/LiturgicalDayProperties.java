@@ -4,7 +4,8 @@
 package net.ages.workbench.templates.dsl.rubrics.engine;
 
 /**
- * @author John Holder
+ * @author John Holder (Initial)
+ * @author Michael Colburn (Maintenance)
  *
  */	
 
@@ -13,11 +14,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Map.Entry;
-import net.ages.workbench.templates.dsl.atem.GenDate;
 
 
 public class LiturgicalDayProperties {
@@ -272,8 +270,17 @@ public class LiturgicalDayProperties {
 			}
 		}
 		
+		/**
+		 * Changed 2017-02-17 by MAC.  Added code to set originalYear et al to today's
+		 * date if when resetDate() is called, the originalYear et al are equal to -1.
+		 * This situation occurs if the first Set_Date in a template was set to month 0 day 0
+		 */
 		public void resetDate() {
-			if (originalYear != -1 && originalMonth != -1 && originalDay != -1) {
+			if (originalMonth == -1 && originalDay == -1) {
+				originalYear = theDay.get(GregorianCalendar.YEAR);
+				originalMonth = theDay.get(GregorianCalendar.MONTH);
+				originalDay = theDay.get(GregorianCalendar.DAY_OF_MONTH);
+			} else {
 				theDay = new GregorianCalendar(originalYear,originalMonth,originalDay);
 				setLiturgicalPropertiesByDate(originalYear);
 				setYesterday(theDay.getTimeInMillis());

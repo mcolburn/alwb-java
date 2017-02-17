@@ -11,10 +11,12 @@ import net.ages.workbench.templates.dsl.atem.AtemPackage;
 import net.ages.workbench.templates.dsl.atem.DayNameRange;
 import net.ages.workbench.templates.dsl.atem.DayRange;
 import net.ages.workbench.templates.dsl.atem.DaySet;
+import net.ages.workbench.templates.dsl.atem.HeadComponent;
 import net.ages.workbench.templates.dsl.atem.SectionFragment;
 import net.ages.workbench.templates.dsl.atem.TemplateFragment;
 
 	public class AtemJavaValidator extends AbstractAtemJavaValidator {
+		
 		final public static String NAME_MISMATCH = "Template name does not match filename. Resource name must be identical in characters and case, except it leaves off the .ares extension.";
 		// Verify that the template name matches the filename.
 		@Check
@@ -25,6 +27,26 @@ import net.ages.workbench.templates.dsl.atem.TemplateFragment;
 				error(NAME_MISMATCH, AtemPackage.Literals.ATEM_MODEL__NAME,NAME_MISMATCH,normalizedFilename);
 			}		
 		}
+
+		final public static String MISSING_SET_DATE = "If a template name starts with 'se.' it is a date sensitive template and must have a Set_Date in its header.";
+		// Verify that a Service Template has a Set_Date tag.
+		@Check
+		public void verifyServiceTemplateHasSetDate (AtemModel atemModel) {
+			if (atemModel.getName().toLowerCase().startsWith("se.")) {
+				boolean containsSetDate = false;
+				for (HeadComponent  c : atemModel.getDsl_Template_head().getDsl_Head_components()) {
+					System.out.println(c.getClass().getName());
+					if (c.getClass().getName().endsWith("impl.DateImpl")) {
+						containsSetDate = true;
+						break;
+					}
+				}
+				if (! containsSetDate) {
+					error(MISSING_SET_DATE, AtemPackage.Literals.ATEM_MODEL__DSL_TEMPLATE_HEAD);
+				}
+			}
+		}
+
 		// If the section pointed to by an insert_section is the same as the containing section,
 		// an infinite recursion occurs and we get a stack overflow exception.
 		@Check

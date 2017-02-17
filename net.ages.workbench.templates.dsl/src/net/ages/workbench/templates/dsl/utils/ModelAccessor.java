@@ -288,6 +288,7 @@ public class ModelAccessor {
 			logger.catching(e);
 			e.printStackTrace();
 		}
+		
 		logger.exit();
 	}
 	 

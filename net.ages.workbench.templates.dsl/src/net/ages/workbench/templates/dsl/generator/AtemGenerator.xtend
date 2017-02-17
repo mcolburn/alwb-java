@@ -140,6 +140,8 @@ import org.eclipse.core.resources.IFile
 import org.eclipse.core.resources.IProject
 import org.eclipse.core.resources.ResourcesPlugin
 import org.eclipse.core.runtime.Path
+import java.util.Iterator
+//import net.ages.workbench.converters.PdfGenerator
 
 class AtemGenerator implements IGenerator {
 	val debugDummyPrint = false
@@ -147,6 +149,7 @@ class AtemGenerator implements IGenerator {
 	var logger = AlwbLogger.getLogger(this.class.name)
 	var URI resourceUri
 	var String theRelativePath
+//	var PdfGenerator pdfGenerator = new PdfGenerator()
 	var ModelAccessor aresAccessor
 	var Website webSite
 	var LiturgicalDayProperties theDay
@@ -669,7 +672,7 @@ class AtemGenerator implements IGenerator {
 		 * Jan 17, 2014
 		 * This class gets held in memory between
 		 * calls and the variables above this point are not reinitialized.
-		 * If you see strange persistence of values, you might need to reinitialized
+		 * If you see strange persistence of values, you might need to reinitialize
 		 * them within this method.
 		 */
 		AlwbLogger.initialize
@@ -725,8 +728,13 @@ class AtemGenerator implements IGenerator {
 						// found in the user preference.  We do this at this point so the date
 						// will appear in the title.
 						var Date serviceDate
+						var Iterator<Date> lotsOfDates
 						try {
+							for (date : resource.allContents.toIterable.filter(typeof(Date))) {
+								System.out.println(date.eResource.toString)
+						    }
 							serviceDate = resource.allContents.filter(typeof(Date)).next
+							System.out.println("Using " + serviceDate.eResource.toString())
 							if (serviceDate != null) {
 								aresAccessor.setLiturgicalDate(serviceDate)
 							}
@@ -1066,7 +1074,7 @@ class AtemGenerator implements IGenerator {
 	    	    
 		foFilename = foFileNamePrefix + pdfFileRoot + "." + foExtension
 		foFilename = foFilename.toLowerCase // normalize all html folders and filenames to be lowercase
-			
+       		
 		theRelativePath = relativePath(htmlWebSite,foFilename)
 		setFoComponents
 		AlwbGeneralUtils.pdfFileToOpen = foFilename;
@@ -1079,7 +1087,8 @@ class AtemGenerator implements IGenerator {
 
 		fsa.generateFile(pdfFilename,pdfIndexHtmlContents(pdfFileRoot + "." + pdfExtension))
 		aresAccessor.setIncludeMediaLinks()
-
+		
+//		pdfGenerator.convertFO2PDF(new File(foFilename),new File(pdfFilename));
 	}
 	
 	def readTemplateHead() {
