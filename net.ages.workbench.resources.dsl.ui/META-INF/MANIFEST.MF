@@ -16,8 +16,7 @@ Require-Bundle: net.ages.workbench.resources.dsl;visibility:=reexport,
  org.eclipse.xtext.common.types.ui,
  org.eclipse.xtext.ui.codetemplates.ui,
  org.eclipse.compare,
- net.ages.workbench.resources.lib;bundle-version="1.0.0",
- com.essiembre.eclipse.i18n.resourcebundle;bundle-version="0.8.0"
+ net.ages.workbench.resources.lib;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: net.ages.workbench.resources.dsl.ui.contentassist,
  net.ages.workbench.resources.dsl.ui.contentassist.antlr,
