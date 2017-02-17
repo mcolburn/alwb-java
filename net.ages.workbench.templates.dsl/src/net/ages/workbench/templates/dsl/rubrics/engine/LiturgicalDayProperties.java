@@ -647,6 +647,7 @@ public class LiturgicalDayProperties {
 	    public void overrideMovableCycleDay(int d) {
 	    		if (d == 0) {
 	    			// zero means reset back to date based calculation
+	    			resetDate(); // 2017-02-17 per Fr. Seraphim MAC added this
 	    			setDayOfSeason();
 	    			setDaysSinceStartOfLastTriodion();
 	    		} else {
