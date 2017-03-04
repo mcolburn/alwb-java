@@ -141,6 +141,8 @@ import org.eclipse.core.resources.IProject
 import org.eclipse.core.resources.ResourcesPlugin
 import org.eclipse.core.runtime.Path
 import java.util.Iterator
+import net.ages.workbench.templates.dsl.utils.Spyglass
+
 //import net.ages.workbench.converters.PdfGenerator
 
 class AtemGenerator implements IGenerator {
@@ -153,6 +155,7 @@ class AtemGenerator implements IGenerator {
 	var ModelAccessor aresAccessor
 	var Website webSite
 	var LiturgicalDayProperties theDay
+	var int messageCount = 0
 	var int targetDayOfWeek
 	var int targetDayOfSeason
 	var int targetMonth
@@ -667,6 +670,13 @@ class AtemGenerator implements IGenerator {
 	var CharSequence mediaDivV1 = "";
 	var CharSequence mediaDivV2 = "";
 	
+	/**
+	 * Spyglass is used for debugging.
+	 */
+	 var spyglass = new Spyglass();
+	 
+	 var IFileSystemAccess globalFsa = null 
+	
 	override void doGenerate(Resource r, IFileSystemAccess fsa) {
 		/**
 		 * Jan 17, 2014
@@ -678,6 +688,8 @@ class AtemGenerator implements IGenerator {
 		AlwbLogger.initialize
 		AlwbLogger.setLogLevelToEclipsePreference
 		logger.entry
+		globalFsa = fsa
+		
 		try {
 			genMsgSb = new StringBuffer()
 			generateMessagesHtml = AlwbGeneralUtils.getMessagesHtmlFlag
@@ -713,6 +725,9 @@ class AtemGenerator implements IGenerator {
 			if (! AlwbGeneralUtils.websiteOnly) {
 				
 				// At this point we have an array of template resources.  Process each one.
+				
+				messageCount = 0;
+				
 				for (Resource resource : resources) {
 					try {
 
@@ -721,21 +736,27 @@ class AtemGenerator implements IGenerator {
 						containsRelativeLookups = (resource.allContents.toIterable.filter(typeof(Lookup)).length > 0)
 						resourceUri = resource.URI
 						model = resource.allContents.filter(typeof(AtemModel)).next
-									 
 			
-						// Check to see if a date has been set within the template itself.
-						// If so, set the Liturgical Date to this rather than using the date
-						// found in the user preference.  We do this at this point so the date
-						// will appear in the title.
+						/**
+						 * Try to get the service date from the Head.
+//						 * If that does not work, grab it from the first place
+//						 * it occurs in the template.
+						 */
 						var Date serviceDate
-						var Iterator<Date> lotsOfDates
 						try {
-							for (date : resource.allContents.toIterable.filter(typeof(Date))) {
-								System.out.println(date.eResource.toString)
-						    }
-							serviceDate = resource.allContents.filter(typeof(Date)).next
-							System.out.println("Using " + serviceDate.eResource.toString())
+							var Head theHead = resource.allContents.filter(typeof(Head)).next
+							serviceDate = theHead.dsl_Head_components.filter(typeof(Date)).get(0)
+							logState(fsa,"Header date is " 
+								+ serviceDate.dsl_Date_year 
+								+ "-" + serviceDate.dsl_Date_month 
+								+ "-" + serviceDate.dsl_Date_day
+							)
+							
+//							if (serviceDate == null) {
+//							serviceDate = resource.allContents.filter(typeof(Date)).next
+//							}
 							if (serviceDate != null) {
+								aresAccessor.reinitializeOriginalDateTrackers
 								aresAccessor.setLiturgicalDate(serviceDate)
 							}
 						} catch (Exception e) {
@@ -817,16 +838,18 @@ class AtemGenerator implements IGenerator {
 			
 						// Generate XML FO
 						if (aresAccessor.generatePdfFile) {
-							logState(fsa,"Generating XML FO - for pdf")
 							if (aresAccessor.generatePdfVersion1) {
+								logState(fsa,"Generating XML FO - for pdf - version 1")
 								aresAccessor.setOutputType(AlwbConstants.PDF, true, false)
 								generateFo(resource, fsa)
 							}
 							if (aresAccessor.generatePdfVersion2) {
+								logState(fsa,"Generating XML FO - for pdf - version 2")
 								aresAccessor.setOutputType(AlwbConstants.PDF, false, true)
 								generateFo(resource, fsa)
 							}
 							if (aresAccessor.generatePdfVersion1And2) {
+								logState(fsa,"Generating XML FO - for pdf - version 1 and 2")
 								aresAccessor.setOutputType(AlwbConstants.PDF, true, true)
 								generateFo(resource, fsa)
 							}
@@ -836,16 +859,18 @@ class AtemGenerator implements IGenerator {
 						// to generate a delimited file, we must first generate
 						// an html file.  
 						if (aresAccessor.generateHtmlFile) {
-							logState(fsa,"Generating HTML file")			
 							if (aresAccessor.generateHtmlVersion1) {
+							    logState(fsa,"Generating HTML file version 1")			
 								aresAccessor.setOutputType(AlwbConstants.HTML, true, false)
 								generateHtml(resource, fsa)
 							}
 							if (aresAccessor.generateHtmlVersion2) {
+							    logState(fsa,"Generating HTML file version 2")			
 								aresAccessor.setOutputType(AlwbConstants.HTML, false, true)
 								generateHtml(resource, fsa)
 							}
 							if (aresAccessor.generateHtmlVersion1And2) {
+							    logState(fsa,"Generating HTML file version 1 and 2")			
 								aresAccessor.setOutputType(AlwbConstants.HTML, true, true)
 								generateHtml(resource, fsa)
 							}
@@ -927,7 +952,8 @@ class AtemGenerator implements IGenerator {
 	 */
 	def void logState(IFileSystemAccess fsa, String message) {
 		if (generateMessagesHtml) {
-			genMsgSb.append("<p>"+message+"</p>")
+			genMsgSb.append("<p>" + messageCount + ": " + message + "</p>")
+			messageCount++
 			fsa.generateFile("generationMessages.html", preferenceFileError(genMsgSb.toString()))
 		}
 	}
@@ -1079,6 +1105,7 @@ class AtemGenerator implements IGenerator {
 		setFoComponents
 		AlwbGeneralUtils.pdfFileToOpen = foFilename;
 		for (e : resource.allContents.toIterable.filter(typeof(AtemModel))) {
+			logState(fsa,"Writing fo file to " + foFilename)
 			fsa.generateFile(foFilename, e.compile(true, false))
 		}
 		// generate the index.html that will return the pdf file if the user browses to the directory
@@ -1162,9 +1189,12 @@ class AtemGenerator implements IGenerator {
 			
 			AlwbGeneralUtils.htmlFileToOpen = filename;
 			setHtmlComponents
-			
+			if (filename.contains("website/test/dcs/h/s/2017/04/08/li4/gr-en/index.html")) {
+				spyglass.addTemplate(filename);
+			}
 			// generate the HTML file
 			for (e : resource.allContents.toIterable.filter(typeof(AtemModel))) {
+			    logState(fsa,"Writing html file to " + filename)
 				fsa.generateFile(filename, e.compile(true, false))
 			}
 	
@@ -1434,11 +1464,40 @@ class AtemGenerator implements IGenerator {
 	}
 	
 	def compile(Date d){
+		if (generateMessagesHtml) {
+		logState(
+			globalFsa
+			, d.eResource.URI.lastSegment 
+			+ " " + aresAccessor.nameFromContainer(d.eContainer)
+			+  " is setting date to " 
+			+ d.dsl_Date_year + "-" 
+			+ d.dsl_Date_month + "-" 
+			+ d.dsl_Date_day
+		)
+		}
 		aresAccessor.setLiturgicalDate(d)
+		if (generateMessagesHtml) {
+			if (d.dsl_Date_month == 0) {
+				logState(globalFsa, "The date is now " + aresAccessor.theDay.formattedDate)
+				logState(globalFsa, "The movable cycle day is now " + aresAccessor.theDay.dayOfSeason)
+			}
+		}
 	}
 	
 	def compile(McDay d) {
+		if (generateMessagesHtml) {
+			logState(globalFsa, d.eResource.URI.lastSegment 
+							+ " " + aresAccessor.nameFromContainer(d.eContainer)
+				+  " is setting Movable Cycle Day to " + d.dsl_McDay_val
+			)
+		}
 		aresAccessor.overrideMovableCycleDay(d.dsl_McDay_val)
+		if (generateMessagesHtml) {
+			if (d.dsl_McDay_val == 0) {
+				logState(globalFsa, "The date is now " + aresAccessor.theDay.formattedDate)
+				logState(globalFsa, "The movable cycle day is now " + aresAccessor.theDay.dayOfSeason)
+			}
+		}
 	}
 	
 	def void resetHeaders() {
