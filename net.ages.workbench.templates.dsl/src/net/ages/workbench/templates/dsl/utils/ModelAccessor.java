@@ -570,6 +570,21 @@ public class ModelAccessor {
 		return result + "/";
 	}
 
+	public String nameFromContainer(EObject c) {
+		String name = c.eClass().getName();
+		try {
+			String [] parts = c.toString().split("name: ");
+			if (parts.length == 2) {
+				name = name + " " + parts[1].replace(")", "");
+				if (parts[1].contains("Instance03")) {
+					System.out.print("");
+				}
+			}
+		} catch (Exception e) {
+			// ignore
+		}
+		return name;
+	}
 	/**
 	 * Converts the name of service template root into a path,
 	 * where each segment of the path corresponds to a segment
@@ -3073,6 +3088,9 @@ public class ModelAccessor {
 		generateEpubVersion1And2 = preferences.genEpubLanguage12;
 	}
 	
+	public void reinitializeOriginalDateTrackers() {
+		theDay.reinitializeOriginalDateTrackers();
+	}
 	/**
 	 * Sets the Liturgical date from the settings in the template. If the year was not
 	 * specified, uses the current year.
