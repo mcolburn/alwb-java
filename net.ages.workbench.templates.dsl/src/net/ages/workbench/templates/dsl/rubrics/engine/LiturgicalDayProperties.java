@@ -217,6 +217,7 @@ public class LiturgicalDayProperties {
 		int originalYear = -1;
 		int originalMonth = -1;
 		int originalDay = -1;
+		int originalDayOfSeason = -1;
 		
 		// -------------------------
 		// Class constructors 
@@ -250,7 +251,16 @@ public class LiturgicalDayProperties {
 			setYesterday(theDay.getTimeInMillis());
 		}
 		
-		public void setDateTo(String year, String month, String day) {
+		/**
+		 * Resets the original date trackers so that we can process a new template
+		 */
+		public void reinitializeOriginalDateTrackers() {
+			originalYear = -1;
+			originalMonth = -1;
+			originalDay = -1;
+		}
+
+			public void setDateTo(String year, String month, String day) {
 			int theYear = Integer.parseInt(year);
 			int theMonth = (Integer.parseInt(month))-1;
 			int theMonthDay = Integer.parseInt(day);
@@ -268,6 +278,9 @@ public class LiturgicalDayProperties {
 			if (originalDay == -1) {
 				originalDay = theMonthDay;
 			}
+			if (originalDayOfSeason == -1) {
+				originalDayOfSeason = this.getDayOfSeason();
+			}
 		}
 		
 		/**
@@ -280,6 +293,7 @@ public class LiturgicalDayProperties {
 				originalYear = theDay.get(GregorianCalendar.YEAR);
 				originalMonth = theDay.get(GregorianCalendar.MONTH);
 				originalDay = theDay.get(GregorianCalendar.DAY_OF_MONTH);
+				originalDayOfSeason = this.getDayOfSeason();
 			} else {
 				theDay = new GregorianCalendar(originalYear,originalMonth,originalDay);
 				setLiturgicalPropertiesByDate(originalYear);
@@ -646,10 +660,9 @@ public class LiturgicalDayProperties {
 		 */
 	    public void overrideMovableCycleDay(int d) {
 	    		if (d == 0) {
-	    			// zero means reset back to date based calculation
-	    			resetDate(); // 2017-02-17 per Fr. Seraphim MAC added this
-	    			setDayOfSeason();
-	    			setDaysSinceStartOfLastTriodion();
+	    			// zero means reset back to original day of the season
+	    			setDayOfSeason(originalDayOfSeason);
+	    			setDaysSinceStartOfLastTriodion(originalDayOfSeason);
 	    		} else {
 	    			// override to the specified day
 		    		setDayOfSeason(d);
