@@ -141,7 +141,6 @@ import org.eclipse.core.resources.IProject
 import org.eclipse.core.resources.ResourcesPlugin
 import org.eclipse.core.runtime.Path
 import java.util.Iterator
-import net.ages.workbench.templates.dsl.utils.Spyglass
 
 //import net.ages.workbench.converters.PdfGenerator
 
@@ -669,12 +668,7 @@ class AtemGenerator implements IGenerator {
 	
 	var CharSequence mediaDivV1 = "";
 	var CharSequence mediaDivV2 = "";
-	
-	/**
-	 * Spyglass is used for debugging.
-	 */
-	 var spyglass = new Spyglass();
-	 
+		 
 	 var IFileSystemAccess globalFsa = null 
 	
 	override void doGenerate(Resource r, IFileSystemAccess fsa) {
@@ -1189,9 +1183,6 @@ class AtemGenerator implements IGenerator {
 			
 			AlwbGeneralUtils.htmlFileToOpen = filename;
 			setHtmlComponents
-			if (filename.contains("website/test/dcs/h/s/2017/04/08/li4/gr-en/index.html")) {
-				spyglass.addTemplate(filename);
-			}
 			// generate the HTML file
 			for (e : resource.allContents.toIterable.filter(typeof(AtemModel))) {
 			    logState(fsa,"Writing html file to " + filename)
