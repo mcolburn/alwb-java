@@ -28,7 +28,7 @@ public class AgesServiceGenerationPreferencePage
 	public AgesServiceGenerationPreferencePage() {
 		super(GRID);
 		setPreferenceStore(AtemActivator.getInstance().getPreferenceStore());
-		setDescription("Preferences for AGES Liturgical Workbench.\n\n");
+		setDescription("Preferences for AGES Liturgical Workbench " + AlwbConstants.VERSION + ".\n\n");
 	}
 	
 	/**
