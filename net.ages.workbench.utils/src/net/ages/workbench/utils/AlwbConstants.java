@@ -1,14 +1,17 @@
 package net.ages.workbench.utils;
 
-import java.util.HashMap;
 
 /**
  * This contains many of the constant values used in ALWB.
+ * The VERSION should be updated each time jars are created.
  * 
  * @author mac002
  *
  */
 public class AlwbConstants {
+	
+	// version
+	public static final String VERSION = "2017-03-04-01";
 	
 	// template categories
 	public static final String TEMPLATE_SERVICE = "se";
