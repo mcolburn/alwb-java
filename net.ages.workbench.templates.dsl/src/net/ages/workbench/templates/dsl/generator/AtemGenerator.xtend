@@ -739,15 +739,7 @@ class AtemGenerator implements IGenerator {
 						try {
 							var Head theHead = resource.allContents.filter(typeof(Head)).next
 							serviceDate = theHead.dsl_Head_components.filter(typeof(Date)).get(0)
-							logState(fsa,"Header date is " 
-								+ serviceDate.dsl_Date_year 
-								+ "-" + serviceDate.dsl_Date_month 
-								+ "-" + serviceDate.dsl_Date_day
-							)
 							
-//							if (serviceDate == null) {
-//							serviceDate = resource.allContents.filter(typeof(Date)).next
-//							}
 							if (serviceDate != null) {
 								aresAccessor.reinitializeOriginalDateTrackers
 								aresAccessor.setLiturgicalDate(serviceDate)
@@ -1467,10 +1459,8 @@ class AtemGenerator implements IGenerator {
 		}
 		aresAccessor.setLiturgicalDate(d)
 		if (generateMessagesHtml) {
-			if (d.dsl_Date_month == 0) {
 				logState(globalFsa, "The date is now " + aresAccessor.theDay.formattedDate)
 				logState(globalFsa, "The movable cycle day is now " + aresAccessor.theDay.dayOfSeason)
-			}
 		}
 	}
 	
@@ -1483,10 +1473,8 @@ class AtemGenerator implements IGenerator {
 		}
 		aresAccessor.overrideMovableCycleDay(d.dsl_McDay_val)
 		if (generateMessagesHtml) {
-			if (d.dsl_McDay_val == 0) {
 				logState(globalFsa, "The date is now " + aresAccessor.theDay.formattedDate)
 				logState(globalFsa, "The movable cycle day is now " + aresAccessor.theDay.dayOfSeason)
-			}
 		}
 	}
 	

@@ -258,9 +258,10 @@ public class LiturgicalDayProperties {
 			originalYear = -1;
 			originalMonth = -1;
 			originalDay = -1;
+			originalDayOfSeason = -1;
 		}
 
-			public void setDateTo(String year, String month, String day) {
+		public void setDateTo(String year, String month, String day) {
 			int theYear = Integer.parseInt(year);
 			int theMonth = (Integer.parseInt(month))-1;
 			int theMonthDay = Integer.parseInt(day);
