@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -1927,6 +1929,7 @@ public class ModelAccessor {
 					}
 				}
 			}
+			this.sortResourceList(result);
 		} catch (Exception e) {
 			logger.catching(e);
 	 	}
@@ -3088,6 +3091,15 @@ public class ModelAccessor {
 		generateEpubVersion1And2 = preferences.genEpubLanguage12;
 	}
 	
+	public List<Resource> sortResourceList(List<Resource> list) {
+		Collections.sort(list, new Comparator<Resource>() {
+	        public int compare(Resource o1, Resource o2) {
+	            return o1.getURI().lastSegment().compareTo(o2.getURI().lastSegment());
+	        }
+	    });
+		return list;
+	}
+
 	public void reinitializeOriginalDateTrackers() {
 		theDay.reinitializeOriginalDateTrackers();
 	}

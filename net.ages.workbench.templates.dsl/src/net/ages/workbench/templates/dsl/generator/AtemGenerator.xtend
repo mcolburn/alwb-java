@@ -683,6 +683,7 @@ class AtemGenerator implements IGenerator {
 		AlwbLogger.setLogLevelToEclipsePreference
 		logger.entry
 		globalFsa = fsa
+		messageCount = 1;
 		
 		try {
 			genMsgSb = new StringBuffer()
@@ -715,12 +716,10 @@ class AtemGenerator implements IGenerator {
 			 } else {
 				resources.add(r)		 	
 			 }
-
+			 
 			if (! AlwbGeneralUtils.websiteOnly) {
 				
 				// At this point we have an array of template resources.  Process each one.
-				
-				messageCount = 0;
 				
 				for (Resource resource : resources) {
 					try {
