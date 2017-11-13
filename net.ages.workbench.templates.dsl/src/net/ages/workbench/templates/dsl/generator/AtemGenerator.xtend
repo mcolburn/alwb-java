@@ -158,7 +158,7 @@ class AtemGenerator implements IGenerator {
 	var int targetDayOfWeek
 	var int targetDayOfSeason
 	var int targetMonth
-	var int targetDay
+	var int targetDayOfMonth
 	var int targetMode
 	var int targetSundaysBeforeStartOfTriodion
 	var boolean targetTriodion
@@ -1462,6 +1462,8 @@ class AtemGenerator implements IGenerator {
 				logState(globalFsa, "The date is now " + aresAccessor.theDay.formattedDate)
 				logState(globalFsa, "The movable cycle day is now " + aresAccessor.theDay.dayOfSeason)
 		}
+		// B-2017-005 MAC 2017-11-13 added call setTargetsUsingLdp
+		setTargetsUsingLdp
 	}
 	
 	def compile(McDay d) {
@@ -1840,12 +1842,18 @@ class AtemGenerator implements IGenerator {
 	def void setTargetsUsingLdp() {
 		targetDayOfWeek = theDay.getIntDayOfWeek
 		targetMonth = theDay.getIntMonth - 1 // so we can use with enum ordinals, which start at 0
-		targetDay = theDay.getIntDayOfMonth
+		targetDayOfMonth = theDay.getIntDayOfMonth
 		targetMode = theDay.getModeOfWeek
 		targetTriodion = theDay.triodion
 		targetPentecostarion = theDay.pentecostarion
 		targetPascha = theDay.pascha
 		targetSundaysBeforeStartOfTriodion = theDay.numberOfSundaysBeforeStartOfTriodion
+		if (generateMessagesHtml) {
+				logState(globalFsa, "When clause targetDayOfWeek is now " + targetDayOfWeek)
+				logState(globalFsa, "When clause targetMonth is now " + targetMonth)
+				logState(globalFsa, "When clause targetDayOfMonth is now " + targetDayOfMonth)
+		}
+		
 	}
 	
 	def compile(PassThroughHtml text) '''
@@ -3308,12 +3316,12 @@ class AtemGenerator implements IGenerator {
 
 	def void setTargetForSundayAfterElevationOfCross() {
 		targetMonth = theDay.getMonthOfSundayAfterElevationOfCross
-		targetDay = theDay.getDayOfSundayAfterElevationOfCross
+		targetDayOfMonth = theDay.getDayOfSundayAfterElevationOfCross
 	}
 	
 	def void setTargetMonthAndDayToLiturgicalDay() {
 		targetMonth = theDay.getIntMonth - 1 // so we can use with enum ordinals, which start at 0
-		targetDay = theDay.getIntDayOfMonth
+		targetDayOfMonth = theDay.getIntDayOfMonth
 	}
 
 
@@ -3348,7 +3356,7 @@ class AtemGenerator implements IGenerator {
 
 	def matchesDay(DateSet s) {
 		for (d : s.dslDateSet_Values) {
-			if (targetDay == d)
+			if (targetDayOfMonth == d)
 				return true
 		}
 		false
@@ -3359,7 +3367,7 @@ class AtemGenerator implements IGenerator {
 	}
 
 	def boolean dayInDateRange(int from, int to) {
-		if (targetDay >= (from) && (targetDay <= to)) {
+		if (targetDayOfMonth >= (from) && (targetDayOfMonth <= to)) {
 			return true
 		} else
 			return false
@@ -3497,7 +3505,7 @@ class AtemGenerator implements IGenerator {
 	<!DOCTYPE html>
 	<html>
 		<head>
-			<title data-commemoration='«htmlCommemoration»' data-language='«localeLanguageName»' data-type='html' data-filename='index.html'«IF (aresAccessor.preferences.includeMergedPdfHref)» data-combo-pdf-href='«combinedPdfHref»'«ENDIF»>«templateTitle»</title>
+			<title data-timestamp='«aresAccessor.getTimestamp»' data-commemoration='«htmlCommemoration»' data-language='«localeLanguageName»' data-type='html' data-filename='index.html'«IF (aresAccessor.preferences.includeMergedPdfHref)» data-combo-pdf-href='«combinedPdfHref»'«ENDIF»>«templateTitle»</title>
 			«IF (includeBaseRef)»«baseRef»«ENDIF»
 			<meta charset="utf-8"/> 
    			«viewport»

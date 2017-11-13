@@ -842,9 +842,9 @@ public class LiturgicalDayProperties {
 
 		public String getNbrDayOfWeek() {
 			if (nbrDayOfWeekOverride.equals("")) {
-				return nbrDayOfWeek;
+				return this.nbrDayOfWeek;
 			} else {
-				return nbrDayOfWeekOverride;
+				return this.nbrDayOfWeekOverride;
 			}
 		}
 		

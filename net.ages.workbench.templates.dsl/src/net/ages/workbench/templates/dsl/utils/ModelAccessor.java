@@ -1,8 +1,8 @@
 package net.ages.workbench.templates.dsl.utils;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -10,21 +10,18 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
-import java.util.TreeSet;
 
 import net.ages.workbench.resources.dsl.ares.Definition;
 import net.ages.workbench.templates.dsl.rubrics.engine.LiturgicalDayProperties;
 import net.ages.workbench.utils.AlwbGeneralUtils;
 import net.ages.workbench.utils.AlwbLogger;
 import net.ages.workbench.utils.AlwbConstants;
-import net.ages.workbench.utils.AlwbPlugInHelper;
 import net.ages.workbench.templates.dsl.utils.MessageBoard;
 import net.ages.workbench.templates.dsl.utils.TableManager;
 import net.ages.workbench.templates.dsl.html.ServiceDayTypeVersionFormat;
@@ -32,24 +29,16 @@ import net.ages.workbench.templates.dsl.media.*;
 import net.ages.workbench.templates.dsl.atem.AtemModel;
 import net.ages.workbench.templates.dsl.atem.Driver;
 import net.ages.workbench.templates.dsl.atem.TemplateStatuses;
-import net.ages.workbench.templates.dsl.atem.Date.*;
-import net.ages.workbench.templates.dsl.atem.Head;
-import net.ages.workbench.templates.dsl.version.blocks.*;
 import net.ages.workbench.templates.dsl.preferences.Preferences;
 
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.message.MapMessage.MapFormat;
-import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -58,10 +47,8 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.resource.XtextResourceSet;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
-import org.osgi.framework.BundleContext;
 
 import com.google.common.collect.Iterables;
-import com.google.inject.Inject;
 
 /**
  * ModelAccessor
@@ -91,20 +78,14 @@ import com.google.inject.Inject;
  */
 public class ModelAccessor {
 
-	private boolean versionCall = false;
 	private boolean nonRecursive = true;
-	private boolean displayVersionOfPara = false;
 	private String lastFile = "";
 	private String lastId = "";
 	private String abbreviationFileDefault = "";
 	private String abbreviationFilePreferred = "";
-	private String abbreviationKeySuffixHtmlLink = ".html.link";
-	private String abbreviationKeySuffixHtmlTab = ".html.tab";
-	private String abbreviationKeySuffixPdfHeaderTitle = ".pdf.header.title";
 	private String abbreviationResourcePrefix = "website.index.titles_";
 	private Resource abbreviationResource;
 	private String commemoration = "";
-	private String hasComponentsButNoStatus = "No status - has components";
 	private boolean copyCss = false;
 	private String copyCssFrom = "";
 	private boolean copyJs = false;
@@ -2566,14 +2547,6 @@ public class ModelAccessor {
 		this.abbreviationFilePreferred = addAresFileExtension(version);
 	}
 	
-	/**
-	 * Sets the value of the key to use in the anchor tag when including the key with the text
-	 * @param key
-	 */
-	private void setAnchor(String key) {
-		this.key = "<emphasis role='key' data-key='" + key + "'/>";
-	}
-	
 	public void setCopyCss(boolean copyCss) {
 		this.copyCss = copyCss;
 	}
@@ -3100,6 +3073,9 @@ public class ModelAccessor {
 		return list;
 	}
 
+	public String getTimestamp() {
+		return new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
+	}
 	public void reinitializeOriginalDateTrackers() {
 		theDay.reinitializeOriginalDateTrackers();
 	}
@@ -3130,7 +3106,6 @@ public class ModelAccessor {
 		} catch (Exception e) {
 			logger.catching(e);
 		}
-		
 	}
 	
 	/**
@@ -3324,10 +3299,6 @@ public class ModelAccessor {
 		this.useLanguage1 = useLanguage1;
 	}
 
-	private void setUseLanguage2(boolean useLanguage2) {
-		this.useLanguage2 = useLanguage2;
-	}
-	
 	private String getKeySpan(String file, String id) {
 		return "<span class='key' data-key='" + file.replace(".ares", "") + "|"+ id + "' hidden='hidden'></span>"; 
 	}
