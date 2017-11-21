@@ -26,9 +26,57 @@ import net.ages.workbench.templates.dsl.utils.MessageBoard;
 import net.ages.workbench.templates.dsl.utils.TableManager;
 import net.ages.workbench.templates.dsl.html.ServiceDayTypeVersionFormat;
 import net.ages.workbench.templates.dsl.media.*;
+import net.ages.workbench.templates.dsl.atem.AbstractComponent;
+import net.ages.workbench.templates.dsl.atem.AbstractDateCase;
 import net.ages.workbench.templates.dsl.atem.AtemModel;
+import net.ages.workbench.templates.dsl.atem.DateRange;
+import net.ages.workbench.templates.dsl.atem.DateSet;
+import net.ages.workbench.templates.dsl.atem.DayOfWeek;
 import net.ages.workbench.templates.dsl.atem.Driver;
 import net.ages.workbench.templates.dsl.atem.TemplateStatuses;
+import net.ages.workbench.templates.dsl.atem.WhenDate;
+import net.ages.workbench.templates.dsl.atem.WhenDateCase;
+import net.ages.workbench.templates.dsl.atem.impl.AbstractDateCaseImpl;
+import net.ages.workbench.templates.dsl.atem.impl.ActorImpl;
+import net.ages.workbench.templates.dsl.atem.impl.BreakImpl;
+import net.ages.workbench.templates.dsl.atem.impl.DateImpl;
+import net.ages.workbench.templates.dsl.atem.impl.DateRangeImpl;
+import net.ages.workbench.templates.dsl.atem.impl.DateSetImpl;
+import net.ages.workbench.templates.dsl.atem.impl.DayNameRangeImpl;
+import net.ages.workbench.templates.dsl.atem.impl.DayNameSetImpl;
+import net.ages.workbench.templates.dsl.atem.impl.DayRangeImpl;
+import net.ages.workbench.templates.dsl.atem.impl.DaySetImpl;
+import net.ages.workbench.templates.dsl.atem.impl.DialogImpl;
+import net.ages.workbench.templates.dsl.atem.impl.HeaderFooterColumnCenterImpl;
+import net.ages.workbench.templates.dsl.atem.impl.HeaderFooterDateImpl;
+import net.ages.workbench.templates.dsl.atem.impl.HeaderFooterLookupImpl;
+import net.ages.workbench.templates.dsl.atem.impl.HeaderFooterPageNumberImpl;
+import net.ages.workbench.templates.dsl.atem.impl.HymnImpl;
+import net.ages.workbench.templates.dsl.atem.impl.LookupImpl;
+import net.ages.workbench.templates.dsl.atem.impl.MediaImpl;
+import net.ages.workbench.templates.dsl.atem.impl.PageFooterEvenImpl;
+import net.ages.workbench.templates.dsl.atem.impl.PageFooterOddImpl;
+import net.ages.workbench.templates.dsl.atem.impl.PageHeaderEvenImpl;
+import net.ages.workbench.templates.dsl.atem.impl.PageHeaderOddImpl;
+import net.ages.workbench.templates.dsl.atem.impl.PageNumberImpl;
+import net.ages.workbench.templates.dsl.atem.impl.ParagraphImpl;
+import net.ages.workbench.templates.dsl.atem.impl.ReadingImpl;
+import net.ages.workbench.templates.dsl.atem.impl.ResourceTextImpl;
+import net.ages.workbench.templates.dsl.atem.impl.RubricImpl;
+import net.ages.workbench.templates.dsl.atem.impl.SectionFragmentImpl;
+import net.ages.workbench.templates.dsl.atem.impl.SectionImpl;
+import net.ages.workbench.templates.dsl.atem.impl.SundaysBeforeTriodionCaseImpl;
+import net.ages.workbench.templates.dsl.atem.impl.TaggedTextImpl;
+import net.ages.workbench.templates.dsl.atem.impl.TitleImpl;
+import net.ages.workbench.templates.dsl.atem.impl.VerseImpl;
+import net.ages.workbench.templates.dsl.atem.impl.WhenDateCaseImpl;
+import net.ages.workbench.templates.dsl.atem.impl.WhenDateImpl;
+import net.ages.workbench.templates.dsl.atem.impl.WhenDayNameCaseImpl;
+import net.ages.workbench.templates.dsl.atem.impl.WhenDayNameImpl;
+import net.ages.workbench.templates.dsl.atem.impl.WhenExistsCaseImpl;
+import net.ages.workbench.templates.dsl.atem.impl.WhenModeOfWeekCaseImpl;
+import net.ages.workbench.templates.dsl.atem.impl.WhenMovableCycleDayImpl;
+import net.ages.workbench.templates.dsl.atem.impl.WhenPeriodCaseImpl;
 import net.ages.workbench.templates.dsl.preferences.Preferences;
 
 import org.apache.commons.lang.ArrayUtils;
@@ -39,6 +87,7 @@ import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -78,6 +127,7 @@ import com.google.common.collect.Iterables;
  */
 public class ModelAccessor {
 
+	public static List<String> classNames = new ArrayList<String>();
 	private boolean nonRecursive = true;
 	private String lastFile = "";
 	private String lastId = "";
@@ -553,15 +603,12 @@ public class ModelAccessor {
 		return result + "/";
 	}
 
-	public String nameFromContainer(EObject c) {
+	public static String nameFromContainer(EObject c) {
 		String name = c.eClass().getName();
 		try {
 			String [] parts = c.toString().split("name: ");
 			if (parts.length == 2) {
 				name = name + " " + parts[1].replace(")", "");
-				if (parts[1].contains("Instance03")) {
-					System.out.print("");
-				}
 			}
 		} catch (Exception e) {
 			// ignore
@@ -3073,9 +3120,241 @@ public class ModelAccessor {
 		return list;
 	}
 
-	public String getTimestamp() {
-		return new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
+	/**
+	 * TODO: implement this.  Not finished yet.
+	 * @param c
+	 * @return
+	 */
+	public static String getResourceInfo(EObject c) {
+		StringBuffer resultSb = new StringBuffer();
+		try {
+	        String _lastSegment = c.eResource().getURI().lastSegment();
+	        resultSb.append(_lastSegment);
+	        resultSb.append(" ");
+	        String name = nameFromContainer(c.eContainer());
+	        String cName = c.eClass().getName();
+	        resultSb.append(name);
+	        resultSb.append(".");
+	        resultSb.append(cName);
+	        if (! ModelAccessor.classNames.contains(cName)) {
+		        ModelAccessor.classNames.add(cName);
+	        }
+	    	if (cName.equals("Actor")) {
+	    		ActorImpl theCase = (ActorImpl) c;
+	    	} else if (cName.equals("Break")) {
+	    		BreakImpl theCase = (BreakImpl) c;
+	    	} else if (cName.equals("Date")) {
+	    		DateImpl theCase = (DateImpl) c;
+	        } else if (cName.equals("DayNameRange")) {
+        		DayNameRangeImpl range = (DayNameRangeImpl) c;
+        		String from = range.getDsl_DayNameRange_from().getLiteral();
+        		String to = range.getDsl_DayNameRange_To().getLiteral();
+        		resultSb.append(" from " + from + " to " + to);
+	        } else if (cName.equals("DayNameSet")){
+        		DayNameSetImpl set = (DayNameSetImpl) c;
+        		String dateSetValues = set.getDslDayNameSet_Values().toString();
+        		resultSb.append(" is  " + dateSetValues);
+	        } else if (cName.equals("DayRange")) {
+        		DayRangeImpl range = (DayRangeImpl) c;
+        		int from = range.getDsl_DayRange_from();
+        		int to = range.getDsl_Range_To();
+        		resultSb.append(" from " + from + " to " + to);
+	    	} else if (cName.equals("DateRange")) {
+        		DateRangeImpl range = (DateRangeImpl) c;
+        		int from = range.getDsl_DateRange_from();
+        		int to = range.getDsl_DateRange_To();
+        		resultSb.append(" from " + from + " to " + to);
+	    	} else if (cName.equals("DateSet")) {
+        		DateSetImpl dateSet = (DateSetImpl) c;
+        		String dateSetValues = dateSet.getDslDateSet_Values().toString();
+        		resultSb.append(" is  " + dateSetValues);
+	    	} else if (cName.equals("DayNameSet")) {
+        		DayNameSetImpl set = (DayNameSetImpl) c;
+        		String dateSetValues = set.getDslDayNameSet_Values().toString();
+        		resultSb.append(" is  " + dateSetValues);
+	    	} else if (cName.equals("DayRange")) {
+        		DateRangeImpl range = (DateRangeImpl) c;
+        		int from = range.getDsl_DateRange_from();
+        		int to = range.getDsl_DateRange_To();
+        		resultSb.append(" from " + from + " to " + to);
+	        } else if (cName.equals("DaySet")){
+        		DaySetImpl set = (DaySetImpl) c;
+        		String dateSetValues = set.getDslSetValue_Days().toString();
+        		resultSb.append(" is  " + dateSetValues);
+	    	} else if (cName.equals("Dialog")) {
+	    		DialogImpl theCase = (DialogImpl) c;
+	    	} else if (cName.equals("HeaderFooterColumnCenter")) {
+	    		HeaderFooterColumnCenterImpl theCase = (HeaderFooterColumnCenterImpl) c;
+	    	} else if (cName.equals("HeaderFooterDate")) {
+	    		HeaderFooterDateImpl theCase = (HeaderFooterDateImpl) c;
+	    	} else if (cName.equals("HeaderFooterLookup")) {
+	    		HeaderFooterLookupImpl theCase = (HeaderFooterLookupImpl) c;
+	    	} else if (cName.equals("HeaderFooterPageNumber")) {
+	    		HeaderFooterPageNumberImpl theCase = (HeaderFooterPageNumberImpl) c;
+	    	} else if (cName.equals("Hymn")) {
+	    		HymnImpl theCase = (HymnImpl) c;
+	    	} else if (cName.equals("Lookup")) {
+	    		LookupImpl theCase = (LookupImpl) c;
+	    		if (theCase.getDsl_ResourceTextRef() != null) {
+		    		Definition def = theCase.getDsl_ResourceTextRef();
+		    		String resource = def.eContainer().eResource().getURI().lastSegment();
+		    		resultSb.append(" (rid) ");
+		    		resultSb.append(resource);
+		    		resultSb.append(".");
+		    		resultSb.append(def.getName());
+		    		resultSb.append(" ");
+	    		}
+//	    		String overrideDay = theCase.getDsl_Lookup_OverrideDay().getLiteral();
+//	    		if (overrideDay != null && overrideDay.length() > 0) {
+//		    		resultSb.append(" override day ");
+//		    		resultSb.append(overrideDay);
+//		    		resultSb.append(" ");
+//	    		}
+//	    		String overrideMode = theCase.getDsl_Lookup_OverrideMode().getLiteral();
+//	    		if (overrideMode != null && overrideMode.length() > 0) {
+//		    		resultSb.append(" override mode ");
+//		    		resultSb.append(overrideMode);
+//		    		resultSb.append(" ");
+//	    		}
+	    	} else if (cName.equals("Media")) {
+	    		MediaImpl theCase = (MediaImpl) c;
+	    	} else if (cName.equals("PageFooterEven")) {
+	    		PageFooterEvenImpl theCase = (PageFooterEvenImpl) c;
+	    	} else if (cName.equals("PageFooterOdd")) {
+	    		PageFooterOddImpl theCase = (PageFooterOddImpl) c;
+	    	} else if (cName.equals("PageHeaderEven")) {
+	    		PageHeaderEvenImpl theCase = (PageHeaderEvenImpl) c;
+	    	} else if (cName.equals("PageHeaderOdd")) {
+	    		PageHeaderOddImpl theCase = (PageHeaderOddImpl) c;
+	    	} else if (cName.equals("PageNumber")) {
+	    		PageNumberImpl theCase = (PageNumberImpl) c;
+	    	} else if (cName.equals("Paragraph")) {
+	    		ParagraphImpl theCase = (ParagraphImpl) c;
+	    	} else if (cName.equals("Reading")) {
+	    		ReadingImpl theCase = (ReadingImpl) c;
+	    	} else if (cName.equals("ResourceText")) {
+	    		ResourceTextImpl theCase = (ResourceTextImpl) c;
+	    		Definition def = theCase.getDsl_ResourceTextRef();
+	    		if (def != null) {
+		    		String resource = def.eContainer().eResource().getURI().lastSegment();
+		    		resultSb.append(" (sid) ");
+		    		resultSb.append(resource);
+		    		resultSb.append(".");
+	    			resultSb.append(def.getName());
+	    		}
+	    	} else if (cName.equals("Rubric")) {
+	    		RubricImpl theCase = (RubricImpl) c;
+	    	} else if (cName.equals("Section")) {
+	    		SectionImpl theCase = (SectionImpl) c;
+	    		resultSb.append(" " );
+	    		resultSb.append(theCase.getName());
+	    		resultSb.append(" " );
+	    	} else if (cName.equals("SectionFragment")) {
+	    		SectionFragmentImpl theCase = (SectionFragmentImpl) c;
+	    		SectionImpl section = (SectionImpl) theCase.getName();
+	    		String sectionName = section.eResource().getURI().lastSegment();
+	    		resultSb.append(" (insert) " );
+	    		resultSb.append(sectionName);
+	    		resultSb.append(".");
+	    		resultSb.append(section.getName());
+	    		resultSb.append(" " );
+	    	} else if (cName.equals("SundaysBeforeTriodionCase")) {
+	    		SundaysBeforeTriodionCaseImpl theCase = (SundaysBeforeTriodionCaseImpl) c;
+	    		resultSb.append(" is ");
+	    		resultSb.append(theCase.getDsl_SundaysBeforeTriodionCase_Days());
+	    	} else if (cName.equals("TaggedText")) {
+	    		TaggedTextImpl theCase = (TaggedTextImpl) c;
+	    		Definition tag = theCase.getDsl_TaggedText_tag();
+	    		if (tag != null) {
+		    		String resource = tag.eContainer().eResource().getURI().lastSegment();
+		    		resultSb.append(" ");
+		    		resultSb.append(resource);
+		    		resultSb.append(".");
+	    			resultSb.append(tag.getName());
+	    		}
+	    	} else if (cName.equals("Title")) {
+	    		TitleImpl theCase = (TitleImpl) c;
+	    	} else if (cName.equals("Verse")) {
+	    		VerseImpl theCase = (VerseImpl) c;
+	    	} else if (cName.equals("WhenDate")) {
+	    		WhenDateImpl theCase = (WhenDateImpl) c;
+	        } else if (cName.equals("WhenDateCase")){
+	        	WhenDateCaseImpl theCase = (WhenDateCaseImpl) c;
+	        	String month = theCase.getDsl_WhenDate_Case_Month().getLiteral();
+	        	String days = theCase.getDsl_WhenDateCase_Days().toString();
+	    	} else if (cName.equals("WhenDayName")) {
+	    		WhenDayNameImpl theCase = (WhenDayNameImpl) c;
+	    	} else if (cName.equals("WhenDayNameCase")) {
+	    		WhenDayNameCaseImpl theCase = (WhenDayNameCaseImpl) c;
+	    	} else if (cName.equals("WhenExistsCase")) {
+	    		WhenExistsCaseImpl theCase = (WhenExistsCaseImpl) c;
+	    		Definition def = theCase.getDsl_WhenExistsCase_Ref();
+	    		if (def.getDsl_Definition_Ref() != null) {
+	    			resultSb.append(" is ");
+	    			resultSb.append(def.getDsl_Definition_Ref().getName());
+	    		}
+	    	} else if (cName.equals("WhenModeOfWeekCase")) {
+	    		WhenModeOfWeekCaseImpl theCase = (WhenModeOfWeekCaseImpl) c;
+	    		String days = theCase.getDsl_WhenModeOfWeekCase_Days().toString();
+	    		resultSb.append(" is ");
+	    		resultSb.append(days);
+	    	} else if (cName.equals("WhenMovableCycleDay")) {
+	    		WhenMovableCycleDayImpl theCase = (WhenMovableCycleDayImpl) c;
+	    	} else if (cName.equals("WhenPeriodCase")) {
+	    		WhenPeriodCaseImpl theCase = (WhenPeriodCaseImpl) c;
+	        }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return resultSb.toString();
 	}
+
+	
+	public static void dumpCNames() {
+		StringBuffer sb = new StringBuffer();
+		Collections.sort(ModelAccessor.classNames);
+		for (String cName : ModelAccessor.classNames) {
+			sb.append("\t} else if (cName.equals(\"");
+			sb.append(cName);
+			sb.append("\")) {\n");
+			sb.append("\t\t");
+			sb.append(cName);
+			sb.append("Impl theCase = (");
+			sb.append(cName);
+			sb.append("Impl) c;\n");
+			sb.append("");
+		}
+		System.out.println(sb.toString());
+	}
+//	public String getResourceInfo(AbstractComponent c) {
+//		StringBuffer resultSb = new StringBuffer();
+//		try {
+//	        Resource _eResource = c.eResource();
+//	        URI _uRI = _eResource.getURI();
+//	        String _lastSegment = _uRI.lastSegment();
+//	        String _plus = ("Processing " + _lastSegment);
+//	        String _plus_1 = (_plus + " ");
+//	        EObject _eContainer = c.eContainer();
+//	        EList<EObject> contents =  c.eContents();
+//	        String _nameFromContainer = this.nameFromContainer(_eContainer);
+//	        String _nameFromContainingFeature =_eContainer.eContainingFeature().getName();
+//	        String _firstContentsEClassName = contents.get(0).eClass().getName();
+//	        String _plus_2 = (_plus_1 + _nameFromContainer);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		return resultSb.toString();
+//	}
+	public String getTimestamp() {
+		String result = "";
+		try {
+			result = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
 	public void reinitializeOriginalDateTrackers() {
 		theDay.reinitializeOriginalDateTrackers();
 	}

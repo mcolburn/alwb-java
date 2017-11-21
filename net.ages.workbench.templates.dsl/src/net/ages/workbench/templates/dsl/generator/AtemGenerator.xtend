@@ -141,6 +141,7 @@ import org.eclipse.core.resources.IProject
 import org.eclipse.core.resources.ResourcesPlugin
 import org.eclipse.core.runtime.Path
 import java.util.Iterator
+import java.text.SimpleDateFormat
 
 //import net.ages.workbench.converters.PdfGenerator
 
@@ -330,7 +331,13 @@ class AtemGenerator implements IGenerator {
 	/* XML FO Format Variables */
 	val foFormatBoldRed = " font-family='Palatino Linotype Bold' font-weight='bold' color='red'"
 	val foFormatAlignCenter = " text-align='center'"
+
+	// messaging
+	long start = 0;
+	long last = 0;
+	var lastMessage = "";
 	var genMsgSb = new StringBuffer()
+	var genLongestMsgSb = new StringBuffer()
 	
 
 	/* Output Specific Tags */
@@ -686,10 +693,13 @@ class AtemGenerator implements IGenerator {
 		messageCount = 1;
 		
 		try {
+			start = System.nanoTime();
+			last = System.nanoTime();
+			lastMessage = "";
 			genMsgSb = new StringBuffer()
+			genLongestMsgSb = new StringBuffer()
 			generateMessagesHtml = AlwbGeneralUtils.getMessagesHtmlFlag
 			logState(fsa,"Instantiating aresAccessor")
-
 			aresAccessor = new ModelAccessor(r.resourceSet, "ares")
 			logState(fsa,"Finished instantiating aresAccessor")
 			
@@ -914,6 +924,11 @@ class AtemGenerator implements IGenerator {
 				logState(fsa,"Finished Creating website files")
 			}
 			
+			if (generateMessagesHtml) {
+				logState(fsa,"The following steps took 1 second or longer:</p>" + genLongestMsgSb.toString() + "<p>")
+	//			ModelAccessor.dumpCNames
+			}
+			
 			//		fsa.generateFile("prefReport.html", preferenceFileError("<p>"+ aresAccessor.messageBoard.getMessages +"</p>"))
 				
 			} else {
@@ -937,12 +952,40 @@ class AtemGenerator implements IGenerator {
 	 */
 	def void logState(IFileSystemAccess fsa, String message) {
 		if (generateMessagesHtml) {
-			genMsgSb.append("<p>" + messageCount + ": " + message + "</p>")
-			messageCount++
+			var stepElapsed = AlwbGeneralUtils.computeElapsedTime(last);
+			var totalElapsed = AlwbGeneralUtils.computeElapsedTime(start);
+			var logLine = 
+			"<p>" 
+				+ " [" 
+				+ String.format("%06d", stepElapsed)
+				+ ":" 
+				+ String.format("%06d", totalElapsed)
+				+ "] Step: "
+				+ messageCount
+				+ ". " 
+				+ message 
+				+ "</p>"
+				;
+			genMsgSb.append(logLine)
+			if (stepElapsed >= 1000) {
+				genLongestMsgSb.append(
+			"<p>" 
+				+ " [" 
+				+ String.format("%06d", stepElapsed)
+				+ "] Step: "
+				+ (messageCount - 1)
+				+ ". " 
+				+ lastMessage 
+				+ "</p>"
+				)
+  			}	
+  			messageCount++
+			last = System.nanoTime();
+			lastMessage = message;
 			fsa.generateFile("generationMessages.html", preferenceFileError(genMsgSb.toString()))
 		}
 	}
-
+	
 	def void generateWebsite(Resource resource, IFileSystemAccess fsa) {
 				
 		var	String platformString = resource.getURI().toPlatformString(true);
@@ -1449,8 +1492,7 @@ class AtemGenerator implements IGenerator {
 		if (generateMessagesHtml) {
 		logState(
 			globalFsa
-			, d.eResource.URI.lastSegment 
-			+ " " + aresAccessor.nameFromContainer(d.eContainer)
+			,  ModelAccessor.getResourceInfo(d)
 			+  " is setting date to " 
 			+ d.dsl_Date_year + "-" 
 			+ d.dsl_Date_month + "-" 
@@ -1468,8 +1510,7 @@ class AtemGenerator implements IGenerator {
 	
 	def compile(McDay d) {
 		if (generateMessagesHtml) {
-			logState(globalFsa, d.eResource.URI.lastSegment 
-							+ " " + aresAccessor.nameFromContainer(d.eContainer)
+			logState(globalFsa, ModelAccessor.getResourceInfo(d)
 				+  " is setting Movable Cycle Day to " + d.dsl_McDay_val
 			)
 		}
@@ -1515,6 +1556,9 @@ class AtemGenerator implements IGenerator {
 
 		
 		for (c: h.dsl_Head_components) {
+			
+			if (generateMessagesHtml){logState(	globalFsa, "Processing " + ModelAccessor.getResourceInfo(c))}
+			
 			switch c {
 				Commemoration: {
 					htmlCommemoration = c.dsl_Commemoration_Elements.compileHeaderFooterFragments
@@ -1559,6 +1603,8 @@ class AtemGenerator implements IGenerator {
 	def compileHeaderColumnsEven(EList<HeaderFooterColumn> l) {
 		
 		for (c:l) {
+			
+			if (generateMessagesHtml){logState(	globalFsa, "Processing " + ModelAccessor.getResourceInfo(c))}
 			switch c {
 				HeaderFooterColumnLeft: {
 					pdfHeaderEvenLeft = c.dsl_HeaderFooterColumn_fragments.compileHeaderFooterFragments
@@ -1576,6 +1622,10 @@ class AtemGenerator implements IGenerator {
 	def compileHeaderColumnsOdd(EList<HeaderFooterColumn> l) {
 		
 		for (c:l) {
+			
+			if (generateMessagesHtml){
+				logState(	globalFsa, "Processing " + ModelAccessor.getResourceInfo(c))
+			}
 			switch c {
 				HeaderFooterColumnLeft: {
 					pdfHeaderOddLeft = c.dsl_HeaderFooterColumn_fragments.compileHeaderFooterFragments
@@ -1594,6 +1644,10 @@ class AtemGenerator implements IGenerator {
 	def compileFooterColumnsEven(EList<HeaderFooterColumn> l) {
 
 		for (c:l) {
+			
+			if (generateMessagesHtml){
+				logState(	globalFsa, "Processing " + ModelAccessor.getResourceInfo(c))
+			}
 			switch c {
 				HeaderFooterColumnLeft: {
 					pdfFooterEvenLeft = c.dsl_HeaderFooterColumn_fragments.compileHeaderFooterFragments
@@ -1610,6 +1664,8 @@ class AtemGenerator implements IGenerator {
 	
 	def compileFooterColumnsOdd(EList<HeaderFooterColumn> l) {
 		for (c:l) {
+			
+			if (generateMessagesHtml){logState(	globalFsa, "Processing " + ModelAccessor.getResourceInfo(c))}
 			switch c {
 				HeaderFooterColumnLeft: {
 					pdfFooterOddLeft = c.dsl_HeaderFooterColumn_fragments.compileHeaderFooterFragments
@@ -1629,6 +1685,8 @@ class AtemGenerator implements IGenerator {
 		var result = ""
 		var pdfDateFormat = pdfDateDefaultFormat
 		for (f:l) {
+			
+			if (generateMessagesHtml){logState(	globalFsa, "Processing " + ModelAccessor.getResourceInfo(f))}
 			try {
 			switch f {
 				HeaderFooterText: {
@@ -1955,6 +2013,7 @@ class AtemGenerator implements IGenerator {
 
 	def compileComponents(EList<AbstractComponent> list) '''
 		«FOR c : list»
+			«IF generateMessagesHtml»«logState(	globalFsa, "Processing " + ModelAccessor.getResourceInfo(c))»«ENDIF»
 			«switch c {
 				Actor: {
 					(c as Actor).compile
@@ -2215,6 +2274,10 @@ class AtemGenerator implements IGenerator {
 */
 	def compile(Info info) '''
 		«FOR e : info.dsl_Info_Elements»
+			
+			if (generateMessagesHtml){
+				logState(	globalFsa, "Processing " + e.eResource.URI.lastSegment + " " + aresAccessor.nameFromContainer(e.eContainer))
+			}
 			«switch e {
 			Block: {
 				(e as Block).compile(true)
@@ -2239,6 +2302,7 @@ class AtemGenerator implements IGenerator {
 		«IF aresAccessor.outputType == AlwbConstants.PDF»
 		«prefaceOpen»
 		«FOR e : preface.dsl_Preface_Elements»
+			«IF generateMessagesHtml»«logState(	globalFsa, "Processing " + ModelAccessor.getResourceInfo(e))»«ENDIF»
 			«switch e {
 			Block: {
 				(e as Block).compile(true)
@@ -2274,6 +2338,7 @@ class AtemGenerator implements IGenerator {
 	def compile(Section section) '''
 		«IF !inTable && aresAccessor.outputType == AlwbConstants.DOCBOOK»<section «roleOpen»«compileRole(section.dsl_Section_Role?.dsl_Definition_Text)»«roleClose»«ENDIF»
 			«FOR e : section.dsl_Section_Elements»
+			«IF generateMessagesHtml»«logState(	globalFsa, "Processing " + ModelAccessor.getResourceInfo(e))»«ENDIF»
 				«switch e {
 			Actor: {
 				(e as Actor).compile
@@ -2884,6 +2949,10 @@ class AtemGenerator implements IGenerator {
 	def compile(LDP p) '''«FOR t : p.dsl_LDP»«t.compile»«ENDFOR»'''
 
 	def compile(LdpType p) {
+			
+			if (generateMessagesHtml){
+				logState(	globalFsa, "Processing " + ModelAccessor.getResourceInfo(p))
+			}
 		switch p {
 			All: {
 				(p as All).compile
@@ -2976,7 +3045,7 @@ class AtemGenerator implements IGenerator {
 	'''
 
 	def compile(EList<ElementType> elements) '''
-	«FOR e : elements»«switch e {
+	«FOR e : elements»«IF generateMessagesHtml»«logState(	globalFsa, "Processing " + ModelAccessor.getResourceInfo(e))»«ENDIF»«switch e {
 		LDP: {
 			(e as LDP).compile
 		}
@@ -2992,7 +3061,7 @@ class AtemGenerator implements IGenerator {
 	}»
 	«ENDFOR»'''
 
-	def compileV2(EList<ElementType> elements) '''«FOR e : elements»«switch e {
+	def compileV2(EList<ElementType> elements) '''«FOR e : elements»«IF generateMessagesHtml»«logState(	globalFsa, "Processing " + ModelAccessor.getResourceInfo(e))»«ENDIF»«switch e {
 		LDP: {
 			(e as LDP).compile
 		}
@@ -3142,6 +3211,11 @@ class AtemGenerator implements IGenerator {
 	'''
 
 	def matchesDay(AbstractDayNameCase c) {
+					
+			if (generateMessagesHtml){
+				logState(	globalFsa, "Processing " + ModelAccessor.getResourceInfo(c))
+			}
+		
 		switch c {
 			DayNameRange: {
 				c.matchesDay
@@ -3160,7 +3234,10 @@ class AtemGenerator implements IGenerator {
 
 	def matchesDay(DayNameSet s) {
 		for (DOW : s.dslDayNameSet_Values) {
-			if(targetDayOfWeek == (DOW.ordinal + 1)) return true
+			if(targetDayOfWeek == (DOW.ordinal + 1)) {
+				if (generateMessagesHtml){logState(	globalFsa, "Matched Day of Week " + targetDayOfWeek)}
+				return true
+			} 
 		}
 		false
 	}
@@ -3238,6 +3315,7 @@ class AtemGenerator implements IGenerator {
 	'''
 
 	def matchesDay(AbstractDayCase c) {
+		if (generateMessagesHtml){logState(	globalFsa, "Processing " + ModelAccessor.getResourceInfo(c))}
 		switch c {
 			DayRange: {
 				c.matchesDay
@@ -3252,8 +3330,10 @@ class AtemGenerator implements IGenerator {
 
 	def matchesDay(DaySet s) {
 		for (DOP : s.dslSetValue_Days) {
-			if (targetDayOfSeason == (DOP))
+			if (targetDayOfSeason == (DOP)) {
+				if (generateMessagesHtml){logState(	globalFsa, "Matched Day of Season " + targetDayOfSeason)}
 				return true
+			}
 		}
 		false
 	}
@@ -3264,6 +3344,7 @@ class AtemGenerator implements IGenerator {
 
 	def boolean dayInPeriodRange(int from, int to) {
 		if (targetDayOfSeason >= (from) && (targetDayOfSeason <= (to))) {
+			if (generateMessagesHtml){logState(	globalFsa, "TargetDayOfSeason matched within range from " + from + " to " + to)}
 			return true
 		} else
 			return false
@@ -3299,7 +3380,10 @@ class AtemGenerator implements IGenerator {
 
 	def numberOfSundaysMatches(EList<SundaysBeforeTriodionCase> l) {
 	for (c : l) {
-		if (c.dsl_SundaysBeforeTriodionCase_Days == targetSundaysBeforeStartOfTriodion) return true
+		if (c.dsl_SundaysBeforeTriodionCase_Days == targetSundaysBeforeStartOfTriodion) {
+			if (generateMessagesHtml){logState(	globalFsa, "TargetSundaysBeforeStartOfTriodion matched  " + targetSundaysBeforeStartOfTriodion)}
+			return true
+	    }
 	}
 	false
 	}
@@ -3327,7 +3411,10 @@ class AtemGenerator implements IGenerator {
 
 	def dateMatches(EList<WhenDateCase> l) {
 		for (c : l) {
-			if(c.dsl_WhenDate_Case_Month.ordinal == targetMonth && c.dsl_WhenDateCase_Days.matchesDay) return true
+			if(c.dsl_WhenDate_Case_Month.ordinal == targetMonth && c.dsl_WhenDateCase_Days.matchesDay) {
+				if (generateMessagesHtml){logState(	globalFsa, "Matched Target Month  " + targetMonth)}
+				return true
+			}
 		}
 		false
 	}
@@ -3342,6 +3429,8 @@ class AtemGenerator implements IGenerator {
 	'''
 
 	def matchesDay(AbstractDateCase c) {
+			
+		if (generateMessagesHtml){logState(	globalFsa, "Processing " + ModelAccessor.getResourceInfo(c))}
 		switch c {
 			DateRange: {
 				c.matchesDay
@@ -3356,8 +3445,10 @@ class AtemGenerator implements IGenerator {
 
 	def matchesDay(DateSet s) {
 		for (d : s.dslDateSet_Values) {
-			if (targetDayOfMonth == d)
+			if (targetDayOfMonth == d) {
+				if (generateMessagesHtml){logState(	globalFsa, "Matched Target Day of Month  " + targetDayOfMonth)}
 				return true
+			}
 		}
 		false
 	}
@@ -3368,6 +3459,7 @@ class AtemGenerator implements IGenerator {
 
 	def boolean dayInDateRange(int from, int to) {
 		if (targetDayOfMonth >= (from) && (targetDayOfMonth <= to)) {
+			if (generateMessagesHtml){logState(	globalFsa, "Matched Target Day of Month  " + targetDayOfMonth + " is in range from " + from + " to " + to)}
 			return true
 		} else
 			return false
@@ -3402,6 +3494,7 @@ class AtemGenerator implements IGenerator {
 		if (x.empty || x.contains("Could not find") || x.contains("While looking for")) {
 			return false
 		} else {
+			if (generateMessagesHtml){logState(	globalFsa, "Matched ref exists " + d.getName())}
 			return true
 		}
 	}
@@ -3432,7 +3525,10 @@ class AtemGenerator implements IGenerator {
 
 	def matchesMow(ModeOfWeekSet s) {
 		for (MOW : s.dsl_ModeOfWeekSet_MOWs) {
-			if(targetMode == (MOW.ordinal + 1)) return true
+			if(targetMode == (MOW.ordinal + 1)) {
+				if (generateMessagesHtml){logState(	globalFsa, "Matched Mode of Week " + targetMode)}
+				return true
+			}
 		}
 		false
 	}
