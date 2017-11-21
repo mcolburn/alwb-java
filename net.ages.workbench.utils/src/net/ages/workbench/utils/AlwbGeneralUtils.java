@@ -2,6 +2,8 @@ package net.ages.workbench.utils;
 
 
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.io.FileUtils;
@@ -110,7 +112,38 @@ public class AlwbGeneralUtils {
 		return result;
 	}
 	
+	public static long computeElapsedTime(long since) {
+		long result = 0;
+		try {
+	        long output = System.nanoTime() - since;
+	        result = output / 1000000;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+        return result;
+	}
 	
+	public static String computeElapsedTime(long from, long to) {
+		String result = "?";
+		try {
+	        long output = to - from;
+	        result = String.format("%05d", output / 1000000);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+        return result;
+	}
+
+	public static String getTimestamp() {
+		String result = "";
+		try {
+			result = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss.SSS").format(new Date());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
 	// these need to match net.ages.workbench.templates.dsl.ui.preferences.PreferenceConstants.java
 	// my preference would be to point to it, but I don't know how to avoid templates.dsl having
 	// a dependency on dsl.ui if I do this.
