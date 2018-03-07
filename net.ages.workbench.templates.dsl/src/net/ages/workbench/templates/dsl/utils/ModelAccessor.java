@@ -1489,6 +1489,8 @@ public class ModelAccessor {
 		processingLanguage1 = false;
 		if (theResult != null && theResult.length() > 0) {
 				theResult = source(theResult, lastFile,lastId);
+		} else {
+			theResult = source("", lastFile,lastId);
 		}
 		logger.exit(theResult);
 		return theResult;
@@ -1505,6 +1507,8 @@ public class ModelAccessor {
 		}
 		if (result != null && result.length() > 0) {
 				result = source(result, lastFile,lastId);
+		} else {
+			result = source("", lastFile,lastId);
 		}
 		processingLanguage1 = false;
 		return result;
@@ -1666,6 +1670,8 @@ public class ModelAccessor {
 		theResult = convertFormatCodes(theResult);
 		if (theResult != null && theResult.length() > 0) {
 				theResult = source(theResult, lastFile,lastId);
+		} else {
+			theResult = source("", lastFile,lastId);
 		}
 		logger.exit(theResult);
 		return theResult;
@@ -1682,6 +1688,8 @@ public class ModelAccessor {
 		}
 		if (result != null && result.length() > 0) {
 				result = source(result, lastFile,lastId);
+		} else {
+			result = source("", lastFile,lastId);
 		}
 		return result;
 	}
