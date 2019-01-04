@@ -3082,13 +3082,13 @@ class AtemGenerator implements IGenerator {
 	def compileV2(TaggedText text) '''«taggedTextOpenTagLb»«startTag(text.dsl_TaggedText_tag.dsl_Definition_Text)»«taggedTextOpenTagRb»«text.dsl_TaggedText.
 		compileV2»«taggedTextCloseTagLb»«endTag(text.dsl_TaggedText_tag.dsl_Definition_Text)»«taggedTextCloseTagRb» '''
 
-	def compile(ResourceText text) '''«setResourceOverrides(text)»«aresAccessor.getLanguage1Text(text.dsl_ResourceTextRef)» «resetResourceOverrides()»'''
+	def compile(ResourceText text) '''«setResourceOverrides(text)»«aresAccessor.getLanguage1Text(text.dsl_ResourceTextRef, false)» «resetResourceOverrides()»'''
 
-	def compileV2(ResourceText text) '''«setResourceOverrides(text)»«aresAccessor.getLanguage2Text(text.dsl_ResourceTextRef)» «resetResourceOverrides()»'''
+	def compileV2(ResourceText text) '''«setResourceOverrides(text)»«aresAccessor.getLanguage2Text(text.dsl_ResourceTextRef, false)» «resetResourceOverrides()»'''
 
-	def compile(Lookup l) '''«setLookupOverrides(l)»«aresAccessor.getLanguage1VariableText(l.dsl_ResourceTextRef)» «resetLookupOverrides»'''
+	def compile(Lookup l) '''«setLookupOverrides(l)»«aresAccessor.getLanguage1VariableText(l.dsl_ResourceTextRef, false)» «resetLookupOverrides»'''
 
-	def compileV2(Lookup l) '''«setLookupOverrides(l)»«aresAccessor.getLanguage2VariableText(l.dsl_ResourceTextRef)» «resetLookupOverrides»'''
+	def compileV2(Lookup l) '''«setLookupOverrides(l)»«aresAccessor.getLanguage2VariableText(l.dsl_ResourceTextRef, false)» «resetLookupOverrides»'''
 
 	
 	
@@ -3490,7 +3490,7 @@ class AtemGenerator implements IGenerator {
 	}
 
 	def boolean refExists(Definition d) {
-		val x = aresAccessor.getLanguage1VariableText(d)
+		val x = aresAccessor.getLanguage1VariableText(d, true)
 		if (x.empty || x.contains("Could not find") || x.contains("While looking for")) {
 			return false
 		} else {

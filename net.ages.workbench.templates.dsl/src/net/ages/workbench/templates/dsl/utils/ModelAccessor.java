@@ -655,7 +655,8 @@ public class ModelAccessor {
 	public boolean indexUsingDayBefore(String serviceType) {
 		boolean result = false;
 		if (serviceType.startsWith(AlwbConstants.SMALL_VESPERS) || 
-				serviceType.startsWith(AlwbConstants.MIDNIGHT_OFFICE) ||
+				// removed per Fr. Seraphim request 2018-09-13
+//				serviceType.startsWith(AlwbConstants.MIDNIGHT_OFFICE) ||
 				serviceType.startsWith(AlwbConstants.PRESANCTIFIED_LITURGY) ||
 				serviceType.startsWith(AlwbConstants.VESPERAL_LITURGY) ||
 				serviceType.startsWith(AlwbConstants.VESPERS) ||
@@ -1218,16 +1219,32 @@ public class ModelAccessor {
 	 */
 	public boolean notEmptyMediaDivs(CharSequence v1, CharSequence v2) {
 		boolean v1Empty;
-		if (v1 == null || mediaL1 == null) {
+		if (v1 == null) {
 			v1Empty = true;
 		} else {
-			v1Empty = v1.toString().startsWith(mediaL1.getEmptyMediaDiv());
+			if (mediaL1 == null) {
+				if (mediaL1d == null) {
+					v1Empty = true;
+				} else {
+					v1Empty = v1.toString().startsWith(mediaL1d.getEmptyMediaDiv());
+				}
+			} else {
+				v1Empty = v1.toString().startsWith(mediaL1.getEmptyMediaDiv());
+			}
 		}
 		boolean v2Empty;
-		if (v2 == null || mediaL1 == null) {
+		if (v2 == null) {
 			v2Empty = true;
 		} else {
-			v2Empty = v2.toString().startsWith(mediaL1.getEmptyMediaDiv());
+			if (mediaL2 == null) {
+				if (mediaL2d == null) {
+					v2Empty = true;
+				} else {
+					v2Empty = v2.toString().startsWith(mediaL2d.getEmptyMediaDiv());
+				}
+			} else {
+				v2Empty = v2.toString().startsWith(mediaL2.getEmptyMediaDiv());
+			}
 		}
 		return ! (v1Empty && v2Empty);
 	}
@@ -1447,7 +1464,7 @@ public class ModelAccessor {
 	 * 2. The requested version is not the actual version.
 	 * 		2.a. The actual version is also not the other requested version.  If so, use the local
 	 */
-	public String getLanguage1Text(Definition d) {
+	public String getLanguage1Text(Definition d, boolean existsTest) {
 		logger.entry(d);
 		processingLanguage1 = true;
 		String theKey = d.getName();
@@ -1490,13 +1507,16 @@ public class ModelAccessor {
 		if (theResult != null && theResult.length() > 0) {
 				theResult = source(theResult, lastFile,lastId);
 		} else {
-			theResult = source("", lastFile,lastId);
+			// if we are just checking to see if the key and value exist, do not return a source
+			if (! existsTest) {
+				theResult = source("", lastFile,lastId);
+			} 
 		}
 		logger.exit(theResult);
 		return theResult;
 	}
 
-	public String getLanguage1VariableText(Definition d) {
+	public String getLanguage1VariableText(Definition d, boolean existsTest) {
 		processingLanguage1 = true;
 		String defFile = d.eResource().getURI().lastSegment();
 		String lang1IdPreferred = getPreferredVersion1Id(defFile);
@@ -1508,7 +1528,10 @@ public class ModelAccessor {
 		if (result != null && result.length() > 0) {
 				result = source(result, lastFile,lastId);
 		} else {
-			result = source("", lastFile,lastId);
+			// if we are just checking to see if the key and value exist, do not return a source
+			if (! existsTest) {
+				result = source("", lastFile,lastId);
+			} 
 		}
 		processingLanguage1 = false;
 		return result;
@@ -1624,7 +1647,7 @@ public class ModelAccessor {
 		return language2PsalterPreferredFile;
 	}
 
-	public String getLanguage2Text(Definition d) {
+	public String getLanguage2Text(Definition d, boolean existsTest) {
 		logger.entry(d);
 		processingLanguage1 = false;
 		String theResult = null;
@@ -1671,13 +1694,15 @@ public class ModelAccessor {
 		if (theResult != null && theResult.length() > 0) {
 				theResult = source(theResult, lastFile,lastId);
 		} else {
-			theResult = source("", lastFile,lastId);
+			if (! existsTest) {
+				theResult = source("", lastFile,lastId);
+			} 
 		}
 		logger.exit(theResult);
 		return theResult;
 	}
 
-	public String getLanguage2VariableText(Definition d) {
+	public String getLanguage2VariableText(Definition d, boolean existsTest) {
 		processingLanguage1 = false;
 		String defFile = d.eResource().getURI().lastSegment();
 		String langIdPreferred = getPreferredVersion2Id(defFile);
@@ -1689,7 +1714,9 @@ public class ModelAccessor {
 		if (result != null && result.length() > 0) {
 				result = source(result, lastFile,lastId);
 		} else {
-			result = source("", lastFile,lastId);
+			if (! existsTest) {
+				result = source("", lastFile,lastId);
+			} 
 		}
 		return result;
 	}
@@ -2216,7 +2243,7 @@ public class ModelAccessor {
 	 * commemoration for the day and calculates the filename.
 	 * @return the filename of the resource to use.
 	 */
-	public String getVariableCommemorationResourceName() {
+	public String getVariableCommemorationResourceName(boolean usePreferred) {
 		StringBuilder sb = new StringBuilder();
 		if (theDay.isTriodion()) {
 			sb.append(AlwbConstants.TRIODION);
@@ -2238,7 +2265,11 @@ public class ModelAccessor {
 			sb.append(theDay.getNbrDayOfMonth());
 		}
 		sb.append("_");
-		sb.append(addAresFileExtension(getHtmlIndexLanguagePreferredFile()));
+		if (usePreferred) {
+			sb.append(addAresFileExtension(getHtmlIndexLanguagePreferred()));
+		} else {
+			sb.append(addAresFileExtension(getHtmlIndexLanguageDefault()));
+		}
 		return sb.toString();
 	}
 
@@ -2252,11 +2283,24 @@ public class ModelAccessor {
 		String result = "";
 		try {
 			result = getDefinitionValueById(
-					getResource(getVariableCommemorationResourceName()), 
+					getResource(getVariableCommemorationResourceName(true)), 
 					getVariableCommemorationAcronymn()
 					+AlwbConstants.COMMEMORATION_TEXT_SHORT_KEY);
+			if (result == null || result.trim().length() == 0) {
+				result = getDefinitionValueById(
+						getResource(getVariableCommemorationResourceName(false)), 
+						getVariableCommemorationAcronymn()
+						+AlwbConstants.COMMEMORATION_TEXT_SHORT_KEY);
+			}
 		} catch (Exception e) {
-			result = "";
+			try {
+				result = getDefinitionValueById(
+						getResource(getVariableCommemorationResourceName(false)), 
+						getVariableCommemorationAcronymn()
+						+AlwbConstants.COMMEMORATION_TEXT_SHORT_KEY);
+			} catch (Exception innerE) {
+				result = "";
+			}
 		}
 		return result;
 	}
@@ -3615,8 +3659,14 @@ public class ModelAccessor {
 		if (outputType == AlwbConstants.PDF) {
 			span  = value;
 		} else {
+			String className = "";
+			if (value.trim().length() == 0) {
+				className = "kvp dummy";
+			} else {
+				className = "kvp";
+			}
 			span = 
-					"<span class='kvp' data-key='" 
+					"<span class='" + className + "' data-key='" 
 							+ file.replace(".ares", "") 
 							+ "|"+ id + "'>" 
 							+ value 
