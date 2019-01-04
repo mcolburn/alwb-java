@@ -2334,6 +2334,12 @@ public class ModelAccessor {
 			sb.append(".");
 			sb.append("d");
 			sb.append(theDay.getNbrDayOfMonth());
+		} else if (bookAcronymn.matches("ty")) {				// Typikon
+			sb.append("m");
+			sb.append(theDay.getNbrMonth());
+			sb.append(".");
+			sb.append("d");
+			sb.append(theDay.getNbrDayOfMonth());
 		}
 		logger.exit();
 		return sb.toString() + "_" + version + "." + extension;
