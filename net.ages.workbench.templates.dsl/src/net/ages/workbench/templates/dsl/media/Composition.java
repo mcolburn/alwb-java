@@ -30,8 +30,8 @@ import net.ages.workbench.utils.AlwbLogger;
 public class Composition {
 	private Logger logger = AlwbLogger.getLogger("Composition");
 	private Hymn parent;
-	private String id;
-	private String composer;
+	private String id = "";
+	private String composer = "";
 	private ByzantineScore byzScore = null;
 	private WesternScore westernScore = null;
 	private Map<String,AudioRecording> recordings = new TreeMap<String,AudioRecording>();
@@ -89,7 +89,7 @@ public class Composition {
 			} else if (key.contains("score.w")) {
 				addWesternScoreEntry(entry);
 			} else  if (key.contains("composer")){
-				setComposer(entry.getValue());
+				this.setComposer(entry.getValue());
 			} else { // assume audio
 				addAudioEntry(entry);
 			}

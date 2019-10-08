@@ -74,14 +74,13 @@ public class AudioRecording {
 				+ "</span>"
 				+ " - "
 				+ "<span class='mediaMenuItemPeople'>"
-				+ parent.getComposer()
-				+ " / "
 				+ singer
 				+ "</span>";
 	}
 
 	public String getBasePath() {
-		return base + path; 
+//		return base + path; 
+		return path; 
 	}
 	
 	public boolean propertyNotNull(String property) {
