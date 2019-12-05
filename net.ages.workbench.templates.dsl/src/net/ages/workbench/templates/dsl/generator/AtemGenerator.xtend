@@ -277,6 +277,7 @@ class AtemGenerator implements IGenerator {
 	
 	var List<String> outputSegments
 	var List<String> fileParts
+	var int outputSegmentSize
 	var String outputPath
 	var String filename = "" 
 	var String foFilename = "" 
@@ -762,7 +763,8 @@ class AtemGenerator implements IGenerator {
 						ruleProcessor = new RuleProcessor(theDay)
 						outputType = aresAccessor.outputType
 						outputSegments = resource.URI.segmentsList
-						outputPath = outputSegments.subList(3, outputSegments.size - 1).join("/") + "/"
+// 2019-12-05 MAC.  I commented this out because in some circumstances it caused an error to be thrown.  It appears that the outputPath gets reset later in the code and the commented out line is unnecessary.
+//						outputPath = outputSegments.subList(3, outputSegments.size - 1).join("/") + "/"
 						fileParts = outputSegments.get(outputSegments.size - 1).split("\\.")
 						filename = ""
 						inTable = false

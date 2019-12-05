@@ -436,6 +436,8 @@ public class ModelAccessor {
 	 * @return key minus the past part, e.g. oc.m1.d.Apolytikion
 	 */
 	public String chopKey(String key, String delimiter) {
+//		Resource r = null;
+//		r.getURI().segmentsList().sub
 		logger.entry();
 		String result = key;
 		try {
