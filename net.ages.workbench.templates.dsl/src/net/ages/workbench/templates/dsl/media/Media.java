@@ -321,9 +321,31 @@ public class Media {
 				} 
 				if (propertyNotNull(value)) {
 					key = e.getName();
-
 					map.put(key, value);
-					if (key.contains(".composer") && (!key.contains("key.model.composer"))) {
+
+					if (key.endsWith(".arranger") && value.contains("/")) {
+						try {
+							String compKey = key.replace(".arranger", ".url.base");
+							 map.put(compKey, "../../");
+							 compKey = key.replace(".arranger", ".year");
+							 map.put(compKey, "2013");
+						} catch (Exception er) {
+							logger.catching(er);
+						}
+					}
+					if (key.endsWith(".singer") && value.contains("/")) {
+						try {
+							String compKey = key.replace(".singer", ".url.base");
+							 map.put(compKey, "../../");
+							 compKey = key.replace(".singer", ".year");
+							 map.put(compKey, "2013");
+						} catch (Exception er) {
+							logger.catching(er);
+						}
+					}
+					if ((key.contains(".arranger") && (!key.contains("key.model.arranger")))
+							|| (key.contains(".composer") && (!key.contains("key.model.composer")))
+							) {
 						try {
 							String hymnkey = MediaKeyMatcher.getId(key, MediaKeyMatcher.HYMN_ID_INDEX);
 							if (! hymns.containsKey(hymnkey)) {
@@ -418,18 +440,18 @@ public class Media {
 			logger.error("Can't find media key model " + KEY_MODEL_COMPOSER);
 			logger.catching(e);
 		}
-		try {
-			 KEY_YEAR = "." + map.get(KEY_MODEL_YEAR);
-		} catch (Exception e) {
-			logger.error("Can't find media key model " + KEY_MODEL_YEAR);
-			logger.catching(e);
-		}
-		try {
-			KEY_URL_BASE = "." + map.get(KEY_MODEL_URL_BASE);
-		} catch (Exception e) {
-			logger.error("Can't find media key model " + KEY_MODEL_URL_BASE);
-			logger.catching(e);
-		}
+//		try {
+//			 KEY_YEAR = "." + map.get(KEY_MODEL_YEAR);
+//		} catch (Exception e) {
+//			logger.error("Can't find media key model " + KEY_MODEL_YEAR);
+//			logger.catching(e);
+//		}
+//		try {
+//			KEY_URL_BASE = "." + map.get(KEY_MODEL_URL_BASE);
+//		} catch (Exception e) {
+//			logger.error("Can't find media key model " + KEY_MODEL_URL_BASE);
+//			logger.catching(e);
+//		}
 		try {
 			KEY_URL_PATH = "." + map.get(KEY_MODEL_URL_PATH);
 		} catch (Exception e) {

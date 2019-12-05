@@ -26,7 +26,12 @@ public class Score {
 	}
 	
 	public String getBasePath() {
-		return base + path; 
+		return path; 
+		// the following is a hack to support a change on 2019/10/06 by Fr. Seraphim.
+		// He eliminated the base in the media map.  But somewhere in the code
+		// if it is empty, the media hrefs won't appear in the html.  
+		// So in Media, the base is set to "../../", but suppresed here.
+//		return base + path; 
 	}
 
 	public String getPath() {
@@ -71,8 +76,6 @@ public class Score {
 				+ "</span>"
 				+ " - "
 				+ "<span class='mediaMenuItemPeople'>"
-				+ parent.getComposer()
-				+ " / "
 				+ arranger
 				+ "</span>";
 	}

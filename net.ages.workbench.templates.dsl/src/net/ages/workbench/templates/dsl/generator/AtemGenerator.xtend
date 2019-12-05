@@ -1004,6 +1004,7 @@ class AtemGenerator implements IGenerator {
 		var assetsProjectPath = aresAccessor.pathToAssetsProject + "/";
 		var mediaProjectPath = aresAccessor.pathToMediaProject + "/";
 		var targetDirectory = projLocation + "/" + "src-gen"  + "/" + htmlWebSite
+		var mediaTargetDirectory = projLocation + "/" + "src-gen"  + "/" + AlwbConstants.HTML_WEBSITE +  "/"
 
 		if (AlwbGeneralUtils.copyAssets) {
 			if (aresAccessor.copyCss) {
@@ -1016,7 +1017,7 @@ class AtemGenerator implements IGenerator {
 				AlwbGeneralUtils.copyRoot(assetsProjectPath + aresAccessor.copyRootFrom,targetDirectory)
 			}
 			if (aresAccessor.copyMedia) {
-				AlwbGeneralUtils.copyMedia(mediaProjectPath + aresAccessor.copyMediaFrom,targetDirectory)
+				AlwbGeneralUtils.copyMedia(mediaProjectPath + aresAccessor.copyMediaFrom,mediaTargetDirectory)
 			}
 		}
 		
