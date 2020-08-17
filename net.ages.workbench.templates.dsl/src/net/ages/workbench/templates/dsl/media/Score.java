@@ -4,7 +4,7 @@ public class Score {
 	private Composition parent;
 	private String id;
 	private String arranger;
-	private String base;
+	private String base; 
 	private String path;
 	private String year;
 	
@@ -26,7 +26,15 @@ public class Score {
 	}
 	
 	public String getBasePath() {
-		return path; 
+		if (path.endsWith("pdf")) {
+			return "js/viewer/web/viewer.html?file=../../../" + path;
+		} else {
+			return path;
+		}
+		// changed 2020/08/16 by MAC to enable use of pdf.js viewer to address iOS iPAD but that
+		// won't let multi-page pdf be viewed past first page in iFrame.
+		// return path; 
+		
 		// the following is a hack to support a change on 2019/10/06 by Fr. Seraphim.
 		// He eliminated the base in the media map.  But somewhere in the code
 		// if it is empty, the media hrefs won't appear in the html.  

@@ -423,6 +423,11 @@ public class LiturgicalDayProperties {
 			}
 		}
 		
+		
+		public int getNumberOfDaysBeforeStartOfTriodion() {
+			return daysUntilStartOfTriodion;
+		}
+		
 		public int getNumberOfSundaysBeforeStartOfTriodion() {
 			return numberOfSundaysBeforeStartOfTriodion;
 		}

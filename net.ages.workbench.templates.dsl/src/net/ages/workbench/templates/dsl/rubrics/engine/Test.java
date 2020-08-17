@@ -28,16 +28,21 @@ public class Test {
 		// 2016 Sept 14 was on Wed, next Sunday was 18
 //		int offset = 364;
 
-//		showSundayAfterElevation("2007","9",16);
-//		showSundayAfterElevation("2008","9",21);
-//		showSundayAfterElevation("2009","9",20);
-//		showSundayAfterElevation("2010","9",19);
-//		showSundayAfterElevation("2011","9",18);
-//		showSundayAfterElevation("2012","9",16);
-//		showSundayAfterElevation("2013","9",22);
-//		showSundayAfterElevation("2014","9",21);
-//		showSundayAfterElevation("2015","9",20);
-//		showSundayAfterElevation("2016","9",18);
+		showSundayAfterElevation("2007","9",16);
+		showSundayAfterElevation("2008","9",21);
+		showSundayAfterElevation("2009","9",20);
+		showSundayAfterElevation("2010","9",19);
+		showSundayAfterElevation("2011","9",18);
+		showSundayAfterElevation("2012","9",16);
+		showSundayAfterElevation("2013","9",22);
+		showSundayAfterElevation("2014","9",21);
+		showSundayAfterElevation("2015","9",20);
+		showSundayAfterElevation("2016","9",18);
+		showSundayAfterElevation("2019","9",22);
+		showSundayAfterElevation("2019","9",29);
+		showSundayAfterElevation("2019","10",6);
+		showSundayAfterElevation("2020","2",9);
+		
 		/**
 		 * 2007 Triodion starts Jan 28, 1 Sunday between Jan 15 and Triodion start
 		 * 2011 Triodion Starts Feb 13, 4 Sundays between Jan 15 and Triodion start 
@@ -45,7 +50,6 @@ public class Test {
 		 * 2013 Triodion Starts Feb 24, 5 Sundays between Jan 15 and Triodion start
 		 * 2014 Triodion Starts Feb 09, 3 Sundays between Jan 15 and Triodion start
 		 */
-		showSundaysUntilStartOfTriodion("2016","6",4);
 		showSundaysUntilStartOfTriodion("2016","1",2);
 		showSundaysUntilStartOfTriodion("2017","1",2);
 		showSundaysUntilStartOfTriodion("2018","1",2);
@@ -55,14 +59,20 @@ public class Test {
 		System.out.println(temp);
 		
 		// In 2014 the old calendar Pascha was on April 7. For us on April 20.
+		
+		
 	}
 	
 	private static void showSundaysUntilStartOfTriodion(String year, String month, int day) {
 // How many Sundays from Jan 14 to start of Triodion
 		LiturgicalDayProperties theDay = new LiturgicalDayProperties(year, month, String.valueOf(day));
+		java.util.GregorianCalendar jan15 = new java.util.GregorianCalendar(theDay.getTriodionStartDateNextYear().get(Calendar.YEAR),0,15);
+		Long diffMillis = theDay.diffMillis(theDay.getTriodionStartDateThisYear(), jan15);
 		System.out.println(
 				"Today: " +  theDay.getNameOfDayAbbreviation() + " " +  theDay.getFormattedDate() 
 				+ " Triodion: " + theDay.formattedDate(theDay.getTriodionStartDateThisYear())
+				+ " Jan 15 to Triodion Diffmillis : " + diffMillis
+				+ " Days until " + theDay.getNumberOfDaysBeforeStartOfTriodion()
 				+ " Sundays until: "
 				+ theDay.getNumberOfSundaysBeforeStartOfTriodion()
 				);
@@ -77,6 +87,5 @@ public class Test {
 		theDay = new LiturgicalDayProperties(year, month, Integer.toString(day+1));
 		System.out.println(theDay.elevationToString());
 	}
-	
 	
 }

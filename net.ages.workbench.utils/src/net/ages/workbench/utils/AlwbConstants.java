@@ -11,7 +11,7 @@ package net.ages.workbench.utils;
 public class AlwbConstants {
 	
 	// version
-	public static final String VERSION = "2019-12-05-01";
+	public static final String VERSION = "2020-08-17-01";
 	
 	// template categories
 	public static final String TEMPLATE_SERVICE = "se";
