@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format" font-family="'Palatino Linotype', 'Palatino Linotype Italic', 'Palatino Linotype Bold', 'Palatino Linotype Bold Italic'" font-size="10pt" text-align="justify" line-height="normal" font-selection-strategy="character-by-character" line-height-shift-adjustment="disregard-shifts" writing-mode="lr-tb" language="en">
+<?xml version="1.0" encoding="UTF-8"?> 
+<fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format" font-family="'Liberation Serif', 'Liberation Serif Italic', 'Liberation Serif Bold', 'Liberation Serif Bold Italic'" font-size="10pt" text-align="justify" line-height="normal" font-selection-strategy="character-by-character" line-height-shift-adjustment="disregard-shifts" writing-mode="lr-tb" language="en">
    <fo:layout-master-set>
     <fo:simple-page-master master-name="preface-master"
       page-height="11in" page-width="8.5in"
@@ -160,7 +160,7 @@ padding='0'>
 	padding-right='5px' 
 	vertical-align='top'><fo:block keep-with-next.within-page='always' 
 	color='red' 
-	font-family='Palatino Linotype Bold' 
+	font-family='Liberation Serif Bold' 
 	font-size='11pt' 
 	font-variant='normal' 
 	font-weight='bold' 
@@ -174,7 +174,7 @@ padding='0'>
 	padding-right='0px' 
 	vertical-align='top'><fo:block keep-with-next.within-page='always' 
 	color='red' 
-	font-family='Palatino Linotype Bold' 
+	font-family='Liberation Serif Bold' 
 	font-size='11pt' 
 	font-variant='normal' 
 	font-weight='bold' 

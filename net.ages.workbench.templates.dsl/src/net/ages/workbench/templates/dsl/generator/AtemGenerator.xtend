@@ -330,7 +330,7 @@ class AtemGenerator implements IGenerator {
 	val tagTableCellL2 = "tdL2"
 
 	/* XML FO Format Variables */
-	val foFormatBoldRed = " font-family='Palatino Linotype Bold' font-weight='bold' color='red'"
+	val foFormatBoldRed = " font-family='Liberation Serif Bold' font-weight='bold' color='red'"
 	val foFormatAlignCenter = " text-align='center'"
 
 	// messaging
@@ -3628,7 +3628,7 @@ class AtemGenerator implements IGenerator {
 
 	def setPrefaceforFo()'''
 <?xml version="1.0" encoding="UTF-8"?>
-<fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format" font-family="'Palatino Linotype', 'Palatino Linotype Italic', 'Palatino Linotype Bold', 'Palatino Linotype Bold Italic'" font-size="10pt" text-align="justify" line-height="normal" font-selection-strategy="character-by-character" line-height-shift-adjustment="disregard-shifts" writing-mode="lr-tb" language="en">
+<fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format" font-family="'Liberation Serif', 'Liberation Serif Italic', 'Liberation Serif Bold', 'Liberation Serif Bold Italic'" font-size="10pt" text-align="justify" line-height="normal" font-selection-strategy="character-by-character" line-height-shift-adjustment="disregard-shifts" writing-mode="lr-tb" language="en">
    <fo:layout-master-set>
     <fo:simple-page-master master-name="preface-master"
       page-height="«PDF_BODY_PAGE_EVEN_HEIGHT»" page-width="«PDF_BODY_PAGE_EVEN_WIDTH»"

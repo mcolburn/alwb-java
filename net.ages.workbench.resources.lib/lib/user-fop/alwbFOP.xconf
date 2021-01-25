@@ -9,20 +9,20 @@
 	<renderers> 
     		<renderer mime="application/pdf"> 
        		<fonts> 
-         		<font embed-url="ttf/pala.ttf"> 
-           			<font-triplet name="Palatino Linotype" 
+         		<font embed-url="ttf/LiberationSerif.ttf"> 
+           			<font-triplet name="Liberation Serif" 
            			 	style="normal" weight="normal"/> 
          		</font> 
-         		<font embed-url="ttf/palab.ttf"> 
-           			<font-triplet name="Palatino Linotype Bold" 
+         		<font embed-url="ttf/LiberationSerif-Bold.ttf"> 
+           			<font-triplet name="Liberation Serif Bold" 
            			 	style="normal" weight="bold"/> 
          		</font> 
-         		<font embed-url="ttf/palabi.ttf"> 
-           			<font-triplet name="Palatino Linotype Bold Italic" 
+         		<font embed-url="ttf/LiberationSerif-BoldItalic.ttf"> 
+           			<font-triplet name="Liberation Serif Bold Italic" 
            			 	style="italic" weight="bold"/> 
          		</font> 
-         		<font embed-url="ttf/palai.ttf"> 
-           			<font-triplet name="Palatino Linotype Italic" 
+         		<font embed-url="ttf/LiberationSerif-Italic.ttf"> 
+           			<font-triplet name="Liberation Serif Italic" 
            			 	style="italic" weight="normal"/> 
          		</font> 
        		</fonts> 

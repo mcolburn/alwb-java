@@ -145,7 +145,7 @@ public class XmlFoFormatManager {
 		actor.push("text-indent", "0px");
 		actor.push("font-weight", "bold");
 		actor.push("font-size", globalFontSize);
-		actor.push("font-family", "Palatino Linotype Bold");
+		actor.push("font-family", "Liberation Serif Bold");
 		actor.push("padding-bottom", globalPadding);
 		stylesheet.put("actor", actor);
 		
@@ -154,7 +154,7 @@ public class XmlFoFormatManager {
 		paraMode.push("text-align", "center");
 		paraMode.push("color", "red");
 		paraMode.push("font-weight", "bold");
-		paraMode.push("font-family", "Palatino Linotype Bold");
+		paraMode.push("font-family", "Liberation Serif Bold");
 		paraMode.push("font-size", globalFontSize);
 		paraMode.push("padding-bottom", globalPadding);
 		stylesheet.put("mode", paraMode);
@@ -163,7 +163,7 @@ public class XmlFoFormatManager {
 		XmlFoFormat paraChant = new XmlFoFormat("chant");
 		paraChant.push("text-align", "left");
 		paraChant.push("text-indent", globalIndent);
-		paraChant.push("font-family", "Palatino Linotype");
+		paraChant.push("font-family", "Liberation Serif");
 		paraChant.push("font-size", globalFontSize);
 		paraChant.push("padding-bottom", globalPadding);
 		stylesheet.put("chant", paraChant);
@@ -210,7 +210,7 @@ public class XmlFoFormatManager {
 		paraDesignation.push("text-align", "center");
 		paraDesignation.push("font-style", "normal");
 		paraDesignation.push("font-weight", "bold");
-		paraDesignation.push("font-family", "Palatino Linotype Bold");
+		paraDesignation.push("font-family", "Liberation Serif Bold");
 		paraDesignation.push("font-size", globalFontSize);
 		paraDesignation.push("color", "red");
 		paraDesignation.push("padding-bottom", globalPadding);
@@ -444,7 +444,7 @@ public class XmlFoFormatManager {
 		XmlFoFormat paraCover2 = new XmlFoFormat("cover2");
 		paraCover2.push("text-align","center");
 		paraCover2.push("font-weight","bold");
-		paraCover2.push("font-family", "Palatino Linotype Bold");
+		paraCover2.push("font-family", "Liberation Serif Bold");
 		paraCover2.push("font-size","24pt");
 		paraCover2.push("padding-bottom", "1em");
 		stylesheet.put("cover2", paraCover2);
@@ -453,7 +453,7 @@ public class XmlFoFormatManager {
 		XmlFoFormat paraCover3 = new XmlFoFormat("cover3");
 		paraCover3.push("text-align","center");
 		paraCover3.push("font-weight","bold");
-		paraCover3.push("font-family", "Palatino Linotype Bold");
+		paraCover3.push("font-family", "Liberation Serif Bold");
 		paraCover3.push("font-size","12pt");
 		paraCover3.push("color", "red");
 //		paraCover3.push("text-indent", "20px");
@@ -464,7 +464,7 @@ public class XmlFoFormatManager {
 		// cover4
 		XmlFoFormat paraCover4 = new XmlFoFormat("cover4");
 		paraCover4.push("text-align","center");
-		paraCover4.push("font-family", "Palatino Linotype Bold");
+		paraCover4.push("font-family", "Liberation Serif Bold");
 		paraCover4.push("font-weight","bold");
 		paraCover4.push("font-size","16pt");
 		paraCover4.push("color", "red");
@@ -475,7 +475,7 @@ public class XmlFoFormatManager {
 		XmlFoFormat paraCover5 = new XmlFoFormat("cover5");
 		paraCover5.push("text-align","center");
 		paraCover5.push("font-weight","bold");
-		paraCover5.push("font-family", "Palatino Linotype Bold");
+		paraCover5.push("font-family", "Liberation Serif Bold");
 		paraCover5.push("font-size","16pt");
 		paraCover1.push("margin-top", "1in");
 		stylesheet.put("cover5", paraCover5);
@@ -485,7 +485,7 @@ public class XmlFoFormatManager {
 		paraCredits1.push("padding-top", "1em");
 		paraCredits1.push("text-align","left");
 		paraCredits1.push("font-weight","bold");
-		paraCredits1.push("font-family", "Palatino Linotype Bold");
+		paraCredits1.push("font-family", "Liberation Serif Bold");
 		paraCredits1.push("font-size",globalFontSize);
 		paraCredits1.push("padding-bottom", "1em");
 		stylesheet.put("credits1", paraCredits1);
@@ -536,13 +536,13 @@ public class XmlFoFormatManager {
 		XmlFoFormat inlineBoldItalicsRed = new XmlFoFormat("bolditalicsred");
 		inlineBoldItalicsRed.push("font-style", "italic");
 		inlineBoldItalicsRed.push("font-weight", "bold");
-		inlineBoldItalicsRed.push("font-family", "Palatino Linotype Bold Italic");
+		inlineBoldItalicsRed.push("font-family", "Liberation Serif Bold Italic");
 		inlineBoldItalicsRed.push("color", "red");
 		stylesheet.put("bolditalicsred", inlineBoldItalicsRed);
 
 		// bold
 		XmlFoFormat inlineBold = new XmlFoFormat("bold");
-		inlineBold.push("font-family", "Palatino Linotype Bold");
+		inlineBold.push("font-family", "Liberation Serif Bold");
 		inlineBold.push("font-weight", "bold");
 		inlineBold.push("font-style", "normal");
 		stylesheet.put("bold", inlineBold);
@@ -555,7 +555,7 @@ public class XmlFoFormatManager {
 
 		// boldItalics
 		XmlFoFormat inlineBoldItalics = new XmlFoFormat("bolditalics");
-		inlineBoldItalics.push("font-family", "Palatino Linotype Bold Italic");
+		inlineBoldItalics.push("font-family", "Liberation Serif Bold Italic");
 		inlineBoldItalics.push("font-style", "italic");
 		inlineBoldItalics.push("font-weight", "bold");
 		stylesheet.put("bolditalics", inlineBoldItalics);
@@ -567,7 +567,7 @@ public class XmlFoFormatManager {
 	
 		// boldRed
 		XmlFoFormat inlineBoldRed = new XmlFoFormat("boldred");
-		inlineBoldRed.push("font-family", "Palatino Linotype Bold");
+		inlineBoldRed.push("font-family", "Liberation Serif Bold");
 		inlineBoldRed.push("font-style", "normal");
 		inlineBoldRed.push("font-weight", "bold");
 		inlineBoldRed.push("color", "red");
